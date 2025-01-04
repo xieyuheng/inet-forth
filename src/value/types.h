@@ -20,3 +20,5 @@ typedef enum {
     // TODO      = 6, // 0b110
     XEXTENDED    = 7, // 0b111
 } tag_t;
+
+typedef struct xobject_spec_t xobject_spec_t;

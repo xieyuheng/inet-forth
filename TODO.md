@@ -1,9 +1,4 @@
-# value
-
-[value] xobject_spec_t
-[value] xobject -- has address to xobject_spec_t as kind
-
-# extending x-forth
+[value] xobject_t -- has address to static xobject_spec_t as kind
 
 [net] wire_t as xobject
 [net] fix value_print for wire_t
