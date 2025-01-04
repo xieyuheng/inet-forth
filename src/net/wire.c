@@ -1,6 +1,6 @@
 #include "index.h"
 
-xobject_spec_t wire_xobject_spec = {
+object_spec_t wire_object_spec = {
     .name = "wire",
     .print_fn = (print_fn_t *) wire_print,
 };
@@ -8,7 +8,7 @@ xobject_spec_t wire_xobject_spec = {
 wire_t *
 wire_new(void) {
     wire_t *self = new(wire_t);
-    self->spec = &wire_xobject_spec;
+    self->spec = &wire_object_spec;
     self->node = NULL;
     self->index = -1;
     self->opposite = NULL;

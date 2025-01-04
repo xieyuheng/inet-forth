@@ -1,3 +1,5 @@
+[value] xobject
+[value] to_object
 [net] value_print -- support xobject
 
 # vm

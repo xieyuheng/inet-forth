@@ -41,6 +41,16 @@ value_print(value_t value, file_t *file) {
         return;
     }
 
-    fprintf(file, "unknown-value");
+    if (is_xobject(value)) {
+        // if (value->) {
+        //     fprintf(file, "#<unknown-object 0x%p>", value);
+        //     return;
+        // }
+
+        fprintf(file, "#<unknown-object 0x%p>", value);
+        return;
+    }
+
+    fprintf(file, "#<unknown-value 0x%p>", value);
     return;
 }

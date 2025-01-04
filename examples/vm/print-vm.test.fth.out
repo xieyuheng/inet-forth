@@ -31,7 +31,7 @@ CALL print-vm
 </frame>
 </return-stack>
 <value-stack length="1">
-unknown-value
+#<unknown-object 0x0x55a789f617d0>
 </value-stack>
 </vm>
 
@@ -41,8 +41,8 @@ unknown-value
 <return-stack length="0">
 </return-stack>
 <value-stack length="2">
-unknown-value
-unknown-value
+#<unknown-object 0x0x55a789f617d0>
+#<unknown-object 0x0x55a789f74b90>
 </value-stack>
 </vm>
 

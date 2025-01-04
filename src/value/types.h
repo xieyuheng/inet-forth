@@ -21,5 +21,5 @@ typedef enum {
     XEXTENDED    = 7, // 0b111
 } tag_t;
 
-typedef struct xobject_spec_t xobject_spec_t;
-typedef struct xobject_t xobject_t;
+typedef struct object_spec_t object_spec_t;
+typedef struct object_t object_t;
