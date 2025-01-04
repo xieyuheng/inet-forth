@@ -22,3 +22,4 @@ typedef enum {
 } tag_t;
 
 typedef struct xobject_spec_t xobject_spec_t;
+typedef struct xobject_t xobject_t;

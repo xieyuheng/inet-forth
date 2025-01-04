@@ -1,5 +1,3 @@
-[value] xobject_t -- has address to static xobject_spec_t as kind
-
 [net] wire_t as xobject
 [net] fix value_print for wire_t
 
