@@ -47,7 +47,8 @@ debug_destroy(debug_t **self_pointer) {
 
 bool
 debug_is_any_button_pressed(debug_t *self) {
-    return (self->step_button_is_pressed ||
+    return (self->toggle_light_button_is_pressed ||
+            self->step_button_is_pressed ||
             self->run_button_is_pressed ||
             self->end_button_is_pressed);
 }
@@ -58,6 +59,19 @@ init_canvas_theme(canvas_t *canvas) {
     canvas->palette[SL_COLOR] = 0xffcd2e3a;
     canvas->palette[FG_COLOR] = 0xff000000;
     canvas->palette[AP_COLOR] = 0xffffffff;
+}
+
+void
+debug_toggle_light(debug_t *self) {
+    color_t bg_color = self->canvas->palette[BG_COLOR];
+    color_t sl_color = self->canvas->palette[SL_COLOR];
+    color_t fg_color = self->canvas->palette[FG_COLOR];
+    color_t ap_color = self->canvas->palette[AP_COLOR];
+
+    self->canvas->palette[BG_COLOR] = sl_color;
+    self->canvas->palette[SL_COLOR] = bg_color;
+    self->canvas->palette[FG_COLOR] = ap_color;
+    self->canvas->palette[AP_COLOR] = fg_color;
 }
 
 static void
@@ -164,6 +178,7 @@ on_click(debug_t *self, canvas_t *canvas, uint8_t button, bool is_release) {
 
     if (button == 1) {
         if (is_release) {
+            self->toggle_light_button_is_pressed = false;
             self->step_button_is_pressed = false;
             self->run_button_is_pressed = false;
             self->end_button_is_pressed = false;

@@ -1,6 +1,4 @@
-# debug
-
-[debug] support dark mode
+[debug] toggle-light-button-down & toggle-light-button-up
 
 # curry
 

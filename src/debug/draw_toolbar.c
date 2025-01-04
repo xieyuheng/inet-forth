@@ -1,6 +1,33 @@
 #include "index.h"
 
 static void
+on_click_toggle_light_button(debug_t *self, canvas_t *canvas, uint8_t button, bool is_release) {
+    (void) canvas;
+
+    if (button == 1) {
+        if (is_release) {
+            self->toggle_light_button_is_pressed = false;
+            debug_toggle_light(self);
+        } else {
+            self->toggle_light_button_is_pressed = true;
+        }
+    }
+}
+
+static void
+draw_toggle_light_button(debug_t *self, canvas_t *canvas, size_t x, size_t y) {
+    if (self->toggle_light_button_is_pressed) {
+        canvas_draw_image_button(
+            canvas, x, y, "images/step-button-down-03x03.chr", TR_AP_BLENDING,
+            (on_click_fn_t *) on_click_toggle_light_button);
+    } else {
+        canvas_draw_image_button(
+            canvas, x, y, "images/step-button-up-03x03.chr", TR_AP_BLENDING,
+            (on_click_fn_t *) on_click_toggle_light_button);
+    }
+}
+
+static void
 on_click_step_button(debug_t *self, canvas_t *canvas, uint8_t button, bool is_release) {
     (void) canvas;
 
@@ -85,6 +112,11 @@ draw_end_button(debug_t *self, canvas_t *canvas, size_t x, size_t y) {
 
 void
 draw_toolbar(debug_t *self, canvas_t *canvas) {
+    draw_toggle_light_button(
+        self, canvas,
+        3 * TILE,
+        self->canvas->height - 5 * TILE);
+
     draw_step_button(
         self, canvas,
         self->canvas->width - 13 * TILE,
