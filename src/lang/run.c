@@ -22,33 +22,29 @@ collect_free_wires_from_node(vm_t *vm, node_t *node) {
 
 void
 step_net(vm_t *vm) {
-    wire_t *active_wire = list_shift(vm->activity_list);
-    if (!active_wire) return;
+    activity_t *activity = list_shift(vm->activity_list);
+    if (!activity) return;
 
-    const rule_t *rule = mod_find_rule(
-        vm->mod,
-        active_wire,
-        active_wire->opposite);
-    if (!rule) return;
+    node_t *first_node = activity->wire->node;
+    node_t *second_node = activity->wire->opposite->node;
 
-    node_t *first_node = active_wire->node;
-    node_t *second_node = active_wire->opposite->node;
-
-    if (first_node->def == rule->second_node_def &&
-        second_node->def == rule->first_node_def)
+    if (first_node->def == activity->rule->second_node_def &&
+        second_node->def == activity->rule->first_node_def)
     {
-        first_node = active_wire->opposite->node;
-        second_node = active_wire->node;
+        first_node = activity->wire->opposite->node;
+        second_node = activity->wire->node;
     }
 
     collect_free_wires_from_node(vm, first_node);
     collect_free_wires_from_node(vm, second_node);
 
-    vm_delete_wire(vm, active_wire);
-    vm_delete_wire(vm, active_wire->opposite);
-
+    vm_delete_wire(vm, activity->wire);
+    vm_delete_wire(vm, activity->wire->opposite);
+    
     size_t base_length = stack_length(vm->return_stack);
-    frame_t *frame = frame_new(rule->function);
+    frame_t *frame = frame_new(activity->rule->function);
+
+    activity_destroy(&activity);
 
     stack_push(vm->return_stack, frame);
     run_vm_until(vm, base_length);

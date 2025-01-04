@@ -1,14 +1,10 @@
-# vm
+# debug
 
-[vm] activity_list has activity_t
+[debug] support dark mode
 
 # curry
 
 use name/n to do explicit curry -- use less wire-pair
-
-# debug
-
-[debug] support dark mode
 
 # main
 

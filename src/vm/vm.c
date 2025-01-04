@@ -20,7 +20,7 @@ vm_new(mod_t *mod) {
     vm_t *self = new(vm_t);
     self->mod = mod;
     self->token_list = lex_code(mod->code);
-    self->activity_list = list_new();
+    self->activity_list = list_new_with((destroy_fn_t *) activity_destroy);
     // TODO We should use value_destroy to create value_stack.
     self->value_stack = stack_new();
     self->return_stack = stack_new_with((destroy_fn_t *) frame_destroy);
@@ -53,11 +53,11 @@ vm_print(const vm_t *self, file_t *file) {
 
     size_t activity_list_length = list_length(self->activity_list);
     fprintf(file, "<active-wire-list length=\"%lu\">\n", activity_list_length);
-    wire_t *active_wire = list_first(self->activity_list);
-    while (active_wire) {
-        wire_print(active_wire, file);
+    activity_t *activity = list_first(self->activity_list);
+    while (activity) {
+        wire_print(activity->wire, file);
         fprintf(file, "\n");
-        active_wire = list_next(self->activity_list);
+        activity = list_next(self->activity_list);
     }
     fprintf(file, "</active-wire-list>\n");
 
@@ -115,7 +115,10 @@ vm_maybe_add_active_wire(
         assert(first_wire->opposite == second_wire);
         assert(second_wire->opposite == first_wire);
 
-        list_push(self->activity_list, first_wire);
+        const rule_t *rule = mod_find_rule(self->mod, first_wire, second_wire);
+        if (!rule) return;
+
+        list_push(self->activity_list, activity_new(first_wire, rule));
     }
 }
 
