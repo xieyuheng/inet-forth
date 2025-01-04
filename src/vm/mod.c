@@ -5,7 +5,8 @@ mod_new(const char *src, const char *code) {
     mod_t *self = new(mod_t);
     self->src = src;
     self->code = code;
-    self->def_list = list_new_with((destroy_fn_t *) def_destroy);
+    self->def_hash = hash_new_of_string_key();
+    hash_set_destroy_fn(self->def_hash, (destroy_fn_t *) def_destroy);
     self->rule_list = list_new_with((destroy_fn_t *) rule_destroy);
     return self;
 }
@@ -15,7 +16,7 @@ mod_destroy(mod_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         mod_t *self = *self_pointer;
-        list_destroy(&self->def_list);
+        hash_destroy(&self->def_hash);
         list_destroy(&self->rule_list);
         free(self);
         *self_pointer = NULL;
@@ -24,13 +25,7 @@ mod_destroy(mod_t **self_pointer) {
 
 const def_t *
 mod_find_def(const mod_t *self, const char *name) {
-    def_t *def = list_first(self->def_list);
-    while (def) {
-        if (string_equal(def_name(def), name)) return def;
-        def = list_next(self->def_list);
-    }
-
-    return NULL;
+    return hash_get(self->def_hash, name);
 }
 
 const rule_t *
@@ -50,7 +45,7 @@ mod_find_rule(
 
 void
 mod_define(mod_t *self, def_t *def) {
-    list_push(self->def_list, def);
+    assert(hash_set(self->def_hash, string_copy(def_name(def)), def));
 }
 
 void
@@ -73,14 +68,14 @@ mod_define_rule(
 void
 mod_print(const mod_t *self, file_t *file) {
     fprintf(file, "<mod def-count=\"%lu\" rule-count=\"%lu\">\n",
-            list_length(self->def_list),
+            hash_length(self->def_hash),
             list_length(self->rule_list));
 
-    def_t *def = list_first(self->def_list);
+    def_t *def = hash_first(self->def_hash);
     while (def) {
         def_print(def, file);
         fprintf(file, "\n");
-        def = list_next(self->def_list);
+        def = hash_next(self->def_hash);
     }
 
     rule_t *rule = list_first(self->rule_list);

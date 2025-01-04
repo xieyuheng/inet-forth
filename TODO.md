@@ -1,8 +1,5 @@
 # vm
 
-[vm] mod -- change def_list to def_hash
-[vm] mod -- change rule_list to rule_hash
-
 [vm] rename active_wire_list to activity_list
 [vm] activity_t -- has wire and rule
 [vm] activity_list has activity_t
@@ -44,6 +41,10 @@ projects/others/HigherOrderCO/HVM/paper/HVM2.pdf
 [debug] 尝试使用真实的物理学来实现 force
 [debug] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
 [debug] remove `node_physics_fake_simulate`
+
+# vm
+
+[vm] mod -- change rule_list to rule_hash -- what should be the key?
 
 # module system
 
