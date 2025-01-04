@@ -1,4 +1,3 @@
-[value] wire_xobject_spec -- has print_fn
 [net] value_print -- support xobject
 
 # vm

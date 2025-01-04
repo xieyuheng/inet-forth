@@ -1,4 +1,4 @@
-cc = gcc
+cc = clang
 ldflags = -lX11 -lm
 cflags = -g -Wall -Wwrite-strings -Wextra -Werror -Wpedantic -O3 -std=c2x -D_POSIX_C_SOURCE=199309L
 

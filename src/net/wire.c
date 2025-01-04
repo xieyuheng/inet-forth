@@ -2,7 +2,7 @@
 
 xobject_spec_t wire_xobject_spec = {
     .name = "wire",
-    .print_fn = NULL,
+    .print_fn = (print_fn_t *) wire_print,
 };
 
 wire_t *
