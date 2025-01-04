@@ -1,5 +1,3 @@
-[debug] toggle-light-button-down & toggle-light-button-up
-
 # curry
 
 use name/n to do explicit curry -- use less wire-pair

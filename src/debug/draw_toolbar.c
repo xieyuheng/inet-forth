@@ -18,11 +18,11 @@ static void
 draw_toggle_light_button(debug_t *self, canvas_t *canvas, size_t x, size_t y) {
     if (self->toggle_light_button_is_pressed) {
         canvas_draw_image_button(
-            canvas, x, y, "images/step-button-down-03x03.chr", TR_AP_BLENDING,
+            canvas, x, y, "images/toggle-light-button-down-03x03.chr", TR_AP_BLENDING,
             (on_click_fn_t *) on_click_toggle_light_button);
     } else {
         canvas_draw_image_button(
-            canvas, x, y, "images/step-button-up-03x03.chr", TR_AP_BLENDING,
+            canvas, x, y, "images/toggle-light-button-up-03x03.chr", TR_AP_BLENDING,
             (on_click_fn_t *) on_click_toggle_light_button);
     }
 }

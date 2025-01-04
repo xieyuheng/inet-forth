@@ -63,13 +63,10 @@ init_canvas_theme(canvas_t *canvas) {
 
 void
 debug_toggle_light(debug_t *self) {
-    color_t bg_color = self->canvas->palette[BG_COLOR];
-    color_t sl_color = self->canvas->palette[SL_COLOR];
     color_t fg_color = self->canvas->palette[FG_COLOR];
     color_t ap_color = self->canvas->palette[AP_COLOR];
 
-    self->canvas->palette[BG_COLOR] = sl_color;
-    self->canvas->palette[SL_COLOR] = bg_color;
+    self->canvas->palette[BG_COLOR] = fg_color;
     self->canvas->palette[FG_COLOR] = ap_color;
     self->canvas->palette[AP_COLOR] = fg_color;
 }
