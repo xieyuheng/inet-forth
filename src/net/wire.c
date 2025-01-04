@@ -1,8 +1,13 @@
 #include "index.h"
 
+xobject_spec_t wire_xobject_spec = {
+    "wire"
+};
+
 wire_t *
 wire_new(void) {
     wire_t *self = new(wire_t);
+    self->spec = &wire_xobject_spec;
     self->node = NULL;
     self->index = -1;
     self->opposite = NULL;

@@ -1,4 +1,3 @@
-[net] wire_t as xobject
 [net] fix value_print for wire_t
 
 # vm

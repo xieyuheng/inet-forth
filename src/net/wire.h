@@ -1,6 +1,9 @@
 #pragma once
 
+extern xobject_spec_t wire_xobject_spec;
+
 struct wire_t {
+    xobject_spec_t *spec;
     node_t *node;
     port_index_t index;
     wire_t *opposite;
