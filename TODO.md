@@ -1,6 +1,5 @@
 # vm
 
-[vm] rename active_wire_list to activity_list
 [vm] activity_t -- has wire and rule
 [vm] activity_list has activity_t
 
