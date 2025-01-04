@@ -1,7 +1,8 @@
 #include "index.h"
 
 xobject_spec_t wire_xobject_spec = {
-    "wire"
+    .name = "wire",
+    .print_fn = NULL,
 };
 
 wire_t *
