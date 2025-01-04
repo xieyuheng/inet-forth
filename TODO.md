@@ -56,3 +56,7 @@ projects/others/HigherOrderCO/HVM/paper/HVM2.pdf
 learn linux thread
 
 shared memory parallel execution of inet
+
+# bug
+
+[bug] fix memory leak -- test by running forever

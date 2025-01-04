@@ -44,7 +44,8 @@ step_net(vm_t *vm) {
     collect_free_wires_from_node(vm, first_node);
     collect_free_wires_from_node(vm, second_node);
 
-    wire_destroy(&active_wire);
+    vm_delete_wire(vm, active_wire);
+    vm_delete_wire(vm, active_wire->opposite);
 
     size_t base_length = stack_length(vm->return_stack);
     frame_t *frame = frame_new(rule->function);
