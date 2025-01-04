@@ -1,7 +1,5 @@
 # vm
 
-[vm] activity_t -- has wire and rule
-[vm] activity_new
 [vm] activity_destroy
 [vm] activity_list has activity_t
 
