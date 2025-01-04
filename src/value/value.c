@@ -42,10 +42,11 @@ value_print(value_t value, file_t *file) {
     }
 
     if (is_xobject(value)) {
-        // if (value->) {
-        //     fprintf(file, "#<unknown-object 0x%p>", value);
-        //     return;
-        // }
+        object_t *object = to_object(value);
+        if (object->spec->print_fn) {
+            object->spec->print_fn(object, file);
+            return;
+        }
 
         fprintf(file, "#<unknown-object 0x%p>", value);
         return;

@@ -1,7 +1,3 @@
-[value] xobject
-[value] to_object
-[net] value_print -- support xobject
-
 # vm
 
 [vm] mod -- change def_list to def_hash
