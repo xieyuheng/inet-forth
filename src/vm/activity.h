@@ -6,3 +6,4 @@ struct activity_t {
 };
 
 activity_t *activity_new(wire_t *wire, const rule_t *rule);
+void activity_destroy(activity_t **self_pointer);

@@ -1,6 +1,5 @@
 # vm
 
-[vm] activity_destroy
 [vm] activity_list has activity_t
 
 # curry
