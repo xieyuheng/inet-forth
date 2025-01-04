@@ -7,3 +7,5 @@ struct xobject_spec_t {
 struct xobject_t {
     const xobject_spec_t *spec;
 };
+
+bool is_xobject(value_t value);
