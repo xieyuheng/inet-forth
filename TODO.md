@@ -19,13 +19,18 @@
 
 # curry
 
-use name/n to do explicit curry
+use name/n to do explicit curry -- use less wire-pair
+
+# debug
+
+[debug] support dark mode
 
 # main
 
-图灵机作为 inet 的例子 -> 读 2008-the-annotated-turing.djvu
-inet -- 实现 combinators and lambda -> 重读 1997-interaction-combinators.pdf
-理解 HVM -> 读 projects/others/HigherOrderCO/HVM/paper/HVM2.pdf
+2008-the-annotated-turing.djvu -- program turing machine in inet
+1997-interaction-combinators.pdf -- combinators and lambda
+1997-interaction-combinators.pdf -- cellular automata
+projects/others/HigherOrderCO/HVM/paper/HVM2.pdf
 
 # later
 
@@ -44,7 +49,7 @@ inet -- 实现 combinators and lambda -> 重读 1997-interaction-combinators.pdf
 
 [question] is it possible to have a generic `copy` that can copy any net with a root wire?
 
-# graph layout
+# debug
 
 [debug] 尝试使用真实的物理学来实现 force
 [debug] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
