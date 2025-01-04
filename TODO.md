@@ -3,8 +3,6 @@
 [value] xobject_spec_t
 [value] xobject -- has address to xobject_spec_t as kind
 
-[value] 1 tag as STATIC
-
 # extending x-forth
 
 [net] wire_t as xobject
