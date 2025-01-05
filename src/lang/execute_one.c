@@ -37,7 +37,8 @@ execute_generic(vm_t *vm) {
     function_build(function);
 
     size_t base_length = stack_length(vm->return_stack);
-    stack_push(vm->return_stack, frame_new(function));
+    frame_t *frame = frame_new(function);
+    stack_push(vm->return_stack, frame);
     run_vm_until(vm, base_length);
 
     function_ctx_destroy(&ctx);

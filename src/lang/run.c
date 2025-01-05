@@ -72,12 +72,22 @@ step_vm(vm_t *vm) {
     if (stack_is_empty(vm->return_stack)) return;
 
     frame_t *frame = stack_pop(vm->return_stack);
-    if (frame_is_finished(frame)) return;
+    if (frame_is_finished(frame)) {
+        frame_destroy(&frame);
+        return;
+    }
 
     op_t *op = frame_fetch_op(frame);
+
     // proper tail-call = do not push finished frame.
     bool finished = frame_is_finished(frame);
-    if (!finished) stack_push(vm->return_stack, frame);
+    if (!finished) {
+        stack_push(vm->return_stack, frame);
+    }
+
     execute_operation(vm, frame, op);
-    if (finished) frame_destroy(&frame);
+
+    if (finished) {
+        frame_destroy(&frame);
+    }
 }
