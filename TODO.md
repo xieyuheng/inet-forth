@@ -1,5 +1,7 @@
 # curry
 
+node def support nested def
+compiling of call support nested def
 use name/n to do explicit curry -- use less wire-pair
 
 # main
@@ -45,7 +47,3 @@ projects/others/HigherOrderCO/HVM/paper/HVM2.pdf
 learn linux thread
 
 shared memory parallel execution of inet
-
-# bug
-
-[bug] fix memory leak -- test by running forever

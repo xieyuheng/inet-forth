@@ -40,7 +40,7 @@ step_net(vm_t *vm) {
 
     vm_delete_wire(vm, activity->wire);
     vm_delete_wire(vm, activity->wire->opposite);
-    
+
     size_t base_length = stack_length(vm->return_stack);
     frame_t *frame = frame_new(activity->rule->function);
 

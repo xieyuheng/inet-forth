@@ -32,6 +32,7 @@ array_destroy(array_t **self_pointer) {
     if (*self_pointer) {
         array_t *self = *self_pointer;
         array_purge(self);
+        free(self->values);
         free(self);
         *self_pointer = NULL;
     }
@@ -92,13 +93,13 @@ array_push(array_t *self, void *value) {
 
 void *
 array_get(array_t *self, size_t index) {
-    assert(index < self->size);        
+    assert(index < self->size);
     return self->values[index];
 }
 
 void
 array_set(array_t *self, size_t index, void *value) {
-    assert(index < self->size);    
+    assert(index < self->size);
     self->values[index] = value;
 }
 
