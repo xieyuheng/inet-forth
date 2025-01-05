@@ -51,4 +51,4 @@ define forever
   car-op second connect
 end
 
-forever run
+forever debug
