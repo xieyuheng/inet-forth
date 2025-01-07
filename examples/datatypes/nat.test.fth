@@ -75,10 +75,10 @@ wire-print-net
 run
 wire-print-net
 
-// to define `nat-max`, we need `nat-max-aux`
+// to define `nat-max`, we need `nat-max-nadd1`
 
 define-node nat-max first! second -- result end
-define-node nat-max-aux first second! -- result end
+define-node nat-max-nadd1 first second! -- result end
 
 define-rule nzero nat-max
   ( second result )
@@ -87,15 +87,15 @@ end
 
 define-rule nadd1 nat-max
   ( second result ) ( prev )
-  prev second nat-max-aux result connect
+  prev second nat-max-nadd1 result connect
 end
 
-define-rule nzero nat-max-aux
+define-rule nzero nat-max-nadd1
   ( first result )
   first nadd1 result connect
 end
 
-define-rule nadd1 nat-max-aux
+define-rule nadd1 nat-max-nadd1
   ( first result ) ( prev )
   first prev nat-max
   nadd1 result connect
