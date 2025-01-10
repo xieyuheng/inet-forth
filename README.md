@@ -51,8 +51,8 @@ To apply this rule is to disconnect and delete `(nadd1)` and `(nadd)` and reconn
 
 - `( addend result )` save the wires that were connected to `(nadd)` to local variable `addend` and `result`.
 - `( prev )` save the wire that was connected to `(nadd1)` to local variable `prev`.
-- `prev` push local variables to the stack.
-- `addend` push local variables to the stack.
+- `prev` push local variable to the stack.
+- `addend` push local variable to the stack.
 - `nadd` take two arguments from the stack and create a new `(nadd)` node.
 - `nadd1` take one argument from the stack and create a new `(nadd1)` node.
 - `result` push local variable to the stack.
@@ -80,8 +80,8 @@ end
 To apply this rule is to disconnect and delete `(nzero)` and `(nadd)` and reconnect newly exposed wires:
 
 - `( addend result )` save the wires that were connected to `(nadd)` to local variable `addend` and `result`.
-- `addend` push local variables to the stack.
-- `result` push local variables to the stack.
+- `addend` push local variable to the stack.
+- `result` push local variable to the stack.
 - `connect` take two wires from the stack and connect them.
 
 Example interaction:
