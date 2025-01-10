@@ -1,31 +1,16 @@
-# curry
-
-node def support nested def
-compiling of call support nested def
-use name/n to do explicit curry -- use less wire-pair
-
-# main
-
-2008-the-annotated-turing.djvu -- program turing machine in inet
-1997-interaction-combinators.pdf -- combinators and lambda
-1997-interaction-combinators.pdf -- cellular automata
-projects/others/HigherOrderCO/HVM/paper/HVM2.pdf
-
 # later
 
-[example] `examples/lambda.fth` -- use interaction combinators
-[example] `examples/turing.fth` -- coding turing machine
-[example] polish parsing (from 1990-interaction-nets) as an example -- need primitive string type
+[example] cellular automata -- 1997-interaction-combinators.pdf
+[example] `examples/lambda.fth` -- use interaction combinators to implement lambda
+[example] `examples/turing.fth` -- coding turing machine -- 2008-the-annotated-turing.djvu
 
 # primitive value
 
 [design] node ports can store any value -- not only wire, but also primitive values
-
+[design] the most important primitive value is function
 [design] write `list-map` as example
-
 - use explicit `copy` -- keep linear variable like simple
 - use `{ ... }` for un-named program -- just program, no closure over linear variables
-
 [question] is it possible to have a generic `copy` that can copy any net with a root wire?
 
 # debug
@@ -45,5 +30,5 @@ projects/others/HigherOrderCO/HVM/paper/HVM2.pdf
 # parallelism
 
 learn linux thread
-
 shared memory parallel execution of inet
+projects/others/HigherOrderCO/HVM/paper/HVM2.pdf
