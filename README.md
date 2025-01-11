@@ -303,6 +303,8 @@ make clean    # clean up compiled files
 
 - [inet-cute](https://github.com/cicada-lang/inet-cute)
 - [inet-js](https://github.com/cicada-lang/inet-js)
+- [inet-forth](https://github.com/cicada-lang/inet-forth)
+- [inet-lisp](https://github.com/cicada-lang/inet-lisp)
 
 ## References
 
