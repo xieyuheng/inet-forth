@@ -123,6 +123,8 @@ define two
   nzero nadd1 nadd1
 end
 
+two two nadd
+
 wire-print-net
 run
 wire-print-net
