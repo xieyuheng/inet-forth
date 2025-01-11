@@ -299,7 +299,7 @@ make test     # compile and run test
 make clean    # clean up compiled files
 ```
 
-## Other Implementations
+## Implementations
 
 - [inet-cute](https://github.com/cicada-lang/inet-cute)
 - [inet-js](https://github.com/cicada-lang/inet-js)
