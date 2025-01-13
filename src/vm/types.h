@@ -1,10 +1,10 @@
 #pragma once
 
 typedef enum {
-    CALL_OP,
-    LITERAL_OP,
-    LOCAL_GET_OP,
-    LOCAL_SET_OP,
+    OP_CALL,
+    OP_LITERAL,
+    OP_LOCAL_GET,
+    OP_LOCAL_SET,
 } op_kind_t;
 
 typedef struct mod_t mod_t;

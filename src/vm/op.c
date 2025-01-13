@@ -3,7 +3,7 @@
 call_op_t *
 call_op_new(const def_t *def) {
     call_op_t *self = new(call_op_t);
-    self->kind = CALL_OP;
+    self->kind = OP_CALL;
     self->def = def;
     return self;
 }
@@ -21,7 +21,7 @@ call_op_destroy(call_op_t **self_pointer) {
 literal_op_t *
 literal_op_new(value_t value) {
     literal_op_t *self = new(literal_op_t);
-    self->kind = LITERAL_OP;
+    self->kind = OP_LITERAL;
     self->value = value;
     return self;
 }
@@ -39,7 +39,7 @@ literal_op_destroy(literal_op_t **self_pointer) {
 local_get_op_t *
 local_get_op_new(size_t index) {
     local_get_op_t *self = new(local_get_op_t);
-    self->kind = LOCAL_GET_OP;
+    self->kind = OP_LOCAL_GET;
     self->index = index;
     return self;
 }
@@ -57,7 +57,7 @@ local_get_op_destroy(local_get_op_t **self_pointer) {
 local_set_op_t *
 local_set_op_new(size_t index) {
     local_set_op_t *self = new(local_set_op_t);
-    self->kind = LOCAL_SET_OP;
+    self->kind = OP_LOCAL_SET;
     self->index = index;
     return self;
 }
@@ -78,22 +78,22 @@ op_destroy(op_t **self_pointer) {
     if (*self_pointer) {
         op_t *self = *self_pointer;
         switch (self->kind) {
-        case CALL_OP: {
+        case OP_CALL: {
             call_op_destroy((call_op_t **) self_pointer);
             return;
         }
 
-        case LITERAL_OP: {
+        case OP_LITERAL: {
             literal_op_destroy((literal_op_t **) self_pointer);
             return;
         }
 
-        case LOCAL_GET_OP: {
+        case OP_LOCAL_GET: {
             local_get_op_destroy((local_get_op_t **) self_pointer);
             return;
         }
 
-        case LOCAL_SET_OP: {
+        case OP_LOCAL_SET: {
             local_set_op_destroy((local_set_op_t **) self_pointer);
             return;
         }
@@ -104,26 +104,26 @@ op_destroy(op_t **self_pointer) {
 void
 op_print(const op_t *unknown_op, file_t *file) {
     switch (unknown_op->kind) {
-    case CALL_OP: {
+    case OP_CALL: {
         call_op_t *op = (call_op_t *) unknown_op;
         fprintf(file, "CALL %s", def_name(op->def));
         return;
     }
 
-    case LITERAL_OP: {
+    case OP_LITERAL: {
         literal_op_t *op = (literal_op_t *) unknown_op;
         fprintf(file, "LITERAL ");
         value_print(op->value, file);
         return;
     }
 
-    case LOCAL_GET_OP: {
+    case OP_LOCAL_GET: {
         local_get_op_t *op = (local_get_op_t *) unknown_op;
         fprintf(file, "LOCAL-GET %ld", op->index);
         return;
     }
 
-    case LOCAL_SET_OP: {
+    case OP_LOCAL_SET: {
         local_set_op_t *op = (local_set_op_t *) unknown_op;
         fprintf(file, "LOCAL-SET %ld", op->index);
         return;
