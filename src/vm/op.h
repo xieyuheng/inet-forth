@@ -9,39 +9,18 @@ typedef enum {
 
 struct op_t {
     op_kind_t kind;
+    union {
+        struct { const def_t *def; } call;
+        struct { value_t value; } literal;
+        struct { size_t index; } local_get;
+        struct { size_t index; } local_set;
+    };
 };
 
-struct call_op_t {
-    op_kind_t kind;
-    const def_t *def;
-};
-
-struct literal_op_t {
-    op_kind_t kind;
-    value_t value;
-};
-
-struct local_get_op_t {
-    op_kind_t kind;
-    size_t index;
-};
-
-struct local_set_op_t {
-    op_kind_t kind;
-    size_t index;
-};
-
-call_op_t *call_op_new(const def_t *def);
-void call_op_destroy(call_op_t **self_pointer);
-
-literal_op_t *literal_op_new(value_t value);
-void literal_op_destroy(literal_op_t **self_pointer);
-
-local_get_op_t *local_get_op_new(size_t index);
-void local_get_op_destroy(local_get_op_t **self_pointer);
-
-local_set_op_t *local_set_op_new(size_t index);
-void local_set_op_destroy(local_set_op_t **self_pointer);
+op_t *op_call(const def_t *def);
+op_t *op_literal(value_t value);
+op_t *op_local_get(size_t index);
+op_t *op_local_set(size_t index);
 
 void op_destroy(op_t **self_pointer);
 

@@ -10,7 +10,7 @@ compile_int(vm_t *vm, function_t *function, function_ctx_t *ctx) {
     (void) list_shift(vm->token_list);
 
     value_t value = xint(string_parse_xint(token->string));
-    function_add_op(function, (op_t *) literal_op_new(value));
+    function_add_op(function, op_literal(value));
     token_destroy(&token);
     return true;
 }
@@ -25,7 +25,7 @@ compile_float(vm_t *vm, function_t *function, function_ctx_t *ctx) {
     (void) list_shift(vm->token_list);
 
     value_t value = xfloat(string_parse_double(token->string));
-    function_add_op(function, (op_t *) literal_op_new(value));
+    function_add_op(function, op_literal(value));
     token_destroy(&token);
     return true;
 }
@@ -38,7 +38,7 @@ compile_generic(vm_t *vm, function_t *function, function_ctx_t *ctx) {
     if (hash_has(ctx->local_index_hash, token->string)) {
         (void) list_shift(vm->token_list);
         size_t index = (size_t) hash_get(ctx->local_index_hash, token->string);
-        function_add_op(function, (op_t *) local_get_op_new(index));
+        function_add_op(function, op_local_get(index));
         token_destroy(&token);
         return true;
     }
@@ -50,7 +50,7 @@ compile_generic(vm_t *vm, function_t *function, function_ctx_t *ctx) {
     }
 
     (void) list_shift(vm->token_list);
-    function_add_op(function, (op_t *) call_op_new(def));
+    function_add_op(function, op_call(def));
     token_destroy(&token);
     return true;
 }
@@ -80,10 +80,10 @@ compile_local_set_many(vm_t *vm, function_t *function, function_ctx_t *ctx) {
         token_t *token = list_pop(local_token_list);
         if (hash_has(ctx->local_index_hash, token->string)) {
             size_t old_index = (size_t) hash_get(ctx->local_index_hash, token->string);
-            function_add_op(function, (op_t *) local_set_op_new(old_index));
+            function_add_op(function, op_local_set(old_index));
         } else {
             hash_set(ctx->local_index_hash, token->string, (void *) index);
-            function_add_op(function, (op_t *) local_set_op_new(index));
+            function_add_op(function, op_local_set(index));
             index++;
         }
     }

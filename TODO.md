@@ -1,5 +1,3 @@
-[vm] op use real tagged union
-
 # later
 
 [example] cellular automata -- 1997-interaction-combinators.pdf
