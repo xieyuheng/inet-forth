@@ -1,6 +1,3 @@
-def_t be like op_t
-inline function_def_t to def_t
-
 # later
 
 [example] cellular automata -- 1997-interaction-combinators.pdf
