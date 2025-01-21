@@ -23,7 +23,7 @@ node_fake_spring_force(node_physics_t *self, hash_t *node_hash, hash_t *node_mod
 
     node_t *node = hash_first(node_hash);
     while (node) {
-        for (port_index_t i = 0; i < node->def->arity; i++) {
+        for (size_t i = 0; i < node->def->arity; i++) {
             wire_t *wire = node->wires[i];
             if (wire &&
                 wire->node &&

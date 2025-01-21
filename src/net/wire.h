@@ -5,7 +5,7 @@ extern object_spec_t wire_object_spec;
 struct wire_t {
     object_spec_t *spec;
     node_t *node;
-    port_index_t index;
+    size_t index;
     wire_t *opposite;
 };
 

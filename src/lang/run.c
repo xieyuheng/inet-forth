@@ -9,7 +9,7 @@ run_net(vm_t *vm) {
 
 static void
 collect_free_wires_from_node(vm_t *vm, node_t *node) {
-    for (port_index_t i = 0; i < node->def->arity; i++) {
+    for (size_t i = 0; i < node->def->arity; i++) {
         if (!wire_is_principal(node->wires[i])) {
             wire_t *wire = node->wires[i];
             wire_free_from_node(wire);

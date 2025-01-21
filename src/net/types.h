@@ -1,7 +1,5 @@
 #pragma once
 
-typedef int8_t port_index_t;
-
 typedef struct node_t node_t;
 typedef struct node_iter_t node_iter_t;
 typedef struct wire_t wire_t;

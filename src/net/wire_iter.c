@@ -5,7 +5,7 @@ struct wire_iter_t {
     list_t *occurred_wire_list;
     list_t *remaining_node_list;
     node_t *node;
-    port_index_t index;
+    size_t index;
 };
 
 wire_iter_t *
@@ -53,7 +53,7 @@ wire_iter_next(wire_iter_t *self) {
     if (!self->node) return NULL;
 
     while (self->index < self->node->def->arity) {
-        port_index_t i = self->index++;
+        size_t i = self->index++;
         wire_t *wire = self->node->wires[i];
 
         if (list_has(self->occurred_wire_list, wire))
