@@ -11,7 +11,7 @@ is_xobject(value_t value) {
 }
 
 object_t *
-to_object(value_t value) {
+as_object(value_t value) {
     assert(is_xobject(value));
     return value;
 }

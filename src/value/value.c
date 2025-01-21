@@ -42,7 +42,7 @@ value_print(value_t value, file_t *file) {
     }
 
     if (is_xobject(value)) {
-        object_t *object = to_object(value);
+        object_t *object = as_object(value);
         if (object->spec->print_fn) {
             object->spec->print_fn(object, file);
             return;
