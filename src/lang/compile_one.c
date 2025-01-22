@@ -27,30 +27,6 @@ compile_float(vm_t *vm, function_t *function) {
 }
 
 static bool
-compile_generic(vm_t *vm, function_t *function) {
-    function_ctx_t *ctx = function->ctx;
-    token_t *token = list_first(vm->token_list);
-    if (hash_has(ctx->local_index_hash, token->string)) {
-        (void) list_shift(vm->token_list);
-        size_t index = (size_t) hash_get(ctx->local_index_hash, token->string);
-        function_add_op(function, op_local_get(index));
-        token_destroy(&token);
-        return true;
-    }
-
-    const def_t *def = mod_find_def(vm->mod, token->string);
-    if (def == NULL) {
-        fprintf(stderr, "[function_emit_call] undefined name: %s\n", token->string);
-        exit(1);
-    }
-
-    (void) list_shift(vm->token_list);
-    function_add_op(function, op_call(def));
-    token_destroy(&token);
-    return true;
-}
-
-static bool
 compile_bind(vm_t *vm, function_t *function) {
     function_ctx_t *ctx = function->ctx;
 
@@ -86,6 +62,30 @@ compile_bind(vm_t *vm, function_t *function) {
     }
 
     list_destroy(&local_token_list);
+    return true;
+}
+
+static bool
+compile_generic(vm_t *vm, function_t *function) {
+    function_ctx_t *ctx = function->ctx;
+    token_t *token = list_first(vm->token_list);
+    if (hash_has(ctx->local_index_hash, token->string)) {
+        (void) list_shift(vm->token_list);
+        size_t index = (size_t) hash_get(ctx->local_index_hash, token->string);
+        function_add_op(function, op_local_get(index));
+        token_destroy(&token);
+        return true;
+    }
+
+    const def_t *def = mod_find_def(vm->mod, token->string);
+    if (def == NULL) {
+        fprintf(stderr, "[function_emit_call] undefined name: %s\n", token->string);
+        exit(1);
+    }
+
+    (void) list_shift(vm->token_list);
+    function_add_op(function, op_call(def));
+    token_destroy(&token);
     return true;
 }
 
