@@ -17,5 +17,3 @@ typedef struct call_op_t call_op_t;
 typedef struct literal_op_t literal_op_t;
 typedef struct local_get_op_t local_get_op_t;
 typedef struct local_set_op_t local_set_op_t;
-typedef struct connect_op_t connect_op_t;
-typedef struct use_free_wire_op_t use_free_wire_op_t;
