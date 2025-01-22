@@ -79,7 +79,7 @@ compile_generic(vm_t *vm, function_t *function) {
 
     const def_t *def = mod_find_def(vm->mod, token->string);
     if (def == NULL) {
-        fprintf(stderr, "[function_emit_call] undefined name: %s\n", token->string);
+        fprintf(stderr, "[compile_generic] undefined name: %s\n", token->string);
         exit(1);
     }
 
