@@ -31,7 +31,7 @@ frame_destroy(frame_t **self_pointer) {
 
 bool
 frame_is_finished(const frame_t *self) {
-    return self->cursor == function_length(self->function);
+    return self->cursor == self->function->length;
 }
 
 op_t *

@@ -23,11 +23,6 @@ function_destroy(function_t **self_pointer) {
     }
 }
 
-size_t
-function_length(const function_t *self) {
-    return self->length;
-}
-
 void
 function_add_op(function_t *self, op_t *op) {
     list_push(self->op_list, op);
