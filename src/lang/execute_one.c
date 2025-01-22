@@ -32,8 +32,7 @@ execute_generic(vm_t *vm) {
     if (token->kind != GENERIC_TOKEN) return false;
 
     function_t *function = function_new();
-    function_ctx_t *ctx = function_ctx_new();
-    compile_one(vm, function, ctx);
+    compile_one(vm, function);
     function_build(function);
 
     size_t base_length = stack_length(vm->return_stack);
@@ -41,7 +40,6 @@ execute_generic(vm_t *vm) {
     stack_push(vm->return_stack, frame);
     run_until(vm, base_length);
 
-    function_ctx_destroy(&ctx);
     function_destroy(&function);
     return true;
 }

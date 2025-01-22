@@ -2,6 +2,7 @@
 
 typedef struct mod_t mod_t;
 typedef struct function_t function_t;
+typedef struct function_ctx_t function_ctx_t;
 typedef struct frame_t frame_t;
 typedef struct activity_t activity_t;
 typedef struct vm_t vm_t;

@@ -1,9 +1,7 @@
 #include "index.h"
 
 static bool
-compile_int(vm_t *vm, function_t *function, function_ctx_t *ctx) {
-    (void) ctx;
-
+compile_int(vm_t *vm, function_t *function) {
     token_t *token = list_first(vm->token_list);
     if (token->kind != INT_TOKEN) return false;
     if (!string_is_xint(token->string)) return false;
@@ -16,9 +14,7 @@ compile_int(vm_t *vm, function_t *function, function_ctx_t *ctx) {
 }
 
 static bool
-compile_float(vm_t *vm, function_t *function, function_ctx_t *ctx) {
-    (void) ctx;
-
+compile_float(vm_t *vm, function_t *function) {
     token_t *token = list_first(vm->token_list);
     if (token->kind != FLOAT_TOKEN) return false;
     if (!string_is_double(token->string)) return false;
@@ -31,9 +27,8 @@ compile_float(vm_t *vm, function_t *function, function_ctx_t *ctx) {
 }
 
 static bool
-compile_generic(vm_t *vm, function_t *function, function_ctx_t *ctx) {
-    (void) ctx;
-
+compile_generic(vm_t *vm, function_t *function) {
+    function_ctx_t *ctx = function->ctx;
     token_t *token = list_first(vm->token_list);
     if (hash_has(ctx->local_index_hash, token->string)) {
         (void) list_shift(vm->token_list);
@@ -56,7 +51,9 @@ compile_generic(vm_t *vm, function_t *function, function_ctx_t *ctx) {
 }
 
 static bool
-compile_local_set_many(vm_t *vm, function_t *function, function_ctx_t *ctx) {
+compile_local_set_many(vm_t *vm, function_t *function) {
+    function_ctx_t *ctx = function->ctx;
+
     token_t *token = list_first(vm->token_list);
     if (!string_equal(token->string, "(")) return false;
     (void) list_shift(vm->token_list);
@@ -93,11 +90,11 @@ compile_local_set_many(vm_t *vm, function_t *function, function_ctx_t *ctx) {
 }
 
 void
-compile_one(vm_t *vm, function_t *function, function_ctx_t *ctx) {
-    if (compile_int(vm, function, ctx)) return;
-    if (compile_float(vm, function, ctx)) return;
-    if (compile_local_set_many(vm, function, ctx)) return;
-    if (compile_generic(vm, function, ctx)) return;
+compile_one(vm_t *vm, function_t *function) {
+    if (compile_int(vm, function)) return;
+    if (compile_float(vm, function)) return;
+    if (compile_local_set_many(vm, function)) return;
+    if (compile_generic(vm, function)) return;
 
     token_t *token = list_first(vm->token_list);
     fprintf(stderr, "[compile_one] unknown token: %s\n", token->string);

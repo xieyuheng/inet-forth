@@ -2,7 +2,6 @@
 
 function_t *
 compile_function(vm_t *vm) {
-    function_ctx_t *ctx = function_ctx_new();
     function_t *function = function_new();
     while (true) {
         assert(list_length(vm->token_list) > 0);
@@ -14,8 +13,6 @@ compile_function(vm_t *vm) {
             return function;
         }
 
-        compile_one(vm, function, ctx);
+        compile_one(vm, function);
     }
-
-    function_ctx_destroy(&ctx);
 }
