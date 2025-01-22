@@ -1,17 +1,6 @@
 #include "index.h"
 
-static void node_apply_input_ports(vm_t *vm, node_t *node);
-static void node_return_output_ports(vm_t *vm, node_t *node);
-
-void
-call_node(vm_t *vm, const node_def_t *def) {
-    node_t *node = vm_add_node(vm, def);
-    node_apply_input_ports(vm, node);
-    node_return_output_ports(vm, node);
-    return;
-}
-
-void
+static void
 node_apply_input_ports(vm_t *vm, node_t *node) {
     for (size_t c = 0; c < node->def->input_arity; c++) {
         wire_t *wire = stack_pop(vm->value_stack);
@@ -24,7 +13,7 @@ node_apply_input_ports(vm_t *vm, node_t *node) {
     }
 }
 
-void
+static void
 node_return_output_ports(vm_t *vm, node_t *node) {
     for (size_t c = 0; c < node->def->output_arity; c++) {
         wire_t *node_wire = wire_new();
@@ -40,4 +29,12 @@ node_return_output_ports(vm_t *vm, node_t *node) {
 
         stack_push(vm->value_stack, free_wire);
     }
+}
+
+void
+call_node(vm_t *vm, const node_def_t *def) {
+    node_t *node = vm_add_node(vm, def);
+    node_apply_input_ports(vm, node);
+    node_return_output_ports(vm, node);
+    return;
 }
