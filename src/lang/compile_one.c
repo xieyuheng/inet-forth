@@ -51,7 +51,7 @@ compile_generic(vm_t *vm, function_t *function) {
 }
 
 static bool
-compile_local_set_many(vm_t *vm, function_t *function) {
+compile_bind(vm_t *vm, function_t *function) {
     function_ctx_t *ctx = function->ctx;
 
     token_t *token = list_first(vm->token_list);
@@ -93,7 +93,7 @@ void
 compile_one(vm_t *vm, function_t *function) {
     if (compile_int(vm, function)) return;
     if (compile_float(vm, function)) return;
-    if (compile_local_set_many(vm, function)) return;
+    if (compile_bind(vm, function)) return;
     if (compile_generic(vm, function)) return;
 
     token_t *token = list_first(vm->token_list);
