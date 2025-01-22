@@ -1,73 +1,6 @@
 #include "index.h"
 
 void
-run_net(vm_t *vm) {
-    while (!list_is_empty(vm->activity_list)) {
-        step_net(vm);
-    }
-}
-
-static void
-collect_free_wires_from_node(vm_t *vm, node_t *node) {
-    for (size_t i = 0; i < node->def->arity; i++) {
-        if (!wire_is_principal(node->wires[i])) {
-            wire_t *wire = node->wires[i];
-            wire_free_from_node(wire);
-            stack_push(vm->value_stack, wire);
-        }
-    }
-
-    vm_delete_node(vm, node);
-}
-
-void
-step_net(vm_t *vm) {
-    activity_t *activity = list_shift(vm->activity_list);
-    if (!activity) return;
-
-    node_t *first_node = activity->wire->node;
-    node_t *second_node = activity->wire->opposite->node;
-
-    if (first_node->def == activity->rule->second_node_def &&
-        second_node->def == activity->rule->first_node_def)
-    {
-        first_node = activity->wire->opposite->node;
-        second_node = activity->wire->node;
-    }
-
-    collect_free_wires_from_node(vm, first_node);
-    collect_free_wires_from_node(vm, second_node);
-
-    vm_delete_wire(vm, activity->wire);
-    vm_delete_wire(vm, activity->wire->opposite);
-
-    size_t base_length = stack_length(vm->return_stack);
-    frame_t *frame = frame_new(activity->rule->function);
-
-    activity_destroy(&activity);
-
-    stack_push(vm->return_stack, frame);
-    run_until(vm, base_length);
-}
-
-void
-run_until(vm_t *vm, size_t base_length) {
-    if (vm->log_level > 0) {
-        vm_print(vm, stdout);
-        fprintf(stdout, "\n");
-    }
-
-    while (stack_length(vm->return_stack) > base_length) {
-        step(vm);
-
-        if (vm->log_level > 0) {
-            vm_print(vm, stdout);
-            fprintf(stdout, "\n");
-        }
-    }
-}
-
-static void
 step_op(vm_t *vm, frame_t *frame, op_t *op) {
     switch (op->kind) {
     case OP_CALL: {
@@ -116,5 +49,72 @@ step(vm_t *vm) {
 
     if (finished) {
         frame_destroy(&frame);
+    }
+}
+
+void
+run_until(vm_t *vm, size_t base_length) {
+    if (vm->log_level > 0) {
+        vm_print(vm, stdout);
+        fprintf(stdout, "\n");
+    }
+
+    while (stack_length(vm->return_stack) > base_length) {
+        step(vm);
+
+        if (vm->log_level > 0) {
+            vm_print(vm, stdout);
+            fprintf(stdout, "\n");
+        }
+    }
+}
+
+static void
+collect_free_wires_from_node(vm_t *vm, node_t *node) {
+    for (size_t i = 0; i < node->def->arity; i++) {
+        if (!wire_is_principal(node->wires[i])) {
+            wire_t *wire = node->wires[i];
+            wire_free_from_node(wire);
+            stack_push(vm->value_stack, wire);
+        }
+    }
+
+    vm_delete_node(vm, node);
+}
+
+void
+step_net(vm_t *vm) {
+    activity_t *activity = list_shift(vm->activity_list);
+    if (!activity) return;
+
+    node_t *first_node = activity->wire->node;
+    node_t *second_node = activity->wire->opposite->node;
+
+    if (first_node->def == activity->rule->second_node_def &&
+        second_node->def == activity->rule->first_node_def)
+    {
+        first_node = activity->wire->opposite->node;
+        second_node = activity->wire->node;
+    }
+
+    collect_free_wires_from_node(vm, first_node);
+    collect_free_wires_from_node(vm, second_node);
+
+    vm_delete_wire(vm, activity->wire);
+    vm_delete_wire(vm, activity->wire->opposite);
+
+    size_t base_length = stack_length(vm->return_stack);
+    frame_t *frame = frame_new(activity->rule->function);
+
+    activity_destroy(&activity);
+
+    stack_push(vm->return_stack, frame);
+    run_until(vm, base_length);
+}
+
+void
+run_net(vm_t *vm) {
+    while (!list_is_empty(vm->activity_list)) {
+        step_net(vm);
     }
 }
