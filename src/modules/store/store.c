@@ -9,7 +9,7 @@ store_t *
 store_new(const char *base) {
     store_t *self = new(store_t);
     self->base = base;
-    self->cached_blob_hash = hash_new_of_string_key();
+    self->cached_blob_hash = hash_of_string_key();
     hash_set_destroy_fn(self->cached_blob_hash, (destroy_fn_t *) blob_destroy);
     return self;
 }

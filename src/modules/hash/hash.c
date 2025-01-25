@@ -86,7 +86,7 @@ hash_set_key_equal_fn(hash_t *self, equal_fn_t *key_equal_fn) {
 }
 
 hash_t *
-hash_new_of_string_key(void) {
+hash_of_string_key(void) {
     hash_t* self = hash_new();
     hash_set_key_destroy_fn(self, (destroy_fn_t *) string_destroy);
     hash_set_key_equal_fn(self, (equal_fn_t *) string_equal);
