@@ -10,10 +10,10 @@ typedef enum {
 struct def_t {
     def_kind_t kind;
     union {
-        primitive_def_t *as_primitive_def;
-        function_def_t *as_function_def;
-        constant_def_t *as_constant_def;
-        node_ctor_t *as_node_ctor;
+        primitive_def_t *primitive_def;
+        function_def_t *function_def;
+        constant_def_t *constant_def;
+        node_ctor_t *node_ctor;
     };
 };
 

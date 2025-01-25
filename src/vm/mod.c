@@ -58,8 +58,8 @@ mod_define_rule(
     const def_t *first_def = mod_find_def(self, first_name);
     const def_t *second_def = mod_find_def(self, second_name);
 
-    const node_ctor_t *first_node_ctor = first_def->as_node_ctor;
-    const node_ctor_t *second_node_ctor = second_def->as_node_ctor;
+    const node_ctor_t *first_node_ctor = first_def->node_ctor;
+    const node_ctor_t *second_node_ctor = second_def->node_ctor;
 
     rule_t *rule = rule_new(first_node_ctor, second_node_ctor, function);
     list_push(self->rule_list, rule);
