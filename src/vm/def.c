@@ -134,11 +134,11 @@ def_print(const def_t *def, file_t *file) {
     case NODE_DEF: {
         fprintf(file, "define-node %s ", def->as_node_def->name);
         for (size_t i = 0; i < def->as_node_def->input_arity; i++) {
-            port_def_t *port_def = def->as_node_def->port_defs[i];
-            if (port_def->is_principal) {
-                fprintf(file, "%s! ", port_def->name);
+            port_info_t *port_info = def->as_node_def->port_infos[i];
+            if (port_info->is_principal) {
+                fprintf(file, "%s! ", port_info->name);
             } else {
-                fprintf(file, "%s ", port_def->name);
+                fprintf(file, "%s ", port_info->name);
             }
         }
 
@@ -146,11 +146,11 @@ def_print(const def_t *def, file_t *file) {
 
         for (size_t c = 0; c < def->as_node_def->output_arity; c++) {
             size_t i = def->as_node_def->input_arity + c;
-            port_def_t *port_def = def->as_node_def->port_defs[i];
-            if (port_def->is_principal) {
-                fprintf(file, "%s! ", port_def->name);
+            port_info_t *port_info = def->as_node_def->port_infos[i];
+            if (port_info->is_principal) {
+                fprintf(file, "%s! ", port_info->name);
             } else {
-                fprintf(file, "%s ", port_def->name);
+                fprintf(file, "%s ", port_info->name);
             }
         }
 

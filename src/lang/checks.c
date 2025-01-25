@@ -70,8 +70,8 @@ check_port_name_defined(
     const def_t *found = mod_find_def(mod, node_name);
     const node_def_t *def = found->as_node_def;
     for (size_t i = 0; i < def->arity; i++) {
-        port_def_t *port_def = def->port_defs[i];
-        if (string_equal(port_def->name, port_name)) return;
+        port_info_t *port_info = def->port_infos[i];
+        if (string_equal(port_info->name, port_name)) return;
     }
 
     fprintf(stderr, "[compiler-error] undefined port name: %s\n", port_name);

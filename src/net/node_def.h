@@ -5,7 +5,7 @@ struct node_def_t {
     size_t input_arity;
     size_t output_arity;
     size_t arity;
-    port_def_t **port_defs;
+    port_info_t **port_infos;
 };
 
 node_def_t *node_def_new(
