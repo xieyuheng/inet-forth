@@ -58,7 +58,7 @@ define_node(mod_t *mod, const char *name, list_t *input_token_list, list_t *outp
     token_t *input_token = list_first(input_token_list);
     while (input_token) {
         def->node_ctor->port_infos[index] =
-            port_info_from_name(input_token->string);
+            port_info_from_name(string_copy(input_token->string));
         input_token = list_next(input_token_list);
         index++;
     }
@@ -66,7 +66,7 @@ define_node(mod_t *mod, const char *name, list_t *input_token_list, list_t *outp
     token_t *output_token = list_first(output_token_list);
     while (output_token) {
         def->node_ctor->port_infos[index] =
-            port_info_from_name(output_token->string);
+            port_info_from_name(string_copy(output_token->string));
         output_token = list_next(output_token_list);
         index++;
     }

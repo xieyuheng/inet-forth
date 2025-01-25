@@ -1,9 +1,9 @@
 #include "index.h"
 
 port_info_t *
-port_info_new(const char *name, bool is_principal) {
+port_info_new(char *name, bool is_principal) {
     port_info_t *self = new(port_info_t);
-    self->name = string_copy(name);
+    self->name = name;
     self->is_principal = is_principal;
     return self;
 }
@@ -21,10 +21,11 @@ port_info_destroy(port_info_t **self_pointer) {
 
 
 port_info_t *
-port_info_from_name(const char *name) {
+port_info_from_name(char *name) {
     if (string_ends_with(name, "!")) {
-        name = string_slice(name, 0, strlen(name) - 1);
-        return port_info_new(name, true);
+        char *new_name = string_slice(name, 0, strlen(name) - 1);
+        string_destroy(&name);
+        return port_info_new(new_name, true);
     } else {
         return port_info_new(name, false);
     }
