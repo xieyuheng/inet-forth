@@ -28,7 +28,7 @@ wire_destroy(wire_t **self_pointer) {
 const char *
 wire_name(const wire_t *self) {
     assert(self->node);
-    port_info_t *port_info = self->node->def->port_infos[self->index];
+    port_info_t *port_info = self->node->ctor->port_infos[self->index];
     assert(port_info);
     return port_info->name;
 }
@@ -36,7 +36,7 @@ wire_name(const wire_t *self) {
 const char *
 wire_node_name(const wire_t *self) {
     assert(self->node);
-    return self->node->def->name;
+    return self->node->ctor->name;
 }
 
 void
@@ -54,7 +54,7 @@ bool
 wire_is_principal(const wire_t *self) {
     if (!self->node) return false;
 
-    port_info_t *port_info = self->node->def->port_infos[self->index];
+    port_info_t *port_info = self->node->ctor->port_infos[self->index];
     return port_info->is_principal;
 }
 

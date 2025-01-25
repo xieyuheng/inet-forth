@@ -6,7 +6,7 @@ draw_node(debug_t *self, canvas_t *canvas, size_t node_id, node_model_t *node_mo
     if (!node) return;
 
     char *subscript = uint_to_subscript(node->id);
-    char *name = string_append(node->def->name, subscript);
+    char *name = string_append(node->ctor->name, subscript);
     text_t *text = text_from_string(name);
     free(subscript);
     free(name);
@@ -96,7 +96,7 @@ draw_net(debug_t *self, canvas_t *canvas) {
 
     node_t *node = hash_first(self->node_hash);
     while (node) {
-        for (size_t i = 0; i < node->def->arity; i++) {
+        for (size_t i = 0; i < node->ctor->arity; i++) {
             wire_t *wire = node->wires[i];
             draw_wire(self, canvas, wire);
         }

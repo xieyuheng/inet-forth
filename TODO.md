@@ -1,5 +1,3 @@
-rename node.def to node.ctor
-
 # later
 
 [example] cellular automata -- 1997-interaction-combinators.pdf

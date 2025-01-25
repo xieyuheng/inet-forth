@@ -68,9 +68,9 @@ check_port_name_defined(
     check_node_name_defined(vm, node_name, token);
     mod_t *mod = vm->mod;
     const def_t *found = mod_find_def(mod, node_name);
-    const node_ctor_t *def = found->as_node_ctor;
-    for (size_t i = 0; i < def->arity; i++) {
-        port_info_t *port_info = def->port_infos[i];
+    const node_ctor_t *ctor = found->as_node_ctor;
+    for (size_t i = 0; i < ctor->arity; i++) {
+        port_info_t *port_info = ctor->port_infos[i];
         if (string_equal(port_info->name, port_name)) return;
     }
 

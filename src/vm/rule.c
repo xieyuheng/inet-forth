@@ -30,10 +30,10 @@ rule_match_wire_pair(
     const wire_t *first_wire,
     const wire_t *second_wire
 ) {
-    return (((self->first_node_ctor == first_wire->node->def) &&
-             (self->second_node_ctor == second_wire->node->def)) ||
-            ((self->first_node_ctor == second_wire->node->def) &&
-             (self->second_node_ctor == first_wire->node->def)));
+    return (((self->first_node_ctor == first_wire->node->ctor) &&
+             (self->second_node_ctor == second_wire->node->ctor)) ||
+            ((self->first_node_ctor == second_wire->node->ctor) &&
+             (self->second_node_ctor == first_wire->node->ctor)));
 }
 
 void

@@ -71,7 +71,7 @@ run_until(vm_t *vm, size_t base_length) {
 
 static void
 collect_free_wires_from_node(vm_t *vm, node_t *node) {
-    for (size_t i = 0; i < node->def->arity; i++) {
+    for (size_t i = 0; i < node->ctor->arity; i++) {
         if (!wire_is_principal(node->wires[i])) {
             wire_t *wire = node->wires[i];
             wire_free_from_node(wire);
@@ -90,8 +90,8 @@ step_net(vm_t *vm) {
     node_t *first_node = activity->wire->node;
     node_t *second_node = activity->wire->opposite->node;
 
-    if (first_node->def == activity->rule->second_node_ctor &&
-        second_node->def == activity->rule->first_node_ctor)
+    if (first_node->ctor == activity->rule->second_node_ctor &&
+        second_node->ctor == activity->rule->first_node_ctor)
     {
         first_node = activity->wire->opposite->node;
         second_node = activity->wire->node;
