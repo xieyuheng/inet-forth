@@ -50,14 +50,14 @@ static void
 define_node(mod_t *mod, const char *name, list_t *input_token_list, list_t *output_token_list) {
     size_t input_arity = list_length(input_token_list);
     size_t output_arity = list_length(output_token_list);
-    node_def_t *node_def = node_def_new(name, input_arity, output_arity);
-    def_t *def = def_from_node_def(node_def);
+    node_ctor_t *node_ctor = node_ctor_new(name, input_arity, output_arity);
+    def_t *def = def_from_node_ctor(node_ctor);
 
     size_t index = 0;
 
     token_t *input_token = list_first(input_token_list);
     while (input_token) {
-        def->as_node_def->port_infos[index] =
+        def->as_node_ctor->port_infos[index] =
             port_info_from_name(input_token->string);
         input_token = list_next(input_token_list);
         index++;
@@ -65,7 +65,7 @@ define_node(mod_t *mod, const char *name, list_t *input_token_list, list_t *outp
 
     token_t *output_token = list_first(output_token_list);
     while (output_token) {
-        def->as_node_def->port_infos[index] =
+        def->as_node_ctor->port_infos[index] =
             port_info_from_name(output_token->string);
         output_token = list_next(output_token_list);
         index++;

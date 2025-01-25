@@ -25,10 +25,10 @@ def_from_constant_def(constant_def_t *constant_def) {
 }
 
 def_t *
-def_from_node_def(node_def_t *node_def) {
+def_from_node_ctor(node_ctor_t *node_ctor) {
     def_t *self = new(def_t);
     self->kind = NODE_DEF;
-    self->as_node_def = node_def;
+    self->as_node_ctor = node_ctor;
     return self;
 }
 
@@ -56,7 +56,7 @@ def_destroy(def_t **self_pointer) {
         }
 
         case NODE_DEF: {
-            node_def_destroy(&self->as_node_def);
+            node_ctor_destroy(&self->as_node_ctor);
             break;
         }
         }
@@ -82,7 +82,7 @@ def_name(const def_t *def) {
     }
 
     case NODE_DEF: {
-        return def->as_node_def->name;
+        return def->as_node_ctor->name;
     }
     }
 
@@ -132,9 +132,9 @@ def_print(const def_t *def, file_t *file) {
     }
 
     case NODE_DEF: {
-        fprintf(file, "define-node %s ", def->as_node_def->name);
-        for (size_t i = 0; i < def->as_node_def->input_arity; i++) {
-            port_info_t *port_info = def->as_node_def->port_infos[i];
+        fprintf(file, "define-node %s ", def->as_node_ctor->name);
+        for (size_t i = 0; i < def->as_node_ctor->input_arity; i++) {
+            port_info_t *port_info = def->as_node_ctor->port_infos[i];
             if (port_info->is_principal) {
                 fprintf(file, "%s! ", port_info->name);
             } else {
@@ -144,9 +144,9 @@ def_print(const def_t *def, file_t *file) {
 
         fprintf(file, "-- ");
 
-        for (size_t c = 0; c < def->as_node_def->output_arity; c++) {
-            size_t i = def->as_node_def->input_arity + c;
-            port_info_t *port_info = def->as_node_def->port_infos[i];
+        for (size_t c = 0; c < def->as_node_ctor->output_arity; c++) {
+            size_t i = def->as_node_ctor->input_arity + c;
+            port_info_t *port_info = def->as_node_ctor->port_infos[i];
             if (port_info->is_principal) {
                 fprintf(file, "%s! ", port_info->name);
             } else {

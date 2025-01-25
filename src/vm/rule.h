@@ -1,14 +1,14 @@
 #pragma once
 
 struct rule_t {
-    const node_def_t *first_node_def;
-    const node_def_t *second_node_def;
+    const node_ctor_t *first_node_ctor;
+    const node_ctor_t *second_node_ctor;
     function_t *function;
 };
 
 rule_t *rule_new(
-    const node_def_t *first_node_def,
-    const node_def_t *second_node_def,
+    const node_ctor_t *first_node_ctor,
+    const node_ctor_t *second_node_ctor,
     function_t *function);
 void rule_destroy(rule_t **self_pointer);
 bool rule_match_wire_pair(

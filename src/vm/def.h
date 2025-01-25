@@ -13,14 +13,14 @@ struct def_t {
         primitive_def_t *as_primitive_def;
         function_def_t *as_function_def;
         constant_def_t *as_constant_def;
-        node_def_t *as_node_def;
+        node_ctor_t *as_node_ctor;
     };
 };
 
 def_t *def_from_primitive_def(primitive_def_t *primitive_def);
 def_t *def_from_function_def(function_def_t *function_def);
 def_t *def_from_constant_def(constant_def_t *constant_def);
-def_t *def_from_node_def(node_def_t *node_def);
+def_t *def_from_node_ctor(node_ctor_t *node_ctor);
 
 void def_destroy(def_t **self_pointer);
 

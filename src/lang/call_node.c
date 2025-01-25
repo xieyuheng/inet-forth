@@ -32,7 +32,7 @@ node_return_output_ports(vm_t *vm, node_t *node) {
 }
 
 void
-call_node(vm_t *vm, const node_def_t *def) {
+call_node(vm_t *vm, const node_ctor_t *def) {
     node_t *node = vm_add_node(vm, def);
     node_apply_input_ports(vm, node);
     node_return_output_ports(vm, node);

@@ -7,4 +7,4 @@
 #include "wire.h"
 #include "wire_iter.h"
 #include "port_info.h"
-#include "node_def.h"
+#include "node_ctor.h"

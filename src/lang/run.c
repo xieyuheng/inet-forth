@@ -90,8 +90,8 @@ step_net(vm_t *vm) {
     node_t *first_node = activity->wire->node;
     node_t *second_node = activity->wire->opposite->node;
 
-    if (first_node->def == activity->rule->second_node_def &&
-        second_node->def == activity->rule->first_node_def)
+    if (first_node->def == activity->rule->second_node_ctor &&
+        second_node->def == activity->rule->first_node_ctor)
     {
         first_node = activity->wire->opposite->node;
         second_node = activity->wire->node;

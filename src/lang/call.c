@@ -19,7 +19,7 @@ call(vm_t *vm, const def_t *def) {
     }
 
     case NODE_DEF: {
-        call_node(vm, def->as_node_def);
+        call_node(vm, def->as_node_ctor);
         return;
     }
     }

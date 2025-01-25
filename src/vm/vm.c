@@ -123,7 +123,7 @@ vm_maybe_add_active_wire(
 }
 
 node_t *
-vm_add_node(vm_t* self, const node_def_t *def) {
+vm_add_node(vm_t* self, const node_ctor_t *def) {
     node_t *node = node_new(def, ++self->node_id_count);
     set_add(self->node_set, node);
     return node;

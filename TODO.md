@@ -1,4 +1,4 @@
-rename node_def to node_ctor
+rename node.def to node.ctor
 
 # later
 
