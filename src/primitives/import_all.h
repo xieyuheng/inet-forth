@@ -1,3 +1,3 @@
 #pragma once
 
-void import_all(mod_t *self);
+void import_all(mod_t *mod);
