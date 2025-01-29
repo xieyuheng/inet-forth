@@ -164,3 +164,49 @@ sexp_print(const sexp_t *self, file_t *file) {
     }
     }
 }
+
+bool
+is_atom_sexp(const sexp_t *self) {
+    return self->kind == ATOM_SEXP;
+}
+
+bool is_list_sexp(const sexp_t *self) {
+    return self->kind == LIST_SEXP;
+}
+
+atom_sexp_t *
+as_atom_sexp(sexp_t *self) {
+    assert(is_atom_sexp(self));
+    return (atom_sexp_t *) self;
+}
+
+list_sexp_t *
+as_list_sexp(sexp_t *self) {
+    assert(is_list_sexp(self));
+    return (list_sexp_t *) self;
+}
+
+const char *
+sexp_string(sexp_t *self) {
+    atom_sexp_t *atom_sexp = as_atom_sexp(self);
+    return atom_sexp->token->string;
+}
+
+list_t *
+sexp_sexp_list(sexp_t *self) {
+    list_sexp_t *list_sexp = as_list_sexp(self);
+    return list_sexp->sexp_list;
+}
+
+bool
+sexp_starts_with(sexp_t *self, const char *string) {
+    if (!is_list_sexp(self)) return false;
+
+    list_sexp_t *list_sexp = as_list_sexp(self);
+    if (list_length(list_sexp->sexp_list) < 1) return false;
+
+    sexp_t *first_sexp = list_get(list_sexp->sexp_list, 0);
+    if (!is_atom_sexp(first_sexp)) return false;
+
+    return string_equal(sexp_string(first_sexp), string);
+}

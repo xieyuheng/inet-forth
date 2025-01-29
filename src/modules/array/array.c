@@ -92,7 +92,7 @@ array_push(array_t *self, void *value) {
 }
 
 void *
-array_get(array_t *self, size_t index) {
+array_get(const array_t *self, size_t index) {
     assert(index < self->size);
     return self->values[index];
 }

@@ -43,9 +43,9 @@ uint_to_subscript(uint64_t self) {
         case '8': { strcat(buffer, "₈"); break; }
         case '9': { strcat(buffer, "₉"); break; }
         }
-
     }
 
+    free(number_string);
     char *subscript_string = string_copy(buffer);
     free(buffer);
     return subscript_string;
@@ -74,6 +74,7 @@ uint_to_superscript(uint64_t self) {
         }
     }
 
+    free(number_string);
     char *superscript_string = string_copy(buffer);
     free(buffer);
     return superscript_string;

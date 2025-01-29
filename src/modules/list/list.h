@@ -12,13 +12,14 @@ void list_set_copy_fn(list_t *self, copy_fn_t *copy_fn);
 
 list_t *list_new_with(destroy_fn_t *destroy_fn);
 
-// Make a copy of the list; values are dup-ed if you set a copy_fn for
+// Make a copy of the list; values are copyed if you set a copy_fn for
 // the list, otherwise not. Copying a null reference returns a null
 // reference.
 // - `list_copy` should not copy callbacks,
 //   specially not `destroy_fn`,
 //   to avoid double free.
 list_t *list_copy(list_t *self);
+list_t *list_copy_reversed(list_t *self);
 
 size_t list_length(const list_t *self);
 bool list_is_empty(const list_t *self);
@@ -30,6 +31,8 @@ bool list_remove(list_t *self, const void *value);
 // Returns the value handle found, or NULL.
 // Sets the cursor to the found value, if any.
 void *list_find(list_t *self, const void *value);
+
+bool list_cursor_is_end(const list_t *self);
 
 // move the cursor.
 
@@ -50,4 +53,4 @@ void *list_shift(list_t *self);
 
 // at the index of the list.
 
-void *list_get(list_t *self, size_t index);
+void *list_get(const list_t *self, size_t index);
