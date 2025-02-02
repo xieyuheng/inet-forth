@@ -41,10 +41,10 @@ define-rule C D
   car-second cdr-second C second connect
 end
 
-define E-value wire-pair E end
+define E-value link E end
 
 define forever
-  wire-pair ( car car-op )
+  link ( car car-op )
   car E-value C
   D ( first second )
   first E

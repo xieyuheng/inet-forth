@@ -1,4 +1,4 @@
 define-node sole -- value! end
 
-wire-pair sole connect
+link sole connect
 print-vm

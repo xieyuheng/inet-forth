@@ -1,2 +1,2 @@
-wire-pair
+link
 print-vm

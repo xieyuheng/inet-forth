@@ -13,7 +13,7 @@ x_wire_print_net(vm_t *vm) {
 }
 
 void
-x_wire_pair(vm_t *vm) {
+x_link(vm_t *vm) {
     wire_t *first_wire = wire_new();
     wire_t *second_wire = wire_new();
 

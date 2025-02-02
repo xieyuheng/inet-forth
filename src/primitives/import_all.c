@@ -50,7 +50,7 @@ import_all(mod_t *mod) {
 
     define_primitive_vm_fn(mod, "connect", x_connect);
     define_primitive_vm_fn(mod, "wire-print-net", x_wire_print_net);
-    define_primitive_vm_fn(mod, "wire-pair", x_wire_pair);
+    define_primitive_vm_fn(mod, "link", x_link);
     define_primitive_vm_fn(mod, "run", x_run);
     define_primitive_vm_fn(mod, "wire-debug", x_wire_debug);
     define_primitive_vm_fn(mod, "debug", x_debug);

@@ -690,7 +690,7 @@ end
 define-node sole -- value! end
 
 define sole-diff-list
-  wire-pair ( front front-op )
+  link ( front front-op )
   front diff ( back value )
   back sole cons sole cons
   front-op connect
