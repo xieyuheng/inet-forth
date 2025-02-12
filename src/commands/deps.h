@@ -2,4 +2,4 @@
 
 #include "../deps.h"
 #include "../vm/index.h"
-#include "../primitives/index.h"
+#include "../prelude/index.h"
