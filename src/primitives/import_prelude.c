@@ -1,7 +1,7 @@
 #include "index.h"
 
 void
-import_all(mod_t *mod) {
+import_prelude(mod_t *mod) {
     // null
 
     define_constant(mod, "null", xnull);

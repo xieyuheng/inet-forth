@@ -9,4 +9,4 @@
 #include "console.h"
 #include "constant.h"
 #include "function.h"
-#include "import_all.h"
+#include "import_prelude.h"
