@@ -12,6 +12,7 @@ modules_test(void) {
     vec_test();
     blob_test();
     file_test();
+    path_test();
     array_test();
     stack_test();
     int_test();

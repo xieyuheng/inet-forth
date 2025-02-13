@@ -5,6 +5,7 @@ char *string_copy(const char *self);
 size_t string_length(const char *self);
 char *string_empty(void);
 bool string_equal(const char *left, const char *right);
+bool string_is_empty(const char *self);
 size_t string_bernstein_hash(const char *self);
 
 bool string_is_int_of_base(const char *self, size_t base);

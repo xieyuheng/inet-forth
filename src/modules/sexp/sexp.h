@@ -41,6 +41,7 @@ bool is_list_sexp(const sexp_t *self);
 atom_sexp_t *as_atom_sexp(sexp_t *self);
 list_sexp_t *as_list_sexp(sexp_t *self);
 
+const token_t *sexp_token(sexp_t *self);
 const char *sexp_string(sexp_t *self);
 list_t *sexp_sexp_list(sexp_t *self);
 

@@ -1,5 +1,13 @@
 #pragma once
 
+typedef enum {
+    GENERIC_TOKEN,
+    DELIMITER_TOKEN,
+    INT_TOKEN,
+    FLOAT_TOKEN,
+    STRING_TOKEN,
+} token_kind_t;
+
 struct token_t {
     char *string;
     token_kind_t kind;

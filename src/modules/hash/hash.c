@@ -298,8 +298,12 @@ hash_put(hash_t *self, void *key, void *value) {
         return;
     }
 
+    if (self->key_destroy_fn)
+        self->key_destroy_fn(&key);
+
     if (self->destroy_fn)
         self->destroy_fn(&entry->value);
+
     entry->value = value;
 }
 

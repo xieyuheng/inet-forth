@@ -38,6 +38,11 @@ string_equal(const char *left, const char *right) {
     return strcmp(left, right) == 0;
 }
 
+bool
+string_is_empty(const char *self) {
+    return string_equal(self, "");
+}
+
 size_t
 string_bernstein_hash(const char *self) {
     const char *pointer = (const char *) self;
