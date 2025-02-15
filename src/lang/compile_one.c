@@ -53,10 +53,10 @@ compile_bind(vm_t *vm, function_t *function) {
         token_t *token = list_pop(local_token_list);
         if (hash_has(ctx->local_index_hash, token->string)) {
             size_t old_index = (size_t) hash_get(ctx->local_index_hash, token->string);
-            function_add_op(function, op_local_set(old_index));
+            function_add_op(function, op_set_variable(old_index));
         } else {
             hash_set(ctx->local_index_hash, token->string, (void *) index);
-            function_add_op(function, op_local_set(index));
+            function_add_op(function, op_set_variable(index));
             index++;
         }
     }
@@ -72,7 +72,7 @@ compile_generic(vm_t *vm, function_t *function) {
     if (hash_has(ctx->local_index_hash, token->string)) {
         (void) list_shift(vm->token_list);
         size_t index = (size_t) hash_get(ctx->local_index_hash, token->string);
-        function_add_op(function, op_local_get(index));
+        function_add_op(function, op_get_variable(index));
         token_destroy(&token);
         return true;
     }

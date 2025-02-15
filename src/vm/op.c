@@ -18,18 +18,18 @@ op_literal(value_t value) {
 
 
 op_t *
-op_local_get(size_t index) {
+op_get_variable(size_t index) {
     op_t *self = new(op_t);
-    self->kind = OP_LOCAL_GET;
-    self->local_get.index = index;
+    self->kind = OP_GET_VARIABLE;
+    self->get_variable.index = index;
     return self;
 }
 
 op_t *
-op_local_set(size_t index) {
+op_set_variable(size_t index) {
     op_t *self = new(op_t);
-    self->kind = OP_LOCAL_SET;
-    self->local_set.index = index;
+    self->kind = OP_SET_VARIABLE;
+    self->set_variable.index = index;
     return self;
 }
 
@@ -51,13 +51,13 @@ op_destroy(op_t **self_pointer) {
             return;
         }
 
-        case OP_LOCAL_GET: {
+        case OP_GET_VARIABLE: {
             free(self);
             *self_pointer = NULL;
             return;
         }
 
-        case OP_LOCAL_SET: {
+        case OP_SET_VARIABLE: {
             free(self);
             *self_pointer = NULL;
             return;
@@ -80,13 +80,13 @@ op_print(const op_t *op, file_t *file) {
         return;
     }
 
-    case OP_LOCAL_GET: {
-        fprintf(file, "LOCAL-GET %ld", op->local_get.index);
+    case OP_GET_VARIABLE: {
+        fprintf(file, "LOCAL-GET %ld", op->get_variable.index);
         return;
     }
 
-    case OP_LOCAL_SET: {
-        fprintf(file, "LOCAL-SET %ld", op->local_set.index);
+    case OP_SET_VARIABLE: {
+        fprintf(file, "LOCAL-SET %ld", op->set_variable.index);
         return;
     }
     }

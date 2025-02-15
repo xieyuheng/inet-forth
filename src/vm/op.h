@@ -3,8 +3,8 @@
 typedef enum {
     OP_CALL,
     OP_LITERAL,
-    OP_LOCAL_GET,
-    OP_LOCAL_SET,
+    OP_GET_VARIABLE,
+    OP_SET_VARIABLE,
 } op_kind_t;
 
 struct op_t {
@@ -12,15 +12,15 @@ struct op_t {
     union {
         struct { const def_t *def; } call;
         struct { value_t value; } literal;
-        struct { size_t index; } local_get;
-        struct { size_t index; } local_set;
+        struct { size_t index; } get_variable;
+        struct { size_t index; } set_variable;
     };
 };
 
 op_t *op_call(const def_t *def);
 op_t *op_literal(value_t value);
-op_t *op_local_get(size_t index);
-op_t *op_local_set(size_t index);
+op_t *op_get_variable(size_t index);
+op_t *op_set_variable(size_t index);
 
 void op_destroy(op_t **self_pointer);
 
