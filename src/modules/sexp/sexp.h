@@ -5,7 +5,8 @@
 // interpreting a list of symbols.
 
 typedef enum {
-    ATOM_SEXP, LIST_SEXP,
+    ATOM_SEXP,
+    LIST_SEXP,
 } sexp_kind_t;
 
 struct sexp_t { sexp_kind_t kind; };

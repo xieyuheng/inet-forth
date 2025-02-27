@@ -25,6 +25,7 @@ modules_test(void) {
     canvas_test();
     image_test();
     store_test();
+    thread_test();
 
     printf("</modules_test>\n");
 }
