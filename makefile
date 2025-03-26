@@ -1,12 +1,10 @@
 cc = cc
-
 ldflags = \
 	-L/usr/local/lib \
 	-lX11 \
 	-lm \
 	-pthread \
 	$(LDFLAGS)
-
 cflags = \
 	-g \
 	-O3 \
@@ -21,7 +19,6 @@ cflags = \
 	-D_TIME_BITS=64 \
 	-D_FILE_OFFSET_BITS=64 \
 	 $(CFLAGS)
-
 src = $(shell find src -name '*.c')
 headers = $(shell find src -name '*.h')
 lib = $(patsubst src/%,lib/%,$(patsubst %.c,%.o,$(src)))
