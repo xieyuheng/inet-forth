@@ -54,3 +54,5 @@ void *list_shift(list_t *self);
 // at the index of the list.
 
 void *list_get(const list_t *self, size_t index);
+
+list_t *list_from_array(const array_t *array);

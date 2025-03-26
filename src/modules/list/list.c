@@ -342,3 +342,13 @@ list_get(const list_t *self, size_t index) {
 
     return NULL;
 }
+
+list_t *
+list_from_array(const array_t *array) {
+    list_t *list = list_new();
+    for (size_t i = 0; i < array_length(array); i++) {
+        list_push(list, array_get(array, i));
+    }
+
+    return list;
+}

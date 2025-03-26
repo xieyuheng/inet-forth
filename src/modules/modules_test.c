@@ -4,6 +4,7 @@ void
 modules_test(void) {
     printf("<modules_test>\n");
 
+    memory_test();
     char_test();
     string_test();
     list_test();
@@ -25,7 +26,9 @@ modules_test(void) {
     canvas_test();
     image_test();
     store_test();
+    time_test();
     thread_test();
+    queue_test();
 
     printf("</modules_test>\n");
 }

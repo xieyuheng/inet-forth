@@ -101,3 +101,15 @@ set_to_list(set_t *self) {
 
     return list;
 }
+
+array_t *
+set_to_array(set_t *self) {
+    array_t *array = array_auto();
+    void *value = set_first(self);
+    while (value) {
+        array_push(array, value);
+        value = set_next(self);
+    }
+
+    return array;
+}

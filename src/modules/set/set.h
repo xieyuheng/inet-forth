@@ -27,3 +27,4 @@ void *set_first(set_t *self);
 void *set_next(set_t *self);
 
 list_t *set_to_list(set_t *self);
+array_t *set_to_array(set_t *self);

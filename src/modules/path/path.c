@@ -88,11 +88,13 @@ path_update_string(path_t *self) {
     string_destroy(&self->string);
     char *string = NULL;
     if (path_is_absolute(self)) {
-        self->string = allocate(size + 1);
+        // one more for ending \0
+        self->string = allocate(size + 1 + 1);
         self->string[0] = '/';
         string = self->string + 1;
     } else {
-        self->string = allocate(size);
+        // one more for ending \0
+        self->string = allocate(size + 1);
         string = self->string;
     }
 

@@ -15,3 +15,9 @@ thread_wait(thread_id_t thread_id) {
     assert(ok == 0);
     return result;
 }
+
+double
+clock_elapsed_seconds(clock_t start_clock) {
+    clock_t end_clock = clock();
+    return ((double) (end_clock - start_clock)) / CLOCKS_PER_SEC;
+}
