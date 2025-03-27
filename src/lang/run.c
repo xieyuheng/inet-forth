@@ -74,7 +74,7 @@ collect_free_wires_from_node(worker_t *worker, node_t *node) {
 
 void
 step_task(worker_t *worker) {
-    task_t *task = list_shift(worker->task_list);
+    task_t *task = queue_dequeue(worker->task_queue);
     if (!task) return;
 
     node_t *first_node = task->wire->node;
@@ -104,7 +104,7 @@ step_task(worker_t *worker) {
 
 void
 run_task(worker_t *worker) {
-    while (!list_is_empty(worker->task_list)) {
+    while (!queue_is_empty(worker->task_queue)) {
         step_task(worker);
     }
 }

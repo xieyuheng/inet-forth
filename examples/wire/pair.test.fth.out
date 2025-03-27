@@ -1,6 +1,6 @@
 <worker>
-<task-list length="0">
-</task-list>
+<task-queue length="0">
+</task-queue>
 <return-stack length="0">
 </return-stack>
 <value-stack length="2">
