@@ -1,47 +1,47 @@
 #include "index.h"
 
 void
-x_connect(vm_t *vm) {
-    vm_connect_top_wire_pair(vm);
+x_connect(worker_t *worker) {
+    worker_connect_top_wire_pair(worker);
 }
 
 void
-x_wire_print_net(vm_t *vm) {
-    wire_t *wire = stack_top(vm->value_stack);
+x_wire_print_net(worker_t *worker) {
+    wire_t *wire = stack_top(worker->value_stack);
     wire_print_net(wire, stdout);
     fprintf(stdout, "\n");
 }
 
 void
-x_link(vm_t *vm) {
+x_link(worker_t *worker) {
     wire_t *first_wire = wire_new();
     wire_t *second_wire = wire_new();
 
     first_wire->opposite = second_wire;
     second_wire->opposite = first_wire;
 
-    stack_push(vm->value_stack, first_wire);
-    stack_push(vm->value_stack, second_wire);
+    stack_push(worker->value_stack, first_wire);
+    stack_push(worker->value_stack, second_wire);
 }
 
 void
-x_run(vm_t *vm) {
-    run_net(vm);
+x_run(worker_t *worker) {
+    run_net(worker);
 }
 
 void
-x_wire_debug(vm_t *vm) {
+x_wire_debug(worker_t *worker) {
     fprintf(stdout, "[wire-debug] start\n");
-    wire_t *root = stack_top(vm->value_stack);
-    debug_start_with_root_wire(vm, root);
+    wire_t *root = stack_top(worker->value_stack);
+    debug_start_with_root_wire(worker, root);
     fprintf(stdout, "[wire-debug] end\n");
     fprintf(stdout, "\n");
 }
 
 void
-x_debug(vm_t *vm) {
+x_debug(worker_t *worker) {
     fprintf(stdout, "[debug] start\n");
-    debug_start(vm);
+    debug_start(worker);
     fprintf(stdout, "[debug] end\n");
     fprintf(stdout, "\n");
 }
@@ -76,20 +76,20 @@ define_node(mod_t *mod, const char *name, list_t *input_token_list, list_t *outp
 }
 
 void
-x_define_node(vm_t *vm) {
-    token_t *head_token = list_shift(vm->token_list);
+x_define_node(worker_t *worker) {
+    token_t *head_token = list_shift(worker->token_list);
     char *name = head_token->string;
 
-    check_name_not_defined(vm, name, head_token);
+    check_name_not_defined(worker, name, head_token);
 
     list_t *input_token_list = list_new_with((destroy_fn_t *) token_destroy);
     list_t *output_token_list = list_new_with((destroy_fn_t *) token_destroy);
 
     bool output_flag = false;
     while (true) {
-        assert(!list_is_empty(vm->token_list));
+        assert(!list_is_empty(worker->token_list));
 
-        token_t *token = list_shift(vm->token_list);
+        token_t *token = list_shift(worker->token_list);
         if (string_equal(token->string, "end")) {
             token_destroy(&token);
             break;
@@ -108,7 +108,7 @@ x_define_node(vm_t *vm) {
         }
     }
 
-    define_node(vm->mod, name, input_token_list, output_token_list);
+    define_node(worker->mod, name, input_token_list, output_token_list);
 
     token_destroy(&head_token);
     list_destroy(&input_token_list);
@@ -116,18 +116,18 @@ x_define_node(vm_t *vm) {
 }
 
 void
-x_define_rule(vm_t *vm) {
-    token_t *first_token = list_shift(vm->token_list);
-    token_t *second_token = list_shift(vm->token_list);
+x_define_rule(worker_t *worker) {
+    token_t *first_token = list_shift(worker->token_list);
+    token_t *second_token = list_shift(worker->token_list);
 
     char *first_name = first_token->string;
     char *second_name = second_token->string;
 
-    check_node_name_defined(vm, first_name, first_token);
-    check_node_name_defined(vm, second_name, second_token);
+    check_node_name_defined(worker, first_name, first_token);
+    check_node_name_defined(worker, second_name, second_token);
 
-    function_t *function = compile_function(vm);
-    mod_define_rule(vm->mod, first_name, second_name, function);
+    function_t *function = compile_function(worker);
+    mod_define_rule(worker->mod, first_name, second_name, function);
 
     token_destroy(&first_token);
     token_destroy(&second_token);

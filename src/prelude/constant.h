@@ -1,3 +1,3 @@
 #pragma once
 
-primitive_vm_fn_t x_define_constant;
+primitive_worker_fn_t x_define_constant;

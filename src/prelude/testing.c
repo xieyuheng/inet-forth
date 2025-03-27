@@ -1,10 +1,10 @@
 #include "index.h"
 
-void x_ok(vm_t *vm) {
-    bool ok = to_bool(stack_pop(vm->value_stack));
+void x_ok(worker_t *worker) {
+    bool ok = to_bool(stack_pop(worker->value_stack));
     if (!ok) {
         fprintf(stderr, "[assertion-failed]\n");
-        vm_print(vm, stderr);
+        worker_print(worker, stderr);
         exit(1);
     }
 }

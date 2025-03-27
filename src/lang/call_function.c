@@ -1,8 +1,8 @@
 #include "index.h"
 
 void
-call_function(vm_t *vm, const function_def_t *def) {
+call_function(worker_t *worker, const function_def_t *def) {
     frame_t *frame = frame_new(def->function);
-    stack_push(vm->return_stack, frame);
+    stack_push(worker->return_stack, frame);
     return;
 }

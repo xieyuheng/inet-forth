@@ -1,8 +1,8 @@
 #include "index.h"
 
 void
-execute_all(vm_t *vm) {
-    while (!list_is_empty(vm->token_list)) {
-        execute_one(vm);
+execute_all(worker_t *worker) {
+    while (!list_is_empty(worker->token_list)) {
+        execute_one(worker);
     }
 }

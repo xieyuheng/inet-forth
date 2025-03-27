@@ -1,9 +1,9 @@
 #include "index.h"
 
 debug_t *
-debug_new(vm_t *vm) {
+debug_new(worker_t *worker) {
     debug_t *self = new(debug_t);
-    self->vm = vm;
+    self->worker = worker;
 
     size_t width = 90 * TILE;
     size_t height = 60 * TILE;
@@ -91,7 +91,7 @@ on_frame(debug_t *self, canvas_t *canvas, uint64_t passed) {
         self->running_frame_count += passed;
 
     if (self->running_frame_count > canvas->frame_rate / self->running_speed) {
-        step_net(self->vm);
+        step_net(self->worker);
         debug_update(self);
         self->running_frame_count = 0;
     }
@@ -113,10 +113,10 @@ hash_t *
 debug_new_node_hash(debug_t *self) {
     if (!self->root) {
         hash_t *node_hash = hash_new();
-        node_t *node = set_first(self->vm->node_set);
+        node_t *node = set_first(self->worker->node_set);
         while (node) {
             hash_set(node_hash, (void *) node->id, node);
-            node = set_next(self->vm->node_set);
+            node = set_next(self->worker->node_set);
         }
 
         return node_hash;
@@ -199,8 +199,8 @@ debug_init(debug_t *self) {
 }
 
 void
-debug_start_with_root_wire(vm_t *vm, wire_t *root) {
-    debug_t *self = debug_new(vm);
+debug_start_with_root_wire(worker_t *worker, wire_t *root) {
+    debug_t *self = debug_new(worker);
     self->root = root;
     debug_init(self);
     canvas_open(self->canvas);
@@ -208,8 +208,8 @@ debug_start_with_root_wire(vm_t *vm, wire_t *root) {
 }
 
 void
-debug_start(vm_t *vm) {
-    debug_t *self = debug_new(vm);
+debug_start(worker_t *worker) {
+    debug_t *self = debug_new(worker);
     debug_init(self);
     canvas_open(self->canvas);
     debug_destroy(&self);

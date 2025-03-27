@@ -5,7 +5,7 @@ typedef struct function_t function_t;
 typedef struct function_ctx_t function_ctx_t;
 typedef struct frame_t frame_t;
 typedef struct activity_t activity_t;
-typedef struct vm_t vm_t;
+typedef struct worker_t worker_t;
 typedef struct rule_t rule_t;
 
 typedef struct primitive_def_t primitive_def_t;

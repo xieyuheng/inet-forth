@@ -34,7 +34,7 @@ on_click_step_button(debug_t *self, canvas_t *canvas, uint8_t button, bool is_re
     if (button == 1) {
         if (is_release) {
             self->step_button_is_pressed = false;
-            step_net(self->vm);
+            step_net(self->worker);
             debug_update(self);
         } else {
             self->step_button_is_pressed = true;
@@ -89,7 +89,7 @@ on_click_end_button(debug_t *self, canvas_t *canvas, uint8_t button, bool is_rel
     if (button == 1) {
         if (is_release) {
             self->end_button_is_pressed = false;
-            run_net(self->vm);
+            run_net(self->worker);
             debug_update(self);
         } else {
             self->end_button_is_pressed = true;

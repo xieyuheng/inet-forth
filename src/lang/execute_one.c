@@ -1,55 +1,55 @@
 #include "index.h"
 
 static bool
-execute_int(vm_t *vm) {
-    token_t *token = list_first(vm->token_list);
+execute_int(worker_t *worker) {
+    token_t *token = list_first(worker->token_list);
     if (token->kind != INT_TOKEN) return false;
     if (!string_is_xint(token->string)) return false;
-    (void) list_shift(vm->token_list);
+    (void) list_shift(worker->token_list);
 
     value_t value = xint(string_parse_xint(token->string));
-    stack_push(vm->value_stack, value);
+    stack_push(worker->value_stack, value);
     token_destroy(&token);
     return true;
 }
 
 static bool
-execute_float(vm_t *vm) {
-    token_t *token = list_first(vm->token_list);
+execute_float(worker_t *worker) {
+    token_t *token = list_first(worker->token_list);
     if (token->kind != FLOAT_TOKEN) return false;
     if (!string_is_double(token->string)) return false;
-    (void) list_shift(vm->token_list);
+    (void) list_shift(worker->token_list);
 
     value_t value = xfloat(string_parse_double(token->string));
-    stack_push(vm->value_stack, value);
+    stack_push(worker->value_stack, value);
     token_destroy(&token);
     return true;
 }
 
 static bool
-execute_generic(vm_t *vm) {
-    token_t *token = list_first(vm->token_list);
+execute_generic(worker_t *worker) {
+    token_t *token = list_first(worker->token_list);
     if (token->kind != GENERIC_TOKEN) return false;
 
     function_t *function = function_new();
-    compile_one(vm, function);
+    compile_one(worker, function);
     function_build(function);
 
-    size_t base_length = stack_length(vm->return_stack);
+    size_t base_length = stack_length(worker->return_stack);
     frame_t *frame = frame_new(function);
-    stack_push(vm->return_stack, frame);
-    run_until(vm, base_length);
+    stack_push(worker->return_stack, frame);
+    run_until(worker, base_length);
 
     function_destroy(&function);
     return true;
 }
 
 void
-execute_one(vm_t *vm) {
-    if (execute_int(vm)) return;
-    if (execute_float(vm)) return;
-    if (execute_generic(vm)) return;
+execute_one(worker_t *worker) {
+    if (execute_int(worker)) return;
+    if (execute_float(worker)) return;
+    if (execute_generic(worker)) return;
 
-    token_t *token = list_first(vm->token_list);
+    token_t *token = list_first(worker->token_list);
     fprintf(stderr, "[execute_one] unknown token: %s\n", token->string);
 }

@@ -1,2 +1,2 @@
 link
-print-vm
+print-worker

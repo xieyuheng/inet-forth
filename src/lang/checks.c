@@ -2,11 +2,11 @@
 
 void
 check_name_not_defined(
-    const vm_t *vm,
+    const worker_t *worker,
     const char *name,
     const token_t *token
 ) {
-    mod_t *mod = vm->mod;
+    mod_t *mod = worker->mod;
     const def_t *found = mod_find_def(mod, name);
     if (found) {
         fprintf(stderr, "[compiler-error] can not re-define name: %s\n", name);
@@ -21,11 +21,11 @@ check_name_not_defined(
 
 void
 check_name_defined(
-    const vm_t *vm,
+    const worker_t *worker,
     const char *name,
     const token_t *token
 ) {
-    mod_t *mod = vm->mod;
+    mod_t *mod = worker->mod;
     const def_t *found = mod_find_def(mod, name);
     if (!found) {
         fprintf(stderr, "[compiler-error] undefined name: %s\n", name);
@@ -37,11 +37,11 @@ check_name_defined(
 
 void
 check_node_name_defined(
-    const vm_t *vm,
+    const worker_t *worker,
     const char *name,
     const token_t *token
 ) {
-    mod_t *mod = vm->mod;
+    mod_t *mod = worker->mod;
     const def_t *found = mod_find_def(mod, name);
     if (!found) {
         fprintf(stderr, "[compiler-error] undefined node name: %s\n", name);
@@ -60,13 +60,13 @@ check_node_name_defined(
 
 void
 check_port_name_defined(
-    const vm_t *vm,
+    const worker_t *worker,
     const char *node_name,
     const char *port_name,
     const token_t *token
 ) {
-    check_node_name_defined(vm, node_name, token);
-    mod_t *mod = vm->mod;
+    check_node_name_defined(worker, node_name, token);
+    mod_t *mod = worker->mod;
     const def_t *found = mod_find_def(mod, node_name);
     const node_ctor_t *ctor = found->node_ctor;
     for (size_t i = 0; i < ctor->arity; i++) {

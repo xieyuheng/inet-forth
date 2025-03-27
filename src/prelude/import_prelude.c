@@ -17,16 +17,16 @@ import_prelude(mod_t *mod) {
     // value
 
     define_primitive_2_fn(mod, "eq", x_eq);
-    define_primitive_vm_fn(mod, "dup", x_dup);
-    define_primitive_vm_fn(mod, "swap", x_swap);
-    define_primitive_vm_fn(mod, "drop", x_drop);
-    define_primitive_vm_fn(mod, "rot", x_rot);
-    define_primitive_vm_fn(mod, "over", x_over);
-    define_primitive_vm_fn(mod, "tuck", x_tuck);
+    define_primitive_worker_fn(mod, "dup", x_dup);
+    define_primitive_worker_fn(mod, "swap", x_swap);
+    define_primitive_worker_fn(mod, "drop", x_drop);
+    define_primitive_worker_fn(mod, "rot", x_rot);
+    define_primitive_worker_fn(mod, "over", x_over);
+    define_primitive_worker_fn(mod, "tuck", x_tuck);
 
     // testing
 
-    define_primitive_vm_fn(mod, "ok", x_ok);
+    define_primitive_worker_fn(mod, "ok", x_ok);
 
     // int
 
@@ -48,28 +48,28 @@ import_prelude(mod_t *mod) {
 
     // net
 
-    define_primitive_vm_fn(mod, "connect", x_connect);
-    define_primitive_vm_fn(mod, "wire-print-net", x_wire_print_net);
-    define_primitive_vm_fn(mod, "link", x_link);
-    define_primitive_vm_fn(mod, "run", x_run);
-    define_primitive_vm_fn(mod, "wire-debug", x_wire_debug);
-    define_primitive_vm_fn(mod, "debug", x_debug);
-    define_primitive_vm_fn(mod, "define-node", x_define_node);
-    define_primitive_vm_fn(mod, "define-rule", x_define_rule);
+    define_primitive_worker_fn(mod, "connect", x_connect);
+    define_primitive_worker_fn(mod, "wire-print-net", x_wire_print_net);
+    define_primitive_worker_fn(mod, "link", x_link);
+    define_primitive_worker_fn(mod, "run", x_run);
+    define_primitive_worker_fn(mod, "wire-debug", x_wire_debug);
+    define_primitive_worker_fn(mod, "debug", x_debug);
+    define_primitive_worker_fn(mod, "define-node", x_define_node);
+    define_primitive_worker_fn(mod, "define-rule", x_define_rule);
 
     // console
 
     define_primitive_1_fn(mod, "print", x_print);
     define_primitive_0_fn(mod, "newline", x_newline);
-    define_primitive_vm_fn(mod, "print-vm", x_print_vm);
-    define_primitive_vm_fn(mod, "print-value-stack", x_print_value_stack);
-    define_primitive_vm_fn(mod, "print-return-stack", x_print_return_stack);
+    define_primitive_worker_fn(mod, "print-worker", x_print_worker);
+    define_primitive_worker_fn(mod, "print-value-stack", x_print_value_stack);
+    define_primitive_worker_fn(mod, "print-return-stack", x_print_return_stack);
 
     // constant
 
-    define_primitive_vm_fn(mod, "define-constant", x_define_constant);
+    define_primitive_worker_fn(mod, "define-constant", x_define_constant);
 
     // function
 
-    define_primitive_vm_fn(mod, "define", x_define_function);
+    define_primitive_worker_fn(mod, "define", x_define_function);
 }

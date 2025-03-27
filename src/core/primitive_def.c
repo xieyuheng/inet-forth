@@ -8,10 +8,10 @@ primitive_def_new(const char *name) {
 }
 
 primitive_def_t *
-primitive_def_from_vm_fn(const char *name, primitive_vm_fn_t *primitive_vm_fn) {
+primitive_def_from_worker_fn(const char *name, primitive_worker_fn_t *primitive_worker_fn) {
     primitive_def_t *self = primitive_def_new(name);
     self->fn_kind = PRIMITIVE_VM_FN;
-    self->primitive_vm_fn = primitive_vm_fn;
+    self->primitive_worker_fn = primitive_worker_fn;
     return self;
 }
 

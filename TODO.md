@@ -1,4 +1,3 @@
-rename vm to worker
 # later
 
 [example] cellular automata -- 1997-interaction-combinators.pdf

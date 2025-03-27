@@ -19,13 +19,13 @@ run_file(const char *path, size_t log_level) {
     mod_t *mod = mod_new(path, code);
     import_prelude(mod);
 
-    vm_t *vm = vm_new(mod);
-    vm->log_level = log_level;
+    worker_t *worker = worker_new(mod);
+    worker->log_level = log_level;
 
-    execute_all(vm);
+    execute_all(worker);
 
     mod_destroy(&mod);
-    vm_destroy(&vm);
+    worker_destroy(&worker);
 }
 
 int

@@ -1,11 +1,11 @@
 define-node sole -- value! end
 
 define main
-  print-vm
+  print-worker
   sole
-  print-vm
+  print-worker
   sole
-  print-vm
+  print-worker
 end
 
 main
