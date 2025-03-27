@@ -1,5 +1,5 @@
 #pragma once
 
 #include "../deps.h"
-#include "../vm/index.h"
+#include "../core/index.h"
 #include "../prelude/index.h"
