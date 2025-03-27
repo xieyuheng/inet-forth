@@ -1,5 +1,8 @@
+[prelude] `inspect-run` -- quit using `wire-print-net` in tests
+
 # net
 
+[net] `is_wire` and `as_wire`
 [net] `node_t` -- has `ports` instead of `wires`
 [net] `node_t` -- `ports` can store any value
 [net] `node_set`
@@ -10,21 +13,21 @@
 [core] quit using `mod->rule_list` -- save rule in `node_ctor_t`
 [core] `worker_t` -- safe use of `task_queue` -- which might be full
 
+# module system
+
+```
+import zero add1 add "nat.fth"
+```
+
 # primitive value
 
-[design] node ports can store any value -- not only wire, but also primitive values
-[design] the most important primitive value is function
-[design] write `list-map` as example
-- use explicit `copy` -- keep linear variable like simple
+[design] write `list-map` as example -- use explicit `dup` -- keep linear variable simple
+
 - use `{ ... }` for un-named program -- just program, no closure over linear variables
-[question] is it possible to have a generic `copy` that can copy any net with a root wire?
+- another solution is to use quoted symbol to reference defined program
 
 # debug
 
 [debug] 尝试使用真实的物理学来实现 force
 [debug] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
 [debug] remove `node_physics_fake_simulate`
-
-# module system
-
-支持简单的 import name，同时支持修改 name 以避免冲突
