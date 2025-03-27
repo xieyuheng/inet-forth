@@ -1,5 +1,3 @@
-[docs] improve articles
-
 # core
 
 [core] remove `log_level` -- use `flags.c` instead

@@ -69,7 +69,7 @@ We can represent 0 + 1 as the following:
        |
      (add)
      /   \
-(zero)  (add1)
+(zero)   (add1)
            |
          (zero)
 ```
@@ -80,11 +80,11 @@ and 2 + 2 as the following:
        |
      (add)
      /   \
-(add1)  (add1)
+(add1)   (add1)
   |        |
-(add1)  (add1)
+(add1)   (add1)
   |        |
-(zero)  (zero)
+(zero)   (zero)
 ```
 
 By defining the interaction rules between `(add)` and neighbor nodes,
@@ -97,7 +97,7 @@ and connect the `value` of `(add)` with the `addend` of `(add)` directly.
 ```
      value           value
        |               |
-     (add)     =>     |
+     (add)      =>     |
      /   \              \
 (zero)   addend        addend
 ```
@@ -108,9 +108,9 @@ move `(add1)` above `(add)`.
 ```
      value           value
        |               |
-     (add)     =>   (add1)
+     (add)     =>    (add1)
      /   \             |
-(add1)   addend     (add)
+(add1)   addend      (add)
   |                  /   \
 prev              prev   addend
 ```
@@ -119,18 +119,18 @@ By these two interaction rules, the graph representing 2 + 2
 will become 4 through the following interaction:
 
 ```
-       |                  |                 |            |
-     (add)            (add1)           (add1)      (add1)
-     /   \                |                 |            |
-(add1) (add1)        (add)            (add1)      (add1)
-  |        |    =>      /   \      =>       |       =>   |
-(add1) (add1)   (add1)  (add1)        (add)      (add1)
-  |        |         |        |           /   \          |
-(zero) (zero)   (zero)  (add1)   (zero) (add1)  (add1)
-                              |                 |        |
-                           (zero)           (add1)  (zero)
-                                                |
-                                             (zero)
+       |                   |                   |              |
+     (add)               (add1)              (add1)         (add1)
+     /   \                 |                   |              |
+(add1)    (add1)         (add)               (add1)         (add1)
+   |        |    =>      /   \       =>        |        =>    |
+(add1)    (add1)    (add1)    (add1)         (add)          (add1)
+   |        |          |        |            /   \            |
+(zero)    (zero)    (zero)    (add1)    (zero)   (add1)     (add1)
+                                |                  |          |
+                              (zero)             (add1)     (zero)
+                                                   |
+                                                 (zero)
 ```
 
 # 4
@@ -206,7 +206,7 @@ connected through two principal ports.
 We design the statement to define node as follows:
 
 - The statement starts with `define-node`, follows the name of the node.
-- Use `->` to distinguish the input ports from the output ports.
+- Use `--` to distinguish the input ports from the output ports.
 - Use `!` suffix to mark principal port.
 
 The aforementioned nodes are defined as follows:
@@ -226,9 +226,9 @@ Let's review the interaction rule between `(add1)` and `(add)`:
 ```
      result          value
        |               |
-     (add)     =>  (add1)
+     (add)     =>    (add1)
      /   \             |
-(add1)  addend      (add)
+(add1)  addend       (add)
   |                  /   \
 prev            target   addend
 ```
@@ -290,7 +290,7 @@ define-rule add1 add
   add1 result connect
 end
 
--- test
+// test
 
 define one zero add1 end
 define two one one add end
@@ -410,9 +410,9 @@ we can imagine the following interaction:
 ```
      result           result
        |                |
-   (nat-max)    =>   (add1)
+   (nat-max)    =>    (add1)
      /    \             |
-(add1)  (add1)    (nat-max)
+(add1)    (add1)    (nat-max)
    |        |         /   \
  prev      prev    prev   prev
 ```
@@ -464,9 +464,9 @@ The rule between `(zero)` and `(nat-max-aux)`:
 ```
      result            result
        |                 |
- (nat-max-aux)    =>  (add1)
+ (nat-max-aux)    =>   (add1)
      /    \              |
- first   (zero)       first
+ first   (zero)        first
 ```
 
 Rule definition:
@@ -483,9 +483,9 @@ The rule between `(add1)` and `(nat-max-aux)`:
 ```
      result            result
        |                 |
- (nat-max-aux)   =>   (add1)
+ (nat-max-aux)   =>    (add1)
      /    \              |
- first  (add1)      (nat-max)
+ first   (add1)      (nat-max)
            |           /   \
           prev     first   prev
 ```
@@ -632,7 +632,7 @@ define-rule cons append
   head cons result connect
 end
 
--- test
+// test
 
 define-node sole -- value! end
 
@@ -685,7 +685,7 @@ define-rule diff diff-open
   front old-back connect
 end
 
--- test
+// test
 
 define-node sole -- value! end
 
@@ -738,4 +738,4 @@ We can make the language a practical programming language,
 by extending it with primitive datatypes like int and float.
 
 How to design such extension?
-Please wait for my next report :)
+Please wait for my next report.
