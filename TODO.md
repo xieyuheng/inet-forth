@@ -1,4 +1,17 @@
+[info] add `info_command`
+
+# net
+
+[net] `node_t` -- has `ports` instead of `wires`
+[net] `node_t` -- `ports` can store any value
+[net] `node_set`
+[net] `node_get`
+
 # core
+
+[core] `worker_t` -- remove `wire_set`
+[core] `worker_t` -- rename `node_set` to `debug_node_set`
+[core] use `debug_node_set` only during debug
 
 [core] quit using `mod->rule_list` -- save rule in `node_ctor_t`
 [core] `worker_t` -- safe use of `task_queue` -- which might be full

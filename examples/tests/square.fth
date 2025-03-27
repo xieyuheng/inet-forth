@@ -1,5 +1,5 @@
 define square
-  dup mul
+  dup imul
 end
 
 1 square 1 eq ok
