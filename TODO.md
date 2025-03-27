@@ -1,4 +1,3 @@
-tests -- move vm/ to core/
 rename nadd to add
 
 # core
