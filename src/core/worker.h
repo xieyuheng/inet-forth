@@ -14,7 +14,6 @@ struct worker_t {
     // i simply record the pointers in worker for now.
     set_t *wire_set;
     set_t *node_set;
-    size_t log_level;
 };
 
 worker_t *worker_new(mod_t *mod);

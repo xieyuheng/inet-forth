@@ -27,7 +27,6 @@ worker_new(mod_t *mod) {
     self->wire_set = set_new();
     self->node_set = set_new();
     self->node_id_count = 0;
-    self->log_level = 0;
     return self;
 }
 
