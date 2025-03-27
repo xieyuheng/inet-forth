@@ -8,12 +8,12 @@ typedef value_t (primitive_fn_3_t)(value_t x, value_t y, value_t z);
 typedef value_t (primitive_fn_4_t)(value_t x, value_t y, value_t z, value_t w);
 
 typedef enum {
-    PRIMITIVE_VM_FN,
-    PRIMITIVE_0_FN,
-    PRIMITIVE_1_FN,
-    PRIMITIVE_2_FN,
-    PRIMITIVE_3_FN,
-    PRIMITIVE_4_FN,
+    PRIMITIVE_FN,
+    PRIMITIVE_FN_0,
+    PRIMITIVE_FN_1,
+    PRIMITIVE_FN_2,
+    PRIMITIVE_FN_3,
+    PRIMITIVE_FN_4,
 } primitive_fn_kind_t;
 
 struct primitive_def_t {
