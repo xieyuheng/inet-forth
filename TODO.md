@@ -1,4 +1,5 @@
 [info] add `info_command`
+[info] add `debug_command` -- set `debug_node_set`
 
 # net
 
@@ -8,8 +9,6 @@
 [net] `node_get`
 
 # core
-
-[core] use `debug_node_set` only during debug
 
 [core] quit using `mod->rule_list` -- save rule in `node_ctor_t`
 [core] `worker_t` -- safe use of `task_queue` -- which might be full
