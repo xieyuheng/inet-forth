@@ -299,7 +299,7 @@ commands:
 For examples:
 
 ```sh
-./bin/inet-forth run examples/nat.fth
+./bin/inet-forth run examples/readme/nat.fth
 ```
 
 ## Development
