@@ -12,7 +12,6 @@ struct worker_t {
     // wire and node should use managed memory,
     // because some nets have no root.
     // i simply record the pointers in worker for now.
-    set_t *wire_set;
     set_t *node_set;
 };
 

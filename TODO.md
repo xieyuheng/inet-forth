@@ -9,7 +9,6 @@
 
 # core
 
-[core] `worker_t` -- remove `wire_set`
 [core] `worker_t` -- rename `node_set` to `debug_node_set`
 [core] use `debug_node_set` only during debug
 
