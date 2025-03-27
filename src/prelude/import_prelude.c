@@ -10,13 +10,13 @@ import_prelude(mod_t *mod) {
 
     define_constant(mod, "false", xfalse);
     define_constant(mod, "true", xtrue);
-    define_primitive_1_fn(mod, "not", xbool_not);
-    define_primitive_2_fn(mod, "and", xbool_and);
-    define_primitive_2_fn(mod, "or", xbool_or);
+    define_primitive_fn_1(mod, "not", xbool_not);
+    define_primitive_fn_2(mod, "and", xbool_and);
+    define_primitive_fn_2(mod, "or", xbool_or);
 
     // value
 
-    define_primitive_2_fn(mod, "eq", x_eq);
+    define_primitive_fn_2(mod, "eq", x_eq);
     define_primitive_fn(mod, "dup", x_dup);
     define_primitive_fn(mod, "swap", x_swap);
     define_primitive_fn(mod, "drop", x_drop);
@@ -30,21 +30,21 @@ import_prelude(mod_t *mod) {
 
     // int
 
-    define_primitive_2_fn(mod, "add", xint_add);
-    define_primitive_2_fn(mod, "sub", xint_sub);
-    define_primitive_2_fn(mod, "mul", xint_mul);
-    define_primitive_2_fn(mod, "div", xint_div);
-    define_primitive_2_fn(mod, "mod", xint_mod);
-    define_primitive_1_fn(mod, "int-to-float", xint_to_xfloat);
+    define_primitive_fn_2(mod, "add", xint_add);
+    define_primitive_fn_2(mod, "sub", xint_sub);
+    define_primitive_fn_2(mod, "mul", xint_mul);
+    define_primitive_fn_2(mod, "div", xint_div);
+    define_primitive_fn_2(mod, "mod", xint_mod);
+    define_primitive_fn_1(mod, "int-to-float", xint_to_xfloat);
 
     // float
 
-    define_primitive_2_fn(mod, "fadd", xfloat_add);
-    define_primitive_2_fn(mod, "fsub", xfloat_sub);
-    define_primitive_2_fn(mod, "fmul", xfloat_mul);
-    define_primitive_2_fn(mod, "fdiv", xfloat_div);
-    define_primitive_2_fn(mod, "fmod", xfloat_mod);
-    define_primitive_1_fn(mod, "float-to-int", xfloat_to_xint);
+    define_primitive_fn_2(mod, "fadd", xfloat_add);
+    define_primitive_fn_2(mod, "fsub", xfloat_sub);
+    define_primitive_fn_2(mod, "fmul", xfloat_mul);
+    define_primitive_fn_2(mod, "fdiv", xfloat_div);
+    define_primitive_fn_2(mod, "fmod", xfloat_mod);
+    define_primitive_fn_1(mod, "float-to-int", xfloat_to_xint);
 
     // net
 
@@ -59,8 +59,8 @@ import_prelude(mod_t *mod) {
 
     // console
 
-    define_primitive_1_fn(mod, "print", x_print);
-    define_primitive_0_fn(mod, "newline", x_newline);
+    define_primitive_fn_1(mod, "print", x_print);
+    define_primitive_fn_0(mod, "newline", x_newline);
     define_primitive_fn(mod, "print-worker", x_print_worker);
     define_primitive_fn(mod, "print-value-stack", x_print_value_stack);
     define_primitive_fn(mod, "print-return-stack", x_print_return_stack);

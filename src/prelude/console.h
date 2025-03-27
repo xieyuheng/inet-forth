@@ -1,4 +1,4 @@
 #pragma once
 
-primitive_1_fn_t x_print;
-primitive_0_fn_t x_newline;
+primitive_fn_1_t x_print;
+primitive_fn_0_t x_newline;

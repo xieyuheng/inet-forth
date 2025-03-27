@@ -1,8 +1,8 @@
 #pragma once
 
 void define_primitive_fn(mod_t *mod, const char *name, primitive_fn_t *primitive_fn);
-void define_primitive_0_fn(mod_t *mod, const char *name, primitive_0_fn_t *primitive_0_fn);
-void define_primitive_1_fn(mod_t *mod, const char *name, primitive_1_fn_t *primitive_1_fn);
-void define_primitive_2_fn(mod_t *mod, const char *name, primitive_2_fn_t *primitive_2_fn);
-void define_primitive_3_fn(mod_t *mod, const char *name, primitive_3_fn_t *primitive_3_fn);
-void define_primitive_4_fn(mod_t *mod, const char *name, primitive_4_fn_t *primitive_4_fn);
+void define_primitive_fn_0(mod_t *mod, const char *name, primitive_fn_0_t *primitive_fn_0);
+void define_primitive_fn_1(mod_t *mod, const char *name, primitive_fn_1_t *primitive_fn_1);
+void define_primitive_fn_2(mod_t *mod, const char *name, primitive_fn_2_t *primitive_fn_2);
+void define_primitive_fn_3(mod_t *mod, const char *name, primitive_fn_3_t *primitive_fn_3);
+void define_primitive_fn_4(mod_t *mod, const char *name, primitive_fn_4_t *primitive_fn_4);
