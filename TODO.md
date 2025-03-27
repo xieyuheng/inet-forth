@@ -1,8 +1,6 @@
-# later
+# core
 
-[example] cellular automata -- 1997-interaction-combinators.pdf
-[example] `examples/lambda.fth` -- use interaction combinators to implement lambda
-[example] `examples/turing.fth` -- coding turing machine -- 2008-the-annotated-turing.djvu
+[core] quit using `mod->rule_list` -- save rule in `node_ctor_t`
 
 # primitive value
 
@@ -19,16 +17,6 @@
 [debug] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
 [debug] remove `node_physics_fake_simulate`
 
-# vm
-
-[vm] mod -- change rule_list to rule_hash -- what should be the key?
-
 # module system
 
 支持简单的 import name，同时支持修改 name 以避免冲突
-
-# parallelism
-
-learn linux thread
-shared memory parallel execution of inet
-projects/others/HigherOrderCO/HVM/paper/HVM2.pdf
