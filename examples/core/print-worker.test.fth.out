@@ -1,6 +1,6 @@
 <worker>
-<active-wire-list length="0">
-</active-wire-list>
+<task-list length="0">
+</task-list>
 <return-stack length="1">
 <frame>
 <function>
@@ -17,8 +17,8 @@ CALL print-worker
 </worker>
 
 <worker>
-<active-wire-list length="0">
-</active-wire-list>
+<task-list length="0">
+</task-list>
 <return-stack length="1">
 <frame>
 <function>
@@ -36,8 +36,8 @@ CALL print-worker
 </worker>
 
 <worker>
-<active-wire-list length="0">
-</active-wire-list>
+<task-list length="0">
+</task-list>
 <return-stack length="0">
 </return-stack>
 <value-stack length="2">
