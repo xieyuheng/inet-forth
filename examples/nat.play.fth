@@ -1,24 +1,24 @@
-define-node nzero -- value! end
-define-node nadd1 prev -- value! end
-define-node nadd target! addend -- result end
+define-node zero -- value! end
+define-node add1 prev -- value! end
+define-node add target! addend -- result end
 
-define-rule nzero nadd
+define-rule zero add
   ( addend result )
   addend result connect
 end
 
-define-rule nadd1 nadd
+define-rule add1 add
   ( addend result ) ( prev )
-  prev addend nadd
-  nadd1 result connect
+  prev addend add
+  add1 result connect
 end
 
-nzero nadd1 nadd1
-nzero nadd1 nadd1
-nadd
+zero add1 add1
+zero add1 add1
+add
 
-define two nzero nadd1 nadd1 end
+define two zero add1 add1 end
 
-two two nadd
-two two nadd
-nadd wire-debug
+two two add
+two two add
+add wire-debug

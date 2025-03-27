@@ -1,104 +1,104 @@
-define-node nzero -- value! end
-define-node nadd1 prev -- value! end
-define-node nadd target! addend -- result end
+define-node zero -- value! end
+define-node add1 prev -- value! end
+define-node add target! addend -- result end
 
-define-rule nzero nadd
+define-rule zero add
   ( addend result )
   addend result connect
 end
 
-define-rule nadd1 nadd
+define-rule add1 add
   ( addend result ) ( prev )
-  prev addend nadd
-  nadd1 result connect
+  prev addend add
+  add1 result connect
 end
 
-define one nzero nadd1 end
-define two one one nadd end
-define three two one nadd end
-define four two two nadd end
+define one zero add1 end
+define two one one add end
+define three two one add end
+define four two two add end
 
-two two nadd
-two two nadd
-nadd
+two two add
+two two add
+add
 
 wire-print-net
 run
 wire-print-net
 
-// to define `nmul`, we first need `nat-erase` and `nat-dup`
+// to define `mul`, we first need `nat-erase` and `nat-dup`
 
 define-node nat-erase target! -- end
 
-define-rule nzero nat-erase end
+define-rule zero nat-erase end
 
-define-rule nadd1 nat-erase
+define-rule add1 nat-erase
   ( prev )
   prev nat-erase
 end
 
 define-node nat-dup target! -- first second end
 
-define-rule nzero nat-dup
+define-rule zero nat-dup
   ( first second )
-  nzero first connect
-  nzero second connect
+  zero first connect
+  zero second connect
 end
 
-define-rule nadd1 nat-dup
+define-rule add1 nat-dup
   ( first second ) ( prev )
   prev nat-dup
   ( prev-first prev-second )
-  prev-second nadd1 second connect
-  prev-first nadd1 first connect
+  prev-second add1 second connect
+  prev-first add1 first connect
 end
 
-define-node nmul target! mulend -- result end
+define-node mul target! mulend -- result end
 
-define-rule nzero nmul
+define-rule zero mul
   ( mulend result )
   mulend nat-erase
-  nzero result connect
+  zero result connect
 end
 
-define-rule nadd1 nmul
+define-rule add1 mul
   ( mulend result ) ( prev )
   mulend nat-dup
   ( mulend-first mulend-second )
-  prev mulend-second swap nmul
-  mulend-first nadd result connect
+  prev mulend-second swap mul
+  mulend-first add result connect
 end
 
-two two nmul
+two two mul
 
 wire-print-net
 run
 wire-print-net
 
-// to define `nat-max`, we need `nat-max-nadd1`
+// to define `nat-max`, we need `nat-max-add1`
 
 define-node nat-max first! second -- result end
-define-node nat-max-nadd1 first second! -- result end
+define-node nat-max-add1 first second! -- result end
 
-define-rule nzero nat-max
+define-rule zero nat-max
   ( second result )
   second result connect
 end
 
-define-rule nadd1 nat-max
+define-rule add1 nat-max
   ( second result ) ( prev )
-  prev second nat-max-nadd1 result connect
+  prev second nat-max-add1 result connect
 end
 
-define-rule nzero nat-max-nadd1
+define-rule zero nat-max-add1
   ( first result )
-  first nadd1 result connect
+  first add1 result connect
 end
 
-define-rule nadd1 nat-max-nadd1
+define-rule add1 nat-max-add1
   ( first result ) ( prev )
   first prev nat-max
-  nadd1 result connect
+  add1 result connect
 end
 
 one two nat-max

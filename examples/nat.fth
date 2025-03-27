@@ -1,23 +1,23 @@
-define-node nzero -- value! end
-define-node nadd1 prev -- value! end
-define-node nadd target! addend -- result end
+define-node zero -- value! end
+define-node add1 prev -- value! end
+define-node add target! addend -- result end
 
-define-rule nzero nadd
+define-rule zero add
   ( addend result )
   addend result connect
 end
 
-define-rule nadd1 nadd
+define-rule add1 add
   ( addend result ) ( prev )
-  prev addend nadd
-  nadd1 result connect
+  prev addend add
+  add1 result connect
 end
 
 define two
-  nzero nadd1 nadd1
+  zero add1 add1
 end
 
-two two nadd
+two two add
 
 wire-print-net
 run

@@ -32,66 +32,66 @@ define <name> <function-body> end
 ### Natural Number
 
 ```
-define-node nzero -- value! end
-define-node nadd1 prev -- value! end
-define-node nadd target! addend -- result end
+define-node zero -- value! end
+define-node add1 prev -- value! end
+define-node add target! addend -- result end
 ```
 
-The rule between `(nadd1)` and `(nadd)` as ASCII art:
+The rule between `(add1)` and `(add)` as ASCII art:
 
 ```
      value             value            value
        |                 |                |
-    (nadd)     =>                =>    (nadd1)
+    (add)     =>                =>    (add1)
      /   \                 \              |
-(nadd1)   addend           addend       (nadd)
+(add1)   addend           addend       (add)
    |                 |                  /   \
  prev              prev              prev   addend
 ```
 
-Define the rule between `(nadd1)` and `(nadd)`:
+Define the rule between `(add1)` and `(add)`:
 
 ```
-define-rule nadd1 nadd
+define-rule add1 add
   ( addend result ) ( prev )
-  prev addend nadd
-  nadd1 result connect
+  prev addend add
+  add1 result connect
 end
 ```
 
-To apply this rule is to disconnect and delete `(nadd1)` and `(nadd)` and reconnect newly exposed wires:
+To apply this rule is to disconnect and delete `(add1)` and `(add)` and reconnect newly exposed wires:
 
-- `( addend result )` save the wires that were connected to `(nadd)` to local variable `addend` and `result`.
-- `( prev )` save the wire that was connected to `(nadd1)` to local variable `prev`.
+- `( addend result )` save the wires that were connected to `(add)` to local variable `addend` and `result`.
+- `( prev )` save the wire that was connected to `(add1)` to local variable `prev`.
 - `prev` push local variable to the stack.
 - `addend` push local variable to the stack.
-- `nadd` take two arguments from the stack and create a new `(nadd)` node.
-- `nadd1` take one argument from the stack and create a new `(nadd1)` node.
+- `add` take two arguments from the stack and create a new `(add)` node.
+- `add1` take one argument from the stack and create a new `(add1)` node.
 - `result` push local variable to the stack.
 - `connect` take two wires from the stack and connect them.
 
-The rule between `(nzero)` and `(nadd)` as ASCII art:
+The rule between `(zero)` and `(add)` as ASCII art:
 
 ```
      value          value         value
        |              |             |
-     (nadd)     =>             =>   |
+     (add)     =>             =>   |
      /   \              \            \
-(nzero)   addend        addend       addend
+(zero)   addend        addend       addend
 ```
 
-Define the rule between `(nzero)` and `(nadd)`:
+Define the rule between `(zero)` and `(add)`:
 
 ```
-define-rule nzero nadd
+define-rule zero add
   ( addend result )
   addend result connect
 end
 ```
 
-To apply this rule is to disconnect and delete `(nzero)` and `(nadd)` and reconnect newly exposed wires:
+To apply this rule is to disconnect and delete `(zero)` and `(add)` and reconnect newly exposed wires:
 
-- `( addend result )` save the wires that were connected to `(nadd)` to local variable `addend` and `result`.
+- `( addend result )` save the wires that were connected to `(add)` to local variable `addend` and `result`.
 - `addend` push local variable to the stack.
 - `result` push local variable to the stack.
 - `connect` take two wires from the stack and connect them.
@@ -100,42 +100,42 @@ Example interaction:
 
 ```
        |                   |                   |              |
-    (nadd)              (nadd1)             (nadd1)        (nadd1)
+    (add)              (add1)             (add1)        (add1)
      /   \                 |                   |              |
-(nadd1)  (nadd1)        (nadd)              (nadd1)        (nadd1)
+(add1)  (add1)        (add)              (add1)        (add1)
    |        |    =>      /   \       =>        |        =>    |
-(nadd1)  (nadd1)    (nadd1)  (nadd1)         (nadd)        (nadd1)
+(add1)  (add1)    (add1)  (add1)         (add)        (add1)
    |        |          |        |            /   \            |
-(nzero)  (nzero)    (nzero)  (nadd1)    (nzero) (nadd1)    (nadd1)
+(zero)  (zero)    (zero)  (add1)    (zero) (add1)    (add1)
                                 |                  |          |
-                             (nzero)            (nadd1)    (nzero)
+                             (zero)            (add1)    (zero)
                                                    |
-                                                (nzero)
+                                                (zero)
 ```
 
 The whole program with test:
 
 ```
-define-node nzero -- value! end
-define-node nadd1 prev -- value! end
-define-node nadd target! addend -- result end
+define-node zero -- value! end
+define-node add1 prev -- value! end
+define-node add target! addend -- result end
 
-define-rule nzero nadd
+define-rule zero add
   ( addend result )
   addend result connect
 end
 
-define-rule nadd1 nadd
+define-rule add1 add
   ( addend result ) ( prev )
-  prev addend nadd
-  nadd1 result connect
+  prev addend add
+  add1 result connect
 end
 
 define two
-  nzero nadd1 nadd1
+  zero add1 add1
 end
 
-two two nadd
+two two add
 
 wire-print-net
 run
@@ -148,27 +148,27 @@ wire-print-net
 ```xml
 <net>
 <root>
-(nadd₇)-result-<>-
+(add₇)-result-<>-
 </root>
 <body>
-(nadd1₃)-value!-<>-!target-(nadd₇)
-(nadd1₆)-value!-<>-addend-(nadd₇)
-(nadd1₅)-value!-<>-prev-(nadd1₆)
-(nzero₄)-value!-<>-prev-(nadd1₅)
-(nadd1₂)-value!-<>-prev-(nadd1₃)
-(nzero₁)-value!-<>-prev-(nadd1₂)
+(add1₃)-value!-<>-!target-(add₇)
+(add1₆)-value!-<>-addend-(add₇)
+(add1₅)-value!-<>-prev-(add1₆)
+(zero₄)-value!-<>-prev-(add1₅)
+(add1₂)-value!-<>-prev-(add1₃)
+(zero₁)-value!-<>-prev-(add1₂)
 </body>
 </net>
 
 <net>
 <root>
-(nadd1₉)-value!-<>-
+(add1₉)-value!-<>-
 </root>
 <body>
-(nadd1₁₁)-value!-<>-prev-(nadd1₉)
-(nadd1₆)-value!-<>-prev-(nadd1₁₁)
-(nadd1₅)-value!-<>-prev-(nadd1₆)
-(nzero₄)-value!-<>-prev-(nadd1₅)
+(add1₁₁)-value!-<>-prev-(add1₉)
+(add1₆)-value!-<>-prev-(add1₁₁)
+(add1₅)-value!-<>-prev-(add1₆)
+(zero₄)-value!-<>-prev-(add1₅)
 </body>
 </net>
 ```

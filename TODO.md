@@ -1,5 +1,3 @@
-rename nadd to add
-
 # core
 
 [core] quit using `mod->rule_list` -- save rule in `node_ctor_t`
