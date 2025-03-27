@@ -113,10 +113,10 @@ hash_t *
 debug_new_node_hash(debug_t *self) {
     if (!self->root) {
         hash_t *node_hash = hash_new();
-        node_t *node = set_first(self->worker->node_set);
+        node_t *node = set_first(self->worker->debug_node_set);
         while (node) {
             hash_set(node_hash, (void *) node->id, node);
-            node = set_next(self->worker->node_set);
+            node = set_next(self->worker->debug_node_set);
         }
 
         return node_hash;

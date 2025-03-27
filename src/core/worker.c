@@ -24,7 +24,7 @@ worker_new(mod_t *mod) {
     // TODO We should use value_destroy to create value_stack.
     self->value_stack = stack_new();
     self->return_stack = stack_new_with((destroy_fn_t *) frame_destroy);
-    self->node_set = set_new();
+    self->debug_node_set = set_new();
     self->node_id_count = 0;
     return self;
 }
@@ -38,7 +38,7 @@ worker_destroy(worker_t **self_pointer) {
         queue_destroy(&self->task_queue);
         stack_destroy(&self->value_stack);
         stack_destroy(&self->return_stack);
-        set_destroy(&self->node_set);
+        set_destroy(&self->debug_node_set);
         free(self);
         *self_pointer = NULL;
     }
@@ -121,13 +121,13 @@ worker_maybe_schedule_task(
 node_t *
 worker_add_node(worker_t* self, const node_ctor_t *ctor) {
     node_t *node = node_new(ctor, ++self->node_id_count);
-    set_add(self->node_set, node);
+    set_add(self->debug_node_set, node);
     return node;
 }
 
 void
 worker_delete_node(worker_t* self, node_t *node) {
-    set_delete(self->node_set, node);
+    set_delete(self->debug_node_set, node);
     node_destroy(&node);
 }
 

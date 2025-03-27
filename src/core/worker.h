@@ -9,10 +9,8 @@ struct worker_t {
     stack_t *value_stack;
     stack_t *return_stack;
     size_t node_id_count;
-    // wire and node should use managed memory,
-    // because some nets have no root.
-    // i simply record the pointers in worker for now.
-    set_t *node_set;
+    // only used when core_debug_flag is enabled
+    set_t *debug_node_set;
 };
 
 worker_t *worker_new(mod_t *mod);
