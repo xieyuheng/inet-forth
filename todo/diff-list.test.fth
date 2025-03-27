@@ -1,5 +1,5 @@
 import diff diff-append "diff-list.fth"
-import nil cons "list.fth"
+import null cons "list.fth"
 import sole "trivial.fth"
 
 define sole-diff-list

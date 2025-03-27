@@ -16,13 +16,13 @@ define-rule diff diff-open
   front old-back connect
 end
 
-// import nil cons append "list.fth"
+// import null cons append "list.fth"
 
-define-node nil -- value! end
+define-node null -- value! end
 define-node cons tail head -- value! end
 define-node append target! rest -- result end
 
-define-rule nil append
+define-rule null append
   ( rest result )
   rest result connect
 end

@@ -1,4 +1,3 @@
-rename nil to null
 add `i` prefix to primitive functions about int
 rename nadd to add
 

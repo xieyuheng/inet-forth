@@ -617,11 +617,11 @@ The difference is that the `(nadd1)` of natural number only nadd one node,
 while the `(cons)` of list nadd one node and link to an extra node.
 
 ```
-define-node nil -- value! end
+define-node null -- value! end
 define-node cons tail head -- value! end
 define-node append target! rest -- result end
 
-define-rule nil append
+define-rule null append
   ( rest result )
   rest result connect
 end
@@ -636,8 +636,8 @@ end
 
 define-node sole -- value! end
 
-nil sole cons sole cons sole cons
-nil sole cons sole cons sole cons
+null sole cons sole cons sole cons
+null sole cons sole cons sole cons
 append
 ```
 

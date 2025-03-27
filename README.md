@@ -178,11 +178,11 @@ wire-print-net
 ### List
 
 ```
-define-node nil -- value! end
+define-node null -- value! end
 define-node cons tail head -- value! end
 define-node append target! rest -- result end
 
-define-rule nil append
+define-rule null append
   ( rest result )
   rest result connect
 end
@@ -195,8 +195,8 @@ end
 
 define-node sole -- value! end
 
-nil sole cons sole cons sole cons
-nil sole cons sole cons sole cons
+null sole cons sole cons sole cons
+null sole cons sole cons sole cons
 append
 
 wire-print-net
@@ -219,13 +219,13 @@ wire-print-net
 (sole₁₃)-value!-<>-head-(cons₁₄)
 (cons₁₀)-value!-<>-tail-(cons₁₂)
 (sole₁₁)-value!-<>-head-(cons₁₂)
-(nil₈)-value!-<>-tail-(cons₁₀)
+(null₈)-value!-<>-tail-(cons₁₀)
 (sole₉)-value!-<>-head-(cons₁₀)
 (cons₅)-value!-<>-tail-(cons₇)
 (sole₆)-value!-<>-head-(cons₇)
 (cons₃)-value!-<>-tail-(cons₅)
 (sole₄)-value!-<>-head-(cons₅)
-(nil₁)-value!-<>-tail-(cons₃)
+(null₁)-value!-<>-tail-(cons₃)
 (sole₂)-value!-<>-head-(cons₃)
 </body>
 </net>
@@ -245,7 +245,7 @@ wire-print-net
 (sole₁₃)-value!-<>-head-(cons₁₄)
 (cons₁₀)-value!-<>-tail-(cons₁₂)
 (sole₁₁)-value!-<>-head-(cons₁₂)
-(nil₈)-value!-<>-tail-(cons₁₀)
+(null₈)-value!-<>-tail-(cons₁₀)
 (sole₉)-value!-<>-head-(cons₁₀)
 </body>
 </net>
