@@ -1,6 +1,3 @@
-ambr step_net  step_task
-ambr run_net  run_task
-
 # core
 
 [core] quit using `mod->rule_list` -- save rule in `node_ctor_t`

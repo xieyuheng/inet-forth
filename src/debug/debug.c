@@ -91,7 +91,7 @@ on_frame(debug_t *self, canvas_t *canvas, uint64_t passed) {
         self->running_frame_count += passed;
 
     if (self->running_frame_count > canvas->frame_rate / self->running_speed) {
-        step_net(self->worker);
+        step_task(self->worker);
         debug_update(self);
         self->running_frame_count = 0;
     }
