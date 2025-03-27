@@ -1,6 +1,6 @@
 #include "index.h"
 
-void
+static void
 step_op(worker_t *worker, frame_t *frame, op_t *op) {
     switch (op->kind) {
     case OP_CALL: {
