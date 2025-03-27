@@ -31,13 +31,31 @@ define <name> <function-body> end
 
 ### Natural Number
 
+Define three nodes `(zero)`, `(add1)` and `(add)`:
+
 ```
 define-node zero -- value! end
 define-node add1 prev -- value! end
 define-node add target! addend -- result end
 ```
 
-The rule between `(add1)` and `(add)` as ASCII art:
+```
+value!   value!        value
+  |        |             |
+(zero)   (add1)        (add)
+           |           /   \
+          prev    target!  addend
+```
+
+The rule between `(add1)` and `(add)`:
+
+```
+define-rule add1 add
+  ( addend result ) ( prev )
+  prev addend add
+  add1 result connect
+end
+```
 
 ```
      value             value            value
@@ -47,16 +65,6 @@ The rule between `(add1)` and `(add)` as ASCII art:
 (add1)   addend            addend       (add)
    |                 |                  /   \
  prev              prev              prev   addend
-```
-
-Define the rule between `(add1)` and `(add)`:
-
-```
-define-rule add1 add
-  ( addend result ) ( prev )
-  prev addend add
-  add1 result connect
-end
 ```
 
 To apply this rule is to disconnect and delete `(add1)` and `(add)` and reconnect newly exposed wires:
@@ -70,7 +78,14 @@ To apply this rule is to disconnect and delete `(add1)` and `(add)` and reconnec
 - `result` push local variable to the stack.
 - `connect` take two wires from the stack and connect them.
 
-The rule between `(zero)` and `(add)` as ASCII art:
+The rule between `(zero)` and `(add)`:
+
+```
+define-rule zero add
+  ( addend result )
+  addend result connect
+end
+```
 
 ```
      value          value         value
@@ -78,15 +93,6 @@ The rule between `(zero)` and `(add)` as ASCII art:
      (add)     =>             =>   |
      /   \              \            \
 (zero)   addend        addend       addend
-```
-
-Define the rule between `(zero)` and `(add)`:
-
-```
-define-rule zero add
-  ( addend result )
-  addend result connect
-end
 ```
 
 To apply this rule is to disconnect and delete `(zero)` and `(add)` and reconnect newly exposed wires:
@@ -100,17 +106,17 @@ Example interaction:
 
 ```
        |                   |                   |              |
-    (add)              (add1)             (add1)        (add1)
+     (add)               (add1)              (add1)         (add1)
      /   \                 |                   |              |
-(add1)  (add1)        (add)              (add1)        (add1)
+(add1)    (add1)         (add)               (add1)         (add1)
    |        |    =>      /   \       =>        |        =>    |
-(add1)  (add1)    (add1)  (add1)         (add)        (add1)
+(add1)    (add1)    (add1)    (add1)         (add)          (add1)
    |        |          |        |            /   \            |
-(zero)  (zero)    (zero)  (add1)    (zero) (add1)    (add1)
+(zero)    (zero)    (zero)    (add1)    (zero)   (add1)     (add1)
                                 |                  |          |
-                             (zero)            (add1)    (zero)
+                              (zero)             (add1)     (zero)
                                                    |
-                                                (zero)
+                                                 (zero)
 ```
 
 The whole program with test:
@@ -270,9 +276,7 @@ For more examples, please see the [examples/](examples/) directory.
 
 Dependencies:
 
-- `libx11`:
-  - debian: `sudo apt install libx11-dev`
-  - ubuntu: `sudo apt install libx11-dev`
+- debian/ubuntu: `sudo apt install libx11-dev`
 
 Compile:
 
@@ -333,13 +337,13 @@ gmake self-test
 - [1990-interaction-nets](./docs/references/1990-interaction-nets.pdf)
 - [1997-interaction-combinators](./docs/references/1997-interaction-combinators.pdf)
 
-**Inspirations**:
-
-- [forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
-
 **Books**:
 
 - [scalable c](https://github.com/booksbyus/scalable-c)
+
+**Languages**:
+
+- [forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
 
 ## Contributions
 
