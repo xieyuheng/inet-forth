@@ -1,4 +1,4 @@
-[info] add `debug_command` -- set `debug_node_set`
+[prelude] remove `x_wire_debug` and `x_debug`
 
 # net
 
