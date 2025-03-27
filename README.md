@@ -42,9 +42,9 @@ The rule between `(add1)` and `(add)` as ASCII art:
 ```
      value             value            value
        |                 |                |
-    (add)     =>                =>    (add1)
+     (add)     =>                =>     (add1)
      /   \                 \              |
-(add1)   addend           addend       (add)
+(add1)   addend            addend       (add)
    |                 |                  /   \
  prev              prev              prev   addend
 ```
