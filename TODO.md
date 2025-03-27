@@ -1,4 +1,4 @@
-add `i` prefix to primitive functions about int
+tests -- move vm/ to core/
 rename nadd to add
 
 # core

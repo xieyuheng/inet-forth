@@ -26,11 +26,11 @@ import_prelude(mod_t *mod) {
 
     // int
 
-    define_primitive_fn_2(mod, "add", xint_add);
-    define_primitive_fn_2(mod, "sub", xint_sub);
-    define_primitive_fn_2(mod, "mul", xint_mul);
-    define_primitive_fn_2(mod, "div", xint_div);
-    define_primitive_fn_2(mod, "mod", xint_mod);
+    define_primitive_fn_2(mod, "iadd", xint_add);
+    define_primitive_fn_2(mod, "isub", xint_sub);
+    define_primitive_fn_2(mod, "imul", xint_mul);
+    define_primitive_fn_2(mod, "idiv", xint_div);
+    define_primitive_fn_2(mod, "imod", xint_mod);
     define_primitive_fn_1(mod, "int-to-float", xint_to_xfloat);
 
     // float
