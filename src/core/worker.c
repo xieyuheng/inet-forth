@@ -52,14 +52,14 @@ worker_print(const worker_t *self, file_t *file) {
     fprintf(file, "<worker>\n");
 
     size_t task_list_length = list_length(self->task_list);
-    fprintf(file, "<active-wire-list length=\"%lu\">\n", task_list_length);
+    fprintf(file, "<task-list length=\"%lu\">\n", task_list_length);
     task_t *task = list_first(self->task_list);
     while (task) {
         wire_print(task->wire, file);
         fprintf(file, "\n");
         task = list_next(self->task_list);
     }
-    fprintf(file, "</active-wire-list>\n");
+    fprintf(file, "</task-list>\n");
 
     worker_print_return_stack(self, file);
     worker_print_value_stack(self, file);
@@ -99,14 +99,14 @@ worker_connect_top_wire_pair(worker_t *self) {
 
     wire_t *first_opposite = worker_wire_connect(self, second_wire, first_wire);
 
-    worker_maybe_add_active_wire(
+    worker_maybe_schedule_task(
         self,
         first_opposite,
         first_opposite->opposite);
 }
 
 void
-worker_maybe_add_active_wire(
+worker_maybe_schedule_task(
     worker_t *self,
     wire_t *first_wire,
     wire_t *second_wire
