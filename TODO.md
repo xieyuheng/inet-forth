@@ -1,4 +1,3 @@
-[info] add `info_command`
 [info] add `debug_command` -- set `debug_node_set`
 
 # net
