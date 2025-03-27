@@ -20,7 +20,7 @@ worker_new(mod_t *mod) {
     worker_t *self = new(worker_t);
     self->mod = mod;
     self->token_list = lex_code(mod->code);
-    self->activity_list = list_new_with((destroy_fn_t *) activity_destroy);
+    self->task_list = list_new_with((destroy_fn_t *) task_destroy);
     // TODO We should use value_destroy to create value_stack.
     self->value_stack = stack_new();
     self->return_stack = stack_new_with((destroy_fn_t *) frame_destroy);
@@ -37,7 +37,7 @@ worker_destroy(worker_t **self_pointer) {
     if (*self_pointer) {
         worker_t *self = *self_pointer;
         list_destroy(&self->token_list);
-        list_destroy(&self->activity_list);
+        list_destroy(&self->task_list);
         stack_destroy(&self->value_stack);
         stack_destroy(&self->return_stack);
         set_destroy(&self->wire_set);
@@ -51,13 +51,13 @@ void
 worker_print(const worker_t *self, file_t *file) {
     fprintf(file, "<worker>\n");
 
-    size_t activity_list_length = list_length(self->activity_list);
-    fprintf(file, "<active-wire-list length=\"%lu\">\n", activity_list_length);
-    activity_t *activity = list_first(self->activity_list);
-    while (activity) {
-        wire_print(activity->wire, file);
+    size_t task_list_length = list_length(self->task_list);
+    fprintf(file, "<active-wire-list length=\"%lu\">\n", task_list_length);
+    task_t *task = list_first(self->task_list);
+    while (task) {
+        wire_print(task->wire, file);
         fprintf(file, "\n");
-        activity = list_next(self->activity_list);
+        task = list_next(self->task_list);
     }
     fprintf(file, "</active-wire-list>\n");
 
@@ -118,7 +118,7 @@ worker_maybe_add_active_wire(
         const rule_t *rule = mod_find_rule(self->mod, first_wire, second_wire);
         if (!rule) return;
 
-        list_push(self->activity_list, activity_new(first_wire, rule));
+        list_push(self->task_list, task_new(first_wire, rule));
     }
 }
 

@@ -5,7 +5,7 @@
 struct worker_t {
     mod_t *mod;
     list_t *token_list;
-    list_t *activity_list;
+    list_t *task_list;
     stack_t *value_stack;
     stack_t *return_stack;
     size_t node_id_count;

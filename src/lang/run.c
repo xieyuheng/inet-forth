@@ -84,29 +84,29 @@ collect_free_wires_from_node(worker_t *worker, node_t *node) {
 
 void
 step_net(worker_t *worker) {
-    activity_t *activity = list_shift(worker->activity_list);
-    if (!activity) return;
+    task_t *task = list_shift(worker->task_list);
+    if (!task) return;
 
-    node_t *first_node = activity->wire->node;
-    node_t *second_node = activity->wire->opposite->node;
+    node_t *first_node = task->wire->node;
+    node_t *second_node = task->wire->opposite->node;
 
-    if (first_node->ctor == activity->rule->second_node_ctor &&
-        second_node->ctor == activity->rule->first_node_ctor)
+    if (first_node->ctor == task->rule->second_node_ctor &&
+        second_node->ctor == task->rule->first_node_ctor)
     {
-        first_node = activity->wire->opposite->node;
-        second_node = activity->wire->node;
+        first_node = task->wire->opposite->node;
+        second_node = task->wire->node;
     }
 
     collect_free_wires_from_node(worker, first_node);
     collect_free_wires_from_node(worker, second_node);
 
-    worker_delete_wire(worker, activity->wire);
-    worker_delete_wire(worker, activity->wire->opposite);
+    worker_delete_wire(worker, task->wire);
+    worker_delete_wire(worker, task->wire->opposite);
 
     size_t base_length = stack_length(worker->return_stack);
-    frame_t *frame = frame_new(activity->rule->function);
+    frame_t *frame = frame_new(task->rule->function);
 
-    activity_destroy(&activity);
+    task_destroy(&task);
 
     stack_push(worker->return_stack, frame);
     run_until(worker, base_length);
@@ -114,7 +114,7 @@ step_net(worker_t *worker) {
 
 void
 run_net(worker_t *worker) {
-    while (!list_is_empty(worker->activity_list)) {
+    while (!list_is_empty(worker->task_list)) {
         step_net(worker);
     }
 }
