@@ -27,7 +27,7 @@ step_op(worker_t *worker, frame_t *frame, op_t *op) {
     }
 }
 
-void
+static void
 step(worker_t *worker) {
     if (stack_is_empty(worker->return_stack)) return;
 
