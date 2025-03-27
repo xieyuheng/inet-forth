@@ -4,7 +4,7 @@ void
 call_primitive(worker_t *worker, const primitive_def_t *def) {
     switch (def->fn_kind) {
     case PRIMITIVE_VM_FN: {
-        def->primitive_worker_fn(worker);
+        def->primitive_fn(worker);
         return;
     }
 

@@ -1,8 +1,8 @@
 #include "index.h"
 
 void
-define_primitive_worker_fn(mod_t *mod, const char *name, primitive_worker_fn_t *primitive_worker_fn) {
-    mod_define(mod, def_from_primitive_def(primitive_def_from_worker_fn(name, primitive_worker_fn)));
+define_primitive_fn(mod_t *mod, const char *name, primitive_fn_t *primitive_fn) {
+    mod_define(mod, def_from_primitive_def(primitive_def_from_worker_fn(name, primitive_fn)));
 }
 
 void

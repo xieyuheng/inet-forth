@@ -1,6 +1,6 @@
 #pragma once
 
-typedef void (primitive_worker_fn_t)(worker_t *worker);
+typedef void (primitive_fn_t)(worker_t *worker);
 typedef value_t (primitive_0_fn_t)(void);
 typedef value_t (primitive_1_fn_t)(value_t x);
 typedef value_t (primitive_2_fn_t)(value_t x, value_t y);
@@ -20,7 +20,7 @@ struct primitive_def_t {
     char *name;
     primitive_fn_kind_t fn_kind;
     union {
-        primitive_worker_fn_t *primitive_worker_fn;
+        primitive_fn_t *primitive_fn;
         primitive_0_fn_t *primitive_0_fn;
         primitive_1_fn_t *primitive_1_fn;
         primitive_2_fn_t *primitive_2_fn;
@@ -29,7 +29,7 @@ struct primitive_def_t {
     };
 };
 
-primitive_def_t *primitive_def_from_worker_fn(const char *name, primitive_worker_fn_t *primitive_worker_fn);
+primitive_def_t *primitive_def_from_worker_fn(const char *name, primitive_fn_t *primitive_fn);
 primitive_def_t *primitive_def_from_0_fn(const char *name, primitive_0_fn_t *primitive_0_fn);
 primitive_def_t *primitive_def_from_1_fn(const char *name, primitive_1_fn_t *primitive_1_fn);
 primitive_def_t *primitive_def_from_2_fn(const char *name, primitive_2_fn_t *primitive_2_fn);

@@ -1,10 +1,10 @@
 #pragma once
 
-primitive_worker_fn_t x_connect;
-primitive_worker_fn_t x_wire_print_net;
-primitive_worker_fn_t x_link;
-primitive_worker_fn_t x_run;
-primitive_worker_fn_t x_wire_debug;
-primitive_worker_fn_t x_debug;
-primitive_worker_fn_t x_define_node;
-primitive_worker_fn_t x_define_rule;
+primitive_fn_t x_connect;
+primitive_fn_t x_wire_print_net;
+primitive_fn_t x_link;
+primitive_fn_t x_run;
+primitive_fn_t x_wire_debug;
+primitive_fn_t x_debug;
+primitive_fn_t x_define_node;
+primitive_fn_t x_define_rule;

@@ -1,3 +1,3 @@
 #pragma once
 
-primitive_worker_fn_t x_ok;
+primitive_fn_t x_ok;
