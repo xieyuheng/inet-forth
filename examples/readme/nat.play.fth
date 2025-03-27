@@ -21,4 +21,4 @@ define two zero add1 add1 end
 
 two two add
 two two add
-add wire-debug
+add

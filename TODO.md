@@ -1,5 +1,3 @@
-[prelude] remove `x_wire_debug` and `x_debug`
-
 # net
 
 [net] `node_t` -- has `ports` instead of `wires`

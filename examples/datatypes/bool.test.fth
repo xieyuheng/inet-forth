@@ -30,8 +30,6 @@ t t disj
 f t disj disj
 disj
 
-// debug
-
 wire-print-net
 run
 wire-print-net

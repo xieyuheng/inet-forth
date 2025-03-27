@@ -29,23 +29,6 @@ x_run(worker_t *worker) {
     run_task(worker);
 }
 
-void
-x_wire_debug(worker_t *worker) {
-    fprintf(stdout, "[wire-debug] start\n");
-    wire_t *root = stack_top(worker->value_stack);
-    debug_start_with_root_wire(worker, root);
-    fprintf(stdout, "[wire-debug] end\n");
-    fprintf(stdout, "\n");
-}
-
-void
-x_debug(worker_t *worker) {
-    fprintf(stdout, "[debug] start\n");
-    debug_start(worker);
-    fprintf(stdout, "[debug] end\n");
-    fprintf(stdout, "\n");
-}
-
 static void
 define_node(mod_t *mod, const char *name, list_t *input_token_list, list_t *output_token_list) {
     size_t input_arity = list_length(input_token_list);
