@@ -7,11 +7,6 @@ value_tag(value_t value) {
 
 void
 value_print(value_t value, file_t *file) {
-    if (value == xnull) {
-        fprintf(file, "null");
-        return;
-    }
-
     if (value == xtrue) {
         fprintf(file, "true");
         return;

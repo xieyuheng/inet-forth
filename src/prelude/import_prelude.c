@@ -2,10 +2,6 @@
 
 void
 import_prelude(mod_t *mod) {
-    // null
-
-    define_constant(mod, "null", xnull);
-
     // bool
 
     define_constant(mod, "false", xfalse);

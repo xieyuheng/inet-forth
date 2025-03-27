@@ -1,4 +1,3 @@
-null null eq ok
 true false eq not ok
 
 true dup ok ok

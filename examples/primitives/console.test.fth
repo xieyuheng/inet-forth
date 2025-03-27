@@ -1,4 +1,3 @@
-null print drop newline
 true print drop newline
 false print drop newline
 
