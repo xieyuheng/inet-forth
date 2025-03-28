@@ -1,3 +1,12 @@
+[core] `worker_t` -- has `scheduler` and `index`
+[core] `worker_is_in_pool`
+[core] `worker_return_task`
+
+# lang
+
+[lang] extract `run_task_parallelly` and `run_task_sequentially` from `run_task`
+[lang] `run_task_parallelly` -- create `scheduler_t`
+
 # core
 
 [core] `worker_t` -- safe use of `task_queue` -- which might be full
