@@ -98,7 +98,8 @@ scheduler_wait(scheduler_t *scheduler) {
 void
 run_task_parallelly(worker_t *worker) {
     size_t processor_count = sysconf(_SC_NPROCESSORS_ONLN);
-    scheduler_t *scheduler = scheduler_new(worker->mod, processor_count - 1);
+    size_t worker_pool_size = uint_max(processor_count - 1, 1);
+    scheduler_t *scheduler = scheduler_new(worker->mod, worker_pool_size);
     scheduler_start(scheduler, worker->task_queue);
     scheduler_wait(scheduler);
     scheduler_destroy(&scheduler);
