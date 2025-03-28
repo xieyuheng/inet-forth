@@ -5,10 +5,7 @@ node_apply_input_ports(worker_t *worker, node_t *node) {
     for (size_t c = 0; c < node->ctor->input_arity; c++) {
         wire_t *wire = stack_pop(worker->value_stack);
         size_t i = node->ctor->input_arity - 1 - c;
-        wire->node = node;
-        wire->index = i;
-        node->ports[i] = wire;
-
+        node_set(node, i, wire);
         worker_maybe_schedule_task(worker, wire, wire->opposite);
     }
 }
@@ -23,10 +20,7 @@ node_return_output_ports(worker_t *worker, node_t *node) {
         free_wire->opposite = node_wire;
 
         size_t i = node->ctor->input_arity + c;
-        node_wire->node = node;
-        node_wire->index = i;
-        node->ports[i] = node_wire;
-
+        node_set(node, i, node_wire);
         stack_push(worker->value_stack, free_wire);
     }
 }

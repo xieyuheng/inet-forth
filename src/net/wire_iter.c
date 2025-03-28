@@ -54,7 +54,7 @@ wire_iter_next(wire_iter_t *self) {
 
     while (self->index < self->node->ctor->arity) {
         size_t i = self->index++;
-        value_t value = self->node->ports[i];
+        value_t value = node_get(self->node, i);
         if (!is_wire(value)) continue;
 
         wire_t *wire = as_wire(value);

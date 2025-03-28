@@ -1,8 +1,3 @@
-# net
-
-[net] `node_set`
-[net] `node_get`
-
 # core
 
 [core] quit using `mod->rule_list` -- save rule in `node_ctor_t`
