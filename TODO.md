@@ -1,4 +1,3 @@
-[core] `worker_t` -- has `scheduler` and `index`
 [core] `worker_is_in_pool`
 [core] `worker_return_task`
 

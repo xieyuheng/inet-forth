@@ -11,6 +11,9 @@ struct worker_t {
     size_t node_id_count;
     // only used when core_debug_flag is enabled
     set_t *debug_node_set;
+    // for worker in pool
+    scheduler_t *scheduler;
+    size_t index;
 };
 
 worker_t *worker_new(mod_t *mod);
