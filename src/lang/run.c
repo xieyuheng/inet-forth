@@ -62,11 +62,19 @@ run_until(worker_t *worker, size_t base_length) {
 static void
 collect_free_wires_from_node(worker_t *worker, node_t *node) {
     for (size_t i = 0; i < node->ctor->arity; i++) {
-        if (!wire_is_principal(node->ports[i])) {
-            wire_t *wire = node->ports[i];
-            wire_free_from_node(wire);
-            stack_push(worker->value_stack, wire);
+        value_t value = node->ports[i];
+        if (is_wire(value)) {
+            wire_t *wire = as_wire(value);
+            if (wire_is_principal(value)) {
+                continue;
+            } else {
+                wire_free_from_node(wire);
+                stack_push(worker->value_stack, wire);
+            }
+        } else {
+            stack_push(worker->value_stack, value);
         }
+
     }
 
     worker_delete_node(worker, node);
