@@ -10,7 +10,7 @@ node_apply_input_ports(worker_t *worker, node_t *node) {
             node_set(node, i, wire);
 
             if (wire_is_principal(wire)) {
-                maybe_return_task(worker, wire, wire_opposite(wire));
+                maybe_return_task(worker, wire);
             }
         }
     }
@@ -23,7 +23,7 @@ node_return_output_ports(worker_t *worker, node_t *node) {
         wire_t *free_wire = wire_new();
 
         wire_set_opposite(node_wire, free_wire);
-        wire_set_opposite(free_wire, node_wire);        
+        wire_set_opposite(free_wire, node_wire);
 
         size_t i = node->ctor->input_arity + c;
         node_set(node, i, node_wire);

@@ -1,4 +1,4 @@
-[net] `wire_t` -- has `atomic_opposite_is_principle`
+[bug] data race -- examples/datatypes/bool.test.fth
 
 # core
 
