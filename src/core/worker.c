@@ -95,10 +95,12 @@ worker_connect_top_wire_pair(worker_t *self) {
 
     wire_t *first_opposite = worker_wire_connect(self, second_wire, first_wire);
 
-    maybe_return_task(
-        self,
-        first_opposite,
-        first_opposite->opposite);
+    if (wire_is_principal(first_opposite)) {
+        maybe_return_task(
+            self,
+            first_opposite,
+            first_opposite->opposite);
+    }
 }
 
 void

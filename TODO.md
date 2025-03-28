@@ -1,6 +1,6 @@
-# lang
+# net
 
-[lang] try `run_task_parallelly`
+[net] `wire_t` -- has `is_principal` (sit by `node_set`)-- to avoid reading node
 
 # core
 
