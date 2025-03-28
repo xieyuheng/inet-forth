@@ -1,6 +1,7 @@
 #pragma once
 
 struct function_t {
+    char *name;
     hash_t *local_index_hash;
     array_t *op_array;
 };
