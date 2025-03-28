@@ -49,19 +49,29 @@ mod_find_rule(
     if (!first_wire->node) return NULL;
     if (!second_wire->node) return NULL;
 
-    for (size_t i = 0; i < first_wire->node->ctor->arity; i++) {
-        rule_t *rule = array_get(first_wire->node->ctor->rule_array, i);
-        if (rule_match_wire_pair(rule, first_wire, second_wire))
-            return rule;
-    }
+    if (first_wire->node->ctor == second_wire->node->ctor) {
+        for (size_t i = 0; i < first_wire->node->ctor->arity; i++) {
+            rule_t *rule = array_get(first_wire->node->ctor->rule_array, i);
+            if (rule_match_wire_pair(rule, first_wire, second_wire))
+                return rule;
+        }
 
-    for (size_t i = 0; i < second_wire->node->ctor->arity; i++) {
-        rule_t *rule = array_get(second_wire->node->ctor->rule_array, i);
-        if (rule_match_wire_pair(rule, first_wire, second_wire))
-            return rule;
-    }
+        return NULL;
+    } else {
+        for (size_t i = 0; i < first_wire->node->ctor->arity; i++) {
+            rule_t *rule = array_get(first_wire->node->ctor->rule_array, i);
+            if (rule_match_wire_pair(rule, first_wire, second_wire))
+                return rule;
+        }
 
-    return NULL;
+        for (size_t i = 0; i < second_wire->node->ctor->arity; i++) {
+            rule_t *rule = array_get(second_wire->node->ctor->rule_array, i);
+            if (rule_match_wire_pair(rule, first_wire, second_wire))
+                return rule;
+        }
+
+        return NULL;
+    }
 }
 
 void
@@ -87,8 +97,12 @@ mod_define_rule(
 
     rule_t *rule = rule_new(first_node_ctor, second_node_ctor, function);
 
-    array_push(first_node_ctor->rule_array, rule);
-    array_push(second_node_ctor->rule_array, rule);
+    if (first_node_ctor == second_node_ctor) {
+        array_push(first_node_ctor->rule_array, rule);
+    } else {
+        array_push(first_node_ctor->rule_array, rule);
+        array_push(second_node_ctor->rule_array, rule);
+    }
 }
 
 void
