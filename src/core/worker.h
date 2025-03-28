@@ -21,7 +21,7 @@ void worker_print_value_stack(const worker_t *self, file_t *file);
 void worker_print(const worker_t *self, file_t *file);
 
 void worker_connect_top_wire_pair(worker_t *self);
-void worker_maybe_schedule_task(worker_t *self, wire_t *first_wire, wire_t *second_wire);
+void worker_maybe_maybe_return_task(worker_t *self, wire_t *first_wire, wire_t *second_wire);
 
 node_t *worker_add_node(worker_t* self, const node_ctor_t *ctor);
 void worker_delete_node(worker_t* self, node_t *node);

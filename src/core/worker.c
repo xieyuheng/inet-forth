@@ -95,14 +95,14 @@ worker_connect_top_wire_pair(worker_t *self) {
 
     wire_t *first_opposite = worker_wire_connect(self, second_wire, first_wire);
 
-    worker_maybe_schedule_task(
+    worker_maybe_maybe_return_task(
         self,
         first_opposite,
         first_opposite->opposite);
 }
 
 void
-worker_maybe_schedule_task(
+worker_maybe_maybe_return_task(
     worker_t *self,
     wire_t *first_wire,
     wire_t *second_wire
