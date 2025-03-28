@@ -25,9 +25,9 @@ def_constant(constant_def_t *constant_def) {
 }
 
 def_t *
-def_node(node_ctor_t *node_ctor) {
+def_node_ctor(node_ctor_t *node_ctor) {
     def_t *self = new(def_t);
-    self->kind = DEF_NODE;
+    self->kind = DEF_NODE_CTOR;
     self->node_ctor = node_ctor;
     return self;
 }
@@ -55,7 +55,7 @@ def_destroy(def_t **self_pointer) {
             break;
         }
 
-        case DEF_NODE: {
+        case DEF_NODE_CTOR: {
             node_ctor_destroy(&self->node_ctor);
             break;
         }
@@ -81,7 +81,7 @@ def_name(const def_t *def) {
         return def->constant_def->name;
     }
 
-    case DEF_NODE: {
+    case DEF_NODE_CTOR: {
         return def->node_ctor->name;
     }
     }
@@ -104,7 +104,7 @@ def_kind_name(def_kind_t kind) {
         return "constant";
     }
 
-    case DEF_NODE: {
+    case DEF_NODE_CTOR: {
         return "node";
     }
     }
@@ -131,7 +131,7 @@ def_print(const def_t *def, file_t *file) {
         return;
     }
 
-    case DEF_NODE: {
+    case DEF_NODE_CTOR: {
         fprintf(file, "define-node %s ", def->node_ctor->name);
         for (size_t i = 0; i < def->node_ctor->input_arity; i++) {
             port_info_t *port_info = def->node_ctor->port_infos[i];

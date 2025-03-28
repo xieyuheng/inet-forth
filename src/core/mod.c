@@ -79,8 +79,8 @@ mod_define_rule(
     const def_t *first_def = mod_find(self, first_name);
     const def_t *second_def = mod_find(self, second_name);
 
-    assert(first_def->kind == DEF_NODE);
-    assert(second_def->kind == DEF_NODE);
+    assert(first_def->kind == DEF_NODE_CTOR);
+    assert(second_def->kind == DEF_NODE_CTOR);
 
     const node_ctor_t *first_node_ctor = first_def->node_ctor;
     const node_ctor_t *second_node_ctor = second_def->node_ctor;

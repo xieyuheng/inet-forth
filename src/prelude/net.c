@@ -41,7 +41,7 @@ define_node(mod_t *mod, const char *name, list_t *input_token_list, list_t *outp
     size_t input_arity = list_length(input_token_list);
     size_t output_arity = list_length(output_token_list);
     node_ctor_t *node_ctor = node_ctor_new(name, input_arity, output_arity);
-    def_t *def = def_node(node_ctor);
+    def_t *def = def_node_ctor(node_ctor);
 
     size_t index = 0;
 

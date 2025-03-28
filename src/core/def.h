@@ -4,7 +4,7 @@ typedef enum {
     DEF_PRIMITIVE,
     DEF_FUNCTION,
     DEF_CONSTANT,
-    DEF_NODE,
+    DEF_NODE_CTOR,
 } def_kind_t;
 
 struct def_t {
@@ -20,7 +20,7 @@ struct def_t {
 def_t *def_primitive(primitive_t *primitive);
 def_t *def_function(function_def_t *function_def);
 def_t *def_constant(constant_def_t *constant_def);
-def_t *def_node(node_ctor_t *node_ctor);
+def_t *def_node_ctor(node_ctor_t *node_ctor);
 
 void def_destroy(def_t **self_pointer);
 
