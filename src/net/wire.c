@@ -25,6 +25,18 @@ wire_destroy(wire_t **self_pointer) {
     }
 }
 
+bool
+is_wire(value_t value) {
+    if (!is_xobject(value)) return false;
+    return as_object(value)->spec == &wire_object_spec;
+}
+
+wire_t *
+as_wire(value_t value) {
+    assert(is_wire(value));
+    return (wire_t *) value;
+}
+
 const char *
 wire_name(const wire_t *self) {
     assert(self->node);
