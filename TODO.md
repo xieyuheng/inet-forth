@@ -1,6 +1,5 @@
 # core
 
-[core] quit using `mod->rule_list` -- save rule in `node_ctor_t`
 [core] `worker_t` -- safe use of `task_queue` -- which might be full
 
 # module system

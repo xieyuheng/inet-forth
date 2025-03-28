@@ -7,7 +7,6 @@ struct mod_t {
     const char *src;
     const char *code;
     hash_t *def_hash;
-    list_t *rule_list;
 };
 
 mod_t *mod_new(const char *src, const char *code);

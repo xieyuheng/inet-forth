@@ -1,7 +1,5 @@
 #include "index.h"
 
-extern destroy_fn_t rule_destroy;
-
 node_ctor_t *
 node_ctor_new(
     const char *name,
@@ -14,7 +12,9 @@ node_ctor_new(
     self->output_arity = output_arity;
     self->arity = input_arity + output_arity;
     self->port_infos = allocate_pointers(self->arity);
-    self->rule_array = array_auto_with((destroy_fn_t *) rule_destroy);
+    // does not own the rules in the array,
+    // because a rule might be shared by many (two) node ctors.
+    self->rule_array = array_auto();
     return self;
 }
 

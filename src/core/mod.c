@@ -7,7 +7,6 @@ mod_new(const char *src, const char *code) {
     self->code = code;
     self->def_hash = hash_of_string_key();
     hash_set_destroy_fn(self->def_hash, (destroy_fn_t *) def_destroy);
-    self->rule_list = list_new_with((destroy_fn_t *) rule_destroy);
     return self;
 }
 
@@ -17,7 +16,6 @@ mod_destroy(mod_t **self_pointer) {
     if (*self_pointer) {
         mod_t *self = *self_pointer;
         hash_destroy(&self->def_hash);
-        list_destroy(&self->rule_list);
         free(self);
         *self_pointer = NULL;
     }
@@ -46,12 +44,21 @@ mod_find_rule(
     const wire_t *first_wire,
     const wire_t *second_wire
 ) {
-    rule_t *rule = list_first(self->rule_list);
-    while (rule) {
+    (void) self;
+
+    if (!first_wire->node) return NULL;
+    if (!second_wire->node) return NULL;
+
+    for (size_t i = 0; i < first_wire->node->ctor->arity; i++) {
+        rule_t *rule = array_get(first_wire->node->ctor->rule_array, i);
         if (rule_match_wire_pair(rule, first_wire, second_wire))
             return rule;
+    }
 
-        rule = list_next(self->rule_list);
+    for (size_t i = 0; i < second_wire->node->ctor->arity; i++) {
+        rule_t *rule = array_get(second_wire->node->ctor->rule_array, i);
+        if (rule_match_wire_pair(rule, first_wire, second_wire))
+            return rule;
     }
 
     return NULL;
@@ -72,11 +79,16 @@ mod_define_rule(
     const def_t *first_def = mod_find(self, first_name);
     const def_t *second_def = mod_find(self, second_name);
 
+    assert(first_def->kind == NODE_DEF);
+    assert(second_def->kind == NODE_DEF);
+
     const node_ctor_t *first_node_ctor = first_def->node_ctor;
     const node_ctor_t *second_node_ctor = second_def->node_ctor;
 
     rule_t *rule = rule_new(first_node_ctor, second_node_ctor, function);
-    list_push(self->rule_list, rule);
+
+    array_push(first_node_ctor->rule_array, rule);
+    array_push(second_node_ctor->rule_array, rule);
 }
 
 void
