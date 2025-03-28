@@ -1,6 +1,5 @@
 # net
 
-[net] `node_t` -- has `ports` instead of `wires`
 [net] `node_t` -- `ports` can store any value
 [net] `node_set`
 [net] `node_get`

@@ -7,7 +7,7 @@ node_apply_input_ports(worker_t *worker, node_t *node) {
         size_t i = node->ctor->input_arity - 1 - c;
         wire->node = node;
         wire->index = i;
-        node->wires[i] = wire;
+        node->ports[i] = wire;
 
         worker_maybe_schedule_task(worker, wire, wire->opposite);
     }
@@ -25,7 +25,7 @@ node_return_output_ports(worker_t *worker, node_t *node) {
         size_t i = node->ctor->input_arity + c;
         node_wire->node = node;
         node_wire->index = i;
-        node->wires[i] = node_wire;
+        node->ports[i] = node_wire;
 
         stack_push(worker->value_stack, free_wire);
     }

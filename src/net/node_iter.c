@@ -35,7 +35,7 @@ node_iter_first(node_iter_t *self) {
     list_push(self->occurred_node_list, node);
 
     for (size_t i = 0; i < node->ctor->arity; i++) {
-        wire_t *wire = node->wires[i];
+        wire_t *wire = node->ports[i];
         if (wire->opposite && wire->opposite->node) {
             if (list_has(self->occurred_node_list, wire->opposite->node) ||
                 list_has(self->remaining_node_list, wire->opposite->node))
@@ -56,7 +56,7 @@ node_iter_next(node_iter_t *self) {
     list_push(self->occurred_node_list, node);
 
     for (size_t i = 0; i < node->ctor->arity; i++) {
-        wire_t *wire = node->wires[i];
+        wire_t *wire = node->ports[i];
         if (wire->opposite && wire->opposite->node) {
             if (list_has(self->occurred_node_list, wire->opposite->node) ||
                 list_has(self->remaining_node_list, wire->opposite->node))

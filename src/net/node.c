@@ -5,7 +5,7 @@ node_new(const node_ctor_t *ctor, size_t id) {
     node_t *self = new(node_t);
     self->ctor = ctor;
     self->id = id;
-    self->wires = allocate_pointers(ctor->arity);
+    self->ports = allocate_pointers(ctor->arity);
     return self;
 }
 
@@ -14,7 +14,7 @@ node_destroy(node_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         node_t *self = *self_pointer;
-        free(self->wires);
+        free(self->ports);
         // Does NOT own wires in `wires`.
         free(self);
         *self_pointer = NULL;

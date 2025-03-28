@@ -54,7 +54,7 @@ wire_iter_next(wire_iter_t *self) {
 
     while (self->index < self->node->ctor->arity) {
         size_t i = self->index++;
-        wire_t *wire = self->node->wires[i];
+        wire_t *wire = self->node->ports[i];
 
         if (list_has(self->occurred_wire_list, wire))
             continue;
