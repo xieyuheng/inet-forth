@@ -22,9 +22,7 @@ two two add
 two two add
 add
 
-wire-print-net
-run
-wire-print-net
+inspect-run
 
 // to define `mul`, we first need `nat-erase` and `nat-dup`
 
@@ -71,9 +69,7 @@ end
 
 two two mul
 
-wire-print-net
-run
-wire-print-net
+inspect-run
 
 // to define `nat-max`, we need `nat-max-add1`
 
@@ -103,6 +99,4 @@ end
 
 one two nat-max
 
-wire-print-net
-run
-wire-print-net
+inspect-run

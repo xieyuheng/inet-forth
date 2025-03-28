@@ -48,6 +48,7 @@ import_prelude(mod_t *mod) {
     define_primitive_fn(mod, "wire-print-net", x_wire_print_net);
     define_primitive_fn(mod, "link", x_link);
     define_primitive_fn(mod, "run", x_run);
+    define_primitive_fn(mod, "inspect-run", x_inspect_run);
     define_primitive_fn(mod, "define-node", x_define_node);
     define_primitive_fn(mod, "define-rule", x_define_rule);
 

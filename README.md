@@ -143,9 +143,7 @@ end
 
 two two add
 
-wire-print-net
-run
-wire-print-net
+inspect-run
 ```
 
 ### List
@@ -172,9 +170,7 @@ null sole cons sole cons sole cons
 null sole cons sole cons sole cons
 append
 
-wire-print-net
-run
-wire-print-net
+inspect-run
 ```
 
 ### More

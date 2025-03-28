@@ -19,6 +19,4 @@ end
 
 two two add
 
-wire-print-net
-run
-wire-print-net
+inspect-run

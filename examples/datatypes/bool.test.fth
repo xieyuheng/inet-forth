@@ -30,6 +30,4 @@ t t disj
 f t disj disj
 disj
 
-wire-print-net
-run
-wire-print-net
+inspect-run

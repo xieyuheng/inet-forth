@@ -49,6 +49,4 @@ sole-diff-list
 sole-diff-list
 diff-append
 
-wire-print-net
-run
-wire-print-net
+inspect-run

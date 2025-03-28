@@ -29,6 +29,13 @@ x_run(worker_t *worker) {
     run_task(worker);
 }
 
+void
+x_inspect_run(worker_t *worker) {
+    x_wire_print_net(worker);
+    run_task(worker);
+    x_wire_print_net(worker);
+}
+
 static void
 define_node(mod_t *mod, const char *name, list_t *input_token_list, list_t *output_token_list) {
     size_t input_arity = list_length(input_token_list);

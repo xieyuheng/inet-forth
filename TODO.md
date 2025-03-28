@@ -1,5 +1,3 @@
-[prelude] `inspect-run` -- quit using `wire-print-net` in tests
-
 # net
 
 [net] `is_wire` and `as_wire`
