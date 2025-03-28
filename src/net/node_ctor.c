@@ -1,5 +1,7 @@
 #include "index.h"
 
+extern destroy_fn_t rule_destroy;
+
 node_ctor_t *
 node_ctor_new(
     const char *name,
@@ -12,6 +14,7 @@ node_ctor_new(
     self->output_arity = output_arity;
     self->arity = input_arity + output_arity;
     self->port_infos = allocate_pointers(self->arity);
+    self->rule_array = array_auto_with((destroy_fn_t *) rule_destroy);
     return self;
 }
 
@@ -20,6 +23,7 @@ node_ctor_destroy(node_ctor_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         node_ctor_t *self = *self_pointer;
+
         for (size_t i = 0; i < self->arity; i++) {
             port_info_t *port_info = self->port_infos[i];
             if (port_info) {
@@ -28,6 +32,8 @@ node_ctor_destroy(node_ctor_t **self_pointer) {
         }
 
         free(self->port_infos);
+
+        array_destroy(&self->rule_array);
         free(self->name);
         free(self);
         *self_pointer = NULL;

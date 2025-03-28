@@ -6,6 +6,7 @@ struct node_ctor_t {
     size_t output_arity;
     size_t arity;
     port_info_t **port_infos;
+    array_t *rule_array;
 };
 
 node_ctor_t *node_ctor_new(
