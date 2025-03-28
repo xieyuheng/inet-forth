@@ -41,7 +41,7 @@ wire_opposite(const wire_t *self) {
 }
 
 void
-wire_opposite(wire_t *self, wire_t *opposite) {
+wire_set_opposite(wire_t *self, wire_t *opposite) {
     self->opposite = opposite;
 }
 

@@ -20,7 +20,7 @@ bool is_wire(value_t value);
 wire_t *as_wire(value_t value);
 
 wire_t *wire_opposite(const wire_t *self);
-void wire_opposite(wire_t *self, wire_t *opposite);
+void wire_set_opposite(wire_t *self, wire_t *opposite);
 
 const char *wire_name(const wire_t *self);
 const char *wire_node_name(const wire_t *self);
