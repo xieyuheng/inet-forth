@@ -17,10 +17,10 @@ struct def_t {
     };
 };
 
-def_t *def_from_primitive_def(primitive_def_t *primitive_def);
-def_t *def_from_function_def(function_def_t *function_def);
-def_t *def_from_constant_def(constant_def_t *constant_def);
-def_t *def_from_node_ctor(node_ctor_t *node_ctor);
+def_t *def_primitive(primitive_def_t *primitive_def);
+def_t *def_function(function_def_t *function_def);
+def_t *def_constant(constant_def_t *constant_def);
+def_t *def_node(node_ctor_t *node_ctor);
 
 void def_destroy(def_t **self_pointer);
 

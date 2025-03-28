@@ -1,7 +1,7 @@
 #include "index.h"
 
 def_t *
-def_from_primitive_def(primitive_def_t *primitive_def) {
+def_primitive(primitive_def_t *primitive_def) {
     def_t *self = new(def_t);
     self->kind = DEF_PRIMITIVE;
     self->primitive_def = primitive_def;
@@ -9,7 +9,7 @@ def_from_primitive_def(primitive_def_t *primitive_def) {
 }
 
 def_t *
-def_from_function_def(function_def_t *function_def) {
+def_function(function_def_t *function_def) {
     def_t *self = new(def_t);
     self->kind = DEF_FUNCTION;
     self->function_def = function_def;
@@ -17,7 +17,7 @@ def_from_function_def(function_def_t *function_def) {
 }
 
 def_t *
-def_from_constant_def(constant_def_t *constant_def) {
+def_constant(constant_def_t *constant_def) {
     def_t *self = new(def_t);
     self->kind = DEF_CONSTANT;
     self->constant_def = constant_def;
@@ -25,7 +25,7 @@ def_from_constant_def(constant_def_t *constant_def) {
 }
 
 def_t *
-def_from_node_ctor(node_ctor_t *node_ctor) {
+def_node(node_ctor_t *node_ctor) {
     def_t *self = new(def_t);
     self->kind = DEF_NODE;
     self->node_ctor = node_ctor;
