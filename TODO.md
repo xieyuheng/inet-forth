@@ -1,4 +1,3 @@
-rename `primitive_def_t` to `primitive_t`
 inline `constant_def_t` to `def_t`
 inline `function_def_t` to `def_t`
 

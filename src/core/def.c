@@ -1,10 +1,10 @@
 #include "index.h"
 
 def_t *
-def_primitive(primitive_def_t *primitive_def) {
+def_primitive(primitive_t *primitive) {
     def_t *self = new(def_t);
     self->kind = DEF_PRIMITIVE;
-    self->primitive_def = primitive_def;
+    self->primitive = primitive;
     return self;
 }
 
@@ -41,7 +41,7 @@ def_destroy(def_t **self_pointer) {
 
         switch (self->kind) {
         case DEF_PRIMITIVE: {
-            primitive_def_destroy(&self->primitive_def);
+            primitive_destroy(&self->primitive);
             break;
         }
 
@@ -70,7 +70,7 @@ const char *
 def_name(const def_t *def) {
     switch (def->kind) {
     case DEF_PRIMITIVE: {
-        return def->primitive_def->name;
+        return def->primitive->name;
     }
 
     case DEF_FUNCTION: {
@@ -116,7 +116,7 @@ void
 def_print(const def_t *def, file_t *file) {
     switch (def->kind) {
     case DEF_PRIMITIVE: {
-        fprintf(file, "define-primitive %s", def->primitive_def->name);
+        fprintf(file, "define-primitive %s", def->primitive->name);
         return;
     }
 

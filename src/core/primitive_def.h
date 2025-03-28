@@ -16,7 +16,7 @@ typedef enum {
     PRIMITIVE_FN_4,
 } primitive_fn_kind_t;
 
-struct primitive_def_t {
+struct primitive_t {
     char *name;
     primitive_fn_kind_t fn_kind;
     union {
@@ -29,11 +29,11 @@ struct primitive_def_t {
     };
 };
 
-primitive_def_t *primitive_def_from_worker_fn(const char *name, primitive_fn_t *primitive_fn);
-primitive_def_t *primitive_def_from_fn_0(const char *name, primitive_fn_0_t *primitive_fn_0);
-primitive_def_t *primitive_def_from_fn_1(const char *name, primitive_fn_1_t *primitive_fn_1);
-primitive_def_t *primitive_def_from_fn_2(const char *name, primitive_fn_2_t *primitive_fn_2);
-primitive_def_t *primitive_def_from_fn_3(const char *name, primitive_fn_3_t *primitive_fn_3);
-primitive_def_t *primitive_def_from_fn_4(const char *name, primitive_fn_4_t *primitive_fn_4);
+primitive_t *primitive_from_worker_fn(const char *name, primitive_fn_t *primitive_fn);
+primitive_t *primitive_from_fn_0(const char *name, primitive_fn_0_t *primitive_fn_0);
+primitive_t *primitive_from_fn_1(const char *name, primitive_fn_1_t *primitive_fn_1);
+primitive_t *primitive_from_fn_2(const char *name, primitive_fn_2_t *primitive_fn_2);
+primitive_t *primitive_from_fn_3(const char *name, primitive_fn_3_t *primitive_fn_3);
+primitive_t *primitive_from_fn_4(const char *name, primitive_fn_4_t *primitive_fn_4);
 
-void primitive_def_destroy(primitive_def_t **self_pointer);
+void primitive_destroy(primitive_t **self_pointer);

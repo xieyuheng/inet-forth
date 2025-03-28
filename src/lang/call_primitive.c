@@ -1,7 +1,7 @@
 #include "index.h"
 
 void
-call_primitive(worker_t *worker, const primitive_def_t *def) {
+call_primitive(worker_t *worker, const primitive_t *def) {
     switch (def->fn_kind) {
     case PRIMITIVE_FN: {
         def->primitive_fn(worker);

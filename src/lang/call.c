@@ -4,7 +4,7 @@ void
 call(worker_t *worker, const def_t *def) {
     switch (def->kind) {
     case DEF_PRIMITIVE: {
-        call_primitive(worker, def->primitive_def);
+        call_primitive(worker, def->primitive);
         return;
     }
 

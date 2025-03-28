@@ -10,7 +10,7 @@
 #include "op.h"
 #include "function.h"
 #include "rule.h"
-#include "primitive_def.h"
+#include "primitive.h"
 #include "constant_def.h"
 #include "function_def.h"
 #include "def.h"
