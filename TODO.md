@@ -1,7 +1,6 @@
 # lang
 
-[lang] extract `run_task_parallelly` and `run_task_sequentially` from `run_task`
-[lang] `run_task_parallelly` -- create `scheduler_t`
+[lang] try `run_task_parallelly`
 
 # core
 
