@@ -26,7 +26,7 @@ node_return_output_ports(worker_t *worker, node_t *node) {
 }
 
 void
-call_node(worker_t *worker, const node_ctor_t *ctor) {
+call_node_ctor(worker_t *worker, const node_ctor_t *ctor) {
     node_t *node = worker_add_node(worker, ctor);
     node_apply_input_ports(worker, node);
     node_return_output_ports(worker, node);
