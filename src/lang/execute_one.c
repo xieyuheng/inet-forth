@@ -33,8 +33,7 @@ execute_generic(worker_t *worker) {
 
     function_t *function = function_new();
     compile_one(worker, function);
-    function_build(function);
-
+    
     size_t base_length = stack_length(worker->return_stack);
     frame_t *frame = frame_new(function);
     stack_push(worker->return_stack, frame);

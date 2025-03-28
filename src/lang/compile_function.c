@@ -9,7 +9,6 @@ compile_function(worker_t *worker) {
         if (string_equal(token->string, "end")) {
             (void) list_shift(worker->token_list);
             token_destroy(&token);
-            function_build(function);
             return function;
         }
 
