@@ -1,5 +1,3 @@
-[core] `worker_return_task`
-
 # lang
 
 [lang] extract `run_task_parallelly` and `run_task_sequentially` from `run_task`

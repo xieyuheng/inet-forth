@@ -114,7 +114,7 @@ maybe_return_task(
         const rule_t *rule = mod_find_rule(self->mod, first_wire, second_wire);
         if (!rule) return;
 
-        queue_enqueue(self->task_queue, task_new(first_wire, rule));
+        worker_return_task(self, task_new(first_wire, rule));
     }
 }
 
@@ -166,4 +166,13 @@ worker_wire_connect(worker_t* self, wire_t *first_wire, wire_t *second_wire) {
 bool
 worker_is_in_pool(const worker_t* self) {
     return self->scheduler != NULL;
+}
+
+void
+worker_return_task(worker_t* self, task_t *task) {
+    if (worker_is_in_pool(self)) {
+        queue_enqueue(self->scheduler->task_queues[self->index], task);
+    } else {
+        queue_enqueue(self->task_queue, task);
+    }
 }
