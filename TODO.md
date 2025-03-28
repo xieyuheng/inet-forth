@@ -1,5 +1,7 @@
 [bug] buggy when  `STACK_BLOCK_SIZE` is small (1024)
 
+- maybe use growable array instead of list
+
 # core
 
 [core] `worker_t` -- safe use of `task_queue` -- which might be full
