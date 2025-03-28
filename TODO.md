@@ -1,7 +1,3 @@
-# net
-
-[net] `wire_t` -- has `is_principal` (sit by `node_set`)-- to avoid reading node
-
 # core
 
 [core] `worker_t` -- safe use of `task_queue` -- which might be full

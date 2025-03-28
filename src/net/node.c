@@ -31,6 +31,11 @@ node_set(node_t *self, size_t index, value_t value) {
         assert(wire->node == NULL);
         wire->node = self;
         wire->index = index;
+
+        port_info_t *port_info = self->ctor->port_infos[index];
+        if (port_info->is_principal) {
+            wire->is_principal = true;
+        }
     }
 }
 
