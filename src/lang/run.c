@@ -74,7 +74,6 @@ collect_free_wires_from_node(worker_t *worker, node_t *node) {
         } else {
             stack_push(worker->value_stack, value);
         }
-
     }
 
     worker_delete_node(worker, node);
@@ -98,8 +97,8 @@ step_task(worker_t *worker) {
     collect_free_wires_from_node(worker, first_node);
     collect_free_wires_from_node(worker, second_node);
 
-    worker_delete_wire(worker, task->wire);
     worker_delete_wire(worker, task->wire->opposite);
+    worker_delete_wire(worker, task->wire);
 
     size_t base_length = stack_length(worker->return_stack);
     frame_t *frame = frame_new(task->rule->function);

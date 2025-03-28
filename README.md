@@ -233,6 +233,7 @@ Using [tsan (ThreadSanitizer)](https://github.com/google/sanitizers/wiki/threads
 to test data race in parallel program:
 
 ```shell
+gmake clean
 LDFLAGS=-fsanitize=thread CFLAGS=-fsanitize=thread gmake -j
 gmake self-test
 ```
