@@ -8,7 +8,7 @@ primitive_new(const char *name) {
 }
 
 primitive_t *
-primitive_from_worker_fn(const char *name, primitive_fn_t *primitive_fn) {
+primitive_from_fn(const char *name, primitive_fn_t *primitive_fn) {
     primitive_t *self = primitive_new(name);
     self->fn_kind = PRIMITIVE_FN;
     self->primitive_fn = primitive_fn;

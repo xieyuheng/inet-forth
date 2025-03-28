@@ -1,4 +1,3 @@
-ambr primitive_from_worker_fn primitive_from_fn
 inline `call_function`
 inline `function_def_t` to `def_t`
 

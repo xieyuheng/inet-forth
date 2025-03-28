@@ -29,7 +29,7 @@ struct primitive_t {
     };
 };
 
-primitive_t *primitive_from_worker_fn(const char *name, primitive_fn_t *primitive_fn);
+primitive_t *primitive_from_fn(const char *name, primitive_fn_t *primitive_fn);
 primitive_t *primitive_from_fn_0(const char *name, primitive_fn_0_t *primitive_fn_0);
 primitive_t *primitive_from_fn_1(const char *name, primitive_fn_1_t *primitive_fn_1);
 primitive_t *primitive_from_fn_2(const char *name, primitive_fn_2_t *primitive_fn_2);

@@ -2,7 +2,7 @@
 
 void
 define_primitive_fn(mod_t *mod, const char *name, primitive_fn_t *primitive_fn) {
-    mod_define(mod, def_primitive(primitive_from_worker_fn(name, primitive_fn)));
+    mod_define(mod, def_primitive(primitive_from_fn(name, primitive_fn)));
 }
 
 void
