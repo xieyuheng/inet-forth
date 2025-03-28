@@ -124,12 +124,13 @@ debug_new_node_hash(debug_t *self) {
 
     hash_t *node_hash = hash_new();
     wire_t *root = self->root;
+    wire_t *opposite = wire_opposite(root);
     if (!root ||
-        !root->opposite ||
-        !root->opposite->node)
+        !opposite ||
+        !opposite->node)
         return NULL;
 
-    node_iter_t *iter = node_iter_new(root->opposite->node);
+    node_iter_t *iter = node_iter_new(opposite->node);
     node_t *node = node_iter_first(iter);
     while (node) {
         hash_set(node_hash, (void *) node->id, node);

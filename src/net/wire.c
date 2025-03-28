@@ -37,12 +37,12 @@ as_wire(value_t value) {
 
 wire_t *
 wire_opposite(const wire_t *self) {
-    return self->opposite;
+    return atomic_load(&self->atomic_opposite);
 }
 
 void
 wire_set_opposite(wire_t *self, wire_t *opposite) {
-    self->opposite = opposite;
+    atomic_store(&self->atomic_opposite, opposite);
 }
 
 const char *
@@ -109,17 +109,17 @@ wire_print_right(const wire_t *self, file_t *file) {
 }
 
 void
-wire_print(const wire_t *self, file_t *file) {
-    if (self->opposite)
-        wire_print_left(self->opposite, file);
+wire_print(const wire_t *self, file_t *file) {    
+    if (wire_opposite(self))
+        wire_print_left(wire_opposite(self), file);
     wire_print_right(self, file);
 }
 
 void
 wire_print_reverse(const wire_t *self, file_t *file) {
     wire_print_left(self, file);
-    if (self->opposite)
-        wire_print_right(self->opposite, file);
+    if (wire_opposite(self))
+        wire_print_right(wire_opposite(self), file);
 }
 
 void

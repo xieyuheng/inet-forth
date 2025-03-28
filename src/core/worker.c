@@ -96,10 +96,11 @@ worker_connect_top_wire_pair(worker_t *self) {
     wire_t *first_opposite = worker_wire_connect(self, second_wire, first_wire);
 
     if (wire_is_principal(first_opposite)) {
+        
         maybe_return_task(
             self,
             first_opposite,
-            first_opposite->opposite);
+            wire_opposite(first_opposite));
     }
 }
 
@@ -110,8 +111,8 @@ maybe_return_task(
     wire_t *second_wire
 ) {
     if (wire_is_principal(first_wire) && wire_is_principal(second_wire)) {
-        assert(first_wire->opposite == second_wire);
-        assert(second_wire->opposite == first_wire);
+        assert(wire_opposite(first_wire) == second_wire);
+        assert(wire_opposite(second_wire) == first_wire);
 
         const rule_t *rule = mod_find_rule(self->mod, first_wire, second_wire);
         if (!rule) return;
@@ -153,12 +154,12 @@ worker_delete_wire(worker_t* self, wire_t *wire) {
 
 wire_t *
 worker_wire_connect(worker_t* self, wire_t *first_wire, wire_t *second_wire) {
-    wire_t *first_opposite = first_wire->opposite;
-    wire_t *second_opposite = second_wire->opposite;
-
-    first_opposite->opposite = second_opposite;
-    second_opposite->opposite = first_opposite;
-
+    wire_t *first_opposite = wire_opposite(first_wire);
+    wire_t *second_opposite = wire_opposite(second_wire);
+    
+    wire_set_opposite(first_opposite, second_opposite);
+    wire_set_opposite(second_opposite, first_opposite);
+    
     worker_delete_wire(self, first_wire);
     worker_delete_wire(self, second_wire);
 

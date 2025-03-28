@@ -84,20 +84,22 @@ step_task(worker_t *worker) {
     task_t *task = queue_dequeue(worker->task_queue);
     if (!task) return;
 
+    wire_t *opposite = wire_opposite(task->wire);
+
     node_t *first_node = task->wire->node;
-    node_t *second_node = task->wire->opposite->node;
+    node_t *second_node = opposite->node;
 
     if (first_node->ctor == task->rule->second_node_ctor &&
         second_node->ctor == task->rule->first_node_ctor)
     {
-        first_node = task->wire->opposite->node;
+        first_node = opposite->node;
         second_node = task->wire->node;
     }
 
     collect_free_wires_from_node(worker, first_node);
     collect_free_wires_from_node(worker, second_node);
 
-    worker_delete_wire(worker, task->wire->opposite);
+    worker_delete_wire(worker, opposite);
     worker_delete_wire(worker, task->wire);
 
     size_t base_length = stack_length(worker->return_stack);
