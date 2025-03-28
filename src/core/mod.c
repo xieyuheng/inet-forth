@@ -28,6 +28,18 @@ mod_find(const mod_t *self, const char *name) {
     return hash_get(self->def_hash, name);
 }
 
+static bool
+rule_match_wire_pair(
+    const rule_t *self,
+    const wire_t *first_wire,
+    const wire_t *second_wire
+) {
+    return (((self->first_node_ctor == first_wire->node->ctor) &&
+             (self->second_node_ctor == second_wire->node->ctor)) ||
+            ((self->first_node_ctor == second_wire->node->ctor) &&
+             (self->second_node_ctor == first_wire->node->ctor)));
+}
+
 const rule_t *
 mod_find_rule(
     const mod_t *self,

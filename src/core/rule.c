@@ -4,7 +4,7 @@ rule_t *
 rule_new(
     const node_ctor_t *first_node_ctor,
     const node_ctor_t *second_node_ctor,
-    function_t *function
+    const function_t *function
 ) {
     rule_t *self = new(rule_t);
     self->first_node_ctor = first_node_ctor;
@@ -18,22 +18,12 @@ rule_destroy(rule_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         rule_t *self = *self_pointer;
-        function_destroy(&self->function);
+        // NOTE A rule dose not own `function`.
+        //   because they might be shared.
+        // function_destroy(&self->function);
         free(self);
         *self_pointer = NULL;
     }
-}
-
-bool
-rule_match_wire_pair(
-    const rule_t *self,
-    const wire_t *first_wire,
-    const wire_t *second_wire
-) {
-    return (((self->first_node_ctor == first_wire->node->ctor) &&
-             (self->second_node_ctor == second_wire->node->ctor)) ||
-            ((self->first_node_ctor == second_wire->node->ctor) &&
-             (self->second_node_ctor == first_wire->node->ctor)));
 }
 
 void
