@@ -40,6 +40,11 @@ wire_opposite(const wire_t *self) {
     return self->opposite;
 }
 
+void
+wire_opposite(wire_t *self, wire_t *opposite) {
+    self->opposite = opposite;
+}
+
 const char *
 wire_name(const wire_t *self) {
     assert(self->node);
