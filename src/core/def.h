@@ -13,7 +13,7 @@ struct def_t {
         primitive_t *primitive;
         function_def_t *function_def;
         constant_def_t *constant_def;
-        struct { node_ctor_t *ctor; } node;
+        node_ctor_t *node_ctor;
     };
 };
 

@@ -19,7 +19,7 @@ call(worker_t *worker, const def_t *def) {
     }
 
     case DEF_NODE: {
-        call_node(worker, def->node.ctor);
+        call_node(worker, def->node_ctor);
         return;
     }
     }

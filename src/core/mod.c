@@ -82,8 +82,8 @@ mod_define_rule(
     assert(first_def->kind == DEF_NODE);
     assert(second_def->kind == DEF_NODE);
 
-    const node_ctor_t *first_node_ctor = first_def->node.ctor;
-    const node_ctor_t *second_node_ctor = second_def->node.ctor;
+    const node_ctor_t *first_node_ctor = first_def->node_ctor;
+    const node_ctor_t *second_node_ctor = second_def->node_ctor;
 
     rule_t *rule = rule_new(first_node_ctor, second_node_ctor, function);
 
