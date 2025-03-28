@@ -24,7 +24,7 @@ mod_destroy(mod_t **self_pointer) {
 }
 
 const def_t *
-mod_find_def(const mod_t *self, const char *name) {
+mod_find(const mod_t *self, const char *name) {
     return hash_get(self->def_hash, name);
 }
 
@@ -36,7 +36,9 @@ mod_find_rule(
 ) {
     rule_t *rule = list_first(self->rule_list);
     while (rule) {
-        if (rule_match_wire_pair(rule, first_wire, second_wire)) return rule;
+        if (rule_match_wire_pair(rule, first_wire, second_wire))
+            return rule;
+
         rule = list_next(self->rule_list);
     }
 
@@ -55,8 +57,8 @@ mod_define_rule(
     const char *second_name,
     function_t *function
 ) {
-    const def_t *first_def = mod_find_def(self, first_name);
-    const def_t *second_def = mod_find_def(self, second_name);
+    const def_t *first_def = mod_find(self, first_name);
+    const def_t *second_def = mod_find(self, second_name);
 
     const node_ctor_t *first_node_ctor = first_def->node_ctor;
     const node_ctor_t *second_node_ctor = second_def->node_ctor;
@@ -67,22 +69,13 @@ mod_define_rule(
 
 void
 mod_print(const mod_t *self, file_t *file) {
-    fprintf(file, "<mod def-count=\"%lu\" rule-count=\"%lu\">\n",
-            hash_length(self->def_hash),
-            list_length(self->rule_list));
+    fprintf(file, "<mod def-count=\"%lu\"\n", hash_length(self->def_hash));
 
     def_t *def = hash_first(self->def_hash);
     while (def) {
         def_print(def, file);
         fprintf(file, "\n");
         def = hash_next(self->def_hash);
-    }
-
-    rule_t *rule = list_first(self->rule_list);
-    while (rule) {
-        rule_print(rule, file);
-        fprintf(file, "\n");
-        rule = list_next(self->rule_list);
     }
 
     fprintf(file, "</mod>\n");

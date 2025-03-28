@@ -77,7 +77,7 @@ compile_generic(worker_t *worker, function_t *function) {
         return true;
     }
 
-    const def_t *def = mod_find_def(worker->mod, token->string);
+    const def_t *def = mod_find(worker->mod, token->string);
     if (def == NULL) {
         fprintf(stderr, "[compile_generic] undefined name: %s\n", token->string);
         exit(1);
