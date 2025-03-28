@@ -9,7 +9,6 @@
 #include "worker.h"
 #include "op.h"
 #include "function.h"
-#include "function_ctx.h"
 #include "rule.h"
 #include "primitive_def.h"
 #include "constant_def.h"

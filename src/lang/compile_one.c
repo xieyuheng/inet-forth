@@ -28,8 +28,6 @@ compile_float(worker_t *worker, function_t *function) {
 
 static bool
 compile_bind(worker_t *worker, function_t *function) {
-    function_ctx_t *ctx = function->ctx;
-
     token_t *token = list_first(worker->token_list);
     if (!string_equal(token->string, "(")) return false;
     (void) list_shift(worker->token_list);
@@ -48,14 +46,14 @@ compile_bind(worker_t *worker, function_t *function) {
         list_push(local_token_list, token);
     }
 
-    size_t index = hash_length(ctx->local_index_hash);
+    size_t index = hash_length(function->local_index_hash);
     while (!list_is_empty(local_token_list)) {
         token_t *token = list_pop(local_token_list);
-        if (hash_has(ctx->local_index_hash, token->string)) {
-            size_t old_index = (size_t) hash_get(ctx->local_index_hash, token->string);
+        if (hash_has(function->local_index_hash, token->string)) {
+            size_t old_index = (size_t) hash_get(function->local_index_hash, token->string);
             function_add_op(function, op_set_variable(old_index));
         } else {
-            hash_set(ctx->local_index_hash, token->string, (void *) index);
+            hash_set(function->local_index_hash, token->string, (void *) index);
             function_add_op(function, op_set_variable(index));
             index++;
         }
@@ -67,11 +65,10 @@ compile_bind(worker_t *worker, function_t *function) {
 
 static bool
 compile_generic(worker_t *worker, function_t *function) {
-    function_ctx_t *ctx = function->ctx;
     token_t *token = list_first(worker->token_list);
-    if (hash_has(ctx->local_index_hash, token->string)) {
+    if (hash_has(function->local_index_hash, token->string)) {
         (void) list_shift(worker->token_list);
-        size_t index = (size_t) hash_get(ctx->local_index_hash, token->string);
+        size_t index = (size_t) hash_get(function->local_index_hash, token->string);
         function_add_op(function, op_get_variable(index));
         token_destroy(&token);
         return true;

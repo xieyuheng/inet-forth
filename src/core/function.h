@@ -1,7 +1,7 @@
 #pragma once
 
 struct function_t {
-    function_ctx_t *ctx;
+    hash_t *local_index_hash;
     list_t *op_list;
     size_t length;
     op_t **ops;

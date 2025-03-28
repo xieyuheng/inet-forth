@@ -3,7 +3,7 @@
 function_t *
 function_new(void) {
     function_t *self = new(function_t);
-    self->ctx = function_ctx_new();
+    self->local_index_hash = hash_of_string_key();
     self->op_list = list_new_with((destroy_fn_t *) op_destroy);
     self->length = 0;
     self->ops = NULL;
@@ -15,7 +15,7 @@ function_destroy(function_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         function_t *self = *self_pointer;
-        function_ctx_destroy(&self->ctx);
+        hash_destroy(&self->local_index_hash);
         list_destroy(&self->op_list);
         if (self->ops) free(self->ops);
         free(self);
