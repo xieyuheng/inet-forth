@@ -1,3 +1,7 @@
+rename `primitive_def_t` to `primitive_t`
+inline `constant_def_t` to `def_t`
+inline `function_def_t` to `def_t`
+
 # core
 
 [core] `worker_t` -- safe use of `task_queue` -- which might be full

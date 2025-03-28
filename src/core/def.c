@@ -3,7 +3,7 @@
 def_t *
 def_from_primitive_def(primitive_def_t *primitive_def) {
     def_t *self = new(def_t);
-    self->kind = PRIMITIVE_DEF;
+    self->kind = DEF_PRIMITIVE;
     self->primitive_def = primitive_def;
     return self;
 }
@@ -11,7 +11,7 @@ def_from_primitive_def(primitive_def_t *primitive_def) {
 def_t *
 def_from_function_def(function_def_t *function_def) {
     def_t *self = new(def_t);
-    self->kind = FUNCTION_DEF;
+    self->kind = DEF_FUNCTION;
     self->function_def = function_def;
     return self;
 }
@@ -19,7 +19,7 @@ def_from_function_def(function_def_t *function_def) {
 def_t *
 def_from_constant_def(constant_def_t *constant_def) {
     def_t *self = new(def_t);
-    self->kind = CONSTANT_DEF;
+    self->kind = DEF_CONSTANT;
     self->constant_def = constant_def;
     return self;
 }
@@ -27,7 +27,7 @@ def_from_constant_def(constant_def_t *constant_def) {
 def_t *
 def_from_node_ctor(node_ctor_t *node_ctor) {
     def_t *self = new(def_t);
-    self->kind = NODE_DEF;
+    self->kind = DEF_NODE;
     self->node_ctor = node_ctor;
     return self;
 }
@@ -40,22 +40,22 @@ def_destroy(def_t **self_pointer) {
         def_t *self = *self_pointer;
 
         switch (self->kind) {
-        case PRIMITIVE_DEF: {
+        case DEF_PRIMITIVE: {
             primitive_def_destroy(&self->primitive_def);
             break;
         }
 
-        case FUNCTION_DEF: {
+        case DEF_FUNCTION: {
             function_def_destroy(&self->function_def);
             break;
         }
 
-        case CONSTANT_DEF: {
+        case DEF_CONSTANT: {
             constant_def_destroy(&self->constant_def);
             break;
         }
 
-        case NODE_DEF: {
+        case DEF_NODE: {
             node_ctor_destroy(&self->node_ctor);
             break;
         }
@@ -69,19 +69,19 @@ def_destroy(def_t **self_pointer) {
 const char *
 def_name(const def_t *def) {
     switch (def->kind) {
-    case PRIMITIVE_DEF: {
+    case DEF_PRIMITIVE: {
         return def->primitive_def->name;
     }
 
-    case FUNCTION_DEF: {
+    case DEF_FUNCTION: {
         return def->function_def->name;
     }
 
-    case CONSTANT_DEF: {
+    case DEF_CONSTANT: {
         return def->constant_def->name;
     }
 
-    case NODE_DEF: {
+    case DEF_NODE: {
         return def->node_ctor->name;
     }
     }
@@ -92,19 +92,19 @@ def_name(const def_t *def) {
 const char *
 def_kind_name(def_kind_t kind) {
     switch (kind) {
-    case PRIMITIVE_DEF: {
+    case DEF_PRIMITIVE: {
         return "primitive";
     }
 
-    case FUNCTION_DEF: {
+    case DEF_FUNCTION: {
         return "function";
     }
 
-    case CONSTANT_DEF: {
+    case DEF_CONSTANT: {
         return "constant";
     }
 
-    case NODE_DEF: {
+    case DEF_NODE: {
         return "node";
     }
     }
@@ -115,23 +115,23 @@ def_kind_name(def_kind_t kind) {
 void
 def_print(const def_t *def, file_t *file) {
     switch (def->kind) {
-    case PRIMITIVE_DEF: {
+    case DEF_PRIMITIVE: {
         fprintf(file, "define-primitive %s", def->primitive_def->name);
         return;
     }
 
-    case FUNCTION_DEF: {
+    case DEF_FUNCTION: {
         fprintf(file, "define %s ", def->function_def->name);
         function_print(def->function_def->function, file);
         return;
     }
 
-    case CONSTANT_DEF: {
+    case DEF_CONSTANT: {
         fprintf(file, "define-constant %s ", def->constant_def->name);
         return;
     }
 
-    case NODE_DEF: {
+    case DEF_NODE: {
         fprintf(file, "define-node %s ", def->node_ctor->name);
         for (size_t i = 0; i < def->node_ctor->input_arity; i++) {
             port_info_t *port_info = def->node_ctor->port_infos[i];

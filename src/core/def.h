@@ -1,10 +1,10 @@
 #pragma once
 
 typedef enum {
-    PRIMITIVE_DEF,
-    FUNCTION_DEF,
-    CONSTANT_DEF,
-    NODE_DEF,
+    DEF_PRIMITIVE,
+    DEF_FUNCTION,
+    DEF_CONSTANT,
+    DEF_NODE,
 } def_kind_t;
 
 struct def_t {

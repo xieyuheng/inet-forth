@@ -50,7 +50,7 @@ check_node_name_defined(
         exit(1);
     }
 
-    if (found->kind != NODE_DEF) {
+    if (found->kind != DEF_NODE) {
         fprintf(stderr, "[compiler-error] expect name defined as node instead of: %s\n", def_kind_name(found->kind));
         fprintf(stderr, "[src] %s\n", mod->src);
         code_print_context(stderr, mod->code, token->start, token->end);

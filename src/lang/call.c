@@ -3,22 +3,22 @@
 void
 call(worker_t *worker, const def_t *def) {
     switch (def->kind) {
-    case PRIMITIVE_DEF: {
+    case DEF_PRIMITIVE: {
         call_primitive(worker, def->primitive_def);
         return;
     }
 
-    case FUNCTION_DEF: {
+    case DEF_FUNCTION: {
         call_function(worker, def->function_def);
         return;
     }
 
-    case CONSTANT_DEF: {
+    case DEF_CONSTANT: {
         call_constant(worker, def->constant_def);
         return;
     }
 
-    case NODE_DEF: {
+    case DEF_NODE: {
         call_node(worker, def->node_ctor);
         return;
     }
