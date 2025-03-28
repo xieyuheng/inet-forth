@@ -12,14 +12,14 @@ struct def_t {
     union {
         primitive_t *primitive;
         function_def_t *function_def;
-        constant_def_t *constant_def;
+        struct { char *name; value_t value; } constant;
         node_ctor_t *node_ctor;
     };
 };
 
 def_t *def_primitive(primitive_t *primitive);
 def_t *def_function(function_def_t *function_def);
-def_t *def_constant(constant_def_t *constant_def);
+def_t *def_constant(char *name, value_t value);
 def_t *def_node_ctor(node_ctor_t *node_ctor);
 
 void def_destroy(def_t **self_pointer);

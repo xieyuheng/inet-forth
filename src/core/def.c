@@ -17,10 +17,11 @@ def_function(function_def_t *function_def) {
 }
 
 def_t *
-def_constant(constant_def_t *constant_def) {
+def_constant(char *name, value_t value) {
     def_t *self = new(def_t);
     self->kind = DEF_CONSTANT;
-    self->constant_def = constant_def;
+    self->constant.name = name;
+    self->constant.value = value;
     return self;
 }
 
@@ -51,7 +52,7 @@ def_destroy(def_t **self_pointer) {
         }
 
         case DEF_CONSTANT: {
-            constant_def_destroy(&self->constant_def);
+            string_destroy(&self->constant.name);
             break;
         }
 
@@ -78,7 +79,7 @@ def_name(const def_t *def) {
     }
 
     case DEF_CONSTANT: {
-        return def->constant_def->name;
+        return def->constant.name;
     }
 
     case DEF_NODE_CTOR: {
@@ -127,7 +128,7 @@ def_print(const def_t *def, file_t *file) {
     }
 
     case DEF_CONSTANT: {
-        fprintf(file, "define-constant %s ", def->constant_def->name);
+        fprintf(file, "define-constant %s ", def->constant.name);
         return;
     }
 

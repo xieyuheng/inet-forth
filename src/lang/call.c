@@ -14,7 +14,7 @@ call(worker_t *worker, const def_t *def) {
     }
 
     case DEF_CONSTANT: {
-        call_constant(worker, def->constant_def);
+        stack_push(worker->value_stack, def->constant.value);
         return;
     }
 
