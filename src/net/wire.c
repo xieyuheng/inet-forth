@@ -54,7 +54,7 @@ wire_node_name(const wire_t *self) {
 void
 wire_free_from_node(wire_t *self) {
     self->node = NULL;
-    self->is_principal = false;
+    atomic_store(&self->atomic_is_principal, false);    
 }
 
 bool
@@ -65,7 +65,7 @@ wire_is_free(const wire_t *self) {
 
 bool
 wire_is_principal(const wire_t *self) {
-    return self->is_principal;
+    return atomic_load(&self->atomic_is_principal);
 }
 
 void

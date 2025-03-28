@@ -1,3 +1,6 @@
+[net] `wire_t` -- has `atomic_opposite`
+[net] `wire_t` -- has `atomic_opposite_is_principle`
+
 # core
 
 [core] `worker_t` -- safe use of `task_queue` -- which might be full

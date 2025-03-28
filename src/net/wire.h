@@ -7,7 +7,7 @@ struct wire_t {
     node_t *node;
     size_t index;
     wire_t *opposite;
-    bool is_principal;
+    atomic_bool atomic_is_principal;
 };
 
 wire_t *wire_new(void);
