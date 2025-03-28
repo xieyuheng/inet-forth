@@ -8,9 +8,7 @@ node_apply_input_ports(worker_t *worker, node_t *node) {
             wire_t *wire = as_wire(value);
             size_t i = node->ctor->input_arity - 1 - c;
             node_set(node, i, wire);
-            if (wire_is_principal(wire)) {
-                maybe_return_task(worker, wire, wire->opposite);
-            }
+            maybe_return_task(worker, wire, wire->opposite);
         }
     }
 }
