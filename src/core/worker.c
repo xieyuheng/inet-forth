@@ -162,3 +162,8 @@ worker_wire_connect(worker_t* self, wire_t *first_wire, wire_t *second_wire) {
 
     return first_opposite;
 }
+
+bool
+worker_is_in_pool(const worker_t* self) {
+    return self->scheduler != NULL;
+}
