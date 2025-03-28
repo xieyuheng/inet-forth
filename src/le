@@ -1,0 +1,3 @@
+core/frame.c:34:    return self->cursor == self->function->length;
+lang/compile_one.c:31:    function_ctx_t *ctx = function->ctx;
+lang/compile_one.c:70:    function_ctx_t *ctx = function->ctx;

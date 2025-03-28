@@ -23,6 +23,11 @@ function_destroy(function_t **self_pointer) {
     }
 }
 
+size_t
+function_length(const function_t *self) {
+    return list_length(self->op_list);
+}
+
 void
 function_add_op(function_t *self, op_t *op) {
     list_push(self->op_list, op);
@@ -48,7 +53,7 @@ function_get_op(const function_t *self, size_t index) {
 
 void
 function_print(const function_t *self, file_t *file) {
-    for (size_t i = 0; i < self->length; i++) {
+    for (size_t i = 0; i < function_length(self); i++) {
         op_print(self->ops[i], file);
         fprintf(file, "\n");
     }
@@ -56,7 +61,7 @@ function_print(const function_t *self, file_t *file) {
 
 void
 function_print_with_cursor(const function_t *self, file_t *file, size_t cursor) {
-    for (size_t i = 0; i < self->length; i++) {
+    for (size_t i = 0; i < function_length(self); i++) {
         if (i == cursor) {
             op_print(self->ops[i], file);
             fprintf(file, " <<<");
