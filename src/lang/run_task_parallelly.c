@@ -2,11 +2,9 @@
 
 static bool
 scheduler_no_more_task(scheduler_t *scheduler) {
-    for (size_t i = 0; i < 3; i++) {
-        for (size_t i = 0; i < scheduler->worker_pool_size; i++) {
-            if (!queue_is_empty(scheduler->task_queues[i])) {
-                return false;
-            }
+    for (size_t i = 0; i < scheduler->worker_pool_size; i++) {
+        if (!queue_is_empty(scheduler->task_queues[i])) {
+            return false;
         }
     }
 
@@ -52,6 +50,13 @@ wait_all_worker_threads(scheduler_t *scheduler) {
     }
 }
 
+static void
+scheduler_cleanup(scheduler_t *scheduler) {
+    for (size_t i = 0; i < scheduler->worker_pool_size; i++) {
+        array_purge(scheduler->garbage_wire_arrays[i]);
+    }
+}
+
 static void *
 scheduler_thread_fn(scheduler_t *scheduler) {
     while (true) {
@@ -62,6 +67,7 @@ scheduler_thread_fn(scheduler_t *scheduler) {
         scheduler_dispatch_tasks(scheduler);
         start_all_worker_threads(scheduler);
         wait_all_worker_threads(scheduler);
+        scheduler_cleanup(scheduler);
     }
 }
 

@@ -1,5 +1,3 @@
-[bug] data race -- examples/datatypes/bool.test.fth
-
 # core
 
 [core] `worker_t` -- safe use of `task_queue` -- which might be full
