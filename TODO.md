@@ -1,5 +1,3 @@
-inline `function_def_t` to `def_t`
-
 # core
 
 [core] `worker_t` -- safe use of `task_queue` -- which might be full

@@ -13,6 +13,7 @@ function_destroy(function_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         function_t *self = *self_pointer;
+        string_destroy(&self->name);
         hash_destroy(&self->local_index_hash);
         array_destroy(&self->op_array);
         free(self);

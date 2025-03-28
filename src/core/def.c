@@ -9,10 +9,10 @@ def_primitive(primitive_t *primitive) {
 }
 
 def_t *
-def_function(function_def_t *function_def) {
+def_function(function_t *function) {
     def_t *self = new(def_t);
     self->kind = DEF_FUNCTION;
-    self->function_def = function_def;
+    self->function = function;
     return self;
 }
 
@@ -47,7 +47,7 @@ def_destroy(def_t **self_pointer) {
         }
 
         case DEF_FUNCTION: {
-            function_def_destroy(&self->function_def);
+            function_destroy(&self->function);
             break;
         }
 
@@ -75,7 +75,7 @@ def_name(const def_t *def) {
     }
 
     case DEF_FUNCTION: {
-        return def->function_def->name;
+        return def->function->name;
     }
 
     case DEF_CONSTANT: {
@@ -122,8 +122,8 @@ def_print(const def_t *def, file_t *file) {
     }
 
     case DEF_FUNCTION: {
-        fprintf(file, "define %s ", def->function_def->name);
-        function_print(def->function_def->function, file);
+        fprintf(file, "define %s ", def->function->name);
+        function_print(def->function, file);
         return;
     }
 

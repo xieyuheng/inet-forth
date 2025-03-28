@@ -11,14 +11,14 @@ struct def_t {
     def_kind_t kind;
     union {
         primitive_t *primitive;
-        function_def_t *function_def;
+        function_t *function;
         struct { char *name; value_t value; } constant;
         node_ctor_t *node_ctor;
     };
 };
 
 def_t *def_primitive(primitive_t *primitive);
-def_t *def_function(function_def_t *function_def);
+def_t *def_function(function_t *function);
 def_t *def_constant(char *name, value_t value);
 def_t *def_node_ctor(node_ctor_t *node_ctor);
 
