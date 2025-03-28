@@ -9,7 +9,8 @@ call(worker_t *worker, const def_t *def) {
     }
 
     case DEF_FUNCTION: {
-        call_function(worker, def->function_def);
+        frame_t *frame = frame_new(def->function_def->function);
+        stack_push(worker->return_stack, frame);
         return;
     }
 

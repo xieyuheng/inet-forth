@@ -1,4 +1,3 @@
-inline `call_function`
 inline `function_def_t` to `def_t`
 
 # core
