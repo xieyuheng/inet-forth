@@ -1,3 +1,5 @@
+[net] extract `wire_set_opposite`
+
 [net] `wire_t` -- has `atomic_opposite`
 [net] `wire_t` -- has `atomic_opposite_is_principle`
 

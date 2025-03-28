@@ -2,11 +2,14 @@
 
 extern object_spec_t wire_object_spec;
 
+typedef _Atomic wire_t atomic_wire_t;
+
 struct wire_t {
     object_spec_t *spec;
     node_t *node;
     size_t index;
     wire_t *opposite;
+    // atomic_wire_t *atomic_opposite;
     atomic_bool atomic_is_principal;
 };
 
@@ -15,6 +18,8 @@ void wire_destroy(wire_t **self_pointer);
 
 bool is_wire(value_t value);
 wire_t *as_wire(value_t value);
+
+wire_t *wire_opposite(const wire_t *self);
 
 const char *wire_name(const wire_t *self);
 const char *wire_node_name(const wire_t *self);

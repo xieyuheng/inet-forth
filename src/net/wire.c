@@ -9,8 +9,6 @@ wire_t *
 wire_new(void) {
     wire_t *self = new(wire_t);
     self->spec = &wire_object_spec;
-    self->node = NULL;
-    self->opposite = NULL;
     return self;
 }
 
@@ -37,6 +35,11 @@ as_wire(value_t value) {
     return (wire_t *) value;
 }
 
+wire_t *
+wire_opposite(const wire_t *self) {
+    return self->opposite;
+}
+
 const char *
 wire_name(const wire_t *self) {
     assert(self->node);
@@ -54,7 +57,7 @@ wire_node_name(const wire_t *self) {
 void
 wire_free_from_node(wire_t *self) {
     self->node = NULL;
-    atomic_store(&self->atomic_is_principal, false);    
+    atomic_store(&self->atomic_is_principal, false);
 }
 
 bool
