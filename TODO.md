@@ -1,3 +1,5 @@
+[makefile] use c11 instead of c23 -- remove 0b int support
+
 [command] add command line option to `run` with single-thread
 
 [bug] buggy when `STACK_BLOCK_SIZE` is small (1024)

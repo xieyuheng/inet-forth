@@ -12,7 +12,7 @@ void *reallocate(void *pointer, size_t old_size, size_t new_size);
 void *reallocate_many(void *pointer, size_t old_size, size_t new_size, size_t unit_size);
 void *reallocate_pointers(void *pointer, size_t old_size, size_t new_size);
 
-bool pointer_is_cache_line_aligned(void *pointer);
+bool pointer_is_page_aligned(void *pointer);
 
 // aligned to cache line to avoid false sharing
 void *allocate_shared(size_t size);

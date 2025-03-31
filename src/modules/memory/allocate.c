@@ -56,20 +56,20 @@ reallocate_pointers(void *pointer, size_t old_size, size_t new_size) {
 }
 
 bool
-pointer_is_cache_line_aligned(void *pointer) {
-    size_t cache_line_size = sysconf(_SC_LEVEL1_DCACHE_LINESIZE);
-    return (((uintptr_t) pointer) % cache_line_size) == 0;
+pointer_is_page_aligned(void *pointer) {
+    size_t page_size = sysconf(_SC_PAGE_SIZE);
+    return (((uintptr_t) pointer) % page_size) == 0;
 }
 
 void *
 allocate_shared(size_t size) {
-    size_t cache_line_size = sysconf(_SC_LEVEL1_DCACHE_LINESIZE);
-    assert(cache_line_size > 0);
-    size_t real_size = ((size / cache_line_size) + 1) * cache_line_size;
-    void *pointer = aligned_alloc(cache_line_size, real_size);
+    size_t page_size = sysconf(_SC_PAGE_SIZE);
+    assert(page_size > 0);
+    size_t real_size = ((size / page_size) + 1) * page_size;
+    void *pointer = aligned_alloc(page_size, real_size);
     memset(pointer, 0, real_size);
     assert(pointer);
     assert(pointer_is_8_bytes_aligned(pointer));
-    assert(pointer_is_cache_line_aligned(pointer));
+    assert(pointer_is_page_aligned(pointer));
     return pointer;
 }
