@@ -39,8 +39,9 @@ string_test(void) {
         assert(string_is_int("-0x123a"));
         assert(!string_is_int("--0x123A"));
 
-        // 0b is handled by c32.
-        assert(string_is_int("0b10"));
+        // 0b is handled by c23,
+        // but we are not using it for now.
+        assert(!string_is_int("0b10"));
         // 0o is not handled by c.
         assert(!string_is_int("0o10"));
     }
@@ -159,20 +160,8 @@ string_test(void) {
         }
     }
 
-    {
-        assert(string_is_xint("0b10"));
-        assert(string_is_xint("+0b10"));
-        assert(string_is_xint("-0b10"));
-        assert(!string_is_xint("0b12"));
-        assert(!string_is_xint("++0b10"));
-        assert(!string_is_xint("--0b11"));
-    }
 
     {
-        assert(string_parse_xint("0b10") == 2);
-        assert(string_parse_xint("+0b10") == 2);
-        assert(string_parse_xint("-0b10") == -2);
-
         assert(string_parse_xint("0o10") == 8);
         assert(string_parse_xint("+0o10") == 8);
         assert(string_parse_xint("-0o10") == -8);

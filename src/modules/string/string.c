@@ -255,13 +255,6 @@ string_is_xint(const char *self) {
         return result;
     }
 
-    if (string_starts_with(self, "0b")) {
-        char *substring = string_slice(self, 2, length);
-        bool result = string_is_int_of_base(substring, 2);
-        free(substring);
-        return result;
-    }
-
     return string_is_int_of_base(self, 10);
 }
 
