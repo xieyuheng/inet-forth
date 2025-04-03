@@ -112,18 +112,8 @@ step_task(worker_t *worker) {
 }
 
 void
-run_task_sequentially(worker_t *worker) {
+run_task(worker_t *worker) {
     while (!queue_is_empty(worker->task_queue)) {
         step_task(worker);
-    }
-}
-
-void
-run_task(worker_t *worker) {
-    if (core_debug_flag) {
-        run_task_sequentially(worker);
-    } else {
-        // run_task_sequentially(worker);
-        run_task_parallelly(worker);
     }
 }

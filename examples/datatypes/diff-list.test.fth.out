@@ -20,11 +20,11 @@
 
 <net>
 <root>
-(diff₁)-value!-<>-
+(diff₁₂)-value!-<>-
 </root>
 <body>
-(cons₅)-value!-<>-front-(diff₁)
-(cons₈)-tail-<>-back-(diff₁)
+(cons₅)-value!-<>-front-(diff₁₂)
+(cons₈)-tail-<>-back-(diff₁₂)
 (sole₇)-value!-<>-head-(cons₈)
 (cons₁₀)-tail-<>-!value-(cons₈)
 (sole₉)-value!-<>-head-(cons₁₀)

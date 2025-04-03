@@ -22,15 +22,15 @@
 
 <net>
 <root>
-(cons₂)-value!-<>-
+(cons₁₇)-value!-<>-
 </root>
 <body>
-(cons₄)-value!-<>-tail-(cons₂)
-(sole₆)-value!-<>-head-(cons₂)
-(cons₆)-value!-<>-tail-(cons₄)
-(sole₄)-value!-<>-head-(cons₄)
-(cons₁₄)-value!-<>-tail-(cons₆)
-(sole₂)-value!-<>-head-(cons₆)
+(cons₁₉)-value!-<>-tail-(cons₁₇)
+(sole₆)-value!-<>-head-(cons₁₇)
+(cons₂₁)-value!-<>-tail-(cons₁₉)
+(sole₄)-value!-<>-head-(cons₁₉)
+(cons₁₄)-value!-<>-tail-(cons₂₁)
+(sole₂)-value!-<>-head-(cons₂₁)
 (cons₁₂)-value!-<>-tail-(cons₁₄)
 (sole₁₃)-value!-<>-head-(cons₁₄)
 (cons₁₀)-value!-<>-tail-(cons₁₂)

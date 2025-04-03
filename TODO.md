@@ -1,10 +1,9 @@
-pattern note about breaking double links
-pattern note about pointer graph -- concrete dependancy graph
-
-remove `run_task_parallelly` for now
-remove `root` `debug_t`
+remove `root` from `debug_t`
 remove `node_iter`
 remove `wire_iter`
+
+pattern note about breaking double links
+pattern note about pointer graph -- concrete dependancy graph
 
 parallel memory allocator
 
