@@ -1,10 +1,11 @@
 # net
 
-[net] remove `wire_iter`
-[memory] parallel memory allocator
-[net] node allocator
+[memory] `block_allocator_t` -- must be able to iter over all allocated blocks fast
+[net] `node_allocator_t`
 [net] `principal_port_t`
 [net] single list `wire_t`
+
+[net] fix `x_inspect_run`
 
 # core
 

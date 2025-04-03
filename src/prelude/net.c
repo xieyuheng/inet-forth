@@ -6,20 +6,13 @@ x_connect(worker_t *worker) {
 }
 
 void
-x_wire_print_net(worker_t *worker) {
-    wire_t *wire = stack_top(worker->value_stack);
-    wire_print_net(wire, stdout);
-    fprintf(stdout, "\n");
-}
-
-void
 x_link(worker_t *worker) {
     wire_t *first_wire = wire_new();
     wire_t *second_wire = wire_new();
-    
+
     wire_set_opposite(first_wire, second_wire);
     wire_set_opposite(second_wire, first_wire);
-    
+
     stack_push(worker->value_stack, first_wire);
     stack_push(worker->value_stack, second_wire);
 }
@@ -31,9 +24,10 @@ x_run(worker_t *worker) {
 
 void
 x_inspect_run(worker_t *worker) {
-    x_wire_print_net(worker);
+    // TODO
+    // x_wire_print_net(worker);
     run_task(worker);
-    x_wire_print_net(worker);
+    // x_wire_print_net(worker);
 }
 
 static void

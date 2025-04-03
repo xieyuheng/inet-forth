@@ -109,7 +109,7 @@ wire_print_right(const wire_t *self, file_t *file) {
 }
 
 void
-wire_print(const wire_t *self, file_t *file) {    
+wire_print(const wire_t *self, file_t *file) {
     if (wire_opposite(self))
         wire_print_left(wire_opposite(self), file);
     wire_print_right(self, file);
@@ -120,31 +120,4 @@ wire_print_reverse(const wire_t *self, file_t *file) {
     wire_print_left(self, file);
     if (wire_opposite(self))
         wire_print_right(wire_opposite(self), file);
-}
-
-void
-wire_print_net(wire_t *self, file_t *file) {
-    fprintf(file, "<net>\n");
-
-    wire_iter_t *iter = wire_iter_new(self);
-    wire_t *wire = wire_iter_first(iter);
-
-    fprintf(file, "<root>\n");
-    wire_print(wire, file);
-    fprintf(file, "\n");
-    fprintf(file, "</root>\n");
-
-    wire = wire_iter_next(iter);
-
-    fprintf(file, "<body>\n");
-    while (wire) {
-        wire_print(wire, file);
-        fprintf(file, "\n");
-        wire = wire_iter_next(iter);
-    }
-
-    wire_iter_destroy(&iter);
-    fprintf(file, "</body>\n");
-
-    fprintf(file, "</net>\n");
 }

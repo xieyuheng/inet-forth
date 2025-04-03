@@ -31,5 +31,3 @@ void wire_print_left(const wire_t *self, file_t *file);
 void wire_print_right(const wire_t *self, file_t *file);
 void wire_print(const wire_t *self, file_t *file);
 void wire_print_reverse(const wire_t *self, file_t *file);
-
-void wire_print_net(wire_t *self, file_t *file);
