@@ -1,6 +1,5 @@
 # net
 
-[net] remove `node_iter`
 [net] remove `wire_iter`
 
 [docs] pattern note about breaking double links
