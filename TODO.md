@@ -1,10 +1,6 @@
 # net
 
 [net] remove `wire_iter`
-
-[docs] pattern note about breaking double links
-[docs] pattern note about pointer graph -- concrete dependancy graph
-
 [memory] parallel memory allocator
 [net] node allocator
 [net] `principal_port_t`
