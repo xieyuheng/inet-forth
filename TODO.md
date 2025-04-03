@@ -1,13 +1,15 @@
-remove `root` from `debug_t`
-remove `node_iter`
-remove `wire_iter`
+# net
 
-pattern note about breaking double links
-pattern note about pointer graph -- concrete dependancy graph
+[net] remove `node_iter`
+[net] remove `wire_iter`
 
-parallel memory allocator
+[docs] pattern note about breaking double links
+[docs] pattern note about pointer graph -- concrete dependancy graph
 
+[memory] parallel memory allocator
 [net] node allocator
+[net] `principal_port_t`
+[net] single list `wire_t`
 
 # core
 

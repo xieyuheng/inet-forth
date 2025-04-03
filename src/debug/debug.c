@@ -111,33 +111,13 @@ on_frame(debug_t *self, canvas_t *canvas, uint64_t passed) {
 
 hash_t *
 debug_new_node_hash(debug_t *self) {
-    if (!self->root) {
-        hash_t *node_hash = hash_new();
-        node_t *node = set_first(self->worker->debug_node_set);
-        while (node) {
-            hash_set(node_hash, (void *) node->id, node);
-            node = set_next(self->worker->debug_node_set);
-        }
-
-        return node_hash;
-    }
-
     hash_t *node_hash = hash_new();
-    wire_t *root = self->root;
-    wire_t *opposite = wire_opposite(root);
-    if (!root ||
-        !opposite ||
-        !opposite->node)
-        return NULL;
-
-    node_iter_t *iter = node_iter_new(opposite->node);
-    node_t *node = node_iter_first(iter);
+    node_t *node = set_first(self->worker->debug_node_set);
     while (node) {
         hash_set(node_hash, (void *) node->id, node);
-        node = node_iter_next(iter);
+        node = set_next(self->worker->debug_node_set);
     }
 
-    node_iter_destroy(&iter);
     return node_hash;
 }
 
@@ -197,15 +177,6 @@ debug_init(debug_t *self) {
     self->canvas->on_frame = (on_frame_fn_t *) on_frame;
     self->canvas->on_click = (on_click_fn_t *) on_click;
     self->canvas->hide_system_cursor = true;
-}
-
-void
-debug_start_with_root_wire(worker_t *worker, wire_t *root) {
-    debug_t *self = debug_new(worker);
-    self->root = root;
-    debug_init(self);
-    canvas_open(self->canvas);
-    debug_destroy(&self);
 }
 
 void
