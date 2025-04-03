@@ -1,5 +1,7 @@
 #pragma once
 
+// stack implemented by growable array
+
 stack_t *stack_new(void);
 void stack_purge(stack_t *self);
 void stack_destroy(stack_t **self_pointer);

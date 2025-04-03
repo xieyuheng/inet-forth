@@ -1,8 +1,14 @@
-[command] add command line option to `run` with single-thread
+pattern note about breaking double links
+pattern note about pointer graph -- concrete dependancy graph
 
-[bug] buggy when `STACK_BLOCK_SIZE` is small (1024)
+remove `run_task_parallelly` for now
+remove `root` `debug_t`
+remove `node_iter`
+remove `wire_iter`
 
-- maybe use growable array instead of list
+parallel memory allocator
+
+[net] node allocator
 
 # core
 
