@@ -1,8 +1,12 @@
 cc = cc
 ldflags = \
+	-static \
 	-L/usr/local/lib \
-	-lX11 \
 	-lm \
+	-lX11 \
+	-lxcb \
+	-lXau \
+	-lXdmcp \
 	-pthread \
 	$(LDFLAGS)
 cflags = \
