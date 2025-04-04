@@ -29,6 +29,7 @@ modules_test(void) {
     time_test();
     thread_test();
     queue_test();
+    allocator_test();
 
     printf("</modules_test>\n");
 }

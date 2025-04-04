@@ -1,6 +1,5 @@
 # allocator
 
-[allocator] `allocator_test` -- setup
 [allocator] `allocator_t` -- has `main_stack` and `mutex`
 [allocator] `allocator_new`
 [allocator] `allocator_destroy`

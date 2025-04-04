@@ -26,5 +26,6 @@
 #include "time/index.h"
 #include "thread/index.h"
 #include "queue/index.h"
+#include "allocator/index.h"
 
 #include "modules_test.h"
