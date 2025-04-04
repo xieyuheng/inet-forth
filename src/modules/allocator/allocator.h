@@ -7,3 +7,5 @@
 struct allocator_t {
     stack_t *main_stack;
 };
+
+allocator_t *allocator_new(void);
