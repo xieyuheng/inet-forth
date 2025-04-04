@@ -3,3 +3,7 @@
 // Can be use to allocate value value in parallel,
 // learned from section "6.4.3 Resource Allocator Caches"
 // of the book "Is Parallel Programming Hard?".
+
+struct allocator_t {
+    stack_t *main_stack;
+};
