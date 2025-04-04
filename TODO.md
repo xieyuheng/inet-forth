@@ -1,6 +1,12 @@
+# allocator
+
+[allocator] `allocator_test` -- setup
+[allocator] `allocator_t` -- has `main_stack` and `mutex`
+[allocator] `allocator_new`
+[allocator] `allocator_destroy`
+
 # net
 
-[memory] `block_allocator_t` -- must be able to iter over all allocated blocks fast
 [net] `node_allocator_t`
 [net] `principal_port_t`
 [net] single list `wire_t`
