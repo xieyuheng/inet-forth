@@ -9,3 +9,4 @@ struct allocator_t {
 };
 
 allocator_t *allocator_new(void);
+void allocator_destroy(allocator_t **self_pointer);

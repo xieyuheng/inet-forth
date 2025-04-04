@@ -1,6 +1,5 @@
 # allocator
 
-[allocator] `allocator_destroy`
 [allocator] `allocator_t` -- has `mutex`
 
 # net
