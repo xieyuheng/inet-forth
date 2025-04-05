@@ -1,4 +1,10 @@
-[thread] wrap `pthread_cond_t`
+[thread] wrap `pthread_cond_t` -- maybe `condvar_t`
+
+# memory
+
+[memory] fix the naming of `new_shared` and `allocate_shared`
+
+- because the aim is to avoid false sharing, not to sharing.
 
 # allocator
 
