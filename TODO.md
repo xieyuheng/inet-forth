@@ -1,5 +1,3 @@
-[thread] `mutex_test`
-
 # allocator
 
 [allocator] `allocator_t` -- has `mutex`

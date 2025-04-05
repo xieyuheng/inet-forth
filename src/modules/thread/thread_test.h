@@ -2,6 +2,7 @@
 
 void thread_test(void);
 void thread_test_start(void);
+void thread_test_mutex(void);
 void thread_test_counter_non_atomic(void);
 void thread_test_counter_atomic(void);
 void thread_test_counter_stat(void);

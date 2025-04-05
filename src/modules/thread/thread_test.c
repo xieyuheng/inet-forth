@@ -5,6 +5,7 @@ thread_test(void) {
     printf("<thread_test>\n");
 
     thread_test_start();
+    thread_test_mutex();
     thread_test_counter_non_atomic();
     thread_test_counter_atomic();
     thread_test_counter_stat();
