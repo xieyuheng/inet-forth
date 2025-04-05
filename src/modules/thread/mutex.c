@@ -8,6 +8,7 @@ mutex_new(void) {
     pthread_mutexattr_settype(&mutex_attr, PTHREAD_MUTEX_ERRORCHECK);
     int errno = pthread_mutex_init(self, &mutex_attr);
     assert(errno == 0);
+    pthread_mutexattr_destroy(&mutex_attr);
     return self;
 }
 
