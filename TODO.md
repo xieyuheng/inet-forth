@@ -1,3 +1,6 @@
+[thread] setup `mutex` -- `mutex_t` wrap over `pthread_mutex_t`
+[thread] `mutex_lock` & `mutex_unlock`
+
 # allocator
 
 [allocator] `allocator_t` -- has `mutex`

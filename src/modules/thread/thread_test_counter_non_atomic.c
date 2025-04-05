@@ -5,15 +5,15 @@ static atomic_size_t global_count = 0;
 static void *
 counter_add1(void *arg) {
     (void) arg;
-    size_t count = load_relaxed(&global_count);
+    size_t count = relaxed_load(&global_count);
     sleep(0); // let other threads run
-    store_relaxed(&global_count, count + 1);
+    relaxed_store(&global_count, count + 1);
     return NULL;
 }
 
 static size_t
 counter_read(void) {
-    return load_relaxed(&global_count);
+    return relaxed_load(&global_count);
 }
 
 void

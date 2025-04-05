@@ -7,8 +7,8 @@ static void *
 thread_fn_1(void *arg) {
     (void) arg;
 
-    store_relaxed(&x, 1);
-    store_relaxed(&a, load_relaxed(&y));
+    relaxed_store(&x, 1);
+    relaxed_store(&a, relaxed_load(&y));
 
     return NULL;
 }
@@ -17,8 +17,8 @@ static void *
 thread_fn_2(void *arg) {
     (void) arg;
 
-    store_relaxed(&y, 1);
-    store_relaxed(&b, load_relaxed(&x));
+    relaxed_store(&y, 1);
+    relaxed_store(&b, relaxed_load(&x));
 
     return NULL;
 }
@@ -36,8 +36,8 @@ thread_test_weak_memory_dekker_relaxed(void) {
     size_t count = 0;
 
     do {
-        store_relaxed(&x, 0);
-        store_relaxed(&y, 0);
+        relaxed_store(&x, 0);
+        relaxed_store(&y, 0);
 
         thread_id_t thread_id_1 = thread_start(thread_fn_1, NULL);
         thread_id_t thread_id_2 = thread_start(thread_fn_2, NULL);
@@ -46,7 +46,7 @@ thread_test_weak_memory_dekker_relaxed(void) {
         thread_wait(thread_id_2);
 
         count++;
-    } while (load_relaxed(&a) != 0 || load_relaxed(&b) != 0);
+    } while (relaxed_load(&a) != 0 || relaxed_load(&b) != 0);
 
     printf("count: %lu\n", count);
 

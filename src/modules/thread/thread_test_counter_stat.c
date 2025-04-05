@@ -2,9 +2,9 @@
 
 static void *
 counter_add1(atomic_size_t *count_pointer) {
-    size_t count = load_relaxed(count_pointer);
+    size_t count = relaxed_load(count_pointer);
     sleep(0); // let other threads run
-    store_relaxed(count_pointer, count + 1);
+    relaxed_store(count_pointer, count + 1);
     return NULL;
 }
 
@@ -16,7 +16,7 @@ static size_t
 counter_read(void) {
     size_t total_count = 0;
     for (size_t i = 0; i < THREAD_NUMBER; i++) {
-        total_count += load_relaxed(&counts[i]);
+        total_count += relaxed_load(&counts[i]);
     }
 
     return total_count;

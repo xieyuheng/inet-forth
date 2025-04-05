@@ -9,7 +9,7 @@ count_to_big(void *arg) {
     (void) arg;
 
     for (size_t i = 0; i < BIG; i++) {
-        store_relaxed(&count, load_relaxed(&count) + 1);
+        relaxed_store(&count, relaxed_load(&count) + 1);
         // count++;
     }
 
