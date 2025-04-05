@@ -1,6 +1,9 @@
+[thread] wrap `pthread_cond_t`
+
 # allocator
 
-[allocator] `allocator_t` -- has `thread_count` & `thread_stack_array`
+[allocator] `allocator_new` -- has `thread_stack_array`
+[allocator] `allocator_new` -- take `thread_count`
 
 # net
 

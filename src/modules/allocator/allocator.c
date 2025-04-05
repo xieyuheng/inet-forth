@@ -1,5 +1,10 @@
 #include "index.h"
 
+struct allocator_t {
+    mutex_t *mutex;
+    stack_t *main_stack;
+};
+
 allocator_t *
 allocator_new(void) {
     allocator_t *self = new_shared(allocator_t);
