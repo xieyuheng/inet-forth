@@ -8,6 +8,7 @@
 // - free     := push per-thread stack -- recycle value from caller
 
 struct allocator_t {
+    mutex_t *mutex;
     stack_t *main_stack;
 };
 

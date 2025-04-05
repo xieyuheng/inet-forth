@@ -1,6 +1,6 @@
 # allocator
 
-[allocator] `allocator_t` -- has `mutex`
+[allocator] `allocator_t` -- has `thread_count` & `thread_stack_array`
 
 # net
 
