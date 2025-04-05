@@ -1,4 +1,3 @@
-[thread] `mutex_new`
 [thread] `mutex_destroy`
 
 [thread] `mutex_lock` & `mutex_unlock`
