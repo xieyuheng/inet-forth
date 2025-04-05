@@ -1,5 +1,3 @@
-[thread] `mutex_lock` & `mutex_unlock`
-
 [thread] `mutex_test`
 
 # allocator
