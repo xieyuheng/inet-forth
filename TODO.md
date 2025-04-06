@@ -1,7 +1,5 @@
 # allocator
 
-[allocator] `allocator_free`
-
 [allocator] `allocator_test` test allocate and free
 
 # thread

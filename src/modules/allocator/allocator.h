@@ -11,3 +11,4 @@ allocator_t *allocator_new(size_t expected_allocation_count);
 void allocator_destroy(allocator_t **self_pointer);
 
 void *allocator_allocate(allocator_t *self, stack_t *value_stack);
+void allocator_free(allocator_t *self, stack_t *value_stack, void *value);
