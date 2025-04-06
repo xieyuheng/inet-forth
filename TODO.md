@@ -1,13 +1,13 @@
-# thread
-
-[thread] wrap `pthread_cond_t` -- maybe `condvar_t`
-
 # net
 
 [net] `node_allocator_t`
 [net] `principal_port_t`
 [net] single list `wire_t`
 [net] fix `x_inspect_run` -- fix snapshot tests
+
+# thread
+
+[thread] wrap `pthread_cond_t` -- maybe `condvar_t`
 
 # core
 
