@@ -1,6 +1,5 @@
 # allocator
 
-[allocator] `allocator_allocate`
 [allocator] `allocator_free`
 
 [allocator] `allocator_test` test allocate and free
