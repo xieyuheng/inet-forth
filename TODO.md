@@ -1,9 +1,9 @@
-ambr new_page_aligned new_page_aligned
-
 # allocator
 
-[allocator] `allocator_new` -- has `thread_stack_array`
-[allocator] `allocator_new` -- take `thread_count`
+[allocator] `allocator_new` -- has `thread_stack_array` and take `thread_count`
+
+[allocator] `allocator_allocate`
+[allocator] `allocator_free`
 
 # thread
 

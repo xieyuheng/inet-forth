@@ -3,13 +3,15 @@
 struct allocator_t {
     mutex_t *mutex;
     stack_t *main_stack;
+    size_t expected_size;
 };
 
 allocator_t *
-allocator_new(void) {
+allocator_new(size_t expected_size) {
     allocator_t *self = new_page_aligned(allocator_t);
     self->mutex = mutex_new();
     self->main_stack = stack_new();
+    self->expected_size = expected_size;
     return self;
 }
 

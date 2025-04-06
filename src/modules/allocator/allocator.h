@@ -7,5 +7,5 @@
 // - allocate := pop  per-thread stack -- return value to caller
 // - free     := push per-thread stack -- recycle value from caller
 
-allocator_t *allocator_new(void);
+allocator_t *allocator_new(size_t expected_size);
 void allocator_destroy(allocator_t **self_pointer);

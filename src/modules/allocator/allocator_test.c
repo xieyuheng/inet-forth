@@ -4,7 +4,8 @@ void
 allocator_test(void) {
     printf("<allocator_test>\n");
 
-    allocator_t *allocator = allocator_new();
+    size_t expected_size = 100;
+    allocator_t *allocator = allocator_new(expected_size);
 
     //
 
