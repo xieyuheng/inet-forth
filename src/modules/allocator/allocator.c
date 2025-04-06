@@ -78,3 +78,13 @@ allocator_free(allocator_t *self, stack_t *value_stack, void *value) {
 
     stack_push(value_stack, value);
 }
+
+void
+allocator_recycle(allocator_t *self, stack_t *value_stack, void **value_pointer) {
+    assert(value_pointer);
+    if (*value_pointer) {
+        void *value = *value_pointer;
+        allocator_free(self, value_stack, value);
+        *value_pointer = NULL;
+    }
+}

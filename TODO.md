@@ -1,7 +1,3 @@
-# allocator
-
-[allocator] `allocator_recycle` -- no double free like `destroy_fn_t`
-
 # thread
 
 [thread] wrap `pthread_cond_t` -- maybe `condvar_t`
