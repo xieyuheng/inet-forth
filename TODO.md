@@ -1,7 +1,5 @@
 # allocator
 
-[allocator] `allocator_new` -- has `thread_stack_array` and take `thread_count`
-
 [allocator] `allocator_allocate`
 [allocator] `allocator_free`
 
