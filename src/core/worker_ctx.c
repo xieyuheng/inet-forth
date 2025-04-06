@@ -2,7 +2,7 @@
 
 worker_ctx_t *
 worker_ctx_new(worker_t *worker) {
-    worker_ctx_t *self = new_shared(worker_ctx_t);
+    worker_ctx_t *self = new_page_aligned(worker_ctx_t);
     self->worker = worker;
     return self;
 }

@@ -1,15 +1,13 @@
-[thread] wrap `pthread_cond_t` -- maybe `condvar_t`
-
-# memory
-
-[memory] fix the naming of `new_shared` and `allocate_shared`
-
-- because the aim is to avoid false sharing, not to sharing.
+ambr new_page_aligned new_page_aligned
 
 # allocator
 
 [allocator] `allocator_new` -- has `thread_stack_array`
 [allocator] `allocator_new` -- take `thread_count`
+
+# thread
+
+[thread] wrap `pthread_cond_t` -- maybe `condvar_t`
 
 # net
 

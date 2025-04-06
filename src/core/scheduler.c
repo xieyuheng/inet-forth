@@ -2,7 +2,7 @@
 
 scheduler_t *
 scheduler_new(mod_t *mod, size_t worker_pool_size) {
-    scheduler_t *self = new_shared(scheduler_t);
+    scheduler_t *self = new_page_aligned(scheduler_t);
     self->mod = mod;
 
     self->worker_pool_size = worker_pool_size;

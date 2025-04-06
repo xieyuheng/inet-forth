@@ -7,7 +7,7 @@ struct allocator_t {
 
 allocator_t *
 allocator_new(void) {
-    allocator_t *self = new_shared(allocator_t);
+    allocator_t *self = new_page_aligned(allocator_t);
     self->mutex = mutex_new();
     self->main_stack = stack_new();
     return self;

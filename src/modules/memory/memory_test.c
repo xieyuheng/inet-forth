@@ -63,7 +63,7 @@ memory_test(void) {
     }
 
     {
-        void *pointer = allocate_shared(10);
+        void *pointer = allocate_page_aligned(10);
         assert(pointer_is_8_bytes_aligned(pointer));
         assert(pointer_is_page_aligned(pointer));
         destroy(&pointer);
@@ -81,7 +81,7 @@ memory_test(void) {
     }
 
     {
-        vec2_t *v = new_shared(vec2_t);
+        vec2_t *v = new_page_aligned(vec2_t);
         assert(sizeof *v == 16);
         assert(pointer_is_8_bytes_aligned(v));
         assert(pointer_is_page_aligned(v));

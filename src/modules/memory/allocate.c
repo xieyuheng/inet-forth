@@ -62,7 +62,7 @@ pointer_is_page_aligned(void *pointer) {
 }
 
 void *
-allocate_shared(size_t size) {
+allocate_page_aligned(size_t size) {
     size_t page_size = sysconf(_SC_PAGE_SIZE);
     assert(page_size > 0);
     size_t real_size = ((size / page_size) + 1) * page_size;
