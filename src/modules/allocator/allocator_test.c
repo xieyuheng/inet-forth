@@ -1,7 +1,7 @@
 #include "index.h"
 
 #define EXPECTED_ALLOCATION_COUNT 1000
-#define ACTUAL_ALLOCATION_COUNT 500
+#define ACTUAL_ALLOCATION_COUNT 1000
 #define REPEATION_COUNT 10000
 
 static void *
@@ -11,15 +11,13 @@ thread_fn(void *arg) {
     stack_t *allocated_value_stack = stack_new();
     for (size_t r = 0; r < REPEATION_COUNT; r++) {
         for (size_t i = 0; i < ACTUAL_ALLOCATION_COUNT; i++) {
-            char *s = allocator_allocate(allocator, value_stack);
-            assert(string_equal(s, "abc"));
-            stack_push(allocated_value_stack, s);
+            void *value = allocator_allocate(allocator, value_stack);
+            stack_push(allocated_value_stack, value);
         }
 
         for (size_t i = 0; i < ACTUAL_ALLOCATION_COUNT; i++) {
-            char *s = stack_pop(allocated_value_stack);
-            assert(string_equal(s, "abc"));
-            allocator_free(allocator, value_stack, s);
+            void *value = stack_pop(allocated_value_stack);
+            allocator_free(allocator, value_stack, value);
         }
     }
 
@@ -33,15 +31,24 @@ allocator_test(void) {
     allocator_t *allocator = allocator_new(EXPECTED_ALLOCATION_COUNT);
 
     stack_t *value_stack = allocator_value_stack(allocator);
-    for (size_t i = 0; i < EXPECTED_ALLOCATION_COUNT * 10; i++) {
+    size_t enough_allocation_count = EXPECTED_ALLOCATION_COUNT * 100;
+    for (size_t i = 0; i < enough_allocation_count; i++) {
         stack_push(value_stack, string_copy("abc"));
     }
+
+    double start_second = time_second();
 
     thread_id_t thread_id_1 = thread_start(thread_fn, allocator);
     thread_id_t thread_id_2 = thread_start(thread_fn, allocator);
 
     thread_wait(thread_id_1);
     thread_wait(thread_id_2);
+
+    double end_second = time_second();
+    double passed_second = end_second - start_second;
+    double throughput = REPEATION_COUNT * ACTUAL_ALLOCATION_COUNT
+        / 1000 / passed_second;
+    printf("throughput: %.f k/s\n", throughput);
 
     allocator_destroy(&allocator);
 

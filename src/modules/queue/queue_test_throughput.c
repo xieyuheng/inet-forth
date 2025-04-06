@@ -49,7 +49,8 @@ queue_test_throughput(void) {
 
     double end_second = time_second();
     double passed_second = end_second - start_second;
-    printf("throughput: %.f k/s\n", LENGTH / passed_second / 1000);
+    double throughput = LENGTH / 1000 / passed_second;
+    printf("throughput: %.f k/s\n", throughput);
 
     queue_destroy(&queue);
 
