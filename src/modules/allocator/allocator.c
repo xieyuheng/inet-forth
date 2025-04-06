@@ -33,7 +33,7 @@ allocator_destroy(allocator_t **self_pointer) {
 }
 
 void *
-allocator_allocate(allocator_t *self, stack_t *value_stack) {
+allocator_maybe_allocate(allocator_t *self, stack_t *value_stack) {
     if (stack_is_empty(value_stack)) {
         mutex_lock(self->mutex);
 
@@ -46,11 +46,22 @@ allocator_allocate(allocator_t *self, stack_t *value_stack) {
     }
 
     if (stack_is_empty(value_stack)) {
+        return NULL;
+    }
+
+    return stack_pop(value_stack);
+}
+
+void *
+allocator_allocate(allocator_t *self, stack_t *value_stack) {
+    void *value = allocator_maybe_allocate(self, value_stack);
+
+    if (!value) {
         fprintf(stderr, "[allocator_allocate] not enough value\n");
         exit(1);
     }
 
-    return stack_pop(value_stack);
+    return value;
 }
 
 void

@@ -1,6 +1,5 @@
 # allocator
 
-[allocator] `allocator_maybe_allocate` -- do not fail when there is no value
 [allocator] `allocator_recycle` -- no double free like `destroy_fn_t`
 
 # thread
