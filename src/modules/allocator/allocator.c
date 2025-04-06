@@ -37,12 +37,9 @@ allocator_allocate(allocator_t *self, stack_t *value_stack) {
     if (stack_is_empty(value_stack)) {
         mutex_lock(self->mutex);
 
-        size_t count = 0;
-        while (count < self->expected_allocation_count) {
+        for (size_t i = 0; i < self->expected_allocation_count; i++) {
             if (stack_is_empty(self->value_stack)) break;
-
             stack_push(value_stack, stack_pop(self->value_stack));
-            count++;
         }
 
         mutex_unlock(self->mutex);
@@ -61,10 +58,8 @@ allocator_free(allocator_t *self, stack_t *value_stack, void *value) {
     if (stack_length(value_stack) >= 2 * self->expected_allocation_count) {
         mutex_lock(self->mutex);
 
-        size_t count = 0;
-        while (count < self->expected_allocation_count) {
+        for (size_t i = 0; i < self->expected_allocation_count; i++) {
             stack_push(self->value_stack, stack_pop(value_stack));
-            count++;
         }
 
         mutex_unlock(self->mutex);
