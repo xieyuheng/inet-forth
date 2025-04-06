@@ -3,6 +3,8 @@
 [allocator] `allocator_allocate`
 [allocator] `allocator_free`
 
+[allocator] `allocator_test` test allocate and free
+
 # thread
 
 [thread] wrap `pthread_cond_t` -- maybe `condvar_t`
