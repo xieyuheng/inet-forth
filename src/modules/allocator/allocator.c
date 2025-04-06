@@ -15,6 +15,11 @@ allocator_new(size_t expected_allocation_count) {
     return self;
 }
 
+void *
+allocator_value_stack(allocator_t *self) {
+    return self->value_stack;
+}
+
 void
 allocator_destroy(allocator_t **self_pointer) {
     assert(self_pointer);

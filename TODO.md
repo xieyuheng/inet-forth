@@ -1,6 +1,7 @@
 # allocator
 
 [allocator] `allocator_test` test allocate and free
+[allocator] `allocator_maybe_allocate` -- do not fail when there is no value
 
 # thread
 
