@@ -1,5 +1,3 @@
-[array] fix `array_pick`
-
 # net
 
 [net] `node_t` should have `value_array` instead of `ports` -- so that `node_init` does not depend on `ctor->arity`

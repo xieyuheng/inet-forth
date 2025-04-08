@@ -135,6 +135,7 @@ array_get(const array_t *self, size_t index) {
 
 void *
 array_pick(const array_t *self, size_t back_index) {
+    assert(back_index < self->cursor);
     size_t index = self->cursor - 1 - back_index;
     return array_get(self, index);
 }
