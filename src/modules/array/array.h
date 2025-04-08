@@ -21,7 +21,7 @@ size_t array_length(const array_t *self);
 bool array_is_empty(const array_t *self);
 bool array_is_full(const array_t *self);
 
-void array_grow(array_t *self, size_t larger_size);
+void array_resize(array_t *self, size_t larger_size);
 
 void *array_top(array_t *self);
 void *array_pop(array_t *self);

@@ -91,7 +91,7 @@ array_test(void) {
     }
 
     {
-        // array_grow
+        // array_resize
 
         array_t *array = array_new(3);
 
@@ -105,7 +105,7 @@ array_test(void) {
 
         assert(array_is_full(array));
 
-        array_grow(array, 6);
+        array_resize(array, 6);
 
         assert(((uint64_t) array_get(array, 0)) == 1);
         assert(((uint64_t) array_get(array, 1)) == 2);

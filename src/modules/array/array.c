@@ -93,7 +93,7 @@ array_is_full(const array_t *self) {
 }
 
 void
-array_grow(array_t *self, size_t larger_size) {
+array_resize(array_t *self, size_t larger_size) {
     assert(larger_size >= self->size);
     if (larger_size == self->size) return;
 
@@ -119,7 +119,7 @@ array_pop(array_t *self) {
 void
 array_push(array_t *self, void *value) {
     if (array_is_full(self))
-        array_grow(self, self->size + self->grow_step);
+        array_resize(self, self->size + self->grow_step);
 
     self->values[self->cursor] = value;
     self->cursor++;
@@ -142,7 +142,7 @@ array_pick(const array_t *self, size_t back_index) {
 void
 array_set(array_t *self, size_t index, void *value) {
     if (index >= self->size)
-        array_grow(self, index + self->grow_step);
+        array_resize(self, index + self->grow_step);
 
     self->values[index] = value;
 
