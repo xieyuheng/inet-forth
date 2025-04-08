@@ -1,5 +1,8 @@
 # net
 
+less `#include "config.h"`
+`NODE_COUNT` in `config.h`
+
 [net] `node_test` -- test `node_allocator_new`
 
 [net] `node_allocator_add_stack`

@@ -2,22 +2,22 @@
 
 struct node_allocator_t {
     allocator_t *allocator;
-    size_t size;
+    size_t node_count;
     node_t *node_heap;
     array_t *per_thread_stack_array;
 };
 
 node_allocator_t *
-node_allocator_new(size_t size) {
+node_allocator_new(size_t node_count) {
     node_allocator_t *self = new(node_allocator_t);
 
     size_t cache_size = 64 * 1024;
     self->allocator = allocator_new(cache_size);
     stack_t *node_stack = allocator_stack(self->allocator);
 
-    self->size = size;
-    self->node_heap = allocate(size * sizeof(node_t));
-    for (size_t i = 0; i < size; i++) {
+    self->node_count = node_count;
+    self->node_heap = allocate(node_count * sizeof(node_t));
+    for (size_t i = 0; i < node_count; i++) {
         node_t *node = &self->node_heap[i];
         node->id = i;
         node_init(node);
