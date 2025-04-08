@@ -20,11 +20,11 @@ void
 thread_test_count_to_big(void) {
     printf("<thread_test_count_to_big>\n");
 
-    thread_id_t thread_id_1 = thread_start(count_to_big, NULL);
-    thread_id_t thread_id_2 = thread_start(count_to_big, NULL);
+    thread_id_t T1 = thread_start(count_to_big, NULL);
+    thread_id_t T2 = thread_start(count_to_big, NULL);
 
-    thread_wait(thread_id_1);
-    thread_wait(thread_id_2);
+    thread_wait(T1);
+    thread_wait(T2);
 
     printf("count: %lu\n", count);
 

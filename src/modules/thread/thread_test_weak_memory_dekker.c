@@ -39,11 +39,11 @@ thread_test_weak_memory_dekker(void) {
         x = 0;
         y = 0;
 
-        thread_id_t thread_id_1 = thread_start(thread_fn_1, NULL);
-        thread_id_t thread_id_2 = thread_start(thread_fn_2, NULL);
+        thread_id_t T1 = thread_start(thread_fn_1, NULL);
+        thread_id_t T2 = thread_start(thread_fn_2, NULL);
 
-        thread_wait(thread_id_1);
-        thread_wait(thread_id_2);
+        thread_wait(T1);
+        thread_wait(T2);
 
         count++;
     } while (a != 0 || b != 0);

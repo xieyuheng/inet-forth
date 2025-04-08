@@ -30,11 +30,11 @@ thread_test_mutex(void) {
 
     mutex_t *mutex = mutex_new();
 
-    thread_id_t thread_id_1 = thread_start(thread_fn, mutex);
-    thread_id_t thread_id_2 = thread_start(thread_fn, mutex);
+    thread_id_t T1 = thread_start(thread_fn, mutex);
+    thread_id_t T2 = thread_start(thread_fn, mutex);
 
-    thread_wait(thread_id_1);
-    thread_wait(thread_id_2);
+    thread_wait(T1);
+    thread_wait(T2);
 
     assert(global_count == loop_count * 2);
 
