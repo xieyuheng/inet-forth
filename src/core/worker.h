@@ -8,6 +8,9 @@ struct worker_t {
     queue_t *task_queue;
     stack_t *value_stack;
     stack_t *return_stack;
+    // about node
+    // node_allocator_t *node_allocator;
+    // stack_t *free_node_stack;
     size_t node_id_count;
     // only used when core_debug_flag is enabled
     set_t *debug_node_set;

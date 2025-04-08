@@ -14,6 +14,10 @@ node_test(void) {
     node_allocator_add_per_thread_stack(node_allocator, stack_2);
     assert(node_allocator_thread_count(node_allocator) == 2);
 
+    node_t *node = node_allocator_allocate(node_allocator, stack_1);
+    assert(node);
+    node_allocator_recycle(node_allocator, stack_1, &node);
+
     node_allocator_destroy(&node_allocator);
 
     double end_second = time_second();
