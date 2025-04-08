@@ -54,3 +54,13 @@ node_t *
 node_allocator_allocate(node_allocator_t *self, stack_t *stack) {
     return allocator_allocate(self->allocator, stack);
 }
+
+void
+node_allocator_free(node_allocator_t *self, stack_t *stack, node_t *node) {
+    allocator_free(self->allocator, stack, node);
+}
+
+void
+node_allocator_recycle(node_allocator_t *self, stack_t *stack, node_t **node_pointer) {
+    allocator_recycle(self->allocator, stack, (void **) node_pointer);
+}
