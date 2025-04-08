@@ -1,4 +1,4 @@
-#pragma once
+#include "index.h"
 
 struct node_ctor_t {
     char *name;

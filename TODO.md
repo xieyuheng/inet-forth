@@ -1,6 +1,5 @@
 # net
 
-[net] `node_test` setup
 [net] `node_test` -- test `node_allocator_new`
 
 [net] `node_allocator_add_stack`
