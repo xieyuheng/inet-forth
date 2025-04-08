@@ -23,6 +23,7 @@ node_allocator_new(size_t node_count) {
         stack_push(node_stack, node);
     }
 
+    self->per_thread_stack_array = array_auto();
     return self;
 }
 
@@ -37,4 +38,14 @@ node_allocator_destroy(node_allocator_t **self_pointer) {
         free(self);
         *self_pointer = NULL;
     }
+}
+
+void
+node_allocator_add_per_thread_stack(node_allocator_t *self, stack_t *stack) {
+    array_push(self->per_thread_stack_array, stack);
+}
+
+size_t
+node_allocator_thread_count(const node_allocator_t *self) {
+    return array_length(self->per_thread_stack_array);
 }
