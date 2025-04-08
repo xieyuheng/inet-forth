@@ -1,7 +1,16 @@
 # net
 
-[net] `node_allocator_t`
-[net] `principal_port_t`
+[net] `node_allocator_new`
+[net] `node_allocator_destroy`
+
+[net] `node_allocator_t` -- has `node_heap`
+[net] `node_allocator_t` -- has the `stack_array` -- for each thread
+[net] `node_allocator_t` -- replace `node_new`
+[net] remove `node_id_count` from worker -- prepare id in `node_allocator_t`
+
+[net] `principal_port_t` -- setup
+[net] `principal_port_t` -- as value
+
 [net] single list `wire_t`
 [net] fix `x_inspect_run` -- fix snapshot tests
 
