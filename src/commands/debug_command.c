@@ -23,11 +23,14 @@ run(commander_t *commander) {
             core_debug_flag = true;
             mod_t *mod = mod_new(src, code);
             import_prelude(mod);
-            worker_t *worker = worker_new(mod);
+            node_allocator_t *node_allocator = node_allocator_new(
+                NODE_COUNT, NODE_ALLOCATOR_CACHE_SIZE);            
+            worker_t *worker = worker_new(mod, node_allocator);
             execute_all(worker);
             debug_start(worker);
             mod_destroy(&mod);
             worker_destroy(&worker);
+            node_allocator_destroy(&node_allocator);
         } else  {
             fprintf(stderr, "[debug] file name must ends with .lisp, given file name: %s\n", src);
             exit(1);

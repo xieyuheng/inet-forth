@@ -21,10 +21,13 @@ run(commander_t *commander) {
             fclose(file);
             mod_t *mod = mod_new(src, code);
             import_prelude(mod);
-            worker_t *worker = worker_new(mod);
+            node_allocator_t *node_allocator = node_allocator_new(
+                NODE_COUNT, NODE_ALLOCATOR_CACHE_SIZE);
+            worker_t *worker = worker_new(mod, node_allocator);
             execute_all(worker);
             mod_destroy(&mod);
             worker_destroy(&worker);
+            node_allocator_destroy(&node_allocator);
         } else  {
             fprintf(stderr, "[run] file name must ends with .fth, given file name: %s\n", src);
             exit(1);

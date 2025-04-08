@@ -12,7 +12,7 @@ scheduler_new(mod_t *mod, size_t worker_pool_size) {
     self->workers = allocate_pointers(worker_pool_size);
     self->worker_ctxs = allocate_pointers(worker_pool_size);
     for (size_t i = 0; i < worker_pool_size; i++) {
-        self->workers[i] = worker_new(mod);
+        self->workers[i] = worker_new(mod, self->node_allocator);
         self->workers[i]->scheduler = self;
         self->workers[i]->index = i;
         self->worker_ctxs[i] = worker_ctx_new(self->workers[i]);

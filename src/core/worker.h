@@ -9,8 +9,8 @@ struct worker_t {
     stack_t *value_stack;
     stack_t *return_stack;
     // about node
-    // node_allocator_t *node_allocator;
-    // stack_t *free_node_stack;
+    node_allocator_t *node_allocator;
+    stack_t *free_node_stack;
     size_t node_id_count;
     // only used when core_debug_flag is enabled
     set_t *debug_node_set;
@@ -19,7 +19,7 @@ struct worker_t {
     size_t index;
 };
 
-worker_t *worker_new(mod_t *mod);
+worker_t *worker_new(mod_t *mod, node_allocator_t *node_allocator);
 void worker_destroy(worker_t **self_pointer);
 
 void worker_print_return_stack(const worker_t *self, file_t *file);

@@ -16,7 +16,7 @@ lex_code(const char *code) {
 }
 
 worker_t *
-worker_new(mod_t *mod) {
+worker_new(mod_t *mod, node_allocator_t *node_allocator) {
     worker_t *self = new(worker_t);
     self->mod = mod;
     self->token_list = lex_code(mod->code);
@@ -24,8 +24,14 @@ worker_new(mod_t *mod) {
     // TODO We should use value_destroy to create value_stack.
     self->value_stack = stack_new();
     self->return_stack = stack_new_with((destroy_fn_t *) frame_destroy);
-    self->debug_node_set = set_new();
+
+    self->node_allocator = node_allocator;
+    self->free_node_stack = stack_new();
+    node_allocator_add_per_thread_stack(node_allocator, self->free_node_stack);
+
     self->node_id_count = 0;
+
+    self->debug_node_set = set_new();
 
     return self;
 }

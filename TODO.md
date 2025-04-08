@@ -1,7 +1,5 @@
 # net
 
-[core] `worker_t` has `node_allocator` and `free_node_stack`
-
 [net] `node_allocator_allocate` -- replace `node_new`
 
 [net] remove `node_id_count` from worker -- prepare id in `node_allocator_t`
