@@ -3,15 +3,15 @@
 struct allocator_t {
     mutex_t *mutex;
     stack_t *stack;
-    size_t expected_allocation_count;
+    size_t cache_size;
 };
 
 allocator_t *
-allocator_new(size_t expected_allocation_count) {
+allocator_new(size_t cache_size) {
     allocator_t *self = new_page_aligned(allocator_t);
     self->mutex = mutex_new();
     self->stack = stack_new();
-    self->expected_allocation_count = expected_allocation_count;
+    self->cache_size = cache_size;
     return self;
 }
 
@@ -37,7 +37,7 @@ allocator_maybe_allocate(allocator_t *self, stack_t *stack) {
     if (stack_is_empty(stack)) {
         mutex_lock(self->mutex);
 
-        for (size_t i = 0; i < self->expected_allocation_count; i++) {
+        for (size_t i = 0; i < self->cache_size; i++) {
             if (stack_is_empty(self->stack)) break;
             stack_push(stack, stack_pop(self->stack));
         }
@@ -66,10 +66,10 @@ allocator_allocate(allocator_t *self, stack_t *stack) {
 
 void
 allocator_free(allocator_t *self, stack_t *stack, void *value) {
-    if (stack_length(stack) >= 2 * self->expected_allocation_count) {
+    if (stack_length(stack) >= 2 * self->cache_size) {
         mutex_lock(self->mutex);
 
-        for (size_t i = 0; i < self->expected_allocation_count; i++) {
+        for (size_t i = 0; i < self->cache_size; i++) {
             stack_push(self->stack, stack_pop(stack));
         }
 

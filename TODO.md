@@ -1,7 +1,6 @@
-[allocator] rename `expected_allocation_count` to ...
-
 # net
 
+[net] extract `node_init` -- for init `node_heap`
 [net] `node_allocator_t` -- init `node_heap` by `size`
 [net] `node_allocator_t` -- has the `per_thread_stack_array`
 [net] `node_allocator_t` -- replace `node_new`

@@ -10,8 +10,8 @@ node_allocator_t *
 node_allocator_new(size_t size) {
     node_allocator_t *self = new(node_allocator_t);
     self->size = size;
-    size_t expected_allocation_count = 64 * 1024;
-    self->allocator = allocator_new(expected_allocation_count);
+    size_t cache_size = 64 * 1024;
+    self->allocator = allocator_new(cache_size);
     return self;
 }
 
