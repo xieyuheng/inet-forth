@@ -9,9 +9,15 @@ struct node_allocator_t {
 node_allocator_t *
 node_allocator_new(size_t size) {
     node_allocator_t *self = new(node_allocator_t);
-    self->size = size;
+
     size_t cache_size = 64 * 1024;
     self->allocator = allocator_new(cache_size);
+
+    self->size = size;
+    self->node_heap = allocate(size * sizeof(node_t));
+    for (size_t i = 0; i < size; i++)
+        node_init(&self->node_heap[i]);
+
     return self;
 }
 
