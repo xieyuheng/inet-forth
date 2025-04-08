@@ -29,8 +29,6 @@ worker_new(mod_t *mod, node_allocator_t *node_allocator) {
     self->free_node_stack = stack_new();
     node_allocator_add_per_thread_stack(node_allocator, self->free_node_stack);
 
-    self->node_id_count = 0;
-
     self->debug_node_set = set_new();
 
     return self;
@@ -123,7 +121,7 @@ maybe_return_task(worker_t *self, wire_t *wire) {
 
 node_t *
 worker_add_node(worker_t* self, const node_ctor_t *ctor) {
-    node_t *node = node_new(self->node_allocator, self->free_node_stack, ctor, ++self->node_id_count);
+    node_t *node = node_new(self->node_allocator, self->free_node_stack, ctor);
 
     if (core_debug_flag)
         set_add(self->debug_node_set, node);

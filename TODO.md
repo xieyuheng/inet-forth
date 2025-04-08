@@ -1,7 +1,5 @@
 # net
 
-[net] remove `node_id_count` from worker -- prepare id in `node_allocator_t`
-
 [net] `principal_port_t` -- setup
 [net] `principal_port_t` -- as value
 

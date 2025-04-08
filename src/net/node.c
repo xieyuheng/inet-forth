@@ -6,10 +6,9 @@ node_init(node_t *self) {
 }
 
 node_t *
-node_new(node_allocator_t *node_allocator, stack_t *free_node_stack, const node_ctor_t *ctor, size_t id) {
+node_new(node_allocator_t *node_allocator, stack_t *free_node_stack, const node_ctor_t *ctor) {
     node_t *self = node_allocator_allocate(node_allocator, free_node_stack);
     self->ctor = ctor;
-    self->id = id;
     return self;
 }
 

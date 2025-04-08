@@ -23,7 +23,7 @@ node_test(void) {
 
     double end_second = time_second();
     double passed_second = end_second - start_second;
-    printf("passed_second: %.f\n", passed_second);
+    printf("passed_second: %f\n", passed_second);
 
     printf("</node_test>\n");
 }
