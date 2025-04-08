@@ -6,6 +6,8 @@ struct node_t {
     array_t *value_array;
 };
 
+
+void node_init(node_t *self);
 node_t *node_new(const node_ctor_t *ctor, size_t id);
 void node_destroy(node_t **self_pointer);
 

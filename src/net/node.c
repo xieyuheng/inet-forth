@@ -1,11 +1,16 @@
 #include "index.h"
 
+void
+node_init(node_t *self) {
+    self->value_array = array_auto();
+}
+
 node_t *
 node_new(const node_ctor_t *ctor, size_t id) {
     node_t *self = new(node_t);
     self->ctor = ctor;
     self->id = id;
-    self->value_array = array_auto();
+    node_init(self);
     return self;
 }
 
@@ -24,7 +29,7 @@ void
 node_set(node_t *self, size_t index, value_t value) {
     assert(index < self->ctor->arity);
     array_set(self->value_array, index, value);
-    
+
     if (is_wire(value)) {
         wire_t *wire = as_wire(value);
         assert(wire->node == NULL);
