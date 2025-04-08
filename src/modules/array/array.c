@@ -118,9 +118,8 @@ array_pop(array_t *self) {
 
 void
 array_push(array_t *self, void *value) {
-    if (array_is_full(self)) {
+    if (array_is_full(self))
         array_grow(self, self->size + self->grow_step);
-    }
 
     self->values[self->cursor] = value;
     self->cursor++;
@@ -128,7 +127,9 @@ array_push(array_t *self, void *value) {
 
 void *
 array_get(const array_t *self, size_t index) {
-    assert(index < self->size);
+    if (index >= self->size)
+        return NULL;
+
     return self->values[index];
 }
 
