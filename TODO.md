@@ -2,9 +2,7 @@
 
 # net
 
-[net] `node_allocator_destroy`
-
-[net] `node_allocator_t` -- has `node_heap`
+[net] `node_allocator_t` -- init `node_heap` by `size`
 [net] `node_allocator_t` -- has the `per_thread_stack_array`
 [net] `node_allocator_t` -- replace `node_new`
 [net] remove `node_id_count` from worker -- prepare id in `node_allocator_t`

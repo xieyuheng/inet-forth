@@ -14,3 +14,15 @@ node_allocator_new(size_t size) {
     self->allocator = allocator_new(expected_allocation_count);
     return self;
 }
+
+void
+node_allocator_destroy(node_allocator_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer) {
+        node_allocator_t *self = *self_pointer;
+        allocator_destroy(&self->allocator);
+        free(self->node_heap);
+        free(self);
+        *self_pointer = NULL;
+    }
+}
