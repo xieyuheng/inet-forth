@@ -1,9 +1,5 @@
 # net
 
-`NODE_COUNT` in `config.h`
-
-[net] `node_test` -- test `node_allocator_new`
-
 [net] `node_allocator_add_stack`
 
 [net] `node_allocator_t` -- replace `node_new`
