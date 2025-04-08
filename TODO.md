@@ -1,6 +1,10 @@
 # net
 
-[net] `node_allocator_t` -- has the `per_thread_stack_array`
+[net] `node_test` setup
+[net] `node_test` -- test `node_allocator_new`
+
+[net] `node_allocator_add_stack`
+
 [net] `node_allocator_t` -- replace `node_new`
 [net] remove `node_id_count` from worker -- prepare id in `node_allocator_t`
 
