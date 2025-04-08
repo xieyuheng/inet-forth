@@ -6,23 +6,17 @@ node_init(node_t *self) {
 }
 
 node_t *
-node_new(const node_ctor_t *ctor, size_t id) {
-    node_t *self = new(node_t);
+node_new(node_allocator_t *node_allocator, stack_t *free_node_stack, const node_ctor_t *ctor, size_t id) {
+    node_t *self = node_allocator_allocate(node_allocator, free_node_stack);
     self->ctor = ctor;
     self->id = id;
-    node_init(self);
     return self;
 }
 
 void
-node_destroy(node_t **self_pointer) {
+node_recycle(node_allocator_t *node_allocator, stack_t *free_node_stack, node_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        node_t *self = *self_pointer;
-        array_destroy(&self->value_array);
-        free(self);
-        *self_pointer = NULL;
-    }
+    node_allocator_recycle(node_allocator, free_node_stack, self_pointer);
 }
 
 void
