@@ -1,5 +1,3 @@
-[stack] `stack_pick` -- call `stack_get`
-
 [array] `array_set` -- reset cursor
 [array] `array_test` -- `array_set` reset cursor
 

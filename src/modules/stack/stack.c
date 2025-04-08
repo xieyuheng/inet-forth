@@ -68,11 +68,11 @@ stack_push(stack_t *self, void *value) {
 }
 
 void *
-stack_get(stack_t *self, size_t index) {
+stack_get(const stack_t *self, size_t index) {
     return array_get(self->array, index);
 }
 
 void *
-stack_pick(stack_t *self, size_t index) {
+stack_pick(const stack_t *self, size_t index) {
     return array_pick(self->array, index);
 }
