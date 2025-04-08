@@ -1,6 +1,5 @@
 # net
 
-[core] `scheduler_t` has `node_allocator`
 [core] `worker_t` has `node_allocator` and `free_node_stack`
 
 [net] `node_allocator_allocate` -- replace `node_new`
