@@ -6,7 +6,8 @@ node_test(void) {
 
     double start_second = time_second();
 
-    node_allocator_t *node_allocator = node_allocator_new(NODE_COUNT);
+    node_allocator_t *node_allocator = node_allocator_new(
+        NODE_COUNT, NODE_ALLOCATOR_CACHE_SIZE);
 
     stack_t *stack_1 = stack_new();
     stack_t *stack_2 = stack_new();
