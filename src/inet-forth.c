@@ -1,5 +1,4 @@
 #include "deps.h"
-#include "config.h"
 #include "commands/index.h"
 
 static void setup_io(void);

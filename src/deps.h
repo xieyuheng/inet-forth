@@ -11,4 +11,5 @@
 #include <time.h>
 #include <math.h>
 
+#include "config.h"
 #include "modules/index.h"
