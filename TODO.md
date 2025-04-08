@@ -1,6 +1,4 @@
-[array] `array_test` -- `array_set` reset cursor
 [array] fix `array_pick`
-[array] resize on `array_pick`
 
 # net
 
