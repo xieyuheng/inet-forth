@@ -7,17 +7,17 @@
 static void *
 thread_fn(void *arg) {
     allocator_t *allocator = arg;
-    stack_t *value_stack = stack_new();
-    stack_t *allocated_value_stack = stack_new();
+    stack_t *stack = stack_new();
+    stack_t *allocated_stack = stack_new();
     for (size_t r = 0; r < REPEATION_COUNT; r++) {
         for (size_t i = 0; i < ACTUAL_ALLOCATION_COUNT; i++) {
-            void *value = allocator_allocate(allocator, value_stack);
-            stack_push(allocated_value_stack, value);
+            void *value = allocator_allocate(allocator, stack);
+            stack_push(allocated_stack, value);
         }
 
         for (size_t i = 0; i < ACTUAL_ALLOCATION_COUNT; i++) {
-            void *value = stack_pop(allocated_value_stack);
-            allocator_free(allocator, value_stack, value);
+            void *value = stack_pop(allocated_stack);
+            allocator_free(allocator, stack, value);
         }
     }
 
@@ -30,10 +30,10 @@ allocator_test_throughput(void) {
 
     allocator_t *allocator = allocator_new(EXPECTED_ALLOCATION_COUNT);
 
-    stack_t *value_stack = allocator_value_stack(allocator);
-    size_t enough_allocation_count = EXPECTED_ALLOCATION_COUNT * 100;
-    for (size_t i = 0; i < enough_allocation_count; i++) {
-        stack_push(value_stack, string_copy("abc"));
+    stack_t *stack = allocator_stack(allocator);
+    size_t ENOUGH_ALLOCATION_COUNT = EXPECTED_ALLOCATION_COUNT * 100;
+    for (size_t i = 0; i < ENOUGH_ALLOCATION_COUNT; i++) {
+        stack_push(stack, string_copy("abc"));
     }
 
     double start_second = time_second();

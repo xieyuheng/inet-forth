@@ -10,10 +10,10 @@
 allocator_t *allocator_new(size_t expected_allocation_count);
 void allocator_destroy(allocator_t **self_pointer);
 
-void *allocator_value_stack(allocator_t *self);
+void *allocator_stack(allocator_t *self);
 
-void *allocator_maybe_allocate(allocator_t *self, stack_t *value_stack);
-void *allocator_allocate(allocator_t *self, stack_t *value_stack);
+void *allocator_maybe_allocate(allocator_t *self, stack_t *stack);
+void *allocator_allocate(allocator_t *self, stack_t *stack);
 
-void allocator_free(allocator_t *self, stack_t *value_stack, void *value);
-void allocator_recycle(allocator_t *self, stack_t *value_stack, void **value_pointer);
+void allocator_free(allocator_t *self, stack_t *stack, void *value);
+void allocator_recycle(allocator_t *self, stack_t *stack, void **value_pointer);
