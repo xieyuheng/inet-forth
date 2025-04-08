@@ -1,5 +1,9 @@
 # net
 
+[net] `node_allocator` -- add node to `allocator->stack` as needed (in batch) -- to avoid overhead
+
+[net] extract `node_test_node_allocator_throughput`
+
 [net] `principal_port_t` -- setup
 [net] `principal_port_t` -- as value
 
