@@ -1,6 +1,5 @@
 # net
 
-[net] `node_t` should have `value_array` instead of `ports` -- so that `node_init` does not depend on `ctor->arity`
 [net] extract `node_init` -- for init `node_heap`
 [net] `node_allocator_t` -- init `node_heap` by `size`
 [net] `node_allocator_t` -- has the `per_thread_stack_array`

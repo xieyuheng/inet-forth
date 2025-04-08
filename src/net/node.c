@@ -5,7 +5,7 @@ node_new(const node_ctor_t *ctor, size_t id) {
     node_t *self = new(node_t);
     self->ctor = ctor;
     self->id = id;
-    self->ports = allocate_pointers(ctor->arity);
+    self->value_array = array_auto();
     return self;
 }
 
@@ -14,8 +14,7 @@ node_destroy(node_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer) {
         node_t *self = *self_pointer;
-        free(self->ports);
-        // Does NOT own wires in `wires`.
+        array_destroy(&self->value_array);
         free(self);
         *self_pointer = NULL;
     }
@@ -24,8 +23,8 @@ node_destroy(node_t **self_pointer) {
 void
 node_set(node_t *self, size_t index, value_t value) {
     assert(index < self->ctor->arity);
-    self->ports[index] = value;
-
+    array_set(self->value_array, index, value);
+    
     if (is_wire(value)) {
         wire_t *wire = as_wire(value);
         assert(wire->node == NULL);
@@ -41,7 +40,7 @@ node_set(node_t *self, size_t index, value_t value) {
 
 value_t node_get(const node_t *self, size_t index) {
     assert(index < self->ctor->arity);
-    return self->ports[index];
+    return array_get(self->value_array, index);
 }
 
 void
