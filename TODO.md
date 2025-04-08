@@ -1,6 +1,8 @@
 # net
 
-[net] `node_allocator_t` -- replace `node_new`
+[net] `node_allocator_free` & `node_allocator_recycle`
+
+[net] `node_allocator_allocate` -- replace `node_new`
 [net] remove `node_id_count` from worker -- prepare id in `node_allocator_t`
 
 [net] `principal_port_t` -- setup

@@ -49,3 +49,8 @@ size_t
 node_allocator_thread_count(const node_allocator_t *self) {
     return array_length(self->per_thread_stack_array);
 }
+
+node_t *
+node_allocator_allocate(node_allocator_t *self, stack_t *stack) {
+    return allocator_allocate(self->allocator, stack);
+}
