@@ -1,4 +1,4 @@
-[array] `array_set` -- reset cursor
+ambr array_grow array_resize
 [array] `array_test` -- `array_set` reset cursor
 
 [array] resize on `array_set` -- reset cursor

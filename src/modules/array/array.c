@@ -141,6 +141,11 @@ array_pick(const array_t *self, size_t back_index) {
 
 void
 array_set(array_t *self, size_t index, void *value) {
-    assert(index < self->cursor);
+    if (index >= self->size)
+        array_grow(self, index + self->grow_step);
+
     self->values[index] = value;
+
+    if (index >= self->cursor)
+        self->cursor = index + 1;
 }
