@@ -1,4 +1,9 @@
-[array] resize on `array_set`
+[stack] `stack_pick` -- call `stack_get`
+
+[array] `array_set` -- reset cursor
+[array] `array_test` -- `array_set` reset cursor
+
+[array] resize on `array_set` -- reset cursor
 [array] fix `array_pick`
 [array] resize on `array_pick`
 

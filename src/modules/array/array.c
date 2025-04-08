@@ -133,14 +133,14 @@ array_get(const array_t *self, size_t index) {
     return self->values[index];
 }
 
-void
-array_set(array_t *self, size_t index, void *value) {
-    assert(index < self->size);
-    self->values[index] = value;
+void *
+array_pick(const array_t *self, size_t back_index) {
+    size_t index = self->cursor - 1 - back_index;
+    return array_get(self, index);
 }
 
-void *
-array_pick(array_t *self, size_t index) {
-    assert(index < self->size);
-    return self->values[self->cursor - 1 - index];
+void
+array_set(array_t *self, size_t index, void *value) {
+    assert(index < self->cursor);
+    self->values[index] = value;
 }
