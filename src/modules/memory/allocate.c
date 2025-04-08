@@ -18,16 +18,8 @@ allocate(size_t size) {
 }
 
 void *
-allocate_many(size_t size, size_t unit_size) {
-    void *pointer = calloc(size, unit_size);
-    assert(pointer);
-    assert(pointer_is_8_bytes_aligned(pointer));
-    return pointer;
-}
-
-void *
 allocate_pointers(size_t size) {
-    return allocate_many(size, sizeof(void *));
+    return allocate(size * sizeof(void *));
 }
 
 void *
@@ -40,7 +32,8 @@ reallocate(void *pointer, size_t old_size, size_t new_size) {
 }
 
 void *
-reallocate_many(void *pointer, size_t old_size, size_t new_size, size_t unit_size) {
+reallocate_pointers(void *pointer, size_t old_size, size_t new_size) {
+    size_t unit_size = sizeof(void *);
     void *new_pointer = realloc(pointer, new_size * unit_size);
     assert(new_pointer);
     assert(pointer_is_8_bytes_aligned(new_pointer));
@@ -48,11 +41,6 @@ reallocate_many(void *pointer, size_t old_size, size_t new_size, size_t unit_siz
            0,
            (new_size - old_size) * unit_size);
     return new_pointer;
-}
-
-void *
-reallocate_pointers(void *pointer, size_t old_size, size_t new_size) {
-    return reallocate_many(pointer, old_size, new_size, sizeof(void *));
 }
 
 bool

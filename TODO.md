@@ -1,5 +1,3 @@
-[memory] remove `allocate_many` and `reallocate_many`
-
 # net
 
 [net] `node_allocator_t` -- has the `per_thread_stack_array`
