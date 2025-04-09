@@ -33,16 +33,17 @@ node_test_node_allocator_throughput(void) {
 
     double start_second = time_second();
 
-    tid_t T1 = thread_start(thread_fn, node_allocator);
-    tid_t T2 = thread_start(thread_fn, node_allocator);
-    tid_t T3 = thread_start(thread_fn, node_allocator);
+    size_t thread_count = 3;
+    array_t *thread_array = array_auto();
+    for (size_t i = 0; i < thread_count; i++)
+        array_push(thread_array, thread_start(thread_fn, node_allocator));
 
-    thread_wait(T1);
-    thread_wait(T2);
-    thread_wait(T3);
+    for (size_t i = 0; i < thread_count; i++)
+        thread_wait(array_pop(thread_array));
 
     node_allocator_destroy(&node_allocator);
 
+    printf("thread_count: %lu\n", thread_count);
     double throughput = REPEATION_COUNT * BATCH_SIZE / 1000 / time_passed_second(start_second);
     printf("throughput: %.f k/s\n", throughput);
 

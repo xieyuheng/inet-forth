@@ -1,6 +1,3 @@
-[net] `node_test_node_allocator_throughput` -- print thread count
-[net] `node_test_node_allocator_throughput` -- improve test by printing more info
-
 # net
 
 [net] `node_allocator_t` -- maybe remove `per_thread_stack_array` -- should not implement unused feature
