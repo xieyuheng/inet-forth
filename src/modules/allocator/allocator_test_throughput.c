@@ -8,6 +8,7 @@ static void *
 thread_fn(void *arg) {
     allocator_t *allocator = arg;
     stack_t *stack = stack_new();
+
     stack_t *allocated_stack = stack_new();
     for (size_t r = 0; r < REPEATION_COUNT; r++) {
         for (size_t i = 0; i < BATCH_SIZE; i++) {

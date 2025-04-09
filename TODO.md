@@ -1,6 +1,9 @@
+[net] `node_test_node_allocator_throughput` -- improve test by printing more info
+[thread] remove `clock_elapsed_seconds`
+
 # net
 
-[net] `node_test_node_allocator_throughput` -- test throughput of many threads
+[net] `node_allocator_t` -- maybe remove `per_thread_stack_array` -- should not implement unused feature
 
 [net] `principal_port_t` -- setup
 [net] `principal_port_t` -- as value
