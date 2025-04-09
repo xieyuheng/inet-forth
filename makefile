@@ -29,7 +29,7 @@ cflags = \
 	 $(CFLAGS)
 src = $(shell find src -name '*.c')
 headers = $(shell find src -name '*.h')
-lib = $(patsubst src/%,lib/%,$(patsubst %.c,%.o,$(src)))
+lib = $(patsubst src/%, lib/%, $(patsubst %.c, %.o, $(src)))
 app = inet-forth
 bin = bin/$(app)
 
@@ -50,6 +50,7 @@ test: self-test run-examples
 
 bin/$(app): $(lib) lib/$(app).o
 	mkdir -p $(dir $@) && $(cc) $^ $(ldflags) -o $@
+
 lib/%.o: src/%.c $(headers)
 	mkdir -p $(dir $@) && $(cc) -c $(cflags) $< -o $@
 
