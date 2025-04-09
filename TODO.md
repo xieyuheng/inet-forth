@@ -1,8 +1,11 @@
 # net
 
-[net] `node_allocator` -- add node to `allocator->stack` as needed (in batch) -- to avoid overhead
+[net] `node_allocator_new` should not take `cache_size` as arg
+[net] rename `node_new` to `node_new_per_thread`
+[net] rename `node_recycle` to `node_recycle_per_thread`
+[net] `node_new` & `node_destroy` should be simple
+[net] `node_allocator_new` -- should call `node_destroy`
 
-- `node_allocator_t` has `next_node_id` and `batch_size`
 
 [net] extract `node_test_node_allocator_throughput`
 

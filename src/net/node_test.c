@@ -8,9 +8,7 @@ node_test(void) {
 
     node_allocator_t *node_allocator = node_allocator_new(NODE_ALLOCATOR_CACHE_SIZE);
 
-    double end_second = time_second();
-    double passed_second = end_second - start_second;
-    printf("overhead for %d k nodes: %.f ms\n", NODE_COUNT / 1000, passed_second * 1000);
+    
 
     stack_t *stack_1 = stack_new();
     stack_t *stack_2 = stack_new();
@@ -23,6 +21,10 @@ node_test(void) {
     node_allocator_recycle(node_allocator, stack_1, &node);
 
     node_allocator_destroy(&node_allocator);
+
+    double end_second = time_second();
+    double passed_second = end_second - start_second;
+    printf("passed_second: %.f ms\n", passed_second * 1000);    
 
     printf("</node_test>\n");
 }
