@@ -1,6 +1,5 @@
 # net
 
-[net] `node_is_adjacent`
 [net] `build_adjacency_hash`
 [net] `node_neighbor_iter`
 [net] fix `x_inspect_run` -- fix snapshot tests

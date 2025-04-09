@@ -49,9 +49,32 @@ node_set(node_t *self, size_t index, value_t value) {
     }
 }
 
-value_t node_get(const node_t *self, size_t index) {
+value_t
+node_get(const node_t *self, size_t index) {
     assert(index < self->ctor->arity);
     return array_get(self->value_array, index);
+}
+
+bool
+node_is_adjacent(const node_t *self, const node_t *other) {
+    if (!self->ctor) return false;
+    if (!other->ctor) return false;
+
+    for (size_t i = 0; i < self->ctor->arity; i++) {
+        for (size_t j = 0; j < other->ctor->arity; j++) {
+            value_t x = node_get(self, i);
+            value_t y = node_get(other, j);
+            if (is_wire(x) && is_wire(y)) {
+                wire_t *u = as_wire(x);
+                wire_t *v = as_wire(y);
+                if (wire_opposite(u) == v && wire_opposite(v) == u) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
 }
 
 void
