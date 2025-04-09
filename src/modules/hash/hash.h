@@ -16,7 +16,8 @@ size_t hash_length(const hash_t *self);
 bool hash_has(hash_t *self, const void *key);
 void *hash_get(hash_t *self, const void *key);
 
-// set and put will own the key.
+// set and put will own the key,
+// which only has effect when there is `key_destroy_fn`.
 bool hash_set(hash_t *self, void *key, void *value);
 // put auto destroy old value if there is destroy_fn.
 // put will not update the key if the entry exists.
