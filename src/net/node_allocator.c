@@ -5,7 +5,6 @@ struct node_allocator_t {
     size_t node_count;
     size_t batch_size;
     array_t *node_array;
-    array_t *per_thread_stack_array;
 };
 
 static void
@@ -31,7 +30,6 @@ node_allocator_new(void) {
     self->batch_size = batch_size;
     self->node_array = array_auto_with((destroy_fn_t *) node_destroy);
     prepare_one_batch_of_nodes(self);
-    self->per_thread_stack_array = array_auto();
     return self;
 }
 
@@ -42,24 +40,9 @@ node_allocator_destroy(node_allocator_t **self_pointer) {
         node_allocator_t *self = *self_pointer;
         allocator_destroy(&self->allocator);
         array_destroy(&self->node_array);
-        array_destroy(&self->per_thread_stack_array);
         free(self);
         *self_pointer = NULL;
     }
-}
-
-void
-node_allocator_add_per_thread_stack(node_allocator_t *self, stack_t *stack) {
-    mutex_lock(self->allocator->mutex);
-
-    array_push(self->per_thread_stack_array, stack);
-
-    mutex_unlock(self->allocator->mutex);
-}
-
-size_t
-node_allocator_thread_count(const node_allocator_t *self) {
-    return array_length(self->per_thread_stack_array);
 }
 
 node_t *

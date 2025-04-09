@@ -1,7 +1,11 @@
 # net
 
-[net] `node_t` has `is_allocated`
-[net] `node_allocator_t` -- maybe remove `per_thread_stack_array` -- should not implement unused feature
+[net] `node_iter_t`
+[net] `node_iter_new`
+[net] `node_iter_destroy`
+
+[net] `node_iter_first`
+[net] `node_iter_next`
 
 [net] `principal_port_t` -- setup
 [net] `principal_port_t` -- as value

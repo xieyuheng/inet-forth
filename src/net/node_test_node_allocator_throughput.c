@@ -7,7 +7,6 @@ static void *
 thread_fn(void *arg) {
     node_allocator_t *node_allocator = arg;
     stack_t *stack = stack_new();
-    node_allocator_add_per_thread_stack(node_allocator, stack);
 
     stack_t *allocated_stack = stack_new();
     for (size_t r = 0; r < REPEATION_COUNT; r++) {

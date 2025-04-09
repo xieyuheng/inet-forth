@@ -27,7 +27,6 @@ worker_new(mod_t *mod, node_allocator_t *node_allocator) {
 
     self->node_allocator = node_allocator;
     self->free_node_stack = stack_new();
-    node_allocator_add_per_thread_stack(node_allocator, self->free_node_stack);
 
     self->debug_node_set = set_new();
 
