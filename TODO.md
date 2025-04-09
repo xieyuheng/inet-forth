@@ -1,4 +1,3 @@
-[thread] remove `clock_elapsed_seconds`
 [thread] get current thread id
 [net] `node_test_node_allocator_throughput` -- improve test by printing more info
 

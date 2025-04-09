@@ -25,7 +25,7 @@ counter_read(void) {
 void
 thread_test_counter_stat(void) {
     printf("<thread_test_counter_stat>\n");
-    clock_t start_clock = clock();
+    double start_second = time_second();
 
     list_t *list = list_new();
 
@@ -43,6 +43,6 @@ thread_test_counter_stat(void) {
     list_destroy(&list);
 
     printf("final count: %lu\n", counter_read());
-    printf("elapsed seconds: %fs\n", clock_elapsed_seconds(start_clock));
+    printf("elapsed seconds: %fs\n", time_passed_second(start_second));
     printf("</thread_test_counter_stat>\n");
 }
