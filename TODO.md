@@ -1,8 +1,9 @@
 # net
 
-[net] `connected_node_iter_t` -- has `node_allocator` and `node`
 [net] `connected_node_iter_new`
 [net] `connected_node_iter_destroy`
+[net] `connected_node_iter_first`
+[net] `connected_node_iter_next`
 
 [net] `connected_node_array` -- setup
 
