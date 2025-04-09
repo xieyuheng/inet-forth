@@ -4,6 +4,8 @@ struct connected_node_iter_t {
     node_allocator_t *node_allocator;
     node_t *root;
     hash_t *adjacency_hash;
+    set_t *occurred_node_set;
+    list_t *remaining_node_list;
 };
 
 connected_node_iter_t *connected_node_iter_new(node_allocator_t *node_allocator, node_t *root);
