@@ -20,3 +20,13 @@ thread_wait(tid_t tid) {
     assert(ok == 0);
     return result;
 }
+
+bool
+tid_equal(tid_t T1, tid_t T2) {
+    return pthread_equal(T1, T2);
+}
+
+void
+tid_print(tid_t tid) {
+    printf("%lu", (uint64_t) tid);
+}

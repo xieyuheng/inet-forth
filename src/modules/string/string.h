@@ -30,6 +30,6 @@ char *string_to_upper_case(const char *self);
 bool string_equal_mod_case(const char *left, const char *right);
 const char *string_next_line(const char *self);
 
-// xint -- support 0o- and ob- prefix
+// xint -- support 0o prefix (but not 0b).
 bool string_is_xint(const char *self);
 int64_t string_parse_xint(const char *self);
