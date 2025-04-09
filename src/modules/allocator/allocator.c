@@ -27,7 +27,7 @@ allocator_maybe_allocate(allocator_t *self, stack_t *stack) {
         mutex_lock(self->mutex);
 
         for (size_t i = 0; i < self->cache_size; i++) {
-            if (stack_is_empty(self->stack)) break;
+            if (stack_is_empty(self->stack)) break;            
             stack_push(stack, stack_pop(self->stack));
         }
 
@@ -71,9 +71,9 @@ allocator_free(allocator_t *self, stack_t *stack, void *value) {
 void
 allocator_recycle(allocator_t *self, stack_t *stack, void **value_pointer) {
     assert(value_pointer);
-    if (*value_pointer) {
-        void *value = *value_pointer;
-        allocator_free(self, stack, value);
-        *value_pointer = NULL;
-    }
+    if (*value_pointer == NULL) return;
+
+    void *value = *value_pointer;
+    allocator_free(self, stack, value);
+    *value_pointer = NULL;
 }
