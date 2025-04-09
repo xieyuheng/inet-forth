@@ -18,7 +18,7 @@ thread_fn(void *arg) {
 
         for (size_t i = 0; i < BATCH_SIZE; i++) {
             void *value = stack_pop(allocated_stack);
-            allocator_free(allocator, stack, value);
+            allocator_recycle(allocator, stack, &value);
         }
     }
 

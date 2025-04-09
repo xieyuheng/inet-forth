@@ -16,4 +16,6 @@ void node_recycle_per_thread(node_allocator_t *node_allocator, stack_t *free_nod
 void node_set(node_t *self, size_t index, value_t value);
 value_t node_get(const node_t *self, size_t index);
 
+bool node_is_adjacent(const node_t *self, const node_t *other);
+
 void node_print(const node_t *self, file_t *file);

@@ -27,7 +27,7 @@ allocator_maybe_allocate(allocator_t *self, stack_t *stack) {
         mutex_lock(self->mutex);
 
         for (size_t i = 0; i < self->cache_size; i++) {
-            if (stack_is_empty(self->stack)) break;            
+            if (stack_is_empty(self->stack)) break;
             stack_push(stack, stack_pop(self->stack));
         }
 
@@ -53,7 +53,7 @@ allocator_allocate(allocator_t *self, stack_t *stack) {
     return value;
 }
 
-void
+static void
 allocator_free(allocator_t *self, stack_t *stack, void *value) {
     if (stack_length(stack) >= 2 * self->cache_size) {
         mutex_lock(self->mutex);
