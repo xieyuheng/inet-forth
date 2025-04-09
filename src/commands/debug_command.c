@@ -23,7 +23,7 @@ run(commander_t *commander) {
             core_debug_flag = true;
             mod_t *mod = mod_new(src, code);
             import_prelude(mod);
-            node_allocator_t *node_allocator = node_allocator_new(NODE_ALLOCATOR_CACHE_SIZE);            
+            node_allocator_t *node_allocator = node_allocator_new();            
             worker_t *worker = worker_new(mod, node_allocator);
             execute_all(worker);
             debug_start(worker);

@@ -1,6 +1,5 @@
 # net
 
-[net] `node_allocator_new` should not take `cache_size` as arg
 [net] rename `node_new` to `node_new_per_thread`
 [net] rename `node_recycle` to `node_recycle_per_thread`
 [net] `node_new` & `node_destroy` should be simple

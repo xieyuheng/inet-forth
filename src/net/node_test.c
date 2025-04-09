@@ -6,7 +6,7 @@ node_test(void) {
 
     double start_second = time_second();
 
-    node_allocator_t *node_allocator = node_allocator_new(NODE_ALLOCATOR_CACHE_SIZE);
+    node_allocator_t *node_allocator = node_allocator_new();
 
     
 

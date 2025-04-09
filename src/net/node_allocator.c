@@ -23,10 +23,13 @@ prepare_one_batch_of_nodes(node_allocator_t *self) {
 }
 
 node_allocator_t *
-node_allocator_new(size_t cache_size) {
+node_allocator_new(void) {
+    size_t cache_size = NODE_ALLOCATOR_CACHE_SIZE;
+    size_t batch_size = NODE_ALLOCATOR_BATCH_SIZE;
+
     node_allocator_t *self = new(node_allocator_t);
     self->allocator = allocator_new(cache_size);
-    self->batch_size = 1024;
+    self->batch_size = batch_size;
     self->node_array = array_auto();
     // self->node_array = array_auto_with((destroy_fn_t *) node_destroy);
     prepare_one_batch_of_nodes(self);
