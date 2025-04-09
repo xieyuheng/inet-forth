@@ -1,4 +1,3 @@
-[thread] `thread_tid` -- get current thread id
 [net] `node_test_node_allocator_throughput` -- print thread count
 [net] `node_test_node_allocator_throughput` -- improve test by printing more info
 

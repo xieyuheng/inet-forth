@@ -8,6 +8,11 @@ thread_start(thread_fn_t *thread_fn, void *arg) {
     return tid;
 }
 
+tid_t
+thread_tid(void) {
+    return pthread_self();
+}
+
 void *
 thread_wait(tid_t tid) {
     void *result;
