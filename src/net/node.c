@@ -82,14 +82,14 @@ allocated_node_array(node_allocator_t *node_allocator) {
     mutex_lock(node_allocator->allocator->mutex);
 
     array_t *node_array = array_auto();
-    node_iter_t *node_iter = node_iter_new(node_allocator);
-    node_t *node = node_iter_first(node_iter);
+    all_node_iter_t *all_node_iter = all_node_iter_new(node_allocator);
+    node_t *node = all_node_iter_first(all_node_iter);
     while (node) {
         array_push(node_array, node);
-        node = node_iter_next(node_iter);
+        node = all_node_iter_next(all_node_iter);
     }
 
-    node_iter_destroy(&node_iter);
+    all_node_iter_destroy(&all_node_iter);
     mutex_unlock(node_allocator->allocator->mutex);
     return node_array;
 }

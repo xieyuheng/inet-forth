@@ -1,8 +1,8 @@
 #include "index.h"
 
 void
-node_test_node_iter(void) {
-    printf("<node_test_node_iter>\n");
+node_test_all_node_iter(void) {
+    printf("<node_test_all_node_iter>\n");
 
     node_allocator_t *node_allocator = node_allocator_new();
 
@@ -26,20 +26,20 @@ node_test_node_iter(void) {
         }
     }
 
-    node_iter_t *node_iter = node_iter_new(node_allocator);
-    node_t *node = node_iter_first(node_iter);
+    all_node_iter_t *all_node_iter = all_node_iter_new(node_allocator);
+    node_t *node = all_node_iter_first(all_node_iter);
     size_t node_count = 0;
     while (node) {
         node_print(node, stdout);
         printf("\n");
         node_count++;
         assert(list_find(node_list, node));
-        node = node_iter_next(node_iter);
+        node = all_node_iter_next(all_node_iter);
     }
 
     assert(node_count == list_length(node_list));
 
     node_allocator_destroy(&node_allocator);
 
-    printf("</node_test_node_iter>\n");
+    printf("</node_test_all_node_iter>\n");
 }

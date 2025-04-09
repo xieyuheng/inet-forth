@@ -1,25 +1,25 @@
 #include "index.h"
 
-node_iter_t *
-node_iter_new(node_allocator_t *node_allocator) {
-    node_iter_t *self = new(node_iter_t);
+all_node_iter_t *
+all_node_iter_new(node_allocator_t *node_allocator) {
+    all_node_iter_t *self = new(all_node_iter_t);
     self->node_allocator = node_allocator;
     self->cursor = 0;
     return self;
 }
 
 void
-node_iter_destroy(node_iter_t **self_pointer) {
+all_node_iter_destroy(all_node_iter_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer == NULL) return;
 
-    node_iter_t *self = *self_pointer;
+    all_node_iter_t *self = *self_pointer;
     free(self);
     *self_pointer = NULL;
 }
 
 node_t *
-node_iter_first(node_iter_t *self) {
+all_node_iter_first(all_node_iter_t *self) {
     self->cursor = 0;
 
     node_t *node = array_get(self->node_allocator->node_array, self->cursor++);
@@ -34,7 +34,7 @@ node_iter_first(node_iter_t *self) {
 }
 
 node_t *
-node_iter_next(node_iter_t *self) {
+all_node_iter_next(all_node_iter_t *self) {
     node_t *node = array_get(self->node_allocator->node_array, self->cursor++);
     while (!node || (node && !node->is_allocated)) {
         if (self->cursor >= array_length(self->node_allocator->node_array))
