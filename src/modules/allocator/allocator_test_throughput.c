@@ -43,9 +43,7 @@ allocator_test_throughput(void) {
     thread_wait(T1);
     thread_wait(T2);
 
-    double end_second = time_second();
-    double passed_second = end_second - start_second;
-    double throughput = REPEATION_COUNT * BATCH_SIZE / 1000 / passed_second;
+    double throughput = REPEATION_COUNT * BATCH_SIZE / 1000 / time_passed_second(start_second);
     printf("throughput: %.f k/s\n", throughput);
 
     allocator_destroy(&allocator);
