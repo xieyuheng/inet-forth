@@ -1,11 +1,12 @@
 # net
 
+[net] `node_neighbor_iter`
+[net] fix `x_inspect_run` -- fix snapshot tests
+
 [net] `principal_port_t` -- setup
 [net] `principal_port_t` -- as value
 
 [net] single list `wire_t`
-
-[net] fix `x_inspect_run` -- fix snapshot tests
 
 # thread
 
