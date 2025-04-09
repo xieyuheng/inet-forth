@@ -25,6 +25,8 @@ node_test_node_iter(void) {
     node_t *node = node_iter_first(node_iter);
     size_t node_count = 0;
     while (node) {
+        node_print(node, stdout);
+        printf("\n");
         node_count++;
         assert(list_find(node_list, node));
         node = node_iter_next(node_iter);
