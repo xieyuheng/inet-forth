@@ -13,8 +13,6 @@ thread_fn(void *arg) {
     for (size_t r = 0; r < REPEATION_COUNT; r++) {
         for (size_t i = 0; i < BATCH_SIZE; i++) {
             node_t *node = node_allocator_allocate(node_allocator, stack);
-            // node_print(node, stdout);
-            // printf("\n");
             stack_push(allocated_stack, node);
         }
 
@@ -35,9 +33,9 @@ node_test_node_allocator_throughput(void) {
 
     double start_second = time_second();
 
-    thread_id_t T1 = thread_start(thread_fn, node_allocator);
-    thread_id_t T2 = thread_start(thread_fn, node_allocator);
-    thread_id_t T3 = thread_start(thread_fn, node_allocator);
+    tid_t T1 = thread_start(thread_fn, node_allocator);
+    tid_t T2 = thread_start(thread_fn, node_allocator);
+    tid_t T3 = thread_start(thread_fn, node_allocator);
 
     thread_wait(T1);
     thread_wait(T2);

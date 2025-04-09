@@ -1,17 +1,17 @@
 #include "index.h"
 
-thread_id_t
+tid_t
 thread_start(thread_fn_t *thread_fn, void *arg) {
-    thread_id_t thread_id;
-    int ok = pthread_create(&thread_id, NULL, thread_fn, arg);
+    tid_t tid;
+    int ok = pthread_create(&tid, NULL, thread_fn, arg);
     assert(ok == 0);
-    return thread_id;
+    return tid;
 }
 
 void *
-thread_wait(thread_id_t thread_id) {
+thread_wait(tid_t tid) {
     void *result;
-    int ok = pthread_join(thread_id, &result);
+    int ok = pthread_join(tid, &result);
     assert(ok == 0);
     return result;
 }

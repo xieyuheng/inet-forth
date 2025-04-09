@@ -2,7 +2,7 @@
 
 struct worker_ctx_t {
     worker_t *worker;
-    thread_id_t thread_id;
+    tid_t tid;
 };
 
 worker_ctx_t *worker_ctx_new(worker_t *worker);

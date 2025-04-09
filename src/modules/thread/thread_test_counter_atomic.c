@@ -24,13 +24,13 @@ thread_test_counter_atomic(void) {
 
     thread_fn_t *thread_fn = (thread_fn_t *) counter_add1;
     for (size_t i = 0; i < 1000; i++) {
-        thread_id_t thread_id = thread_start(thread_fn, NULL);
-        list_push(list, (void *) thread_id);
+        tid_t tid = thread_start(thread_fn, NULL);
+        list_push(list, (void *) tid);
     }
 
     while (!list_is_empty(list)) {
-        thread_id_t thread_id = (thread_id_t) list_pop(list);
-        thread_wait(thread_id);
+        tid_t tid = (tid_t) list_pop(list);
+        thread_wait(tid);
     }
 
     list_destroy(&list);

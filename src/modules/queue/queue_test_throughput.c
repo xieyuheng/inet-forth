@@ -39,9 +39,9 @@ queue_test_throughput(void) {
 
     double start_second = time_second();
 
-    thread_id_t producer_id =
+    tid_t producer_id =
         thread_start((thread_fn_t *) uint_producer, queue);
-    thread_id_t consumer_id =
+    tid_t consumer_id =
         thread_start((thread_fn_t *) uint_consumer, queue);
 
     thread_wait(producer_id);

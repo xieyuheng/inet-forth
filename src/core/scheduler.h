@@ -8,7 +8,7 @@ struct scheduler_t {
     size_t task_queue_size;
     queue_t **task_queues;
     // scheduler thread
-    thread_id_t thread_id;
+    tid_t tid;
     // worker threads
     worker_ctx_t **worker_ctxs;
     // to free wires at the end of each batch,

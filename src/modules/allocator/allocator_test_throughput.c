@@ -37,8 +37,8 @@ allocator_test_throughput(void) {
 
     double start_second = time_second();
 
-    thread_id_t T1 = thread_start(thread_fn, allocator);
-    thread_id_t T2 = thread_start(thread_fn, allocator);
+    tid_t T1 = thread_start(thread_fn, allocator);
+    tid_t T2 = thread_start(thread_fn, allocator);
 
     thread_wait(T1);
     thread_wait(T2);
