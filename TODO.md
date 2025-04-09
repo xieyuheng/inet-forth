@@ -1,9 +1,8 @@
 # net
 
-[net] `connected_node_iter_first`
-[net] `connected_node_iter_next`
+[net] `connected_node_iter_first` & `connected_node_iter_next`
 
-[net] `connected_node_array` -- setup
+- `connected_node_array`
 
 [net] fix `x_inspect_run` -- fix snapshot tests
 

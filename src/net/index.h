@@ -3,7 +3,7 @@
 #include "deps.h"
 #include "types.h"
 #include "node_allocator.h"
-#include "all_node_iter.h"
+#include "allocated_node_iter.h"
 #include "connected_node_iter.h"
 #include "node.h"
 #include "wire.h"
