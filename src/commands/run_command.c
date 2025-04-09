@@ -21,8 +21,7 @@ run(commander_t *commander) {
             fclose(file);
             mod_t *mod = mod_new(src, code);
             import_prelude(mod);
-            node_allocator_t *node_allocator = node_allocator_new(
-                NODE_COUNT, NODE_ALLOCATOR_CACHE_SIZE);
+            node_allocator_t *node_allocator = node_allocator_new(NODE_ALLOCATOR_CACHE_SIZE);
             worker_t *worker = worker_new(mod, node_allocator);
             execute_all(worker);
             mod_destroy(&mod);

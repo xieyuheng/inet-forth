@@ -8,15 +8,15 @@ struct node_allocator_t {
 };
 
 node_allocator_t *
-node_allocator_new(size_t node_count, size_t cache_size) {
+node_allocator_new(size_t cache_size) {
     node_allocator_t *self = new(node_allocator_t);
 
     self->allocator = allocator_new(cache_size);
     stack_t *node_stack = allocator_stack(self->allocator);
 
-    self->node_count = node_count;
-    self->node_heap = allocate(node_count * sizeof(node_t));
-    for (size_t i = 0; i < node_count; i++) {
+    self->node_count = NODE_COUNT;
+    self->node_heap = allocate(self->node_count * sizeof(node_t));
+    for (size_t i = 0; i < self->node_count; i++) {
         node_t *node = &self->node_heap[i];
         node->id = i;
         node_init(node);

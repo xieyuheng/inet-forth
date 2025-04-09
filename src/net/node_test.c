@@ -6,13 +6,11 @@ node_test(void) {
 
     double start_second = time_second();
 
-    node_allocator_t *node_allocator = node_allocator_new(
-        NODE_COUNT, NODE_ALLOCATOR_CACHE_SIZE);
+    node_allocator_t *node_allocator = node_allocator_new(NODE_ALLOCATOR_CACHE_SIZE);
 
     double end_second = time_second();
     double passed_second = end_second - start_second;
-    printf("node_allocator_new overhead: %.f ms\n", passed_second * 1000);
-    printf("- NODE_COUNT: %d\n", NODE_COUNT);
+    printf("overhead for %d k nodes: %.f ms\n", NODE_COUNT / 1000, passed_second * 1000);
 
     stack_t *stack_1 = stack_new();
     stack_t *stack_2 = stack_new();

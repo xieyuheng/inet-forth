@@ -5,8 +5,7 @@ scheduler_new(mod_t *mod, size_t worker_pool_size) {
     scheduler_t *self = new_page_aligned(scheduler_t);
     self->mod = mod;
 
-    self->node_allocator = node_allocator_new(
-        NODE_COUNT, NODE_ALLOCATOR_CACHE_SIZE);
+    self->node_allocator = node_allocator_new(NODE_ALLOCATOR_CACHE_SIZE);
 
     self->worker_pool_size = worker_pool_size;
     self->workers = allocate_pointers(worker_pool_size);
