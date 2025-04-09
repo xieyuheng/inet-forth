@@ -36,13 +36,13 @@ debug_new(worker_t *worker) {
 void
 debug_destroy(debug_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        debug_t *self = *self_pointer;
-        canvas_destroy(&self->canvas);
-        hash_destroy(&self->node_model_hash);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    debug_t *self = *self_pointer;
+    canvas_destroy(&self->canvas);
+    hash_destroy(&self->node_model_hash);
+    free(self);
+    *self_pointer = NULL;
 }
 
 bool

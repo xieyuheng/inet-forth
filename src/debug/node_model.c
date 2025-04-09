@@ -12,9 +12,9 @@ node_model_new(vec2_t position) {
 void
 node_model_destroy(node_model_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        node_model_t *self = *self_pointer;
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    node_model_t *self = *self_pointer;
+    free(self);
+    *self_pointer = NULL;
 }

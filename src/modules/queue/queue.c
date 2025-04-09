@@ -70,17 +70,17 @@ queue_purge(queue_t *self) {
 void
 queue_destroy(queue_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        queue_t *self = *self_pointer;
-        queue_purge(self);
-        free(self->values);
-        free(self->front_cursor);
-        free(self->back_cursor);
-        free(self->cached_front_cursor);
-        free(self->cached_back_cursor);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    queue_t *self = *self_pointer;
+    queue_purge(self);
+    free(self->values);
+    free(self->front_cursor);
+    free(self->back_cursor);
+    free(self->cached_front_cursor);
+    free(self->cached_back_cursor);
+    free(self);
+    *self_pointer = NULL;
 }
 
 void

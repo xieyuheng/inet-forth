@@ -11,12 +11,12 @@ port_info_new(char *name, bool is_principal) {
 void
 port_info_destroy(port_info_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        port_info_t *self = *self_pointer;
-        free(self->name);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    port_info_t *self = *self_pointer;
+    free(self->name);
+    free(self);
+    *self_pointer = NULL;
 }
 
 

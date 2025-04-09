@@ -14,12 +14,12 @@ commander_new(const char *name, const char *version, int argc, char **argv) {
 void
 commander_destroy(commander_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        commander_t *self = *self_pointer;
-        list_destroy(&self->command_list);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    commander_t *self = *self_pointer;
+    list_destroy(&self->command_list);
+    free(self);
+    *self_pointer = NULL;
 }
 
 

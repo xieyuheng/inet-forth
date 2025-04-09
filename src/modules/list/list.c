@@ -27,12 +27,12 @@ list_new(void) {
 void
 list_destroy(list_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        list_t *self = *self_pointer;
-        list_purge(self);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    list_t *self = *self_pointer;
+    list_purge(self);
+    free(self);
+    *self_pointer = NULL;
 }
 
 void

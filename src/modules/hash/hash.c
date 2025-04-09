@@ -115,13 +115,13 @@ hash_purge_without_shrink(hash_t *self) {
 void
 hash_destroy(hash_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        hash_t *self = *self_pointer;
-        hash_purge_without_shrink(self);
-        free(self->entries);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    hash_t *self = *self_pointer;
+    hash_purge_without_shrink(self);
+    free(self->entries);
+    free(self);
+    *self_pointer = NULL;
 }
 
 void

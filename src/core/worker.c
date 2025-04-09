@@ -36,16 +36,16 @@ worker_new(mod_t *mod, node_allocator_t *node_allocator) {
 void
 worker_destroy(worker_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        worker_t *self = *self_pointer;
-        list_destroy(&self->token_list);
-        queue_destroy(&self->task_queue);
-        stack_destroy(&self->value_stack);
-        stack_destroy(&self->return_stack);
-        set_destroy(&self->debug_node_set);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    worker_t *self = *self_pointer;
+    list_destroy(&self->token_list);
+    queue_destroy(&self->task_queue);
+    stack_destroy(&self->value_stack);
+    stack_destroy(&self->return_stack);
+    set_destroy(&self->debug_node_set);
+    free(self);
+    *self_pointer = NULL;
 }
 
 void

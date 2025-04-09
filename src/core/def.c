@@ -37,34 +37,34 @@ def_node_ctor(node_ctor_t *node_ctor) {
 void
 def_destroy(def_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        def_t *self = *self_pointer;
+    if (*self_pointer == NULL) return;
 
-        switch (self->kind) {
-        case DEF_PRIMITIVE: {
-            primitive_destroy(&self->primitive);
-            break;
-        }
+    def_t *self = *self_pointer;
 
-        case DEF_FUNCTION: {
-            function_destroy(&self->function);
-            break;
-        }
-
-        case DEF_CONSTANT: {
-            string_destroy(&self->constant.name);
-            break;
-        }
-
-        case DEF_NODE_CTOR: {
-            node_ctor_destroy(&self->node_ctor);
-            break;
-        }
-        }
-
-        free(self);
-        *self_pointer = NULL;
+    switch (self->kind) {
+    case DEF_PRIMITIVE: {
+        primitive_destroy(&self->primitive);
+        break;
     }
+
+    case DEF_FUNCTION: {
+        function_destroy(&self->function);
+        break;
+    }
+
+    case DEF_CONSTANT: {
+        string_destroy(&self->constant.name);
+        break;
+    }
+
+    case DEF_NODE_CTOR: {
+        node_ctor_destroy(&self->node_ctor);
+        break;
+    }
+    }
+
+    free(self);
+    *self_pointer = NULL;
 }
 
 const char *

@@ -37,26 +37,26 @@ scheduler_new(mod_t *mod, size_t worker_pool_size) {
 void
 scheduler_destroy(scheduler_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        scheduler_t *self = *self_pointer;
+    if (*self_pointer == NULL) return;
 
-        for (size_t i = 0; i < self->worker_pool_size; i++)
-            worker_destroy(&self->workers[i]);
-        free(self->workers);
+    scheduler_t *self = *self_pointer;
 
-        for (size_t i = 0; i < self->worker_pool_size; i++)
-            worker_ctx_destroy(&self->worker_ctxs[i]);
-        free(self->worker_ctxs);
+    for (size_t i = 0; i < self->worker_pool_size; i++)
+        worker_destroy(&self->workers[i]);
+    free(self->workers);
 
-        for (size_t i = 0; i < self->worker_pool_size; i++)
-            queue_destroy(&self->task_queues[i]);
-        free(self->task_queues);
+    for (size_t i = 0; i < self->worker_pool_size; i++)
+        worker_ctx_destroy(&self->worker_ctxs[i]);
+    free(self->worker_ctxs);
 
-        for (size_t i = 0; i < self->worker_pool_size; i++)
-            array_destroy(&self->garbage_wire_arrays[i]);
-        free(self->garbage_wire_arrays);
+    for (size_t i = 0; i < self->worker_pool_size; i++)
+        queue_destroy(&self->task_queues[i]);
+    free(self->task_queues);
 
-        free(self);
-        *self_pointer = NULL;
-    }
+    for (size_t i = 0; i < self->worker_pool_size; i++)
+        array_destroy(&self->garbage_wire_arrays[i]);
+    free(self->garbage_wire_arrays);
+
+    free(self);
+    *self_pointer = NULL;
 }

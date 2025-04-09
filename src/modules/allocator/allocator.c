@@ -12,13 +12,13 @@ allocator_new(size_t cache_size) {
 void
 allocator_destroy(allocator_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        allocator_t *self = *self_pointer;
-        mutex_destroy(&self->mutex);
-        stack_destroy(&self->stack);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    allocator_t *self = *self_pointer;
+    mutex_destroy(&self->mutex);
+    stack_destroy(&self->stack);
+    free(self);
+    *self_pointer = NULL;
 }
 
 void *

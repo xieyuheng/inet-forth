@@ -15,12 +15,12 @@ font_new(void) {
 void
 font_destroy(font_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        font_t *self = *self_pointer;
-        free(self->glyphs);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    font_t *self = *self_pointer;
+    free(self->glyphs);
+    free(self);
+    *self_pointer = NULL;
 }
 
 glyph_t *

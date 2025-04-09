@@ -13,12 +13,12 @@ mod_new(const char *src, const char *code) {
 void
 mod_destroy(mod_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        mod_t *self = *self_pointer;
-        hash_destroy(&self->def_hash);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    mod_t *self = *self_pointer;
+    hash_destroy(&self->def_hash);
+    free(self);
+    *self_pointer = NULL;
 }
 
 const def_t *

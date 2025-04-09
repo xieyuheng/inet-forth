@@ -15,12 +15,12 @@ wire_new(void) {
 void
 wire_destroy(wire_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        wire_t *self = *self_pointer;
-        free(self);
-        // Does NOT own `node` and `opposite`.
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    wire_t *self = *self_pointer;
+    free(self);
+    // Does NOT own `node` and `opposite`.
+    *self_pointer = NULL;
 }
 
 bool

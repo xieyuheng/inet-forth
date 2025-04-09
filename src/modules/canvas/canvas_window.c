@@ -14,13 +14,13 @@ canvas_window_new(canvas_t *canvas) {
 void
 canvas_window_destroy(canvas_window_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        canvas_window_t *self = *self_pointer;
-        if (self->image) XFree(self->image);
-        free(self->image_buffer);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    canvas_window_t *self = *self_pointer;
+    if (self->image) XFree(self->image);
+    free(self->image_buffer);
+    free(self);
+    *self_pointer = NULL;
 }
 
 size_t canvas_window_offset_x(canvas_window_t *self) {

@@ -28,15 +28,15 @@ canvas_new(size_t width, size_t height, size_t scale) {
 void
 canvas_destroy(canvas_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        canvas_t *self = *self_pointer;
-        free(self->pixels);
-        canvas_window_destroy(&self->window);
-        list_destroy(&self->clickable_area_list);
-        store_destroy(&self->asset_store);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    canvas_t *self = *self_pointer;
+    free(self->pixels);
+    canvas_window_destroy(&self->window);
+    list_destroy(&self->clickable_area_list);
+    store_destroy(&self->asset_store);
+    free(self);
+    *self_pointer = NULL;
 }
 
 blob_t *

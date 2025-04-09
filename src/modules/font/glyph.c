@@ -31,12 +31,12 @@ glyph_new(code_point_t code_point, size_t width, size_t height) {
 void
 glyph_destroy(glyph_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        glyph_t *self = *self_pointer;
-        free(self->bitmap);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    glyph_t *self = *self_pointer;
+    free(self->bitmap);
+    free(self);
+    *self_pointer = NULL;
 }
 
 code_point_t

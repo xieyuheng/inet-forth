@@ -3,11 +3,11 @@
 void
 string_destroy(char **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        char *self = *self_pointer;
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    char *self = *self_pointer;
+    free(self);
+    *self_pointer = NULL;
 }
 
 char*

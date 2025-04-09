@@ -17,12 +17,12 @@ store_new(const char *base) {
 void
 store_destroy(store_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        store_t *self = *self_pointer;
-        hash_destroy(&self->cached_blob_hash);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    store_t *self = *self_pointer;
+    hash_destroy(&self->cached_blob_hash);
+    free(self);
+    *self_pointer = NULL;
 }
 
 const char *

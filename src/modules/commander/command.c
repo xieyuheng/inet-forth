@@ -13,8 +13,9 @@ command_new(const char *name) {
 void
 command_destroy(command_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        free(*self_pointer);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    command_t *self = *self_pointer;
+    free(self);
+    *self_pointer = NULL;
 }

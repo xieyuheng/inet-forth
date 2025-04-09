@@ -23,13 +23,13 @@ lexer_new(void) {
 void
 lexer_destroy(lexer_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        lexer_t *self = *self_pointer;
-        // keep `token_list` to be collected as return value.
-        free(self->buffer);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    lexer_t *self = *self_pointer;
+    // keep `token_list` to be collected as return value.
+    free(self->buffer);
+    free(self);
+    *self_pointer = NULL;
 }
 
 void

@@ -15,10 +15,10 @@ token_new(char *string, token_kind_t kind, size_t start, size_t end, size_t line
 void
 token_destroy(token_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        token_t *self = *self_pointer;
-        free(self->string);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    token_t *self = *self_pointer;
+    free(self->string);
+    free(self);
+    *self_pointer = NULL;
 }

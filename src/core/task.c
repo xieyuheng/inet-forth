@@ -11,9 +11,9 @@ task_new(wire_t *wire, const rule_t *rule) {
 void
 task_destroy(task_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        task_t *self = *self_pointer;
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    task_t *self = *self_pointer;
+    free(self);
+    *self_pointer = NULL;
 }

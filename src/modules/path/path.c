@@ -19,13 +19,13 @@ path_new(const char *string) {
 void
 path_destroy(path_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        path_t *self = *self_pointer;
-        stack_destroy(&self->segment_stack);
-        string_destroy(&self->string);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    path_t *self = *self_pointer;
+    stack_destroy(&self->segment_stack);
+    string_destroy(&self->string);
+    free(self);
+    *self_pointer = NULL;
 }
 
 bool

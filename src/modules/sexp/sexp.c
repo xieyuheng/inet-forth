@@ -11,11 +11,11 @@ atom_sexp_new(const token_t *token) {
 void
 atom_sexp_destroy(atom_sexp_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        atom_sexp_t *self = *self_pointer;
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    atom_sexp_t *self = *self_pointer;
+    free(self);
+    *self_pointer = NULL;
 }
 
 list_sexp_t *
@@ -31,30 +31,30 @@ list_sexp_new(const token_t *start_token, const token_t *end_token, list_t *sexp
 void
 list_sexp_destroy(list_sexp_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        list_sexp_t *self = *self_pointer;
-        list_destroy(&self->sexp_list);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    list_sexp_t *self = *self_pointer;
+    list_destroy(&self->sexp_list);
+    free(self);
+    *self_pointer = NULL;
 }
 
 void
 sexp_destroy(sexp_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        sexp_t *self = *self_pointer;
-        switch (self->kind) {
-        case ATOM_SEXP: {
-            atom_sexp_destroy((atom_sexp_t **) self_pointer);
-            return;
-        }
+    if (*self_pointer == NULL) return;
 
-        case LIST_SEXP: {
-            list_sexp_destroy((list_sexp_t **) self_pointer);
-            return;
-        }
-        }
+    sexp_t *self = *self_pointer;
+    switch (self->kind) {
+    case ATOM_SEXP: {
+        atom_sexp_destroy((atom_sexp_t **) self_pointer);
+        return;
+    }
+
+    case LIST_SEXP: {
+        list_sexp_destroy((list_sexp_t **) self_pointer);
+        return;
+    }
     }
 }
 

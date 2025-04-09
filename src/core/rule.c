@@ -16,14 +16,14 @@ rule_new(
 void
 rule_destroy(rule_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        rule_t *self = *self_pointer;
-        // NOTE A rule dose not own `function`.
-        //   because they might be shared.
-        // function_destroy(&self->function);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    rule_t *self = *self_pointer;
+    // NOTE A rule dose not own `function`.
+    //   because they might be shared.
+    // function_destroy(&self->function);
+    free(self);
+    *self_pointer = NULL;
 }
 
 void

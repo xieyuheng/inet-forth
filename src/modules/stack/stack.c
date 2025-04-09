@@ -21,13 +21,13 @@ stack_purge(stack_t *self) {
 void
 stack_destroy(stack_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        stack_t *self = *self_pointer;
-        stack_purge(self);
-        array_destroy(&self->array);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    stack_t *self = *self_pointer;
+    stack_purge(self);
+    array_destroy(&self->array);
+    free(self);
+    *self_pointer = NULL;
 }
 
 void

@@ -11,11 +11,11 @@ utf8_iter_new(const char *string) {
 void
 utf8_iter_destroy(utf8_iter_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        utf8_iter_t *self = *self_pointer;
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    utf8_iter_t *self = *self_pointer;
+    free(self);
+    *self_pointer = NULL;
 }
 
 code_point_t

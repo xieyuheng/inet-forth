@@ -36,13 +36,13 @@ node_allocator_new(void) {
 void
 node_allocator_destroy(node_allocator_t **self_pointer) {
     assert(self_pointer);
-    if (*self_pointer) {
-        node_allocator_t *self = *self_pointer;
-        allocator_destroy(&self->allocator);
-        array_destroy(&self->node_array);
-        free(self);
-        *self_pointer = NULL;
-    }
+    if (*self_pointer == NULL) return;
+
+    node_allocator_t *self = *self_pointer;
+    allocator_destroy(&self->allocator);
+    array_destroy(&self->node_array);
+    free(self);
+    *self_pointer = NULL;
 }
 
 node_t *
