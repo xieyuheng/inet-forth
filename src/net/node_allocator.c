@@ -8,6 +8,7 @@ prepare_one_batch_of_nodes(node_allocator_t *self) {
         node_t *node = node_new(NULL);
         node->id = ++self->node_count;
         stack_push(self->allocator->stack, node);
+        array_push(self->node_array, node);
     }
 
     mutex_unlock(self->allocator->mutex);

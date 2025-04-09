@@ -6,6 +6,7 @@ node_test(void) {
 
     node_test_node_allocator_overhead();
     node_test_node_allocator_throughput();
+    node_test_node_iter();
 
     printf("</node_test>\n");
 }

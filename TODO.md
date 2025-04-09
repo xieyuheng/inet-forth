@@ -1,7 +1,5 @@
 # net
 
-[net] `node_test_node_iter`
-
 [net] `principal_port_t` -- setup
 [net] `principal_port_t` -- as value
 
