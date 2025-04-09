@@ -1,6 +1,5 @@
 # net
 
-[net] `connected_node_iter_new`
 [net] `connected_node_iter_destroy`
 [net] `connected_node_iter_first`
 [net] `connected_node_iter_next`
