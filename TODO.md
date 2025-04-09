@@ -1,7 +1,5 @@
 # net
 
-[net] `connected_node_array`
-
 [net] fix `x_inspect_run` -- fix snapshot tests
 
 [net] `principal_port_t` -- setup
