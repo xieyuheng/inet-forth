@@ -1,12 +1,12 @@
 # net
 
-[net] extract `node_test_node_allocator_overhead`
 [net] extract `node_test_node_allocator_throughput`
 
 [net] `principal_port_t` -- setup
 [net] `principal_port_t` -- as value
 
 [net] single list `wire_t`
+
 [net] fix `x_inspect_run` -- fix snapshot tests
 
 # thread
