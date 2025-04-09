@@ -89,8 +89,8 @@ allocated_node_array(node_allocator_t *node_allocator) {
         node = node_iter_next(node_iter);
     }
 
+    node_iter_destroy(&node_iter);
     mutex_unlock(node_allocator->allocator->mutex);
-
     return node_array;
 }
 
@@ -115,7 +115,6 @@ node_adjacency_hash(node_allocator_t *node_allocator) {
     }
 
     array_destroy(&node_array);
-
     return adjacency_hash;
 }
 

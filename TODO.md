@@ -1,6 +1,8 @@
 # net
 
-[net] `node_neighbor_iter`
+[net] `node_component_iter`
+[net] `node_component_iter_t`
+[net] `node_component_iter_new`
 [net] fix `x_inspect_run` -- fix snapshot tests
 
 [net] `principal_port_t` -- setup
