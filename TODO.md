@@ -1,7 +1,5 @@
 # net
 
-[net] `node_iter_destroy`
-
 [net] `node_iter_first`
 [net] `node_iter_next`
 
