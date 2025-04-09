@@ -9,16 +9,21 @@ node_test_node_iter(void) {
     size_t per_thread_node_count = 10;
     list_t *node_list = list_new();
 
-    for (size_t i = 0; i < per_thread_node_count; i++) {
+
+    {
         stack_t *stack = stack_new();
-        node_t *node = node_allocator_allocate(node_allocator, stack);
-        list_push(node_list, node);
+        for (size_t i = 0; i < per_thread_node_count; i++) {
+            node_t *node = node_allocator_allocate(node_allocator, stack);
+            list_push(node_list, node);
+        }
     }
 
-    for (size_t i = 0; i < per_thread_node_count; i++) {
+    {
         stack_t *stack = stack_new();
-        node_t *node = node_allocator_allocate(node_allocator, stack);
-        list_push(node_list, node);
+        for (size_t i = 0; i < per_thread_node_count; i++) {
+            node_t *node = node_allocator_allocate(node_allocator, stack);
+            list_push(node_list, node);
+        }
     }
 
     node_iter_t *node_iter = node_iter_new(node_allocator);
