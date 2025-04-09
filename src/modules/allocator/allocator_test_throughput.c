@@ -29,11 +29,9 @@ allocator_test_throughput(void) {
     printf("<allocator_test_throughput>\n");
 
     allocator_t *allocator = allocator_new(CACHE_SIZE);
-
-    stack_t *stack = allocator_stack(allocator);
     size_t ENOUGH_ALLOCATION_COUNT = CACHE_SIZE * 100;
     for (size_t i = 0; i < ENOUGH_ALLOCATION_COUNT; i++) {
-        stack_push(stack, string_copy("abc"));
+        stack_push(allocator->stack, string_copy("abc"));
     }
 
     double start_second = time_second();

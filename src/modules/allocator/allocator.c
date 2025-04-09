@@ -1,11 +1,5 @@
 #include "index.h"
 
-struct allocator_t {
-    mutex_t *mutex;
-    stack_t *stack;
-    size_t cache_size;
-};
-
 allocator_t *
 allocator_new(size_t cache_size) {
     allocator_t *self = new_page_aligned(allocator_t);
@@ -13,11 +7,6 @@ allocator_new(size_t cache_size) {
     self->stack = stack_new();
     self->cache_size = cache_size;
     return self;
-}
-
-void *
-allocator_stack(allocator_t *self) {
-    return self->stack;
 }
 
 void

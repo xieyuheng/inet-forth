@@ -2,6 +2,8 @@
 
 struct node_allocator_t {
     allocator_t *allocator;
+    size_t next_node_id;
+    size_t batch_size;
     size_t node_count;
     node_t *node_heap;
     array_t *per_thread_stack_array;
@@ -11,16 +13,17 @@ node_allocator_t *
 node_allocator_new(size_t cache_size) {
     node_allocator_t *self = new(node_allocator_t);
 
-    self->allocator = allocator_new(cache_size);
-    stack_t *node_stack = allocator_stack(self->allocator);
+    self->allocator = allocator_new(cache_size);    
+
+    self->batch_size = 1024;
 
     self->node_count = NODE_COUNT;
     self->node_heap = allocate(self->node_count * sizeof(node_t));
     for (size_t i = 0; i < self->node_count; i++) {
         node_t *node = &self->node_heap[i];
-        node->id = i;
+        node->id = self->next_node_id;
         node_init(node);
-        stack_push(node_stack, node);
+        stack_push(self->allocator->stack, node);
     }
 
     self->per_thread_stack_array = array_auto();
