@@ -50,7 +50,11 @@ node_allocator_destroy(node_allocator_t **self_pointer) {
 
 void
 node_allocator_add_per_thread_stack(node_allocator_t *self, stack_t *stack) {
+    mutex_lock(self->allocator->mutex);
+
     array_push(self->per_thread_stack_array, stack);
+
+    mutex_unlock(self->allocator->mutex);
 }
 
 size_t
