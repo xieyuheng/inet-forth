@@ -6,8 +6,9 @@ struct node_t {
     array_t *value_array;
 };
 
+node_t *node_new(const node_ctor_t *ctor);
+void node_destroy(node_t **self_pointer);
 
-void node_init(node_t *self);
 node_t *node_new_per_thread(node_allocator_t *node_allocator, stack_t *free_node_stack, const node_ctor_t *ctor);
 void node_recycle_per_thread(node_allocator_t *node_allocator, stack_t *free_node_stack, node_t **self_pointer);
 

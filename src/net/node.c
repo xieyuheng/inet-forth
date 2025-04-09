@@ -1,8 +1,21 @@
 #include "index.h"
 
-void
-node_init(node_t *self) {
+node_t *
+node_new(const node_ctor_t *ctor) {
+    node_t *self = new(node_t);
+    self->ctor = ctor;
     self->value_array = array_auto();
+    return self;
+}
+
+void
+node_destroy(node_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer) {
+        node_t *self = *self_pointer;
+        free(self);
+        *self_pointer = NULL;
+    }
 }
 
 node_t *
