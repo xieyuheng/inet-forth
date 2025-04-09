@@ -1,6 +1,6 @@
 # net
 
-[net] extract `node_test_node_allocator_throughput`
+[net] `node_test_node_allocator_throughput` -- test throughput of many threads
 
 [net] `principal_port_t` -- setup
 [net] `principal_port_t` -- as value
