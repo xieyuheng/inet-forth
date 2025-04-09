@@ -56,7 +56,13 @@ value_t node_get(const node_t *self, size_t index) {
 
 void
 node_print(const node_t *self, file_t *file) {
-    char *id_string = uint_to_subscript(self->id);
-    fprintf(file, "(%s%s)", self->ctor->name, id_string);
-    free(id_string);
+    if (self->ctor) {
+        char *id_string = uint_to_subscript(self->id);
+        fprintf(file, "(%s%s)", self->ctor->name, id_string);
+        free(id_string);
+    } else {
+        char *id_string = uint_to_subscript(self->id);
+        fprintf(file, "(%s)", id_string);
+        free(id_string);
+    }
 }

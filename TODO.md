@@ -1,5 +1,6 @@
 # net
 
+[net] extract `node_test_node_allocator_overhead`
 [net] extract `node_test_node_allocator_throughput`
 
 [net] `principal_port_t` -- setup
