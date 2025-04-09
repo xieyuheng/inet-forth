@@ -47,7 +47,7 @@ allocated_node_iter_next(allocated_node_iter_t *self) {
 }
 
 array_t *
-all_node_array(node_allocator_t *node_allocator) {
+allocated_node_array(node_allocator_t *node_allocator) {
     mutex_lock(node_allocator->allocator->mutex);
 
     array_t *node_array = array_auto();

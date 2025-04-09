@@ -1,6 +1,5 @@
 # net
 
-ambr all_node_array  allocated_node_iter_next
 [net] `connected_node_array`
 
 [net] fix `x_inspect_run` -- fix snapshot tests
