@@ -1,12 +1,5 @@
 #include "index.h"
 
-struct node_allocator_t {
-    allocator_t *allocator;
-    size_t node_count;
-    size_t batch_size;
-    array_t *node_array;
-};
-
 static void
 prepare_one_batch_of_nodes(node_allocator_t *self) {
     mutex_lock(self->allocator->mutex);
