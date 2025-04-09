@@ -10,3 +10,5 @@ void all_node_iter_destroy(all_node_iter_t **self_pointer);
 
 node_t *all_node_iter_first(all_node_iter_t *self);
 node_t *all_node_iter_next(all_node_iter_t *self);
+
+array_t *all_node_array(node_allocator_t *node_allocator);

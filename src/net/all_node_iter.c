@@ -45,3 +45,20 @@ all_node_iter_next(all_node_iter_t *self) {
 
     return node;
 }
+
+array_t *
+all_node_array(node_allocator_t *node_allocator) {
+    mutex_lock(node_allocator->allocator->mutex);
+
+    array_t *node_array = array_auto();
+    all_node_iter_t *all_node_iter = all_node_iter_new(node_allocator);
+    node_t *node = all_node_iter_first(all_node_iter);
+    while (node) {
+        array_push(node_array, node);
+        node = all_node_iter_next(all_node_iter);
+    }
+
+    all_node_iter_destroy(&all_node_iter);
+    mutex_unlock(node_allocator->allocator->mutex);
+    return node_array;
+}

@@ -77,29 +77,12 @@ node_is_adjacent(const node_t *self, const node_t *other) {
     return false;
 }
 
-static array_t *
-allocated_node_array(node_allocator_t *node_allocator) {
-    mutex_lock(node_allocator->allocator->mutex);
-
-    array_t *node_array = array_auto();
-    all_node_iter_t *all_node_iter = all_node_iter_new(node_allocator);
-    node_t *node = all_node_iter_first(all_node_iter);
-    while (node) {
-        array_push(node_array, node);
-        node = all_node_iter_next(all_node_iter);
-    }
-
-    all_node_iter_destroy(&all_node_iter);
-    mutex_unlock(node_allocator->allocator->mutex);
-    return node_array;
-}
-
 hash_t *
 node_adjacency_hash(node_allocator_t *node_allocator) {
     hash_t *adjacency_hash = hash_new();
     hash_set_destroy_fn(adjacency_hash, (destroy_fn_t *) array_destroy);
 
-    array_t *node_array = allocated_node_array(node_allocator);
+    array_t *node_array = all_node_array(node_allocator);
     size_t length = array_length(node_array);
     for (size_t i = 0; i < length; i++) {
         node_t *x = array_get(node_array, i);

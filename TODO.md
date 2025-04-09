@@ -1,11 +1,11 @@
 # net
-rename `node_iter` to `all_node_iter`
-[net] `all_node_array`
 
 [net] `connected_node_iter` -- setup
 [net] `connected_node_iter_t` -- has `node_allocator` and `node`
 [net] `connected_node_iter_new`
 [net] `connected_node_iter_destroy`
+
+[net] `connected_node_array` -- setup
 
 [net] fix `x_inspect_run` -- fix snapshot tests
 
