@@ -1,6 +1,7 @@
 # net
 
-[net] `node_iter_t`
+[net] `node_iter_t` -- setup
+[net] `node_iter_t` -- has `node_allocator`
 [net] `node_iter_new`
 [net] `node_iter_destroy`
 
