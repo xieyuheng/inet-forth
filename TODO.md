@@ -1,7 +1,5 @@
 # net
 
-[net] `node_allocator_new` -- should call `node_destroy`
-
 [net] extract `node_test_node_allocator_throughput`
 
 [net] `principal_port_t` -- setup

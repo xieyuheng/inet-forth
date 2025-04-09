@@ -13,7 +13,7 @@ prepare_one_batch_of_nodes(node_allocator_t *self) {
     mutex_lock(self->allocator->mutex);
 
     for (size_t i = 0; i < self->batch_size; i++) {
-        node_t *node = node_new(NULL);        
+        node_t *node = node_new(NULL);
         node->id = self->node_count++;
         stack_push(self->allocator->stack, node);
     }
@@ -29,8 +29,7 @@ node_allocator_new(void) {
     node_allocator_t *self = new(node_allocator_t);
     self->allocator = allocator_new(cache_size);
     self->batch_size = batch_size;
-    self->node_array = array_auto();
-    // self->node_array = array_auto_with((destroy_fn_t *) node_destroy);
+    self->node_array = array_auto_with((destroy_fn_t *) node_destroy);
     prepare_one_batch_of_nodes(self);
     self->per_thread_stack_array = array_auto();
     return self;
