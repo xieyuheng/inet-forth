@@ -1,10 +1,7 @@
 # net
 
-[net] rename `node_new` to `node_new_per_thread`
-[net] rename `node_recycle` to `node_recycle_per_thread`
 [net] `node_new` & `node_destroy` should be simple
 [net] `node_allocator_new` -- should call `node_destroy`
-
 
 [net] extract `node_test_node_allocator_throughput`
 

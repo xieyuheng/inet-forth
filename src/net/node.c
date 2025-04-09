@@ -6,14 +6,14 @@ node_init(node_t *self) {
 }
 
 node_t *
-node_new(node_allocator_t *node_allocator, stack_t *free_node_stack, const node_ctor_t *ctor) {
+node_new_per_thread(node_allocator_t *node_allocator, stack_t *free_node_stack, const node_ctor_t *ctor) {
     node_t *self = node_allocator_allocate(node_allocator, free_node_stack);
     self->ctor = ctor;
     return self;
 }
 
 void
-node_recycle(node_allocator_t *node_allocator, stack_t *free_node_stack, node_t **self_pointer) {
+node_recycle_per_thread(node_allocator_t *node_allocator, stack_t *free_node_stack, node_t **self_pointer) {
     assert(self_pointer);
     node_allocator_recycle(node_allocator, free_node_stack, self_pointer);
 }

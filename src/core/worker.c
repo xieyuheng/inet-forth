@@ -121,7 +121,7 @@ maybe_return_task(worker_t *self, wire_t *wire) {
 
 node_t *
 worker_add_node(worker_t* self, const node_ctor_t *ctor) {
-    node_t *node = node_new(self->node_allocator, self->free_node_stack, ctor);
+    node_t *node = node_new_per_thread(self->node_allocator, self->free_node_stack, ctor);
 
     if (core_debug_flag)
         set_add(self->debug_node_set, node);
@@ -134,7 +134,7 @@ worker_delete_node(worker_t* self, node_t *node) {
     if (core_debug_flag)
         set_delete(self->debug_node_set, node);
 
-    node_recycle(self->node_allocator, self->free_node_stack, &node);
+    node_recycle_per_thread(self->node_allocator, self->free_node_stack, &node);
 }
 
 wire_t *
