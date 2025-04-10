@@ -9,5 +9,6 @@
 #include "node.h"
 #include "wire.h"
 #include "port_info.h"
+#include "principal_port.h"
 #include "node_ctor.h"
 #include "node_test.h"
