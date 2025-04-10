@@ -1,3 +1,20 @@
+[core] `worker_t` remove `debug_node_set` -- use `node_allocator`
+[lang] refactor `call_node_ctor`
+
+---
+
+[net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`
+[lang] `node_take_input` -- handle new single linked wire
+
+[core] extract `connect`
+[net] `wire_connect` -- the critical section
+
+[lang] `node_return_output` -- handle new single linked wire
+
+`return_task` instead of `maybe_return_task`
+
+[core] `task_t` has two `principal_port_t`
+
 # net
 
 [net] `wire_t` -- be single list -- only has a pointer to `value_t next`
