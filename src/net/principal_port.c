@@ -2,7 +2,7 @@
 
 object_spec_t principal_port_object_spec = {
     .name = "principal-port",
-    // .print_fn = (print_fn_t *) principal_port_print,
+    .print_fn = (print_fn_t *) principal_port_print,
 };
 
 principal_port_t *
@@ -35,4 +35,16 @@ principal_port_t *
 as_principal_port(value_t value) {
     assert(is_principal_port(value));
     return (principal_port_t *) value;
+}
+
+void
+principal_port_print(const principal_port_t *self, file_t *file) {
+    assert(self->node);
+    node_print(self->node, file);
+    if (self->node->ctor) {
+        fprintf(file, "-[%lu]!-<", self->index);
+    } else {
+        port_info_t *port_info = self->node->ctor->port_infos[self->index];
+        fprintf(file, "-[%s]!-<", port_info->name);
+    }
 }

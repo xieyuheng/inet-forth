@@ -1,7 +1,5 @@
 # net
 
-[net] `principal_port_print`
-
 [net] `wire_t` -- be single list -- only has a pointer to next
 
 # thread

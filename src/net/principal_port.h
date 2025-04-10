@@ -13,3 +13,5 @@ void principal_port_destroy(principal_port_t **self_pointer);
 
 bool is_principal_port(value_t value);
 principal_port_t *as_principal_port(value_t value);
+
+void principal_port_print(const principal_port_t *self, file_t *file);
