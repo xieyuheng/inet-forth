@@ -1,9 +1,7 @@
 # net
 
-[net] `connected_node_iter_new` should take `node_adjacency_hash`
-
 [net] `node_adjacency` -- setup
-[net] `node_adjacency.h` -- has `node_adjacency_hash`
+[net] `node_adjacency.h` -- has `build_node_adjacency_hash`
 [net] `node_adjacency_t` -- `start_node` `start_port_index` `end_node` `end_port_index`
 [net] `node_adjacency_new`
 [net] `node_adjacency_destroy`
