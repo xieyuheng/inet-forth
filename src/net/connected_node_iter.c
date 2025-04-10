@@ -27,9 +27,11 @@ connected_node_iter_destroy(connected_node_iter_t **self_pointer) {
 static void
 take_node(connected_node_iter_t *self, node_t *node) {
     set_add(self->occurred_node_set, node);
-    array_t *adjacency_array = hash_get(self->node_adjacency_hash, node);
-    for (size_t i = 0; i < array_length(adjacency_array); i++) {
-        list_push(self->remaining_node_list, array_get(adjacency_array, i));
+    array_t *node_adjacency_array = hash_get(self->node_adjacency_hash, node);
+    assert(node_adjacency_array);
+    for (size_t i = 0; i < array_length(node_adjacency_array); i++) {
+        node_adjacency_t *node_adjacency = array_get(node_adjacency_array, i);
+        list_push(self->remaining_node_list, node_adjacency->end_node);
     }
 }
 

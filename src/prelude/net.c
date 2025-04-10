@@ -22,12 +22,40 @@ x_run(worker_t *worker) {
     run_task(worker);
 }
 
+static void
+x_wire_print_net(worker_t *worker) {
+    value_t value = stack_top(worker->value_stack);
+    if (!value) {
+        printf("[x_wire_print_net] expect top value\n");
+        return;
+    }
+
+    wire_t *wire = as_wire(value);
+    node_t *node = wire->node;
+
+    if (!node) {
+        wire_t *opposite = wire_opposite(wire);
+        if (opposite) node = opposite->node;
+    }
+
+    if (!node) {
+        printf("[x_wire_print_net] expect top wire to be connected to node\n");
+        printf("  wire: ");
+        wire_print(wire, stdout);
+        printf("\n");
+        return;
+    }
+
+    hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
+    node_print_connected_net(node, node_adjacency_hash, stdout);
+    fprintf(stdout, "\n");
+}
+
 void
 x_inspect_run(worker_t *worker) {
-    // TODO
-    // x_wire_print_net(worker);
+    x_wire_print_net(worker);
     run_task(worker);
-    // x_wire_print_net(worker);
+    x_wire_print_net(worker);
 }
 
 static void

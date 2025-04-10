@@ -1,0 +1,54 @@
+<net>
+:root (disj₁₅)
+(disj₁₅
+ :x! (conj₇)-z-<>-!x-(disj₁₅)
+ :y (disj₁₄)-z-<>-y-(disj₁₅)
+ :z -<>-z-(disj₁₅))
+(disj₁₄
+ :x! (disj₁₀)-z-<>-!x-(disj₁₄)
+ :y (disj₁₃)-z-<>-y-(disj₁₄)
+ :z (disj₁₅)-y-<>-z-(disj₁₄))
+(disj₁₃
+ :x! (f₁₁)-value!-<>-!x-(disj₁₃)
+ :y (t₁₂)-value!-<>-y-(disj₁₃)
+ :z (disj₁₄)-y-<>-z-(disj₁₃))
+(t₁₂
+ :value! (disj₁₃)-y-<>-!value-(t₁₂))
+(f₁₁
+ :value! (disj₁₃)-x!-<>-!value-(f₁₁))
+(disj₁₀
+ :x! (t₈)-value!-<>-!x-(disj₁₀)
+ :y (t₉)-value!-<>-y-(disj₁₀)
+ :z (disj₁₄)-x!-<>-z-(disj₁₀))
+(t₉
+ :value! (disj₁₀)-y-<>-!value-(t₉))
+(t₈
+ :value! (disj₁₀)-x!-<>-!value-(t₈))
+(conj₇
+ :x! (conj₃)-z-<>-!x-(conj₇)
+ :y (conj₆)-z-<>-y-(conj₇)
+ :z (disj₁₅)-x!-<>-z-(conj₇))
+(conj₆
+ :x! (f₄)-value!-<>-!x-(conj₆)
+ :y (t₅)-value!-<>-y-(conj₆)
+ :z (conj₇)-y-<>-z-(conj₆))
+(t₅
+ :value! (conj₆)-y-<>-!value-(t₅))
+(f₄
+ :value! (conj₆)-x!-<>-!value-(f₄))
+(conj₃
+ :x! (t₁)-value!-<>-!x-(conj₃)
+ :y (t₂)-value!-<>-y-(conj₃)
+ :z (conj₇)-x!-<>-z-(conj₃))
+(t₂
+ :value! (conj₃)-y-<>-!value-(t₂))
+(t₁
+ :value! (conj₃)-x!-<>-!value-(t₁))
+</net>
+
+<net>
+:root (t₁₅)
+(t₁₅
+ :value! -<>-!value-(t₁₅))
+</net>
+

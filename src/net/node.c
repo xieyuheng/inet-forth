@@ -99,10 +99,11 @@ node_print(const node_t *self, file_t *file) {
 
 void
 node_print_connected_net(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
+    assert(self);
     fprintf(file, "<net>\n");
 
     fprintf(file, ":root ");
-    value_print(self, file);
+    node_print(self, file);
     fprintf(file, "\n");
 
     connected_node_iter_t *node_iter = connected_node_iter_new(self, node_adjacency_hash);
