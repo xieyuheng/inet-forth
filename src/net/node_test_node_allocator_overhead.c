@@ -7,7 +7,7 @@ node_test_node_allocator_overhead(void) {
     double start_second = time_second();
 
     node_allocator_t *node_allocator = node_allocator_new();
-    printf("overhead of %d nodes: %.f ms\n",
+    printf("overhead of %d nodes: %f ms\n",
            NODE_ALLOCATOR_BATCH_SIZE,
            time_passed_second(start_second) * 1000);
 
