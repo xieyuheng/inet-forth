@@ -112,12 +112,13 @@ on_frame(debug_t *self, canvas_t *canvas, uint64_t passed) {
 hash_t *
 debug_new_node_hash(debug_t *self) {
     hash_t *node_hash = hash_new();
-    node_t *node = set_first(self->worker->debug_node_set);
-    while (node) {
+    array_t *node_array = allocated_node_array(self->worker->node_allocator);
+    while (!array_is_empty(node_array)) {
+        node_t *node = array_pop(node_array);
         hash_set(node_hash, (void *) node->id, node);
-        node = set_next(self->worker->debug_node_set);
     }
 
+    array_destroy(&node_array);
     return node_hash;
 }
 

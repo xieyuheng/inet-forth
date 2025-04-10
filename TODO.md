@@ -1,4 +1,4 @@
-[core] `worker_t` remove `debug_node_set` -- use `node_allocator`
+[core] remove `core_debug_flag`
 [lang] refactor `call_node_ctor`
 
 ---

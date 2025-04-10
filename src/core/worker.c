@@ -28,8 +28,6 @@ worker_new(mod_t *mod, node_allocator_t *node_allocator) {
     self->node_allocator = node_allocator;
     self->free_node_stack = stack_new();
 
-    self->debug_node_set = set_new();
-
     return self;
 }
 
@@ -43,7 +41,6 @@ worker_destroy(worker_t **self_pointer) {
     queue_destroy(&self->task_queue);
     stack_destroy(&self->value_stack);
     stack_destroy(&self->return_stack);
-    set_destroy(&self->debug_node_set);
     free(self);
     *self_pointer = NULL;
 }
@@ -121,18 +118,11 @@ maybe_return_task(worker_t *self, wire_t *wire) {
 node_t *
 worker_add_node(worker_t* self, const node_ctor_t *ctor) {
     node_t *node = node_new_per_thread(self->node_allocator, self->free_node_stack, ctor);
-
-    if (core_debug_flag)
-        set_add(self->debug_node_set, node);
-
     return node;
 }
 
 void
 worker_delete_node(worker_t* self, node_t *node) {
-    if (core_debug_flag)
-        set_delete(self->debug_node_set, node);
-
     node_recycle_per_thread(self->node_allocator, self->free_node_stack, &node);
 }
 
