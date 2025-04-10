@@ -1,6 +1,5 @@
 # net
 
-[net] `principal_port_destroy`
 [net] `principal_port_t` -- as `value_t`
 
 [net] `wire_t` -- be single list -- only has a pointer to next
