@@ -1,6 +1,5 @@
 # net
 
-[net] `node_adjacency_t` -- `start_node` `start_port_index` `end_node` `end_port_index`
 [net] `node_adjacency_new`
 [net] `node_adjacency_destroy`
 
