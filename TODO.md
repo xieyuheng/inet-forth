@@ -1,5 +1,5 @@
-[lang] `call_node_ctor` -- `node_take_input` -- handle new single linked wire
-[lang] `call_node_ctor` -- `node_return_output` -- handle new single linked wire
+[lang] `node_take_input` -- handle new single linked wire
+[lang] `node_return_output` -- handle new single linked wire
 
 [core] `task_t` has two `principal_port_t`
 [core] `worker_t` remove `debug_node_set`
