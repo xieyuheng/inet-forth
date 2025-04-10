@@ -1,6 +1,5 @@
 # net
 
-[net] `principal_port_new`
 [net] `principal_port_destroy`
 [net] `principal_port_t` -- as `value_t`
 
