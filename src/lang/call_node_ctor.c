@@ -2,13 +2,18 @@
 
 static void
 node_take_input(worker_t *worker, node_t *node, size_t index, value_t value) {
-    if (is_wire(value)) {
-        wire_t *wire = as_wire(value);
-        node_set(node, index, wire);
-
-        if (wire_is_principal(wire)) {
-            maybe_return_task(worker, wire);
+    port_info_t *port_info = node->ctor->port_infos[index];
+    if (port_info->is_principal) {
+        principal_port_t *principal_port = principal_port_new(node, index);
+        // connect(worker, value, principal_port);
+        if (is_principal_port(value)) {
+            return_task(worker, value, principal_port);
+        } else {
+            wire_t *wire = as_wire(value);
+            wire_connect(wire, principal_port);
         }
+    } else {
+        node_set(node, index, value);
     }
 }
 

@@ -1,5 +1,9 @@
-[lang] `node_take_input` -- handle new single linked wire
+[core] extract `connect`
+[net] `wire_connect` -- the critical section
+
 [lang] `node_return_output` -- handle new single linked wire
+
+`return_task` instead of `maybe_return_task`
 
 [core] `task_t` has two `principal_port_t`
 [core] `worker_t` remove `debug_node_set`
