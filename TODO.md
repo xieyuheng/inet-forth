@@ -1,4 +1,3 @@
-[core] remove `core_debug_flag`
 [lang] refactor `call_node_ctor`
 
 ---

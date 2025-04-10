@@ -20,10 +20,9 @@ run(commander_t *commander) {
             file_t *file = file_open_or_fail(src, "r");
             const char *code = file_read_string(file);
             fclose(file);
-            core_debug_flag = true;
             mod_t *mod = mod_new(src, code);
             import_prelude(mod);
-            node_allocator_t *node_allocator = node_allocator_new();            
+            node_allocator_t *node_allocator = node_allocator_new();
             worker_t *worker = worker_new(mod, node_allocator);
             execute_all(worker);
             debug_start(worker);
