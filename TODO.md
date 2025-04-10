@@ -1,7 +1,5 @@
 # net
 
-[net] `build_node_adjacency_hash` -- store `node_adjacency_t`
-
 [net] fix `x_inspect_run` -- fix snapshot tests
 
 [net] `principal_port_t` -- setup
