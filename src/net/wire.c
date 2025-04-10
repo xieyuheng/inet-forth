@@ -19,7 +19,6 @@ wire_destroy(wire_t **self_pointer) {
 
     wire_t *self = *self_pointer;
     free(self);
-    // Does NOT own `node` and `opposite`.
     *self_pointer = NULL;
 }
 
@@ -35,89 +34,101 @@ as_wire(value_t value) {
     return (wire_t *) value;
 }
 
-wire_t *
-wire_opposite(const wire_t *self) {
-    return atomic_load(&self->atomic_opposite);
-}
-
-void
-wire_set_opposite(wire_t *self, wire_t *opposite) {
-    atomic_store(&self->atomic_opposite, opposite);
-}
-
-const char *
-wire_name(const wire_t *self) {
-    assert(self->node);
-    port_info_t *port_info = self->node->ctor->port_infos[self->index];
-    assert(port_info);
-    return port_info->name;
-}
-
-const char *
-wire_node_name(const wire_t *self) {
-    assert(self->node);
-    return self->node->ctor->name;
-}
-
-void
-wire_free_from_node(wire_t *self) {
-    self->node = NULL;
-    atomic_store(&self->atomic_is_principal, false);
-}
-
-bool
-wire_is_free(const wire_t *self) {
-    if (self->node) return false;
-    return true;
-}
-
-bool
-wire_is_principal(const wire_t *self) {
-    return atomic_load(&self->atomic_is_principal);
-}
-
-void
-wire_print_left(const wire_t *self, file_t *file) {
-    if (!self->node) {
-        fprintf(file, "-<");
-        return;
+value_t
+wire_follow(value_t value) {
+    while (is_wire(value) &&
+           as_wire(value)->fuzed &&
+           is_wire(as_wire(value)->fuzed))
+    {
+        value = value->fuzed
     }
 
-    node_print(self->node, file);
-
-    if (wire_is_principal(self)) {
-        fprintf(file, "-%s!-<", wire_name(self));
-    } else {
-        fprintf(file, "-%s-<", wire_name(self));
-    }
+    return value;
 }
 
-void
-wire_print_right(const wire_t *self, file_t *file) {
-    if (!self->node) {
-        fprintf(file, ">-");
-        return;
-    }
+// wire_t *
+// wire_opposite(const wire_t *self) {
+//     return atomic_load(&self->atomic_opposite);
+// }
 
-    if (wire_is_principal(self)) {
-        fprintf(file, ">-!%s-", wire_name(self));
-    } else {
-        fprintf(file, ">-%s-", wire_name(self));
-    }
+// void
+// wire_set_opposite(wire_t *self, wire_t *opposite) {
+//     atomic_store(&self->atomic_opposite, opposite);
+// }
 
-    node_print(self->node, file);
-}
+// const char *
+// wire_name(const wire_t *self) {
+//     assert(self->node);
+//     port_info_t *port_info = self->node->ctor->port_infos[self->index];
+//     assert(port_info);
+//     return port_info->name;
+// }
 
-void
-wire_print(const wire_t *self, file_t *file) {
-    if (wire_opposite(self))
-        wire_print_left(wire_opposite(self), file);
-    wire_print_right(self, file);
-}
+// const char *
+// wire_node_name(const wire_t *self) {
+//     assert(self->node);
+//     return self->node->ctor->name;
+// }
 
-void
-wire_print_reverse(const wire_t *self, file_t *file) {
-    wire_print_left(self, file);
-    if (wire_opposite(self))
-        wire_print_right(wire_opposite(self), file);
-}
+// void
+// wire_free_from_node(wire_t *self) {
+//     self->node = NULL;
+//     atomic_store(&self->atomic_is_principal, false);
+// }
+
+// bool
+// wire_is_free(const wire_t *self) {
+//     if (self->node) return false;
+//     return true;
+// }
+
+// bool
+// wire_is_principal(const wire_t *self) {
+//     return atomic_load(&self->atomic_is_principal);
+// }
+
+// void
+// wire_print_left(const wire_t *self, file_t *file) {
+//     if (!self->node) {
+//         fprintf(file, "-<");
+//         return;
+//     }
+
+//     node_print(self->node, file);
+
+//     if (wire_is_principal(self)) {
+//         fprintf(file, "-%s!-<", wire_name(self));
+//     } else {
+//         fprintf(file, "-%s-<", wire_name(self));
+//     }
+// }
+
+// void
+// wire_print_right(const wire_t *self, file_t *file) {
+//     if (!self->node) {
+//         fprintf(file, ">-");
+//         return;
+//     }
+
+//     if (wire_is_principal(self)) {
+//         fprintf(file, ">-!%s-", wire_name(self));
+//     } else {
+//         fprintf(file, ">-%s-", wire_name(self));
+//     }
+
+//     node_print(self->node, file);
+// }
+
+// void
+// wire_print(const wire_t *self, file_t *file) {
+//     if (wire_opposite(self))
+//         wire_print_left(wire_opposite(self), file);
+//     wire_print_right(self, file);
+// }
+
+// void
+// wire_print_reverse(const wire_t *self, file_t *file) {
+//     wire_print_left(self, file);
+//     if (wire_opposite(self))
+//         wire_print_right(wire_opposite(self), file);
+// }

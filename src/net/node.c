@@ -35,18 +35,6 @@ void
 node_set(node_t *self, size_t index, value_t value) {
     assert(index < self->ctor->arity);
     array_set(self->value_array, index, value);
-
-    if (is_wire(value)) {
-        wire_t *wire = as_wire(value);
-        assert(wire->node == NULL);
-        wire->node = self;
-        wire->index = index;
-
-        port_info_t *port_info = self->ctor->port_infos[index];
-        if (port_info->is_principal) {
-            atomic_store(&wire->atomic_is_principal, true);
-        }
-    }
 }
 
 value_t
@@ -64,12 +52,8 @@ node_is_adjacent(const node_t *self, const node_t *other) {
         for (size_t j = 0; j < other->ctor->arity; j++) {
             value_t x = node_get(self, i);
             value_t y = node_get(other, j);
-            if (is_wire(x) && is_wire(y)) {
-                wire_t *u = as_wire(x);
-                wire_t *v = as_wire(y);
-                if (wire_opposite(u) == v && wire_opposite(v) == u) {
-                    return true;
-                }
+            if (wire_follow(x) == wire_follow(y)) {
+                return true;
             }
         }
     }
@@ -116,11 +100,13 @@ node_print_connected_net(node_t *self, hash_t *node_adjacency_hash, file_t *file
         for (size_t i = 0; i < node->ctor->arity; i++) {
             value_t value = node_get(node, i);
             if (value) {
-                if (is_wire(value)) {
-                    wire_print_reverse(as_wire(value), file);
-                } else {
-                    value_print(value, file);
-                }
+                value_print(value, file);
+
+                // if (is_wire(value)) {
+                //     wire_print_reverse(as_wire(value), file);
+                // } else {
+                //     value_print(value, file);
+                // }
             }
 
             if (i < node->ctor->arity - 1)

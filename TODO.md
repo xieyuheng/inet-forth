@@ -1,8 +1,8 @@
-# net
+[lang] `call_node_ctor` -- `node_take_input` -- handle new single linked wire
+[lang] `call_node_ctor` -- `node_return_output` -- handle new single linked wire
 
-[net] `wire_t` -- be single list -- only has a pointer to `value_t next`
-
-- `next` might be `wire_t` or `principal_port_t`
+[core] `task_t` has two `principal_port_t`
+[core] `worker_t` remove `debug_node_set`
 
 # thread
 
