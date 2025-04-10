@@ -4,7 +4,7 @@
 [net] `principal_port_t` -- has node and index
 [net] `principal_port_t` -- as `value_t`
 
-[net] single list `wire_t`
+[net] `wire_t` -- be single list -- only has a pointer to next
 
 # thread
 
