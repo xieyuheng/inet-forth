@@ -1,6 +1,6 @@
 # net
-
-[net] fix `x_inspect_run` -- fix snapshot tests
+[net] fix `x_inspect_run` -- fix snapshot tests -- call `node_print_connected_net`
+[net] fix `node_print_connected_net`
 
 [net] `principal_port_t` -- setup
 [net] `principal_port_t` -- as value
