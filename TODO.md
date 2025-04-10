@@ -1,9 +1,8 @@
 # net
 
-[net] `node_t` as `value_t`
-
-[net] `principal_port_t` -- setup
-[net] `principal_port_t` -- as value
+[net] `principal_port` -- setup
+[net] `principal_port_t` -- has node and index
+[net] `principal_port_t` -- as `value_t`
 
 [net] single list `wire_t`
 

@@ -1,5 +1,10 @@
 #include "index.h"
 
+object_spec_t node_ctor_object_spec = {
+    .name = "node-ctor",
+    .print_fn = (print_fn_t *) node_ctor_print,
+};
+
 node_ctor_t *
 node_ctor_new(
     const char *name,
@@ -7,6 +12,7 @@ node_ctor_new(
     size_t output_arity
 ) {
     node_ctor_t *self = new(node_ctor_t);
+    self->spec = &node_ctor_object_spec;
     self->name = string_copy(name);
     self->input_arity = input_arity;
     self->output_arity = output_arity;
@@ -39,6 +45,18 @@ node_ctor_destroy(node_ctor_t **self_pointer) {
     *self_pointer = NULL;
 }
 
+bool
+is_node_ctor(value_t value) {
+    if (!is_xobject(value)) return false;
+    return as_object(value)->spec == &node_ctor_object_spec;
+}
+
+node_ctor_t *
+as_node_ctor(value_t value) {
+    assert(is_node_ctor(value));
+    return (node_ctor_t *) value;
+}
+
 size_t
 node_ctor_find_port_index(
     const node_ctor_t *node_ctor,
@@ -55,4 +73,9 @@ node_ctor_find_port_index(
            port_name);
 
     assert(false);
+}
+
+void
+node_ctor_print(const node_ctor_t *self, file_t *file) {
+    fprintf(file, "(%s)", self->name);
 }
