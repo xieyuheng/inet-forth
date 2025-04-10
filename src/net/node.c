@@ -102,33 +102,22 @@ node_print_connected_net(node_t *self, hash_t *node_adjacency_hash, file_t *file
     assert(self);
     fprintf(file, "<net>\n");
 
-    fprintf(file, ":root ");
-    node_print(self, file);
-    fprintf(file, "\n");
-
     connected_node_iter_t *node_iter = connected_node_iter_new(self, node_adjacency_hash);
     node_t *node = connected_node_iter_first(node_iter);
     while (node) {
-        fprintf(file, "(");
-        node_print_name(node, file);
         if (!node->ctor) {
+            fprintf(file, "(");
+            node_print_name(node, file);
             fprintf(file, ")");
             fprintf(file, "\n");
             continue;
         }
 
-        fprintf(file, "\n");
         for (size_t i = 0; i < node->ctor->arity; i++) {
-            port_info_t *port_info = node->ctor->port_infos[i];
-            if (port_info->is_principal)
-                fprintf(file, " :%s! ", port_info->name);
-            else
-                fprintf(file, " :%s ", port_info->name);
-
             value_t value = node_get(node, i);
             if (value) {
                 if (is_wire(value)) {
-                    wire_print(as_wire(value), file);
+                    wire_print_reverse(as_wire(value), file);
                 } else {
                     value_print(value, file);
                 }
@@ -137,7 +126,6 @@ node_print_connected_net(node_t *self, hash_t *node_adjacency_hash, file_t *file
             if (i < node->ctor->arity - 1)
                 fprintf(file, "\n");
         }
-        fprintf(file, ")");
         fprintf(file, "\n");
 
         node = connected_node_iter_next(node_iter);

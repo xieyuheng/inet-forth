@@ -1,90 +1,60 @@
 <net>
-:root (append₁₅)
-(append₁₅
- :target! (cons₇)-value!-<>-!target-(append₁₅)
- :rest (cons₁₄)-value!-<>-rest-(append₁₅)
- :result -<>-result-(append₁₅))
-(cons₁₄
- :tail (cons₁₂)-value!-<>-tail-(cons₁₄)
- :head (sole₁₃)-value!-<>-head-(cons₁₄)
- :value! (append₁₅)-rest-<>-!value-(cons₁₄))
-(sole₁₃
- :value! (cons₁₄)-head-<>-!value-(sole₁₃))
-(cons₁₂
- :tail (cons₁₀)-value!-<>-tail-(cons₁₂)
- :head (sole₁₁)-value!-<>-head-(cons₁₂)
- :value! (cons₁₄)-tail-<>-!value-(cons₁₂))
-(sole₁₁
- :value! (cons₁₂)-head-<>-!value-(sole₁₁))
-(cons₁₀
- :tail (null₈)-value!-<>-tail-(cons₁₀)
- :head (sole₉)-value!-<>-head-(cons₁₀)
- :value! (cons₁₂)-tail-<>-!value-(cons₁₀))
-(sole₉
- :value! (cons₁₀)-head-<>-!value-(sole₉))
-(null₈
- :value! (cons₁₀)-tail-<>-!value-(null₈))
-(cons₇
- :tail (cons₅)-value!-<>-tail-(cons₇)
- :head (sole₆)-value!-<>-head-(cons₇)
- :value! (append₁₅)-target!-<>-!value-(cons₇))
-(sole₆
- :value! (cons₇)-head-<>-!value-(sole₆))
-(cons₅
- :tail (cons₃)-value!-<>-tail-(cons₅)
- :head (sole₄)-value!-<>-head-(cons₅)
- :value! (cons₇)-tail-<>-!value-(cons₅))
-(sole₄
- :value! (cons₅)-head-<>-!value-(sole₄))
-(cons₃
- :tail (null₁)-value!-<>-tail-(cons₃)
- :head (sole₂)-value!-<>-head-(cons₃)
- :value! (cons₅)-tail-<>-!value-(cons₃))
-(sole₂
- :value! (cons₃)-head-<>-!value-(sole₂))
-(null₁
- :value! (cons₃)-tail-<>-!value-(null₁))
+(append₁₅)-target!-<>-!value-(cons₇)
+(append₁₅)-rest-<>-!value-(cons₁₄)
+(append₁₅)-result-<>-
+(cons₁₄)-tail-<>-!value-(cons₁₂)
+(cons₁₄)-head-<>-!value-(sole₁₃)
+(cons₁₄)-value!-<>-rest-(append₁₅)
+(sole₁₃)-value!-<>-head-(cons₁₄)
+(cons₁₂)-tail-<>-!value-(cons₁₀)
+(cons₁₂)-head-<>-!value-(sole₁₁)
+(cons₁₂)-value!-<>-tail-(cons₁₄)
+(sole₁₁)-value!-<>-head-(cons₁₂)
+(cons₁₀)-tail-<>-!value-(null₈)
+(cons₁₀)-head-<>-!value-(sole₉)
+(cons₁₀)-value!-<>-tail-(cons₁₂)
+(sole₉)-value!-<>-head-(cons₁₀)
+(null₈)-value!-<>-tail-(cons₁₀)
+(cons₇)-tail-<>-!value-(cons₅)
+(cons₇)-head-<>-!value-(sole₆)
+(cons₇)-value!-<>-!target-(append₁₅)
+(sole₆)-value!-<>-head-(cons₇)
+(cons₅)-tail-<>-!value-(cons₃)
+(cons₅)-head-<>-!value-(sole₄)
+(cons₅)-value!-<>-tail-(cons₇)
+(sole₄)-value!-<>-head-(cons₅)
+(cons₃)-tail-<>-!value-(null₁)
+(cons₃)-head-<>-!value-(sole₂)
+(cons₃)-value!-<>-tail-(cons₅)
+(sole₂)-value!-<>-head-(cons₃)
+(null₁)-value!-<>-tail-(cons₃)
 </net>
 
 <net>
-:root (cons₇)
-(cons₇
- :tail (cons₅)-value!-<>-tail-(cons₇)
- :head (sole₆)-value!-<>-head-(cons₇)
- :value! -<>-!value-(cons₇))
-(sole₆
- :value! (cons₇)-head-<>-!value-(sole₆))
-(cons₅
- :tail (cons₃)-value!-<>-tail-(cons₅)
- :head (sole₄)-value!-<>-head-(cons₅)
- :value! (cons₇)-tail-<>-!value-(cons₅))
-(sole₄
- :value! (cons₅)-head-<>-!value-(sole₄))
-(cons₃
- :tail (cons₁₄)-value!-<>-tail-(cons₃)
- :head (sole₂)-value!-<>-head-(cons₃)
- :value! (cons₅)-tail-<>-!value-(cons₃))
-(cons₁₄
- :tail (cons₁₂)-value!-<>-tail-(cons₁₄)
- :head (sole₁₃)-value!-<>-head-(cons₁₄)
- :value! (cons₃)-tail-<>-!value-(cons₁₄))
-(sole₁₃
- :value! (cons₁₄)-head-<>-!value-(sole₁₃))
-(cons₁₂
- :tail (cons₁₀)-value!-<>-tail-(cons₁₂)
- :head (sole₁₁)-value!-<>-head-(cons₁₂)
- :value! (cons₁₄)-tail-<>-!value-(cons₁₂))
-(sole₁₁
- :value! (cons₁₂)-head-<>-!value-(sole₁₁))
-(cons₁₀
- :tail (null₈)-value!-<>-tail-(cons₁₀)
- :head (sole₉)-value!-<>-head-(cons₁₀)
- :value! (cons₁₂)-tail-<>-!value-(cons₁₀))
-(sole₉
- :value! (cons₁₀)-head-<>-!value-(sole₉))
-(null₈
- :value! (cons₁₀)-tail-<>-!value-(null₈))
-(sole₂
- :value! (cons₃)-head-<>-!value-(sole₂))
+(cons₇)-tail-<>-!value-(cons₅)
+(cons₇)-head-<>-!value-(sole₆)
+(cons₇)-value!-<>-
+(sole₆)-value!-<>-head-(cons₇)
+(cons₅)-tail-<>-!value-(cons₃)
+(cons₅)-head-<>-!value-(sole₄)
+(cons₅)-value!-<>-tail-(cons₇)
+(sole₄)-value!-<>-head-(cons₅)
+(cons₃)-tail-<>-!value-(cons₁₄)
+(cons₃)-head-<>-!value-(sole₂)
+(cons₃)-value!-<>-tail-(cons₅)
+(cons₁₄)-tail-<>-!value-(cons₁₂)
+(cons₁₄)-head-<>-!value-(sole₁₃)
+(cons₁₄)-value!-<>-tail-(cons₃)
+(sole₁₃)-value!-<>-head-(cons₁₄)
+(cons₁₂)-tail-<>-!value-(cons₁₀)
+(cons₁₂)-head-<>-!value-(sole₁₁)
+(cons₁₂)-value!-<>-tail-(cons₁₄)
+(sole₁₁)-value!-<>-head-(cons₁₂)
+(cons₁₀)-tail-<>-!value-(null₈)
+(cons₁₀)-head-<>-!value-(sole₉)
+(cons₁₀)-value!-<>-tail-(cons₁₂)
+(sole₉)-value!-<>-head-(cons₁₀)
+(null₈)-value!-<>-tail-(cons₁₀)
+(sole₂)-value!-<>-head-(cons₃)
 </net>
 

@@ -1,72 +1,50 @@
 <net>
-:root (diff-append₁₁)
-(diff-append₁₁
- :target! (diff₁)-value!-<>-!target-(diff-append₁₁)
- :rest (diff₆)-value!-<>-rest-(diff-append₁₁)
- :result -<>-result-(diff-append₁₁))
-(diff₆
- :front (cons₁₀)-value!-<>-front-(diff₆)
- :back (cons₈)-tail-<>-back-(diff₆)
- :value! (diff-append₁₁)-rest-<>-!value-(diff₆))
-(cons₁₀
- :tail (cons₈)-value!-<>-tail-(cons₁₀)
- :head (sole₉)-value!-<>-head-(cons₁₀)
- :value! (diff₆)-front-<>-!value-(cons₁₀))
-(sole₉
- :value! (cons₁₀)-head-<>-!value-(sole₉))
-(cons₈
- :tail (diff₆)-back-<>-tail-(cons₈)
- :head (sole₇)-value!-<>-head-(cons₈)
- :value! (cons₁₀)-tail-<>-!value-(cons₈))
-(sole₇
- :value! (cons₈)-head-<>-!value-(sole₇))
-(diff₁
- :front (cons₅)-value!-<>-front-(diff₁)
- :back (cons₃)-tail-<>-back-(diff₁)
- :value! (diff-append₁₁)-target!-<>-!value-(diff₁))
-(cons₅
- :tail (cons₃)-value!-<>-tail-(cons₅)
- :head (sole₄)-value!-<>-head-(cons₅)
- :value! (diff₁)-front-<>-!value-(cons₅))
-(sole₄
- :value! (cons₅)-head-<>-!value-(sole₄))
-(cons₃
- :tail (diff₁)-back-<>-tail-(cons₃)
- :head (sole₂)-value!-<>-head-(cons₃)
- :value! (cons₅)-tail-<>-!value-(cons₃))
-(sole₂
- :value! (cons₃)-head-<>-!value-(sole₂))
+(diff-append₁₁)-target!-<>-!value-(diff₁)
+(diff-append₁₁)-rest-<>-!value-(diff₆)
+(diff-append₁₁)-result-<>-
+(diff₆)-front-<>-!value-(cons₁₀)
+(diff₆)-back-<>-tail-(cons₈)
+(diff₆)-value!-<>-rest-(diff-append₁₁)
+(cons₁₀)-tail-<>-!value-(cons₈)
+(cons₁₀)-head-<>-!value-(sole₉)
+(cons₁₀)-value!-<>-front-(diff₆)
+(sole₉)-value!-<>-head-(cons₁₀)
+(cons₈)-tail-<>-back-(diff₆)
+(cons₈)-head-<>-!value-(sole₇)
+(cons₈)-value!-<>-tail-(cons₁₀)
+(sole₇)-value!-<>-head-(cons₈)
+(diff₁)-front-<>-!value-(cons₅)
+(diff₁)-back-<>-tail-(cons₃)
+(diff₁)-value!-<>-!target-(diff-append₁₁)
+(cons₅)-tail-<>-!value-(cons₃)
+(cons₅)-head-<>-!value-(sole₄)
+(cons₅)-value!-<>-front-(diff₁)
+(sole₄)-value!-<>-head-(cons₅)
+(cons₃)-tail-<>-back-(diff₁)
+(cons₃)-head-<>-!value-(sole₂)
+(cons₃)-value!-<>-tail-(cons₅)
+(sole₂)-value!-<>-head-(cons₃)
 </net>
 
 <net>
-:root (diff₁₁)
-(diff₁₁
- :front (cons₅)-value!-<>-front-(diff₁₁)
- :back (cons₈)-tail-<>-back-(diff₁₁)
- :value! -<>-!value-(diff₁₁))
-(cons₈
- :tail (diff₁₁)-back-<>-tail-(cons₈)
- :head (sole₇)-value!-<>-head-(cons₈)
- :value! (cons₁₀)-tail-<>-!value-(cons₈))
-(cons₁₀
- :tail (cons₈)-value!-<>-tail-(cons₁₀)
- :head (sole₉)-value!-<>-head-(cons₁₀)
- :value! (cons₃)-tail-<>-!value-(cons₁₀))
-(sole₉
- :value! (cons₁₀)-head-<>-!value-(sole₉))
-(cons₃
- :tail (cons₁₀)-value!-<>-tail-(cons₃)
- :head (sole₂)-value!-<>-head-(cons₃)
- :value! (cons₅)-tail-<>-!value-(cons₃))
-(cons₅
- :tail (cons₃)-value!-<>-tail-(cons₅)
- :head (sole₄)-value!-<>-head-(cons₅)
- :value! (diff₁₁)-front-<>-!value-(cons₅))
-(sole₄
- :value! (cons₅)-head-<>-!value-(sole₄))
-(sole₂
- :value! (cons₃)-head-<>-!value-(sole₂))
-(sole₇
- :value! (cons₈)-head-<>-!value-(sole₇))
+(diff₁₁)-front-<>-!value-(cons₅)
+(diff₁₁)-back-<>-tail-(cons₈)
+(diff₁₁)-value!-<>-
+(cons₈)-tail-<>-back-(diff₁₁)
+(cons₈)-head-<>-!value-(sole₇)
+(cons₈)-value!-<>-tail-(cons₁₀)
+(cons₁₀)-tail-<>-!value-(cons₈)
+(cons₁₀)-head-<>-!value-(sole₉)
+(cons₁₀)-value!-<>-tail-(cons₃)
+(sole₉)-value!-<>-head-(cons₁₀)
+(cons₃)-tail-<>-!value-(cons₁₀)
+(cons₃)-head-<>-!value-(sole₂)
+(cons₃)-value!-<>-tail-(cons₅)
+(cons₅)-tail-<>-!value-(cons₃)
+(cons₅)-head-<>-!value-(sole₄)
+(cons₅)-value!-<>-front-(diff₁₁)
+(sole₄)-value!-<>-head-(cons₅)
+(sole₂)-value!-<>-head-(cons₃)
+(sole₇)-value!-<>-head-(cons₈)
 </net>
 
