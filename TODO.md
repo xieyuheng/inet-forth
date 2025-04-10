@@ -1,6 +1,5 @@
 # net
 
-[net] `node_adjacency_new`
 [net] `node_adjacency_destroy`
 
 [net] fix `x_inspect_run` -- fix snapshot tests

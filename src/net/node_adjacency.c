@@ -1,5 +1,15 @@
 #include "index.h"
 
+node_adjacency_t *
+node_adjacency_new(node_t *start_node, size_t start_port_index, size_t end_port_index, node_t *end_node) {
+    node_adjacency_t *self = new(node_adjacency_t);
+    self->start_node = start_node;
+    self->start_port_index = start_port_index;
+    self->end_port_index = end_port_index;
+    self->end_node = end_node;
+    return self;
+}
+
 hash_t *
 build_node_adjacency_hash(node_allocator_t *node_allocator) {
     hash_t *adjacency_hash = hash_new();
