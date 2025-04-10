@@ -1,6 +1,8 @@
 # net
 
-[net] `wire_t` -- be single list -- only has a pointer to next
+[net] `wire_t` -- be single list -- only has a pointer to `value_t next`
+
+- `next` might be `wire_t` or `principal_port_t`
 
 # thread
 
