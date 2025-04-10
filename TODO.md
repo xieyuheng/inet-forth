@@ -1,6 +1,6 @@
 # net
 
-[net] `node_adjacency_destroy`
+[net] `build_node_adjacency_hash` -- store `node_adjacency_t`
 
 [net] fix `x_inspect_run` -- fix snapshot tests
 

@@ -10,6 +10,16 @@ node_adjacency_new(node_t *start_node, size_t start_port_index, size_t end_port_
     return self;
 }
 
+void
+node_adjacency_destroy(node_adjacency_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer == NULL) return;
+
+    node_adjacency_t *self = *self_pointer;
+    free(self);
+    *self_pointer = NULL;
+}
+
 hash_t *
 build_node_adjacency_hash(node_allocator_t *node_allocator) {
     hash_t *adjacency_hash = hash_new();
