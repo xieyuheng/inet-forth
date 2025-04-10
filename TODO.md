@@ -1,6 +1,5 @@
 # net
 
-[net] `is_principal_port` & `as_principal_port`
 [net] `principal_port_print`
 
 [net] `wire_t` -- be single list -- only has a pointer to next

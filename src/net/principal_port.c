@@ -23,3 +23,16 @@ principal_port_destroy(principal_port_t **self_pointer) {
     free(self);
     *self_pointer = NULL;
 }
+
+
+bool
+is_principal_port(value_t value) {
+    if (!is_xobject(value)) return false;
+    return as_object(value)->spec == &principal_port_object_spec;
+}
+
+principal_port_t *
+as_principal_port(value_t value) {
+    assert(is_principal_port(value));
+    return (principal_port_t *) value;
+}
