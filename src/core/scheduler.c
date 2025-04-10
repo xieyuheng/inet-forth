@@ -25,12 +25,6 @@ scheduler_new(mod_t *mod, size_t worker_pool_size) {
             (destroy_fn_t *) task_destroy);
     }
 
-    self->garbage_wire_arrays = allocate_pointers(worker_pool_size);
-    for (size_t i = 0; i < worker_pool_size; i++) {
-        self->garbage_wire_arrays[i] =
-            array_auto_with((destroy_fn_t *) wire_destroy);
-    }
-
     return self;
 }
 
@@ -52,10 +46,6 @@ scheduler_destroy(scheduler_t **self_pointer) {
     for (size_t i = 0; i < self->worker_pool_size; i++)
         queue_destroy(&self->task_queues[i]);
     free(self->task_queues);
-
-    for (size_t i = 0; i < self->worker_pool_size; i++)
-        array_destroy(&self->garbage_wire_arrays[i]);
-    free(self->garbage_wire_arrays);
 
     free(self);
     *self_pointer = NULL;

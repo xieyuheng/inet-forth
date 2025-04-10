@@ -145,13 +145,7 @@ worker_add_wire(worker_t* self) {
 
 void
 worker_delete_wire(worker_t* self, wire_t *wire) {
-    if (worker_is_in_pool(self)) {
-        array_t *garbage_wire_array =
-            self->scheduler->garbage_wire_arrays[self->index];
-        array_push(garbage_wire_array, wire);
-    } else {
-        wire_destroy(&wire);
-    }
+    wire_destroy(&wire);
 }
 
 wire_t *

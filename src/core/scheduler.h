@@ -11,11 +11,6 @@ struct scheduler_t {
     tid_t tid;
     // worker threads
     worker_ctx_t **worker_ctxs;
-    // to free wires at the end of each batch,
-    // to avoid data race:
-    // - read (during is principal query)
-    // - free (during connecting two wires)
-    array_t **garbage_wire_arrays;
 };
 
 scheduler_t *scheduler_new(mod_t *mod, size_t worker_pool_size);
