@@ -78,7 +78,7 @@ node_is_adjacent(const node_t *self, const node_t *other) {
 }
 
 hash_t *
-node_adjacency_hash(node_allocator_t *node_allocator) {
+build_node_adjacency_hash(node_allocator_t *node_allocator) {
     hash_t *adjacency_hash = hash_new();
     hash_set_destroy_fn(adjacency_hash, (destroy_fn_t *) array_destroy);
 
