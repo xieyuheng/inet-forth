@@ -145,6 +145,7 @@ worker_add_wire(worker_t* self) {
 
 void
 worker_delete_wire(worker_t* self, wire_t *wire) {
+    (void) self;
     wire_destroy(&wire);
 }
 
