@@ -1,6 +1,5 @@
 # net
 
-[net] remove `connected_node_array`
 [net] `connected_node_iter_new` should take `node_adjacency_hash`
 
 [net] `node_adjacency` -- setup

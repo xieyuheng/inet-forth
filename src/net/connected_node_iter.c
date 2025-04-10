@@ -52,20 +52,3 @@ connected_node_iter_next(connected_node_iter_t *self) {
     take_node(self, node);
     return node;
 }
-
-array_t *
-connected_node_array(node_allocator_t *node_allocator, node_t *root) {
-    mutex_lock(node_allocator->allocator->mutex);
-
-    array_t *node_array = array_auto();
-    connected_node_iter_t *connected_node_iter = connected_node_iter_new(node_allocator, root);
-    node_t *node = connected_node_iter_first(connected_node_iter);
-    while (node) {
-        array_push(node_array, node);
-        node = connected_node_iter_next(connected_node_iter);
-    }
-
-    connected_node_iter_destroy(&connected_node_iter);
-    mutex_unlock(node_allocator->allocator->mutex);
-    return node_array;
-}
