@@ -1,12 +1,8 @@
-[core] extract `connect`
-[net] `wire_connect` -- the critical section
+# net
 
-[lang] `node_return_output` -- handle new single linked wire
+[net] `wire_t` -- be single list -- only has a pointer to `value_t next`
 
-`return_task` instead of `maybe_return_task`
-
-[core] `task_t` has two `principal_port_t`
-[core] `worker_t` remove `debug_node_set`
+- `next` might be `wire_t` or `principal_port_t`
 
 # thread
 
