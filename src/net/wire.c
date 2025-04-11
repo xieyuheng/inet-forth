@@ -37,12 +37,12 @@ as_wire(value_t value) {
 
 wire_t *
 wire_opposite(const wire_t *self) {
-    return atomic_load(&self->atomic_opposite);
+    return self->opposite;
 }
 
 void
 wire_set_opposite(wire_t *self, wire_t *opposite) {
-    atomic_store(&self->atomic_opposite, opposite);
+    self->opposite = opposite;
 }
 
 const char *
@@ -62,7 +62,6 @@ wire_node_name(const wire_t *self) {
 void
 wire_free_from_node(wire_t *self) {
     self->node = NULL;
-    atomic_store(&self->atomic_is_principal, false);
 }
 
 bool
@@ -73,7 +72,10 @@ wire_is_free(const wire_t *self) {
 
 bool
 wire_is_principal(const wire_t *self) {
-    return atomic_load(&self->atomic_is_principal);
+    return
+        self->node &&
+        self->node->ctor &&
+        self->node->ctor->port_infos[self->index]->is_principal;
 }
 
 void

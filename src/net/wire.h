@@ -6,8 +6,7 @@ struct wire_t {
     object_spec_t *spec;
     node_t *node;
     size_t index;
-    _Atomic (wire_t *) atomic_opposite;
-    atomic_bool atomic_is_principal;
+    wire_t *opposite;
 };
 
 wire_t *wire_new(void);

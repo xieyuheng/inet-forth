@@ -1,5 +1,4 @@
-[core] make `wire_t` simple again -- no atomic variable, no cached variable
-
+[net] simplify `wire_print` functions
 [debug] remove `debug/` for now
 
 [net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`
