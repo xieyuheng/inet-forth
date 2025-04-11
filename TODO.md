@@ -1,3 +1,8 @@
+[core] remove `scheduler_t` and `worker_ctx_t` for now
+[core] make `wire_t` simple again -- no atomic variable, no cached variable
+
+[debug] remove `debug/` for now
+
 [net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`
 [lang] `node_take_input` -- handle new single linked wire
 
