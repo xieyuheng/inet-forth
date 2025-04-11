@@ -2,8 +2,7 @@
 
 void
 modules_test(void) {
-    printf("<modules_test>\n");
-
+    test_test();
     memory_test();
     char_test();
     string_test();
@@ -30,6 +29,4 @@ modules_test(void) {
     thread_test();
     queue_test();
     allocator_test();
-
-    printf("</modules_test>\n");
 }
