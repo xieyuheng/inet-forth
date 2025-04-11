@@ -1,3 +1,5 @@
+[self-test] simple test output -- less xml
+
 [net] simplify `wire_print` functions
 
 [net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`
@@ -23,6 +25,10 @@
 [thread] wrap `pthread_cond_t` -- maybe `condvar_t`
 
 # core
+
+[queue] `queue_t` should auto resize -- requires locks which is not acceptable
+
+- maybe rename `queue_t` to `fixed_queue_t`
 
 [core] `worker_t` -- safe use of `task_queue` -- which might be full
 
