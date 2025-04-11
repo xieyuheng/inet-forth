@@ -1,5 +1,3 @@
-[test] `test_printf` -- a macro to print with function name as prefix
-
 [self-test] simple test output -- less xml
 
 [net] simplify `wire_print` functions
