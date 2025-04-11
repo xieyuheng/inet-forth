@@ -1,7 +1,3 @@
-[lang] refactor `call_node_ctor` -- extract `node_return_output`
-
----
-
 [net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`
 [lang] `node_take_input` -- handle new single linked wire
 
