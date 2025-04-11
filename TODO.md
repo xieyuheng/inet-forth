@@ -1,4 +1,4 @@
-[lang] refactor `call_node_ctor`
+[lang] refactor `call_node_ctor` -- extract `node_return_output`
 
 ---
 
