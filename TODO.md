@@ -1,5 +1,4 @@
-[test] `test_printf` -- print with function name
-[test] `test_start` -- print function name
+[test] `test_printf` -- a macro to print with function name as prefix
 
 [self-test] simple test output -- less xml
 
