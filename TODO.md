@@ -1,4 +1,4 @@
-[self-test] simple test output -- less xml
+[self-test] simple test output -- less xml -- use `test_start()` and `test_end()`
 
 [net] simplify `wire_print` functions
 
