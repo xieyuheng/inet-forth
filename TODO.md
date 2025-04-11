@@ -1,3 +1,7 @@
+[test] setup `test_test`
+[test] `test_printf` -- print with function name
+[test] `test_start` -- print function name
+
 [self-test] simple test output -- less xml
 
 [net] simplify `wire_print` functions
