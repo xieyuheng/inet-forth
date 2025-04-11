@@ -39,6 +39,6 @@ import zero add1 add "nat.fth"
 
 # debug
 
-[debug] 尝试使用真实的物理学来实现 force
+[debug] use real physics force
 [debug] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
 [debug] remove `node_physics_fake_simulate`
