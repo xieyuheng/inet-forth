@@ -6,8 +6,6 @@
 #include "frame.h"
 #include "task.h"
 #include "worker.h"
-#include "worker_ctx.h"
-#include "scheduler.h"
 #include "op.h"
 #include "function.h"
 #include "rule.h"

@@ -34,5 +34,4 @@ void worker_delete_wire(worker_t* self, wire_t *wire);
 
 wire_t *worker_wire_connect(worker_t* self, wire_t *first_wire, wire_t *second_wire);
 
-bool worker_is_in_pool(const worker_t* self);
 void worker_return_task(worker_t* self, task_t *task);

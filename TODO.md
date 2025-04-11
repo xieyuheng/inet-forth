@@ -1,4 +1,3 @@
-[core] remove `scheduler_t` and `worker_ctx_t` for now
 [core] make `wire_t` simple again -- no atomic variable, no cached variable
 
 [debug] remove `debug/` for now
