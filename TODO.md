@@ -1,4 +1,3 @@
-[core] `return_task` instead of `maybe_return_task`
 [core] fix `mod_find_rule`
 [lang] fix `run`
 

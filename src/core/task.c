@@ -1,10 +1,10 @@
 #include "index.h"
 
 task_t *
-task_new(principal_port_t *left_principal_port, principal_port_t *right_principal_port, const rule_t *rule) {
+task_new(principal_port_t *left, principal_port_t *right, const rule_t *rule) {
     task_t *self = new(task_t);
-    self->left_principal_port = left_principal_port;
-    self->right_principal_port = right_principal_port;
+    self->left = left;
+    self->right = right;
     self->rule = rule;
     return self;
 }

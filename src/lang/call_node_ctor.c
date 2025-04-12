@@ -8,7 +8,7 @@ node_take_input(worker_t *worker, node_t *node, size_t index, value_t value) {
         if (is_wire(value)) {
             wire_connect(as_wire(value), principal_port);
         } else if (is_principal_port(value)) {
-            return_task(worker, as_principal_port(value), principal_port);
+            worker_connect_active_pair(worker, as_principal_port(value), principal_port);
         } else {
             assert(false);
         }

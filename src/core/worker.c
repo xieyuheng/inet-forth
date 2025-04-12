@@ -104,17 +104,14 @@ worker_connect_top_wire_pair(worker_t *self) {
 }
 
 void
-maybe_return_task(worker_t *self, wire_t *wire) {
-    wire_t *opposite = wire_opposite(wire);
-    if (wire_is_principal(wire) && wire_is_principal(opposite)) {
-        assert(wire_opposite(wire) == opposite);
-        assert(wire_opposite(opposite) == wire);
-
-        const rule_t *rule = mod_find_rule(self->mod, wire, opposite);
-        if (!rule) return;
-
-        worker_return_task(self, task_new(wire, rule));
+worker_connect_active_pair(worker_t *self, principal_port_t *left, principal_port_t *right) {
+    const rule_t *rule = mod_find_rule(self->mod, left, right);
+    if (!rule) {
+        // TODO should not lost the connection
+        return;
     }
+
+    worker_return_task(self, task_new(left, right, rule));
 }
 
 node_t *
