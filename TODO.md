@@ -1,4 +1,3 @@
-[lang] `node_take_input` -- handle new single linked wire
 [lang] `node_return_output` -- handle new single linked wire
 
 [core] `return_task` instead of `maybe_return_task`
