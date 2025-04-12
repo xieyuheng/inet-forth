@@ -1,5 +1,3 @@
-[lang] `node_return_output` -- handle new single linked wire
-
 [core] `return_task` instead of `maybe_return_task`
 [core] `task_t` has two `principal_port_t`
 

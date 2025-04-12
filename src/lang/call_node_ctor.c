@@ -21,15 +21,14 @@ static value_t
 node_return_output(worker_t *worker, node_t *node, size_t index) {
     (void) worker;
 
-    wire_t *node_wire = wire_new();
-    wire_t *free_wire = wire_new();
-
-    node_set_value(node, index, node_wire);
-
-    wire_set_opposite(node_wire, free_wire);
-    wire_set_opposite(free_wire, node_wire);
-
-    return free_wire;
+    port_info_t *port_info = node_get_port_info(node, index);
+    if (port_info->is_principal) {
+        return principal_port_new(node, index);
+    } else {
+        wire_t *wire = wire_new();
+        node_set_value(node, index, wire);
+        return wire;
+    }
 }
 
 void
