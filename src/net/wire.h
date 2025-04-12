@@ -18,12 +18,6 @@ wire_t *as_wire(value_t value);
 wire_t *wire_opposite(const wire_t *self);
 void wire_set_opposite(wire_t *self, wire_t *opposite);
 
-const char *wire_name(const wire_t *self);
-const char *wire_node_name(const wire_t *self);
-
-void wire_free_from_node(wire_t *self);
-
-bool wire_is_free(const wire_t *self);
 bool wire_is_principal(const wire_t *self);
 
 void wire_print(const wire_t *self, file_t *file);

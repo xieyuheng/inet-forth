@@ -68,7 +68,7 @@ collect_free_wires_from_node(worker_t *worker, node_t *node) {
             if (wire_is_principal(value)) {
                 continue;
             } else {
-                wire_free_from_node(wire);
+                wire->node = NULL;
                 stack_push(worker->value_stack, wire);
             }
         } else {

@@ -59,17 +59,6 @@ wire_node_name(const wire_t *self) {
     return self->node->ctor->name;
 }
 
-void
-wire_free_from_node(wire_t *self) {
-    self->node = NULL;
-}
-
-bool
-wire_is_free(const wire_t *self) {
-    if (self->node) return false;
-    return true;
-}
-
 bool
 wire_is_principal(const wire_t *self) {
     return
