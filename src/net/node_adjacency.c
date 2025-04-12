@@ -1,12 +1,13 @@
 #include "index.h"
 
 node_adjacency_t *
-node_adjacency_new(node_t *start_node, size_t start_port_index, size_t end_port_index, node_t *end_node) {
+node_adjacency_new(node_t *start_node, node_t *end_node) {
     node_adjacency_t *self = new(node_adjacency_t);
     self->start_node = start_node;
-    self->start_port_index = start_port_index;
-    self->end_port_index = end_port_index;
     self->end_node = end_node;
+    // TODO
+    self->start_port_index = 0;
+    self->end_port_index = 0;
     return self;
 }
 
@@ -36,7 +37,7 @@ build_node_adjacency_hash(node_allocator_t *node_allocator) {
         for (size_t j = 0; j < length; j++) {
             node_t *y = array_get(node_array, j);
             if (node_is_adjacent(x, y)) {
-                array_push(node_adjacency_array, node_adjacency_new(x, i, j, y));
+                array_push(node_adjacency_array, node_adjacency_new(x, y));
             }
         }
     }
