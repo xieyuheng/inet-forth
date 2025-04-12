@@ -26,26 +26,24 @@ value_print_connected(worker_t *worker) {
         return;
     }
 
+    node_t *node;
+
     if (is_wire(value)) {
         wire_t *wire = as_wire(value);
-        node_t *node = worker_lookup_node_by_wire(worker, wire);
-        if (!node) {
-            printf("[value_print_connected] expect wire connected to node\n");
-            return;
-        }
-
-        hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
-        node_print_connected(node, node_adjacency_hash, stdout);
-        fprintf(stdout, "\n");
+        node = worker_lookup_node_by_wire(worker, wire);
     }
 
     if (is_principal_port(value)) {
         principal_port_t *principal_port = as_principal_port(value);
-        node_t *node = principal_port->node;
-        hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
-        node_print_connected(node, node_adjacency_hash, stdout);
-        fprintf(stdout, "\n");
+        node = principal_port->node;
     }
+
+    assert(node);
+
+    hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
+    node_print_connected(node, node_adjacency_hash, stdout);
+    hash_destroy(&node_adjacency_hash);
+    fprintf(stdout, "\n");
 }
 
 void
