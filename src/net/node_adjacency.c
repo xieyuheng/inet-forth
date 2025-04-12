@@ -69,7 +69,7 @@ node_adjacency_print(const node_adjacency_t *self, file_t *file) {
     else
         fprintf(file, "-%s-<", start_port_info->name);
 
-    if (start_port_info->is_principal)
+    if (end_port_info->is_principal)
         fprintf(file, ">-!%s-", end_port_info->name);
     else
         fprintf(file, ">-%s-", end_port_info->name);
