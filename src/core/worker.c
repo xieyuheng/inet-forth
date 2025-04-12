@@ -94,7 +94,7 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
 void
 worker_connect(worker_t *self, value_t left, value_t right) {
     if (is_principal_port(left) && is_principal_port(right)) {
-        worker_connect_active_pair(worker, as_principal_port(left), as_principal_port(right));
+        worker_connect_active_pair(self, as_principal_port(left), as_principal_port(right));
     } else if (is_wire(left)) {
         wire_connect(as_wire(left), right);
     } else if (is_wire(right)) {
@@ -145,20 +145,6 @@ void
 worker_delete_wire(worker_t* self, wire_t *wire) {
     (void) self;
     wire_destroy(&wire);
-}
-
-wire_t *
-worker_wire_connect(worker_t* self, wire_t *first_wire, wire_t *second_wire) {
-    wire_t *first_opposite = wire_opposite(first_wire);
-    wire_t *second_opposite = wire_opposite(second_wire);
-
-    wire_set_opposite(first_opposite, second_opposite);
-    wire_set_opposite(second_opposite, first_opposite);
-
-    worker_delete_wire(self, first_wire);
-    worker_delete_wire(self, second_wire);
-
-    return first_opposite;
 }
 
 void

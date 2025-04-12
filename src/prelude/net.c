@@ -7,14 +7,10 @@ x_connect(worker_t *worker) {
 
 void
 x_link(worker_t *worker) {
-    wire_t *first_wire = wire_new();
-    wire_t *second_wire = wire_new();
-
-    wire_set_opposite(first_wire, second_wire);
-    wire_set_opposite(second_wire, first_wire);
-
-    stack_push(worker->value_stack, first_wire);
-    stack_push(worker->value_stack, second_wire);
+    wire_t *wire = wire_new();
+        
+    stack_push(worker->value_stack, wire);
+    stack_push(worker->value_stack, wire);
 }
 
 void

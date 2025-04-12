@@ -33,6 +33,4 @@ void worker_delete_node(worker_t* self, node_t *node);
 wire_t *worker_add_wire(worker_t* self);
 void worker_delete_wire(worker_t* self, wire_t *wire);
 
-wire_t *worker_wire_connect(worker_t* self, wire_t *first_wire, wire_t *second_wire);
-
 void worker_return_task(worker_t* self, task_t *task);
