@@ -43,7 +43,8 @@ value_print(value_t value, file_t *file) {
             return;
         }
 
-        fprintf(file, "#<unknown-object 0x%p>", value);
+        // fprintf(file, "#<unknown-object 0x%p>", value);
+        fprintf(file, "#<%s 0x%p>", object->spec->name, value);
         return;
     }
 

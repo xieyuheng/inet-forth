@@ -1,6 +1,5 @@
 <net>
 :root (append₁₅)
-(append₁₅)-target!-<>-!value-(cons₇)
 (append₁₅)-rest-<>-value-(cons₁₄)
 (cons₁₄)-tail-<>-value-(cons₁₂)
 (cons₁₄)-head-<>-value-(sole₁₃)
@@ -15,19 +14,6 @@
 (cons₁₀)-value!-<>-!tail-(cons₁₂)
 (sole₉)-value!-<>-!head-(cons₁₀)
 (null₈)-value!-<>-!tail-(cons₁₀)
-(cons₇)-tail-<>-value-(cons₅)
-(cons₇)-head-<>-value-(sole₆)
-(cons₇)-value!-<>-!target-(append₁₅)
-(sole₆)-value!-<>-!head-(cons₇)
-(cons₅)-tail-<>-value-(cons₃)
-(cons₅)-head-<>-value-(sole₄)
-(cons₅)-value!-<>-!tail-(cons₇)
-(sole₄)-value!-<>-!head-(cons₅)
-(cons₃)-tail-<>-value-(null₁)
-(cons₃)-head-<>-value-(sole₂)
-(cons₃)-value!-<>-!tail-(cons₅)
-(sole₂)-value!-<>-!head-(cons₃)
-(null₁)-value!-<>-!tail-(cons₃)
 </net>
 
 <net>

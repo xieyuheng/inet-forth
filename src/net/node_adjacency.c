@@ -3,6 +3,7 @@
 node_adjacency_t *
 node_adjacency_new(node_t *start_node, node_t *end_node) {
     assert(node_is_adjacent(start_node, end_node));
+
     node_adjacency_t *self = new(node_adjacency_t);
     self->start_node = start_node;
     self->end_node = end_node;

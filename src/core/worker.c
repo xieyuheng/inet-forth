@@ -96,9 +96,17 @@ worker_connect(worker_t *self, value_t left, value_t right) {
     if (is_principal_port(left) && is_principal_port(right)) {
         worker_connect_active_pair(self, as_principal_port(left), as_principal_port(right));
     } else if (is_wire(left)) {
-        wire_connect(as_wire(left), right);
+        if (as_wire(left)->fuzed_value) {
+            worker_connect(self, as_wire(left)->fuzed_value, right);
+        } else {
+            as_wire(left)->fuzed_value = right;
+        }
     } else if (is_wire(right)) {
-        wire_connect(as_wire(right), left);
+        if (as_wire(right)->fuzed_value) {
+            worker_connect(self, as_wire(right)->fuzed_value, left);
+        } else {
+            as_wire(right)->fuzed_value = left;
+        }
     } else {
         assert(false);
     }

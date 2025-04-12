@@ -152,7 +152,7 @@ array_test(void) {
     }
 
     {
-        // array_size + auto grow
+        // array_set + auto grow
 
         array_t *array = array_new(3);
 
@@ -165,6 +165,21 @@ array_test(void) {
         assert(array_get(array, 3) == NULL);
         assert(array_get(array, 4) == (void *) 1);
         assert(array_get(array, 5) == NULL);
+
+        array_destroy(&array);
+        assert(array == NULL);
+    }
+
+    {
+        // array_set + auto grow -- again
+
+        array_t *array = array_auto();
+
+        array_set(array, 0, (void *) 1);
+        assert(array_length(array) == 1);
+
+        assert(array_get(array, 0) == (void *) 1);
+        assert(array_get(array, 1) == NULL);
 
         array_destroy(&array);
         assert(array == NULL);

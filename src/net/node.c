@@ -53,6 +53,8 @@ node_get_port_info(const node_t *self, size_t index) {
 
 bool
 node_is_adjacent(const node_t *self, const node_t *other) {
+    if (self == other) return false;
+
     if (!self->ctor) return false;
     if (!other->ctor) return false;
 

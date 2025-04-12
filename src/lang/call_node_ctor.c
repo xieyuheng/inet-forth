@@ -5,13 +5,12 @@ node_take_input(worker_t *worker, node_t *node, size_t index, value_t value) {
     port_info_t *port_info = node_get_port_info(node, index);
     if (port_info->is_principal) {
         principal_port_t *principal_port = principal_port_new(node, index);
-        if (is_wire(value)) {
-            wire_connect(as_wire(value), principal_port);
-        } else if (is_principal_port(value)) {
-            worker_connect_active_pair(worker, as_principal_port(value), principal_port);
-        } else {
-            assert(false);
-        }
+        node_set_value(node, index, principal_port);
+        worker_connect(worker, principal_port, value);
+    } else if (is_principal_port(value)) {
+        wire_t *wire = wire_new();
+        node_set_value(node, index, wire);
+        worker_connect(worker, wire, value);
     } else {
         node_set_value(node, index, value);
     }
@@ -23,7 +22,9 @@ node_return_output(worker_t *worker, node_t *node, size_t index) {
 
     port_info_t *port_info = node_get_port_info(node, index);
     if (port_info->is_principal) {
-        return principal_port_new(node, index);
+        principal_port_t *principal_port = principal_port_new(node, index);
+        node_set_value(node, index, principal_port);
+        return principal_port;
     } else {
         wire_t *wire = wire_new();
         node_set_value(node, index, wire);

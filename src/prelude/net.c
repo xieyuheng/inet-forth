@@ -19,31 +19,40 @@ x_run(worker_t *worker) {
 }
 
 static void
-x_wire_print_net(worker_t *worker) {
+value_print_connected(worker_t *worker) {
     value_t value = stack_top(worker->value_stack);
     if (!value) {
-        printf("[x_wire_print_net] expect top value\n");
+        printf("[value_print_connected] expect top value\n");
         return;
     }
 
-    wire_t *wire = as_wire(value);
-    node_t *node = worker_lookup_node_by_wire(worker, wire);
+    if (is_wire(value)) {
+        wire_t *wire = as_wire(value);
+        node_t *node = worker_lookup_node_by_wire(worker, wire);
+        if (!node) {
+            printf("[value_print_connected] expect wire connected to node\n");
+            return;
+        }
 
-    if (!node) {
-        printf("[x_wire_print_net] expect wire connected to node\n");
-        return;
+        hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
+        node_print_connected(node, node_adjacency_hash, stdout);
+        fprintf(stdout, "\n");
     }
 
-    hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
-    node_print_connected(node, node_adjacency_hash, stdout);
-    fprintf(stdout, "\n");
+    if (is_principal_port(value)) {
+        principal_port_t *principal_port = as_principal_port(value);
+        node_t *node = principal_port->node;
+        hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
+        node_print_connected(node, node_adjacency_hash, stdout);
+        fprintf(stdout, "\n");
+    }
 }
 
 void
 x_inspect_run(worker_t *worker) {
-    x_wire_print_net(worker);
+    value_print_connected(worker);
     run_task(worker);
-    x_wire_print_net(worker);
+    value_print_connected(worker);
 }
 
 static void

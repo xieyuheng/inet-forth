@@ -8,6 +8,7 @@ wire_t *
 wire_new(void) {
     wire_t *self = new(wire_t);
     self->spec = &wire_object_spec;
+    self->fuzed_value = NULL;
     return self;
 }
 
@@ -31,12 +32,6 @@ wire_t *
 as_wire(value_t value) {
     assert(is_wire(value));
     return (wire_t *) value;
-}
-
-void wire_connect(wire_t *self, value_t value) {
-    // TODO will be the critical section in multi-threaded implementation
-    assert(!self->fuzed_value);
-    self->fuzed_value = value;
 }
 
 value_t

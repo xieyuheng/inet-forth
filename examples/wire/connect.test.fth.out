@@ -4,7 +4,7 @@
 <return-stack length="0">
 </return-stack>
 <value-stack length="1">
-#<unknown-object 0x0x7f02f7455550>
+#<wire 0x0x7f303b59a1b0>
 </value-stack>
 </worker>
 
