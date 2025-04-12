@@ -66,7 +66,16 @@ node_adjacency_print(const node_adjacency_t *self, file_t *file) {
     port_info_t *end_port_info = node_get_port_info(self->end_node, self->end_port_index);
 
     node_print(self->start_node, file);
-    fprintf(file, "-%s-<", start_port_info->name);
-    fprintf(file, ">-%s-", end_port_info->name);
+
+    if (start_port_info->is_principal)
+        fprintf(file, "-%s!-<", start_port_info->name);
+    else
+        fprintf(file, "-%s-<", start_port_info->name);
+
+    if (start_port_info->is_principal)
+        fprintf(file, ">-!%s-", end_port_info->name);
+    else
+        fprintf(file, ">-%s-", end_port_info->name);
+
     node_print(self->end_node, file);
 }
