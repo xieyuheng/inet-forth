@@ -27,51 +27,30 @@ mod_find(const mod_t *self, const char *name) {
 }
 
 static bool
-rule_match_wire_pair(
-    const rule_t *self,
-    const wire_t *first_wire,
-    const wire_t *second_wire
-) {
-    return (((self->first_node_ctor == first_wire->node->ctor) &&
-             (self->second_node_ctor == second_wire->node->ctor)) ||
-            ((self->first_node_ctor == second_wire->node->ctor) &&
-             (self->second_node_ctor == first_wire->node->ctor)));
+rule_match(const rule_t *self, const node_t *first_node, const node_t *second_node) {
+    return (((self->first_node_ctor == first_node->ctor) &&
+             (self->second_node_ctor == second_node->ctor)) ||
+            ((self->first_node_ctor == second_node->ctor) &&
+             (self->second_node_ctor == first_node->ctor)));
 }
 
 const rule_t *
-mod_find_rule(
-    const mod_t *self,
-    const wire_t *first_wire,
-    const wire_t *second_wire
-) {
+mod_find_rule(const mod_t *self, const principal_port_t *left, const principal_port_t *right) {
     (void) self;
 
-    if (!first_wire->node) return NULL;
-    if (!second_wire->node) return NULL;
-
-    if (first_wire->node->ctor == second_wire->node->ctor) {
-        for (size_t i = 0; i < first_wire->node->ctor->arity; i++) {
-            rule_t *rule = array_get(first_wire->node->ctor->rule_array, i);
-            if (rule_match_wire_pair(rule, first_wire, second_wire))
-                return rule;
-        }
-
-        return NULL;
-    } else {
-        for (size_t i = 0; i < first_wire->node->ctor->arity; i++) {
-            rule_t *rule = array_get(first_wire->node->ctor->rule_array, i);
-            if (rule_match_wire_pair(rule, first_wire, second_wire))
-                return rule;
-        }
-
-        for (size_t i = 0; i < second_wire->node->ctor->arity; i++) {
-            rule_t *rule = array_get(second_wire->node->ctor->rule_array, i);
-            if (rule_match_wire_pair(rule, first_wire, second_wire))
-                return rule;
-        }
-
-        return NULL;
+    for (size_t i = 0; i < left->node->ctor->arity; i++) {
+        rule_t *rule = array_get(left->node->ctor->rule_array, i);
+        if (rule_match(rule, left->node, right->node))
+            return rule;
     }
+
+    for (size_t i = 0; i < right->node->ctor->arity; i++) {
+        rule_t *rule = array_get(right->node->ctor->rule_array, i);
+        if (rule_match(rule, left->node, right->node))
+            return rule;
+    }
+
+    return NULL;
 }
 
 void

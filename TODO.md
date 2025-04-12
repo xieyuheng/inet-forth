@@ -1,4 +1,3 @@
-[core] fix `mod_find_rule`
 [lang] fix `run`
 
 # thread
