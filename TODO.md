@@ -1,5 +1,3 @@
-[lang] fix `run`
-
 # thread
 
 [thread] wrap `pthread_cond_t` -- maybe `condvar_t`

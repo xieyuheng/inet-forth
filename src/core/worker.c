@@ -151,3 +151,16 @@ void
 worker_return_task(worker_t* self, task_t *task) {
     queue_enqueue(self->task_queue, task);
 }
+
+node_t *
+worker_lookup_node_by_wire(worker_t* self, wire_t *wire) {
+    array_t *node_array = allocated_node_array(self->node_allocator);
+    for (size_t i = 0; i < array_length(node_array); i++) {
+
+        node_t *node = array_get(node_array, i);
+        if (node_has_wire(node, wire))
+            return node;
+    }
+
+    return NULL;
+}

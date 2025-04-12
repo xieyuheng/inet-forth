@@ -121,3 +121,13 @@ node_print_connected(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
     connected_node_iter_destroy(&node_iter);
     fprintf(file, "</net>\n");
 }
+
+bool
+node_has_wire(node_t *node, wire_t *wire) {
+    for (size_t i = 0; i < node->ctor->arity; i++) {
+        if (is_fuzed(node_get_value(node, i), wire))
+            return true;
+    }
+
+    return false;
+}

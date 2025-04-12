@@ -24,3 +24,5 @@ void node_print_name(const node_t *self, file_t *file);
 void node_print(const node_t *self, file_t *file);
 void node_print_adjacent(node_t *self, hash_t *node_adjacency_hash, file_t *file);
 void node_print_connected(node_t *self, hash_t *node_adjacency_hash, file_t *file);
+
+bool node_has_wire(node_t *node, wire_t *wire);

@@ -7,7 +7,7 @@ xobject(object_t *target) {
 
 bool
 is_xobject(value_t value) {
-    return value_tag(value) == XOBJECT;
+    return value != NULL && value_tag(value) == XOBJECT;
 }
 
 object_t *

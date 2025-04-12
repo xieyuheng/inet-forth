@@ -8,7 +8,7 @@ x_connect(worker_t *worker) {
 void
 x_link(worker_t *worker) {
     wire_t *wire = wire_new();
-        
+
     stack_push(worker->value_stack, wire);
     stack_push(worker->value_stack, wire);
 }
@@ -27,14 +27,12 @@ x_wire_print_net(worker_t *worker) {
     }
 
     wire_t *wire = as_wire(value);
-    node_t *node = wire->node;
+    node_t *node = worker_lookup_node_by_wire(worker, wire);
 
     if (!node) {
-        wire_t *opposite = wire_opposite(wire);
-        if (opposite) node = opposite->node;
+        printf("[x_wire_print_net] expect wire connected to node\n");
+        return;
     }
-
-    assert(node);
 
     hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
     node_print_connected(node, node_adjacency_hash, stdout);

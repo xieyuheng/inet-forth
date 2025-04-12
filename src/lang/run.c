@@ -62,18 +62,11 @@ run_until(worker_t *worker, size_t base_length) {
 static void
 collect_free_wires_from_node(worker_t *worker, node_t *node) {
     for (size_t i = 0; i < node->ctor->arity; i++) {
+        port_info_t *port_info = node_get_port_info(node, i);
+        if (port_info->is_principal) continue;
+        
         value_t value = node_get_value(node, i);
-        if (is_wire(value)) {
-            wire_t *wire = as_wire(value);
-            if (wire_is_principal(value)) {
-                continue;
-            } else {
-                wire->node = NULL;
-                stack_push(worker->value_stack, wire);
-            }
-        } else {
-            stack_push(worker->value_stack, value);
-        }
+        stack_push(worker->value_stack, value);
     }
 
     worker_delete_node(worker, node);
@@ -83,24 +76,19 @@ void
 step_task(worker_t *worker) {
     task_t *task = queue_dequeue(worker->task_queue);
     if (!task) return;
+    
+    node_t *left_node = task->left->node;
+    node_t *right_node = task->right->node;
 
-    wire_t *opposite = wire_opposite(task->wire);
-
-    node_t *first_node = task->wire->node;
-    node_t *second_node = opposite->node;
-
-    if (first_node->ctor == task->rule->second_node_ctor &&
-        second_node->ctor == task->rule->first_node_ctor)
+    if (left_node->ctor == task->rule->second_node_ctor &&
+        right_node->ctor == task->rule->first_node_ctor)
     {
-        first_node = opposite->node;
-        second_node = task->wire->node;
+        left_node = task->right->node;
+        right_node = task->left->node;
     }
 
-    collect_free_wires_from_node(worker, first_node);
-    collect_free_wires_from_node(worker, second_node);
-
-    worker_delete_wire(worker, opposite);
-    worker_delete_wire(worker, task->wire);
+    collect_free_wires_from_node(worker, left_node);
+    collect_free_wires_from_node(worker, right_node);
 
     size_t base_length = stack_length(worker->return_stack);
     frame_t *frame = frame_new(task->rule->function);

@@ -34,3 +34,5 @@ wire_t *worker_add_wire(worker_t* self);
 void worker_delete_wire(worker_t* self, wire_t *wire);
 
 void worker_return_task(worker_t* self, task_t *task);
+
+node_t *worker_lookup_node_by_wire(worker_t* self, wire_t *wire);
