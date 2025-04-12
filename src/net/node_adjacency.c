@@ -11,13 +11,9 @@ node_adjacency_new(node_t *start_node, node_t *end_node) {
         for (size_t j = 0; j < end_node->ctor->arity; j++) {
             value_t x = node_get_value(start_node, i);
             value_t y = node_get_value(end_node, j);
-            if (is_wire(x) && is_wire(y)) {
-                wire_t *u = as_wire(x);
-                wire_t *v = as_wire(y);
-                if (wire_opposite(u) == v && wire_opposite(v) == u) {
-                    self->start_port_index = i;
-                    self->end_port_index = j;
-                }
+            if (is_fuzed(x, y)) {
+                self->start_port_index = i;
+                self->end_port_index = j;
             }
         }
     }

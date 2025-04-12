@@ -15,3 +15,4 @@ bool is_wire(value_t value);
 wire_t *as_wire(value_t value);
 
 value_t wire_follow(value_t value);
+bool is_fuzed(value_t x, value_t y);

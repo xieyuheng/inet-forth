@@ -67,12 +67,8 @@ node_is_adjacent(const node_t *self, const node_t *other) {
         for (size_t j = 0; j < other->ctor->arity; j++) {
             value_t x = node_get_value(self, i);
             value_t y = node_get_value(other, j);
-            if (is_wire(x) && is_wire(y)) {
-                wire_t *u = as_wire(x);
-                wire_t *v = as_wire(y);
-                if (wire_opposite(u) == v && wire_opposite(v) == u) {
-                    return true;
-                }
+            if (is_fuzed(x, y)) {
+                return true;
             }
         }
     }

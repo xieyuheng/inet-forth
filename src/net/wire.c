@@ -41,3 +41,8 @@ wire_follow(value_t value) {
 
     return value;
 }
+
+bool
+is_fuzed(value_t x, value_t y) {
+    return wire_follow(x) == wire_follow(y);
+}
