@@ -159,11 +159,3 @@ void
 worker_return_task(worker_t* self, task_t *task) {
     queue_enqueue(self->task_queue, task);
 }
-
-void
-worker_connect(worker_t* self, value_t x, value_t y) {
-    // TODO
-    (void) self;
-    (void) x;
-    (void) y;
-}
