@@ -32,3 +32,12 @@ as_wire(value_t value) {
     assert(is_wire(value));
     return (wire_t *) value;
 }
+
+value_t
+wire_follow(value_t value) {
+    while (is_wire(value) && as_wire(value)->fuzed_value) {
+        value = as_wire(value)->fuzed_value;
+    }
+
+    return value;
+}
