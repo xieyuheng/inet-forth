@@ -76,3 +76,23 @@ node_adjacency_print(const node_adjacency_t *self, file_t *file) {
 
     node_print(self->end_node, file);
 }
+
+void
+node_adjacency_array_print(array_t *node_adjacency_array, file_t *file) {
+    assert(node_adjacency_array);
+    size_t length = array_length(node_adjacency_array);
+    for (size_t i = 0; i < length; i++) {
+        node_adjacency_t *node_adjacency = array_get(node_adjacency_array, i);
+        node_adjacency_print(node_adjacency, file);
+        fprintf(file, "\n");
+    }
+}
+
+void
+node_adjacency_hash_print(hash_t *node_adjacency_hash, file_t *file) {
+    array_t *node_adjacency_array = hash_first(node_adjacency_hash);
+    while (node_adjacency_array) {
+        node_adjacency_array_print(node_adjacency_array, file);
+        node_adjacency_array = hash_next(node_adjacency_hash);
+    }
+}

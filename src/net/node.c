@@ -91,17 +91,6 @@ node_print(const node_t *self, file_t *file) {
     fprintf(file, ")");
 }
 
-static void
-node_adjacency_array_print(array_t *node_adjacency_array, file_t *file) {
-    assert(node_adjacency_array);
-    size_t length = array_length(node_adjacency_array);
-    for (size_t i = 0; i < length; i++) {
-        node_adjacency_t *node_adjacency = array_get(node_adjacency_array, i);
-        node_adjacency_print(node_adjacency, file);
-        fprintf(file, "\n");
-    }
-}
-
 void
 node_print_connected(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
     assert(self);
