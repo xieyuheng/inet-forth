@@ -45,18 +45,12 @@ wire_set_opposite(wire_t *self, wire_t *opposite) {
     self->opposite = opposite;
 }
 
-const char *
+static const char *
 wire_name(const wire_t *self) {
     assert(self->node);
     port_info_t *port_info = node_get_port_info(self->node, self->index);
     assert(port_info);
     return port_info->name;
-}
-
-const char *
-wire_node_name(const wire_t *self) {
-    assert(self->node);
-    return self->node->ctor->name;
 }
 
 bool
