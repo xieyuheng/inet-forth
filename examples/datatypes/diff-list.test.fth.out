@@ -1,23 +1,11 @@
 <net>
-:root (diff₁)
+:root (diff-append₁₁)
 
-(diff₁)-back-<>-tail-(cons₃)
-(diff₁)-front-<>-!value-(cons₅)
-(diff₁)-back-<>-back-(diff₆)
-(diff₁)-back-<>-tail-(cons₈)
-(diff₁)-back-<>-result-(diff-append₁₁)
+(diff-append₁₁)-rest-<>-!value-(diff₆)
 
-(diff-append₁₁)-result-<>-back-(diff₁)
-(diff-append₁₁)-result-<>-tail-(cons₃)
-(diff-append₁₁)-result-<>-back-(diff₆)
-(diff-append₁₁)-result-<>-tail-(cons₈)
-
-(cons₈)-tail-<>-back-(diff₁)
-(cons₈)-tail-<>-tail-(cons₃)
-(cons₈)-tail-<>-back-(diff₆)
-(cons₈)-head-<>-!value-(sole₇)
-(cons₈)-value!-<>-tail-(cons₁₀)
-(cons₈)-tail-<>-result-(diff-append₁₁)
+(diff₆)-back-<>-tail-(cons₈)
+(diff₆)-front-<>-!value-(cons₁₀)
+(diff₆)-value!-<>-rest-(diff-append₁₁)
 
 (cons₁₀)-value!-<>-front-(diff₆)
 (cons₁₀)-tail-<>-!value-(cons₈)
@@ -25,26 +13,9 @@
 
 (sole₉)-value!-<>-head-(cons₁₀)
 
-(diff₆)-back-<>-back-(diff₁)
-(diff₆)-back-<>-tail-(cons₃)
-(diff₆)-back-<>-tail-(cons₈)
-(diff₆)-front-<>-!value-(cons₁₀)
-(diff₆)-value!-<>-rest-(diff-append₁₁)
-
-(cons₃)-tail-<>-back-(diff₁)
-(cons₃)-head-<>-!value-(sole₂)
-(cons₃)-value!-<>-tail-(cons₅)
-(cons₃)-tail-<>-back-(diff₆)
-(cons₃)-tail-<>-tail-(cons₈)
-(cons₃)-tail-<>-result-(diff-append₁₁)
-
-(cons₅)-value!-<>-front-(diff₁)
-(cons₅)-tail-<>-!value-(cons₃)
-(cons₅)-head-<>-!value-(sole₄)
-
-(sole₄)-value!-<>-head-(cons₅)
-
-(sole₂)-value!-<>-head-(cons₃)
+(cons₈)-tail-<>-back-(diff₆)
+(cons₈)-head-<>-!value-(sole₇)
+(cons₈)-value!-<>-tail-(cons₁₀)
 
 (sole₇)-value!-<>-head-(cons₈)
 </net>

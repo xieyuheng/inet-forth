@@ -36,9 +36,8 @@ as_wire(value_t value) {
 
 value_t
 follow_wire(value_t value) {
-    while (is_wire(value)) {
-        wire_t *wire = as_wire(value);
-        value = wire->fuzed_value;
+    while (is_wire(value) && as_wire(value)->fuzed_value) {
+        value = as_wire(value)->fuzed_value;
     }
 
     return value;

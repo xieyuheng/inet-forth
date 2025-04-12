@@ -1,47 +1,20 @@
 <net>
-:root (add₁₀)
+:root (add₂₃)
 
-(add₁₀)-addend-<>-!value-(add1₉)
-(add₁₀)-result-<>-addend-(add₁₁)
-(add₁₀)-result-<>-result-(add₂₁)
-(add₁₀)-result-<>-result-(add₂₂)
-(add₁₀)-result-<>-result-(add₂₃)
+(add₂₃)-target!-<>-result-(add₁₁)
+(add₂₃)-addend-<>-result-(add₂₂)
 
-(add₂₃)-result-<>-result-(add₁₀)
-(add₂₃)-result-<>-addend-(add₁₁)
-(add₂₃)-result-<>-result-(add₂₁)
-(add₂₃)-result-<>-result-(add₂₂)
-
-(add₂₂)-result-<>-result-(add₁₀)
-(add₂₂)-result-<>-addend-(add₁₁)
 (add₂₂)-target!-<>-result-(add₁₆)
-(add₂₂)-result-<>-result-(add₂₁)
-(add₂₂)-result-<>-result-(add₂₃)
+(add₂₂)-addend-<>-result-(add₂₁)
+(add₂₂)-result-<>-addend-(add₂₃)
 
-(add₂₁)-result-<>-result-(add₁₀)
-(add₂₁)-result-<>-addend-(add₁₁)
 (add₂₁)-addend-<>-!value-(add1₂₀)
-(add₂₁)-result-<>-result-(add₂₂)
-(add₂₁)-result-<>-result-(add₂₃)
+(add₂₁)-result-<>-addend-(add₂₂)
 
 (add1₂₀)-prev-<>-!value-(zero₁₉)
 (add1₂₀)-value!-<>-addend-(add₂₁)
 
 (zero₁₉)-value!-<>-prev-(add1₂₀)
-
-(add₁₁)-target!-<>-result-(add₅)
-(add₁₁)-addend-<>-result-(add₁₀)
-(add₁₁)-addend-<>-result-(add₂₁)
-(add₁₁)-addend-<>-result-(add₂₂)
-(add₁₁)-result-<>-!target-(add₂₃)
-
-(add₅)-addend-<>-!value-(add1₄)
-(add₅)-result-<>-!target-(add₁₁)
-
-(add1₄)-prev-<>-!value-(zero₃)
-(add1₄)-value!-<>-addend-(add₅)
-
-(zero₃)-value!-<>-prev-(add1₄)
 
 (add₁₆)-addend-<>-!value-(add1₁₅)
 (add₁₆)-result-<>-!target-(add₂₂)
@@ -51,10 +24,25 @@
 
 (zero₁₄)-value!-<>-prev-(add1₁₅)
 
+(add₁₁)-target!-<>-result-(add₅)
+(add₁₁)-addend-<>-result-(add₁₀)
+(add₁₁)-result-<>-!target-(add₂₃)
+
+(add₁₀)-addend-<>-!value-(add1₉)
+(add₁₀)-result-<>-addend-(add₁₁)
+
 (add1₉)-prev-<>-!value-(zero₈)
 (add1₉)-value!-<>-addend-(add₁₀)
 
 (zero₈)-value!-<>-prev-(add1₉)
+
+(add₅)-addend-<>-!value-(add1₄)
+(add₅)-result-<>-!target-(add₁₁)
+
+(add1₄)-prev-<>-!value-(zero₃)
+(add1₄)-value!-<>-addend-(add₅)
+
+(zero₃)-value!-<>-prev-(add1₄)
 </net>
 
 <net>
@@ -90,9 +78,9 @@
 :root (mul₁₀)
 
 (mul₁₀)-target!-<>-result-(add₁₁)
-(mul₁₀)-result-<>-result-(add₁₂)
+(mul₁₀)-mulend-<>-result-(add₁₂)
 
-(add₁₂)-result-<>-result-(mul₁₀)
+(add₁₂)-result-<>-mulend-(mul₁₀)
 (add₁₂)-addend-<>-!value-(add1₁₆)
 
 (add1₁₆)-value!-<>-addend-(add₁₂)
@@ -129,10 +117,10 @@
 <net>
 :root (nat-max₂₂)
 
-(nat-max₂₂)-result-<>-result-(add₂₄)
+(nat-max₂₂)-second-<>-result-(add₂₄)
 
 (add₂₄)-addend-<>-!value-(add1₁₄)
-(add₂₄)-result-<>-result-(nat-max₂₂)
+(add₂₄)-result-<>-second-(nat-max₂₂)
 
 (add1₁₄)-prev-<>-!value-(zero₅)
 (add1₁₄)-value!-<>-addend-(add₂₄)
