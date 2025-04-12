@@ -2,7 +2,7 @@
 
 void
 canvas_test(void) {
-    printf("<canvas_test>\n");
+    test_start();
 
     canvas_t *canvas = canvas_new(3 * TILE, 3 * TILE, 10);
     canvas->title = "hello canvas";
@@ -30,5 +30,5 @@ canvas_test(void) {
 
     canvas_destroy(&canvas);
 
-    printf("</canvas_test>\n");
+    test_end();
 }

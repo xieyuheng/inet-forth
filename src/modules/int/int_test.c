@@ -2,7 +2,7 @@
 
 void
 int_test(void) {
-    printf("<int_test>\n");
+    test_start();
 
     assert(uint_max(1, 2) == 2);
     assert(uint_min(1, 2) == 1);
@@ -24,5 +24,5 @@ int_test(void) {
         assert(int_relu(x) == 0);
     }
 
-    printf("</int_test>\n");
+    test_end();
 }

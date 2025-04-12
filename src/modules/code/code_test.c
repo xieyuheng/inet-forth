@@ -2,7 +2,7 @@
 
 void
 code_test(void) {
-    printf("<code_test>\n");
+    test_start();
 
     {
         const char *string = ""
@@ -33,5 +33,5 @@ code_test(void) {
         assert(code_lineno_of_index(string, 100) == 4);
     }
 
-    printf("</code_test>\n");
+    test_end();
 }

@@ -2,7 +2,7 @@
 
 void
 node_test_allocated_node_iter(void) {
-    printf("<node_test_allocated_node_iter>\n");
+    test_start();
 
     node_allocator_t *node_allocator = node_allocator_new();
 
@@ -41,5 +41,5 @@ node_test_allocated_node_iter(void) {
 
     node_allocator_destroy(&node_allocator);
 
-    printf("</node_test_allocated_node_iter>\n");
+    test_end();
 }

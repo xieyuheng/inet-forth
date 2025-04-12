@@ -2,7 +2,7 @@
 
 void
 queue_test_single_thread(void) {
-    printf("<queue_test_single_thread>\n");
+    test_start();
 
     queue_t *queue = queue_new(4);
     assert(queue_size(queue) == 4);
@@ -31,5 +31,5 @@ queue_test_single_thread(void) {
 
     queue_destroy(&queue);
 
-    printf("</queue_test_single_thread>\n");
+    test_end();
 }

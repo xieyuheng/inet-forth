@@ -2,9 +2,9 @@
 
 void
 vec_test(void) {
-    printf("<vec_test>\n");
+    test_start();
 
     vec2_test();
 
-    printf("</vec_test>\n");
+    test_end();
 }

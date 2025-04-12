@@ -2,7 +2,7 @@
 
 void
 set_test(void) {
-    printf("<set_test>\n");
+    test_start();
 
     {
         set_t *set = set_new();
@@ -42,5 +42,5 @@ set_test(void) {
         set_destroy(&set);
     }
 
-    printf("</set_test>\n");
+    test_end();
 }

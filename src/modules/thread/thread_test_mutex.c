@@ -26,7 +26,7 @@ thread_fn(void *arg) {
 
 void
 thread_test_mutex(void) {
-    printf("<thread_test_mutex>\n");
+    test_start();
 
     mutex_t *mutex = mutex_new();
 
@@ -38,5 +38,5 @@ thread_test_mutex(void) {
 
     assert(global_count == loop_count * 2);
 
-    printf("</thread_test_mutex>\n");
+    test_end();
 }

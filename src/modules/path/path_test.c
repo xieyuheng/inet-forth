@@ -2,7 +2,7 @@
 
 void
 path_test(void) {
-    printf("<path_test>\n");
+    test_start();
 
     {
         path_t *path = path_new("abc");
@@ -107,5 +107,5 @@ path_test(void) {
         path_destroy(&y);
     }
 
-    printf("</path_test>\n");
+    test_end();
 }

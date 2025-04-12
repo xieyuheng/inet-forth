@@ -25,7 +25,7 @@ thread_fn_2(void *arg) {
 
 void
 thread_test_weak_memory_dekker_relaxed(void) {
-    printf("<thread_test_weak_memory_dekker_relaxed>\n");
+    test_start();
 
     // comment the follow early `return` to run this test.
     // due to weak memory model, the program exit the follow loop,
@@ -50,5 +50,5 @@ thread_test_weak_memory_dekker_relaxed(void) {
 
     printf("count: %lu\n", count);
 
-    printf("</thread_test_weak_memory_dekker_relaxed>\n");
+    test_end();
 }

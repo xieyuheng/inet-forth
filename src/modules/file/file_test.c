@@ -2,7 +2,7 @@
 
 void
 file_test(void) {
-    printf("<file_test>\n");
+    test_start();
 
     char *base = dirname(string_copy(__FILE__));
     char *file_name = string_append(base, "/abc.txt");
@@ -30,5 +30,5 @@ file_test(void) {
                 "abc\n"));
     }
 
-    printf("</file_test>\n");
+    test_end();
 }

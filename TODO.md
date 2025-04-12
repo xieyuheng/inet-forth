@@ -1,5 +1,3 @@
-[self-test] simple test output -- less xml -- use `test_start()` and `test_end()`
-
 [net] simplify `wire_print` functions
 
 [net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`

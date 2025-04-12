@@ -9,7 +9,7 @@ thread_fn(void *arg) {
 
 void
 thread_test_start(void) {
-    printf("<thread_test_start>\n");
+    test_start();
 
     char *message = string_copy("hello thread");
     tid_t tid = thread_start(thread_fn, message);
@@ -18,5 +18,5 @@ thread_test_start(void) {
     size_t length = (size_t) thread_wait(tid);
     printf("thread returned: %lu\n", length);
 
-    printf("</thread_test_start>\n");
+    test_end();
 }

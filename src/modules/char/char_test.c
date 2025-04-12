@@ -2,7 +2,7 @@
 
 void
 char_test(void) {
-    printf("<char_test>\n");
+    test_start();
 
     assert(char_to_hex('0') == 0);
     assert(char_to_hex('1') == 1);
@@ -43,5 +43,5 @@ char_test(void) {
     assert(!char_is_digit('a'));
     assert(!char_is_digit('A'));
 
-    printf("</char_test>\n");
+    test_end();
 }

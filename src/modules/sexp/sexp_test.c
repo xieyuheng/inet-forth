@@ -2,7 +2,7 @@
 
 void
 sexp_test(void) {
-    printf("<sexp_test>\n");
+    test_start();
 
 
     sexp_print(sexp_parse("(a b c)"), stdout);
@@ -11,5 +11,5 @@ sexp_test(void) {
     sexp_print(sexp_parse("((a \"b\" c) (a . c) (1 1.2))"), stdout);
     printf("\n");
 
-    printf("</sexp_test>\n");
+    test_end();
 }

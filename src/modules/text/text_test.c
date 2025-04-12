@@ -2,7 +2,7 @@
 
 void
 text_test(void) {
-    printf("<text_test>\n");
+    test_start();
 
     {
         text_t *text = text_from_string("abc");
@@ -70,5 +70,5 @@ text_test(void) {
                 ""));
     }
 
-    printf("</text_test>\n");
+    test_end();
 }

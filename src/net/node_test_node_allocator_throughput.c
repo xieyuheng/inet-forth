@@ -26,7 +26,7 @@ thread_fn(void *arg) {
 
 void
 node_test_node_allocator_throughput(void) {
-    printf("<node_test_node_allocator_throughput>\n");
+    test_start();
 
     node_allocator_t *node_allocator = node_allocator_new();
 
@@ -50,5 +50,5 @@ node_test_node_allocator_throughput(void) {
     double throughput = REPEATION_COUNT * BATCH_SIZE / 1000 / time_passed_second(start_second);
     printf("throughput: %.f k/s\n", throughput);
 
-    printf("</node_test_node_allocator_throughput>\n");
+    test_end();
 }

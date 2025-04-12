@@ -25,7 +25,7 @@ thread_fn_2(void *arg) {
 
 void
 thread_test_weak_memory_dekker_atomic(void) {
-    printf("<thread_test_weak_memory_dekker_atomic>\n");
+    test_start();
 
     // comment the follow early `return` to run this test.
     // unlike the relaxed version, this program should loop forever.
@@ -49,5 +49,5 @@ thread_test_weak_memory_dekker_atomic(void) {
 
     printf("count: %lu\n", count);
 
-    printf("</thread_test_weak_memory_dekker_atomic>\n");
+    test_end();
 }

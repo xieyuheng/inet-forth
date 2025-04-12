@@ -2,7 +2,7 @@
 
 void
 store_test(void) {
-    printf("<store_test>\n");
+    test_start();
 
     char *base = dirname(string_copy(__FILE__));
     store_t *store = store_new(base);
@@ -54,5 +54,5 @@ store_test(void) {
 
     store_destroy(&store);
 
-    printf("</store_test>\n");
+    test_end();
 }

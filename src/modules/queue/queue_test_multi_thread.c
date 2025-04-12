@@ -61,7 +61,7 @@ string_consumer(queue_t *queue) {
 
 void
 queue_test_multi_thread(void) {
-    printf("<queue_test_multi_thread>\n");
+    test_start();
 
     queue_t *queue = queue_new(QUEUE_SIZE);
 
@@ -91,5 +91,5 @@ queue_test_multi_thread(void) {
 
     queue_destroy(&queue);
 
-    printf("</queue_test_multi_thread>\n");
+    test_end();
 }

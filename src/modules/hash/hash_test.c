@@ -2,7 +2,7 @@
 
 void
 hash_test(void) {
-    printf("<hash_test>\n");
+    test_start();
 
     {
         hash_t *hash = hash_new();
@@ -151,5 +151,5 @@ hash_test(void) {
         hash_destroy(&hash);
     }
 
-    printf("</hash_test>\n");
+    test_end();
 }

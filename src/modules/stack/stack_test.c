@@ -2,7 +2,7 @@
 
 void
 stack_test(void) {
-    printf("<stack_test>\n");
+    test_start();
 
     stack_t *stack = stack_new_with((destroy_fn_t *) string_destroy);
 
@@ -57,5 +57,5 @@ stack_test(void) {
     stack_destroy(&stack);
     assert(stack == NULL);
 
-    printf("</stack_test>\n");
+    test_end();
 }

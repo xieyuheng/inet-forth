@@ -2,7 +2,7 @@
 
 void
 lexer_test(void) {
-    printf("<lexer_test>\n");
+    test_start();
 
     lexer_t *lexer = lexer_new();
 
@@ -170,5 +170,5 @@ lexer_test(void) {
 
     lexer_destroy(&lexer);
 
-    printf("</lexer_test>\n");
+    test_end();
 }

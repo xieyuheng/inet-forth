@@ -2,9 +2,9 @@
 
 void
 allocator_test(void) {
-    printf("<allocator_test>\n");
+    test_start();
 
     allocator_test_throughput();
 
-    printf("</allocator_test>\n");
+    test_end();
 }

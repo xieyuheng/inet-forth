@@ -2,7 +2,7 @@
 
 void
 blob_test(void) {
-    printf("<blob_test>\n");
+    test_start();
 
     {
         blob_t *blob = blob_new(3);
@@ -57,5 +57,5 @@ blob_test(void) {
         blob_destroy(&blob_2);
     }
 
-    printf("</blob_test>\n");
+    test_end();
 }

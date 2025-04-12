@@ -2,7 +2,7 @@
 
 void
 list_test(void) {
-    printf("<list_test>\n");
+    test_start();
 
     list_t *list = list_new();
     assert(list);
@@ -275,5 +275,5 @@ list_test(void) {
         assert(list == NULL);
     }
 
-    printf("</list_test>\n");
+    test_end();
 }

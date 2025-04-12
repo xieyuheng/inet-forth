@@ -9,7 +9,7 @@ typedef struct vec2_t vec2_t;
 
 void
 memory_test(void) {
-    printf("<memory_test>\n");
+    test_start();
 
     {
         void *pointer = allocate(10);
@@ -91,5 +91,5 @@ memory_test(void) {
         destroy((void **) &v);
     }
 
-    printf("</memory_test>\n");
+    test_end();
 }

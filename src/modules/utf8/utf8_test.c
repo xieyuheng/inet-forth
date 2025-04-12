@@ -2,7 +2,7 @@
 
 void
 utf8_test(void) {
-    printf("<utf8_test>\n");
+    test_start();
 
     assert(utf8_char_length('a') == 1);
 
@@ -75,5 +75,5 @@ utf8_test(void) {
         assert(string_equal(utf8_encode(utf8_decode("中文")), "中"));
     }
 
-    printf("</utf8_test>\n");
+    test_end();
 }

@@ -2,7 +2,7 @@
 
 void
 thread_test(void) {
-    printf("<thread_test>\n");
+    test_start();
 
     thread_test_start();
     thread_test_mutex();
@@ -15,5 +15,5 @@ thread_test(void) {
     thread_test_weak_memory_dekker_relaxed();
     thread_test_weak_memory_dekker_atomic();
 
-    printf("</thread_test>\n");
+    test_end();
 }

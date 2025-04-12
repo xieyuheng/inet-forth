@@ -2,7 +2,7 @@
 
 void
 string_test(void) {
-    printf("<string_test>\n");
+    test_start();
 
     assert(string_equal("abc", "abc"));
     assert(!string_equal("abc", "abd"));
@@ -209,5 +209,5 @@ string_test(void) {
         assert(string_parse_double("-0.0") == 0);
     }
 
-    printf("</string_test>\n");
+    test_end();
 }

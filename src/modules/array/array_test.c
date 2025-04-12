@@ -2,7 +2,7 @@
 
 void
 array_test(void) {
-    printf("<array_test>\n");
+    test_start();
 
     array_t *array = array_new_with(
         100, (destroy_fn_t *) string_destroy);
@@ -170,5 +170,5 @@ array_test(void) {
         assert(array == NULL);
     }
 
-    printf("</array_test>\n");
+    test_end();
 }
