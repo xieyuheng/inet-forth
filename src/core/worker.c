@@ -54,7 +54,7 @@ worker_print(const worker_t *self, file_t *file) {
     for (size_t i = 0; i < task_queue_length; i++) {
         task_t *task = queue_get(self->task_queue, i);
         (void) task;
-        // TODO 
+        // TODO
         // task_print(task, file);
         fprintf(file, "\n");
     }
@@ -158,4 +158,12 @@ worker_wire_connect(worker_t* self, wire_t *first_wire, wire_t *second_wire) {
 void
 worker_return_task(worker_t* self, task_t *task) {
     queue_enqueue(self->task_queue, task);
+}
+
+void
+worker_connect(worker_t* self, value_t x, value_t y) {
+    // TODO
+    (void) self;
+    (void) x;
+    (void) y;
 }
