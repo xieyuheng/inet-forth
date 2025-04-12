@@ -18,7 +18,6 @@ wire_destroy(wire_t **self_pointer) {
 
     wire_t *self = *self_pointer;
     free(self);
-    // Does NOT own `node` and `opposite`.
     *self_pointer = NULL;
 }
 
@@ -32,22 +31,4 @@ wire_t *
 as_wire(value_t value) {
     assert(is_wire(value));
     return (wire_t *) value;
-}
-
-wire_t *
-wire_opposite(const wire_t *self) {
-    return self->opposite;
-}
-
-void
-wire_set_opposite(wire_t *self, wire_t *opposite) {
-    self->opposite = opposite;
-}
-
-bool
-wire_is_principal(const wire_t *self) {
-    return
-        self->node &&
-        self->node->ctor &&
-        node_get_port_info(self->node, self->index)->is_principal;
 }

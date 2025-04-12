@@ -1,7 +1,3 @@
-[net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`
-
-- `fuzed` might be `wire_t` or `principal_port_t`
-
 [lang] `node_take_input` -- handle new single linked wire
 [core] extract `connect`
 [net] `wire_connect` -- will be the critical section
