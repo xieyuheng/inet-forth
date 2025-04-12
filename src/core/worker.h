@@ -23,6 +23,7 @@ void worker_print_return_stack(const worker_t *self, file_t *file);
 void worker_print_value_stack(const worker_t *self, file_t *file);
 void worker_print(const worker_t *self, file_t *file);
 
+void worker_connect(worker_t *self, value_t left, value_t right);
 void worker_connect_top_value_pair(worker_t *self);
 void worker_connect_active_pair(worker_t *self, principal_port_t *left, principal_port_t *right);
 

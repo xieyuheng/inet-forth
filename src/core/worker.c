@@ -92,19 +92,24 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
 }
 
 void
+worker_connect(worker_t *self, value_t left, value_t right) {
+    if (is_principal_port(left) && is_principal_port(right)) {
+        worker_connect_active_pair(worker, as_principal_port(left), as_principal_port(right));
+    } else if (is_wire(left)) {
+        wire_connect(as_wire(left), right);
+    } else if (is_wire(right)) {
+        wire_connect(as_wire(right), left);
+    } else {
+        assert(false);
+    }
+}
+
+void
 worker_connect_top_value_pair(worker_t *self) {
     value_t second = stack_pop(self->value_stack);
     value_t first = stack_pop(self->value_stack);
 
-    if (is_principal_port(first) && is_principal_port(second)) {
-        worker_connect_active_pair(worker, as_principal_port(first), as_principal_port(second));
-    } else if (is_wire(first)) {
-        wire_connect(as_wire(first), second);
-    } else if (is_wire(second)) {
-        wire_connect(as_wire(second), first);
-    } else {
-        assert(false);
-    }
+    worker_connect(self, first, second);
 }
 
 void
