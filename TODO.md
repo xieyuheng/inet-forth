@@ -1,6 +1,3 @@
-[prelude] `print-net`
-[test] fix `connect.test.fth` -- unstable snapshot
-
 [core] remove `worker_add_wire`
 [core] remove `worker_delete_wire`
 

@@ -87,12 +87,3 @@ node_adjacency_array_print(array_t *node_adjacency_array, file_t *file) {
         fprintf(file, "\n");
     }
 }
-
-void
-node_adjacency_hash_print(hash_t *node_adjacency_hash, file_t *file) {
-    array_t *node_adjacency_array = hash_first(node_adjacency_hash);
-    while (node_adjacency_array) {
-        node_adjacency_array_print(node_adjacency_array, file);
-        node_adjacency_array = hash_next(node_adjacency_hash);
-    }
-}
