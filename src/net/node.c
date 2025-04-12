@@ -51,26 +51,6 @@ node_get_port_info(const node_t *self, size_t index) {
     return self->ctor->port_infos[index];
 }
 
-bool
-node_is_adjacent(const node_t *self, const node_t *other) {
-    if (self == other) return false;
-
-    if (!self->ctor) return false;
-    if (!other->ctor) return false;
-
-    for (size_t i = 0; i < self->ctor->arity; i++) {
-        for (size_t j = 0; j < other->ctor->arity; j++) {
-            value_t x = node_get_value(self, i);
-            value_t y = node_get_value(other, j);
-            if (is_fuzed(x, y)) {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
 void
 node_print_name(const node_t *self, file_t *file) {
     if (self->ctor) {
