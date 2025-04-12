@@ -150,12 +150,6 @@ worker_add_wire(worker_t* self) {
 }
 
 void
-worker_delete_wire(worker_t* self, wire_t *wire) {
-    (void) self;
-    wire_destroy(&wire);
-}
-
-void
 worker_return_task(worker_t* self, task_t *task) {
     queue_enqueue(self->task_queue, task);
 }
