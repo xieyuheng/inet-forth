@@ -94,6 +94,8 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
 void
 worker_connect(worker_t *self, value_t left, value_t right) {
     if (is_principal_wire(left) && is_principal_wire(right)) {
+        as_principal_wire(left)->oppsite = as_principal_wire(right);
+        as_principal_wire(right)->oppsite = as_principal_wire(left);
         worker_connect_active_pair(self, as_principal_wire(left), as_principal_wire(right));
     } else if (is_wire(left)) {
         if (as_wire(left)->fuzed_value) {

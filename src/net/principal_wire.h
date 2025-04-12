@@ -6,6 +6,7 @@ struct principal_wire_t {
     object_spec_t *spec;
     node_t *node;
     size_t index;
+    principal_wire_t *oppsite;
 };
 
 principal_wire_t *principal_wire_new(node_t *node, size_t index);

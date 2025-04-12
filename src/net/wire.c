@@ -34,8 +34,8 @@ as_wire(value_t value) {
     return (wire_t *) value;
 }
 
-value_t
-follow_wire(value_t value) {
+static value_t
+walk(value_t value) {
     while (is_wire(value) && as_wire(value)->fuzed_value) {
         value = as_wire(value)->fuzed_value;
     }
@@ -45,5 +45,21 @@ follow_wire(value_t value) {
 
 bool
 is_fuzed(value_t x, value_t y) {
-    return follow_wire(x) == follow_wire(y);
+    x = walk(x);
+    y = walk(y);
+    return x == y;
+}
+
+bool
+is_connected(value_t x, value_t y) {
+    x = walk(x);
+    y = walk(y);
+
+    if (is_principal_wire(x) && is_principal_wire(y)) {
+        return (x == y ||
+                (as_principal_wire(x)->oppsite == y &&
+                 as_principal_wire(y)->oppsite == x));
+    } else {
+        return x == y;
+    }
 }

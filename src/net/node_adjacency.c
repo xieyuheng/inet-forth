@@ -9,7 +9,7 @@ node_adjacency_new_maybe(node_t *start_node, node_t *end_node) {
         for (size_t j = 0; j < end_node->ctor->arity; j++) {
             value_t x = node_get_value(start_node, i);
             value_t y = node_get_value(end_node, j);
-            if (is_fuzed(x, y)) {
+            if (is_connected(x, y)) {
                 node_adjacency_t *self = new(node_adjacency_t);
                 self->start_node = start_node;
                 self->start_port_index = i;
