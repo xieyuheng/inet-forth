@@ -33,7 +33,7 @@ as_wire(value_t value) {
     return (wire_t *) value;
 }
 
-void wire_fuze(wire_t self, value_t value) {
+void wire_fuze(wire_t *self, value_t value) {
     // TODO will be the critical section in multi-threaded implementation
     assert(!self->fuzed_value);
     self->fuzed_value = value;
