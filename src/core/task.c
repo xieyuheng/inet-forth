@@ -1,9 +1,10 @@
 #include "index.h"
 
 task_t *
-task_new(wire_t *wire, const rule_t *rule) {
+task_new(principal_port_t *left_principal_port, principal_port_t *right_principal_port, const rule_t *rule) {
     task_t *self = new(task_t);
-    self->wire = wire;
+    self->left_principal_port = left_principal_port;
+    self->right_principal_port = right_principal_port;
     self->rule = rule;
     return self;
 }
