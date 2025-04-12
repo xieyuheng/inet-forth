@@ -1,3 +1,4 @@
+[core] fix `worker_connect_top_wire_pair`
 [core] fix `mod_find_rule`
 [lang] fix `run`
 
