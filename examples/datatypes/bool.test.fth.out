@@ -1,40 +1,52 @@
 <net>
 :root (conj₆)
+
 (conj₆)-y-<>-!value-(t₅)
 (conj₆)-z-<>-y-(conj₇)
 (conj₆)-z-<>-z-(disj₁₃)
 (conj₆)-z-<>-z-(disj₁₄)
 (conj₆)-z-<>-z-(disj₁₅)
+
 (disj₁₅)-z-<>-z-(conj₆)
 (disj₁₅)-z-<>-y-(conj₇)
 (disj₁₅)-z-<>-z-(disj₁₃)
 (disj₁₅)-z-<>-z-(disj₁₄)
+
 (disj₁₄)-z-<>-z-(conj₆)
 (disj₁₄)-z-<>-y-(conj₇)
 (disj₁₄)-x!-<>-z-(disj₁₀)
 (disj₁₄)-z-<>-z-(disj₁₃)
 (disj₁₄)-z-<>-z-(disj₁₅)
+
 (disj₁₃)-z-<>-z-(conj₆)
 (disj₁₃)-z-<>-y-(conj₇)
 (disj₁₃)-y-<>-!value-(t₁₂)
 (disj₁₃)-z-<>-z-(disj₁₄)
 (disj₁₃)-z-<>-z-(disj₁₅)
+
 (t₁₂)-value!-<>-y-(disj₁₃)
+
 (conj₇)-x!-<>-z-(conj₃)
 (conj₇)-y-<>-z-(conj₆)
 (conj₇)-y-<>-z-(disj₁₃)
 (conj₇)-y-<>-z-(disj₁₄)
 (conj₇)-z-<>-!x-(disj₁₅)
+
 (conj₃)-y-<>-!value-(t₂)
 (conj₃)-z-<>-!x-(conj₇)
+
 (t₂)-value!-<>-y-(conj₃)
+
 (disj₁₀)-y-<>-!value-(t₉)
 (disj₁₀)-z-<>-!x-(disj₁₄)
+
 (t₉)-value!-<>-y-(disj₁₀)
+
 (t₅)-value!-<>-y-(conj₆)
 </net>
 
 <net>
 :root (t₁₅)
+
 </net>
 

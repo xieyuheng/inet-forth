@@ -1,4 +1,3 @@
-[net] `node_print_connected` add some space
 [bug] `bool.test.fth.out` -- fix `:root` -- should be `(disj)`
 [bug] `diff-list.test.fth.out` -- fix `:root` -- should be `(diff-append)`
 [bug] `list.test.fth.out` -- not all connected nodes are printed

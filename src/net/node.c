@@ -99,19 +99,19 @@ node_print_connected(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
     fprintf(file, ":root ");
     node_print(self, file);
     fprintf(file, "\n");
+    fprintf(file, "\n");
 
-    connected_node_iter_t *node_iter =
-        connected_node_iter_new(self, node_adjacency_hash);
-    node_t *node = connected_node_iter_first(node_iter);
-    while (node) {
+    array_t *node_array = connected_node_array(self, node_adjacency_hash);
+    for (size_t i = 0; i < array_length(node_array); i++) {
+        node_t *node = array_get(node_array, i);
         array_t *node_adjacency_array = hash_get(node_adjacency_hash, node);
         assert(node_adjacency_array);
         node_adjacency_array_print(node_adjacency_array, file);
-
-        node = connected_node_iter_next(node_iter);
+        if (i != array_length(node_array) - 1)
+            fprintf(file, "\n");
     }
 
-    connected_node_iter_destroy(&node_iter);
+    array_destroy(&node_array);
     fprintf(file, "</net>\n");
 }
 

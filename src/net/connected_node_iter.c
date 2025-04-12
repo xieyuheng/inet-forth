@@ -17,7 +17,6 @@ connected_node_iter_destroy(connected_node_iter_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     connected_node_iter_t *self = *self_pointer;
-    hash_destroy(&self->node_adjacency_hash);
     set_destroy(&self->occurred_node_set);
     list_destroy(&self->remaining_node_list);
     free(self);
@@ -37,9 +36,8 @@ take_node(connected_node_iter_t *self, node_t *node) {
 
 node_t *
 connected_node_iter_first(connected_node_iter_t *self) {
-    node_t *node = self->root;
-    take_node(self, node);
-    return node;
+    take_node(self, self->root);
+    return self->root;
 }
 
 node_t *
@@ -52,4 +50,19 @@ connected_node_iter_next(connected_node_iter_t *self) {
 
     take_node(self, node);
     return node;
+}
+
+array_t *
+connected_node_array(node_t *root, hash_t *node_adjacency_hash) {
+    array_t *node_array = array_auto();
+    connected_node_iter_t *connected_node_iter =
+        connected_node_iter_new(root, node_adjacency_hash);
+    node_t *node = connected_node_iter_first(connected_node_iter);
+    while (node) {
+        array_push(node_array, node);
+        node = connected_node_iter_next(connected_node_iter);
+    }
+
+    connected_node_iter_destroy(&connected_node_iter);
+    return node_array;
 }
