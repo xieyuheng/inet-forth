@@ -48,7 +48,7 @@ wire_set_opposite(wire_t *self, wire_t *opposite) {
 const char *
 wire_name(const wire_t *self) {
     assert(self->node);
-    port_info_t *port_info = self->node->ctor->port_infos[self->index];
+    port_info_t *port_info = node_get_port_info(self->node, self->index);
     assert(port_info);
     return port_info->name;
 }
@@ -75,7 +75,7 @@ wire_is_principal(const wire_t *self) {
     return
         self->node &&
         self->node->ctor &&
-        self->node->ctor->port_infos[self->index]->is_principal;
+        node_get_port_info(self->node, self->index)->is_principal;
 }
 
 static void

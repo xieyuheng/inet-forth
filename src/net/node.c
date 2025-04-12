@@ -46,8 +46,16 @@ node_set_value(node_t *self, size_t index, value_t value) {
 
 value_t
 node_get_value(const node_t *self, size_t index) {
+    assert(self->ctor);
     assert(index < self->ctor->arity);
     return array_get(self->value_array, index);
+}
+
+port_info_t *
+node_get_port_info(const node_t *self, size_t index) {
+    assert(self->ctor);
+    assert(index < self->ctor->arity);
+    return self->ctor->port_infos[index];
 }
 
 bool

@@ -1,7 +1,3 @@
-[net] `node_set_port_info`
-[net] `node_get_port_info`
-[net] maybe extract `node_arity`
-
 [net] `node_print_connected_net` should not call `wire_print`
 
 [net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`
