@@ -47,7 +47,7 @@ x_wire_print_net(worker_t *worker) {
     }
 
     hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
-    node_print_connected_net(node, node_adjacency_hash, stdout);
+    node_print_connected(node, node_adjacency_hash, stdout);
     fprintf(stdout, "\n");
 }
 
