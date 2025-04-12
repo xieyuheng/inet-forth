@@ -92,7 +92,7 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
 }
 
 void
-worker_connect_top_wire_pair(worker_t *self) {
+worker_connect_top_value_pair(worker_t *self) {
     wire_t *second_wire = stack_pop(self->value_stack);
     wire_t *first_wire = stack_pop(self->value_stack);
 
