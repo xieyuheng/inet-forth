@@ -1,5 +1,3 @@
-[net] `node_print_adjacent` -- should not call `wire_print`
-
 [net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`
 [lang] `node_take_input` -- handle new single linked wire
 

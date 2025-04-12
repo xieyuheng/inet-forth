@@ -59,3 +59,14 @@ build_node_adjacency_hash(node_allocator_t *node_allocator) {
     array_destroy(&node_array);
     return node_adjacency_hash;
 }
+
+void
+node_adjacency_print(const node_adjacency_t *self, file_t *file) {
+    port_info_t *start_port_info = node_get_port_info(self->start_node, self->start_port_index);
+    port_info_t *end_port_info = node_get_port_info(self->end_node, self->end_port_index);
+
+    node_print(self->start_node, file);
+    fprintf(file, "-%s-<", start_port_info->name);
+    fprintf(file, ">-%s-", end_port_info->name);
+    node_print(self->end_node, file);
+}
