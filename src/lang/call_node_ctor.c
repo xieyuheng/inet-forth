@@ -2,7 +2,7 @@
 
 static void
 node_take_input(worker_t *worker, node_t *node, size_t index, value_t value) {
-    node_set(node, index, value);
+    node_set_value(node, index, value);
 
     if (is_wire(value)) {
         wire_t *wire = as_wire(value);
@@ -18,7 +18,7 @@ node_return_output(worker_t *worker, node_t *node, size_t index) {
     wire_t *node_wire = wire_new();
     wire_t *free_wire = wire_new();
 
-    node_set(node, index, node_wire);
+    node_set_value(node, index, node_wire);
 
     wire_set_opposite(node_wire, free_wire);
     wire_set_opposite(free_wire, node_wire);

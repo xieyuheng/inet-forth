@@ -32,7 +32,7 @@ node_recycle_per_thread(node_allocator_t *node_allocator, stack_t *free_node_sta
 }
 
 void
-node_set(node_t *self, size_t index, value_t value) {
+node_set_value(node_t *self, size_t index, value_t value) {
     assert(index < self->ctor->arity);
     array_set(self->value_array, index, value);
 
@@ -45,7 +45,7 @@ node_set(node_t *self, size_t index, value_t value) {
 }
 
 value_t
-node_get(const node_t *self, size_t index) {
+node_get_value(const node_t *self, size_t index) {
     assert(index < self->ctor->arity);
     return array_get(self->value_array, index);
 }
@@ -57,8 +57,8 @@ node_is_adjacent(const node_t *self, const node_t *other) {
 
     for (size_t i = 0; i < self->ctor->arity; i++) {
         for (size_t j = 0; j < other->ctor->arity; j++) {
-            value_t x = node_get(self, i);
-            value_t y = node_get(other, j);
+            value_t x = node_get_value(self, i);
+            value_t y = node_get_value(other, j);
             if (is_wire(x) && is_wire(y)) {
                 wire_t *u = as_wire(x);
                 wire_t *v = as_wire(y);
@@ -100,16 +100,12 @@ node_print_connected_net(node_t *self, hash_t *node_adjacency_hash, file_t *file
     connected_node_iter_t *node_iter = connected_node_iter_new(self, node_adjacency_hash);
     node_t *node = connected_node_iter_first(node_iter);
     while (node) {
-        if (!node->ctor) {
-            fprintf(file, "(");
-            node_print_name(node, file);
-            fprintf(file, ")");
-            fprintf(file, "\n");
-            continue;
-        }
+        assert(node->ctor);
+        node_adjacency_t *node_adjacency = hash_get(node_adjacency_hash, node);
+        assert(node_adjacency);
 
         for (size_t i = 0; i < node->ctor->arity; i++) {
-            value_t value = node_get(node, i);
+            value_t value = node_get_value(node, i);
             if (value) {
                 if (is_wire(value)) {
                     wire_print(as_wire(value), file);

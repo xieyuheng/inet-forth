@@ -13,8 +13,8 @@ void node_destroy(node_t **self_pointer);
 node_t *node_new_per_thread(node_allocator_t *node_allocator, stack_t *free_node_stack, const node_ctor_t *ctor);
 void node_recycle_per_thread(node_allocator_t *node_allocator, stack_t *free_node_stack, node_t **self_pointer);
 
-void node_set(node_t *self, size_t index, value_t value);
-value_t node_get(const node_t *self, size_t index);
+void node_set_value(node_t *self, size_t index, value_t value);
+value_t node_get_value(const node_t *self, size_t index);
 
 bool node_is_adjacent(const node_t *self, const node_t *other);
 

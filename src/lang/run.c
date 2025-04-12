@@ -62,7 +62,7 @@ run_until(worker_t *worker, size_t base_length) {
 static void
 collect_free_wires_from_node(worker_t *worker, node_t *node) {
     for (size_t i = 0; i < node->ctor->arity; i++) {
-        value_t value = node_get(node, i);
+        value_t value = node_get_value(node, i);
         if (is_wire(value)) {
             wire_t *wire = as_wire(value);
             if (wire_is_principal(value)) {
