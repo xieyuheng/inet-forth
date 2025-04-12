@@ -1,5 +1,6 @@
-[core] `return_task` instead of `maybe_return_task`
 [core] `task_t` has two `principal_port_t`
+[core] fix `mod_find_rule`
+[core] `return_task` instead of `maybe_return_task`
 
 # thread
 

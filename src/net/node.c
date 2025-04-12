@@ -35,13 +35,6 @@ void
 node_set_value(node_t *self, size_t index, value_t value) {
     assert(index < self->ctor->arity);
     array_set(self->value_array, index, value);
-
-    if (is_wire(value)) {
-        wire_t *wire = as_wire(value);
-        assert(wire->node == NULL);
-        wire->node = self;
-        wire->index = index;
-    }
 }
 
 value_t
