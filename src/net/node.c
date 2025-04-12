@@ -112,7 +112,7 @@ node_print_connected_net(node_t *self, hash_t *node_adjacency_hash, file_t *file
             value_t value = node_get(node, i);
             if (value) {
                 if (is_wire(value)) {
-                    wire_print_reverse(as_wire(value), file);
+                    wire_print(as_wire(value), file);
                 } else {
                     value_print(value, file);
                 }

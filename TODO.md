@@ -1,5 +1,3 @@
-[net] simplify `wire_print` functions
-
 [net] `node_print_connected_net` should not call `wire_print_reverse`
 
 [net] `wire_t` -- be single linked -- only has a pointer to `value_t fuzed`

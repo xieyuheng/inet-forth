@@ -78,7 +78,7 @@ wire_is_principal(const wire_t *self) {
         self->node->ctor->port_infos[self->index]->is_principal;
 }
 
-void
+static void
 wire_print_left(const wire_t *self, file_t *file) {
     if (!self->node) {
         fprintf(file, "-<");
@@ -94,7 +94,7 @@ wire_print_left(const wire_t *self, file_t *file) {
     }
 }
 
-void
+static void
 wire_print_right(const wire_t *self, file_t *file) {
     if (!self->node) {
         fprintf(file, ">-");
@@ -112,13 +112,6 @@ wire_print_right(const wire_t *self, file_t *file) {
 
 void
 wire_print(const wire_t *self, file_t *file) {
-    if (wire_opposite(self))
-        wire_print_left(wire_opposite(self), file);
-    wire_print_right(self, file);
-}
-
-void
-wire_print_reverse(const wire_t *self, file_t *file) {
     wire_print_left(self, file);
     if (wire_opposite(self))
         wire_print_right(wire_opposite(self), file);
