@@ -124,12 +124,15 @@ node_print_connected(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
     assert(self);
     fprintf(file, "<net>\n");
 
-    connected_node_iter_t *node_iter = connected_node_iter_new(self, node_adjacency_hash);
+    fprintf(file, ":root ");
+    node_print(self, file);
+    fprintf(file, "\n");
+
+    connected_node_iter_t *node_iter =
+        connected_node_iter_new(self, node_adjacency_hash);
     node_t *node = connected_node_iter_first(node_iter);
     while (node) {
-        assert(node->ctor);
         node_print_adjacent(node, node_adjacency_hash, file);
-
         node = connected_node_iter_next(node_iter);
     }
 

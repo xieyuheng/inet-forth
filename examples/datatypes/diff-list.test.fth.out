@@ -1,4 +1,5 @@
 <net>
+:root (diff-append₁₁)
 (diff-append₁₁)-target!-<>-!value-(diff₁)
 (diff-append₁₁)-rest-<>-!value-(diff₆)
 (diff-append₁₁)-result-<>-
@@ -27,6 +28,7 @@
 </net>
 
 <net>
+:root (diff₁₁)
 (diff₁₁)-front-<>-!value-(cons₅)
 (diff₁₁)-back-<>-tail-(cons₈)
 (diff₁₁)-value!-<>-

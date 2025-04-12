@@ -1,4 +1,5 @@
 <net>
+:root (add₂₃)
 (add₂₃)-target!-<>-result-(add₁₁)
 (add₂₃)-addend-<>-result-(add₂₂)
 (add₂₃)-result-<>-
@@ -47,6 +48,7 @@
 </net>
 
 <net>
+:root (add1₂)
 (add1₂)-prev-<>-!value-(add1₄)
 (add1₂)-value!-<>-
 (add1₄)-prev-<>-!value-(add1₇)
@@ -67,6 +69,7 @@
 </net>
 
 <net>
+:root (mul₁₀)
 (mul₁₀)-target!-<>-result-(add₁₁)
 (mul₁₀)-mulend-<>-result-(add₁₂)
 (mul₁₀)-result-<>-
@@ -91,6 +94,7 @@
 </net>
 
 <net>
+:root (add1₁)
 (add1₁)-prev-<>-!value-(add1₆)
 (add1₁)-value!-<>-
 (add1₆)-prev-<>-!value-(add1₁₂)
@@ -103,6 +107,7 @@
 </net>
 
 <net>
+:root (nat-max₂₂)
 (nat-max₂₂)-first!-<>-!value-(add1₈)
 (nat-max₂₂)-second-<>-result-(add₂₄)
 (nat-max₂₂)-result-<>-
@@ -121,6 +126,7 @@
 </net>
 
 <net>
+:root (add1₂₁)
 (add1₂₁)-prev-<>-!value-(add1₁₄)
 (add1₂₁)-value!-<>-
 (add1₁₄)-prev-<>-!value-(zero₅)
