@@ -142,13 +142,6 @@ worker_delete_node(worker_t* self, node_t *node) {
     node_recycle_per_thread(self->node_allocator, self->free_node_stack, &node);
 }
 
-wire_t *
-worker_add_wire(worker_t* self) {
-    (void) self;
-    wire_t *wire = wire_new();
-    return wire;
-}
-
 void
 worker_return_task(worker_t* self, task_t *task) {
     queue_enqueue(self->task_queue, task);
