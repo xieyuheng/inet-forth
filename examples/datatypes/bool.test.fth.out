@@ -2,7 +2,6 @@
 :root (disj₁₅)
 (disj₁₅)-x!-<>-z-(conj₇)
 (disj₁₅)-y-<>-z-(disj₁₄)
-(disj₁₅)-z-<>-
 (disj₁₄)-x!-<>-z-(disj₁₀)
 (disj₁₄)-y-<>-z-(disj₁₃)
 (disj₁₄)-z-<>-y-(disj₁₅)
@@ -33,6 +32,5 @@
 
 <net>
 :root (t₁₅)
-(t₁₅)-value!-<>-
 </net>
 

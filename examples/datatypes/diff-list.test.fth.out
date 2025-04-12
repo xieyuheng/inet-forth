@@ -2,7 +2,6 @@
 :root (diff-append₁₁)
 (diff-append₁₁)-target!-<>-!value-(diff₁)
 (diff-append₁₁)-rest-<>-!value-(diff₆)
-(diff-append₁₁)-result-<>-
 (diff₆)-front-<>-!value-(cons₁₀)
 (diff₆)-back-<>-tail-(cons₈)
 (diff₆)-value!-<>-rest-(diff-append₁₁)
@@ -31,7 +30,6 @@
 :root (diff₁₁)
 (diff₁₁)-front-<>-!value-(cons₅)
 (diff₁₁)-back-<>-tail-(cons₈)
-(diff₁₁)-value!-<>-
 (cons₈)-tail-<>-back-(diff₁₁)
 (cons₈)-head-<>-!value-(sole₇)
 (cons₈)-value!-<>-tail-(cons₁₀)

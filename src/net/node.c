@@ -100,13 +100,23 @@ node_print(const node_t *self, file_t *file) {
     fprintf(file, ")");
 }
 
+// node_print_start_port
+// node_print_end_port
+
 void
 node_print_adjacent(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
-    node_t *node = self;
-    (void) node_adjacency_hash;
+    array_t *node_adjacency_array = hash_get(node_adjacency_hash, self);
+    assert(node_adjacency_array);
+    size_t length = array_length(node_adjacency_array);
+    for (size_t i = 0; i < length; i++) {
+        node_adjacency_t *node_adjacency = array_get(node_adjacency_array, i);
+        (void) node_adjacency;
+        // node_adjacency->start_node
+        // node_adjacency->start_port_index
+        // node_adjacency->end_port_index
+        // node_adjacency->end_node
 
-    for (size_t i = 0; i < node->ctor->arity; i++) {
-        value_t value = node_get_value(node, i);
+        value_t value = node_get_value(self, i);
         if (value) {
             if (is_wire(value)) {
                 wire_print(as_wire(value), file);

@@ -2,7 +2,6 @@
 :root (append₁₅)
 (append₁₅)-target!-<>-!value-(cons₇)
 (append₁₅)-rest-<>-!value-(cons₁₄)
-(append₁₅)-result-<>-
 (cons₁₄)-tail-<>-!value-(cons₁₂)
 (cons₁₄)-head-<>-!value-(sole₁₃)
 (cons₁₄)-value!-<>-rest-(append₁₅)
@@ -35,7 +34,6 @@
 :root (cons₇)
 (cons₇)-tail-<>-!value-(cons₅)
 (cons₇)-head-<>-!value-(sole₆)
-(cons₇)-value!-<>-
 (sole₆)-value!-<>-head-(cons₇)
 (cons₅)-tail-<>-!value-(cons₃)
 (cons₅)-head-<>-!value-(sole₄)
