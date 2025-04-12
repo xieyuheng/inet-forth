@@ -34,7 +34,7 @@ as_wire(value_t value) {
 }
 
 value_t
-wire_follow(value_t value) {
+follow_wire(value_t value) {
     while (is_wire(value) && as_wire(value)->fuzed_value) {
         value = as_wire(value)->fuzed_value;
     }
@@ -44,5 +44,5 @@ wire_follow(value_t value) {
 
 bool
 is_fuzed(value_t x, value_t y) {
-    return wire_follow(x) == wire_follow(y);
+    return follow_wire(x) == follow_wire(y);
 }

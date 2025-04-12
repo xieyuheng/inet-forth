@@ -1,4 +1,3 @@
-[net] fix `node_is_adjacent` and `node_adjacency_new`
 [lang] `node_take_input` -- handle new single linked wire
 [core] extract `connect`
 [net] `wire_connect` -- will be the critical section
