@@ -7,3 +7,5 @@
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
+
+#include "../test/index.h"
