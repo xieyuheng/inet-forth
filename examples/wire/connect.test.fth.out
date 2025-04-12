@@ -4,7 +4,7 @@
 <return-stack length="0">
 </return-stack>
 <value-stack length="1">
--<>-!value-(sole₁)
+#<unknown-object 0x0x7f02f7455550>
 </value-stack>
 </worker>
 

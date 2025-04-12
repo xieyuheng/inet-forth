@@ -2,7 +2,6 @@
 
 object_spec_t wire_object_spec = {
     .name = "wire",
-    .print_fn = (print_fn_t *) wire_print,
 };
 
 wire_t *
@@ -45,57 +44,10 @@ wire_set_opposite(wire_t *self, wire_t *opposite) {
     self->opposite = opposite;
 }
 
-static const char *
-wire_name(const wire_t *self) {
-    assert(self->node);
-    port_info_t *port_info = node_get_port_info(self->node, self->index);
-    assert(port_info);
-    return port_info->name;
-}
-
 bool
 wire_is_principal(const wire_t *self) {
     return
         self->node &&
         self->node->ctor &&
         node_get_port_info(self->node, self->index)->is_principal;
-}
-
-static void
-wire_print_left(const wire_t *self, file_t *file) {
-    if (!self->node) {
-        fprintf(file, "-<");
-        return;
-    }
-
-    node_print(self->node, file);
-
-    if (wire_is_principal(self)) {
-        fprintf(file, "-%s!-<", wire_name(self));
-    } else {
-        fprintf(file, "-%s-<", wire_name(self));
-    }
-}
-
-static void
-wire_print_right(const wire_t *self, file_t *file) {
-    if (!self->node) {
-        fprintf(file, ">-");
-        return;
-    }
-
-    if (wire_is_principal(self)) {
-        fprintf(file, ">-!%s-", wire_name(self));
-    } else {
-        fprintf(file, ">-%s-", wire_name(self));
-    }
-
-    node_print(self->node, file);
-}
-
-void
-wire_print(const wire_t *self, file_t *file) {
-    wire_print_left(self, file);
-    if (wire_opposite(self))
-        wire_print_right(wire_opposite(self), file);
 }

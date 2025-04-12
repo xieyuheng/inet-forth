@@ -4,8 +4,8 @@
 <return-stack length="0">
 </return-stack>
 <value-stack length="2">
--<>-
--<>-
+#<unknown-object 0x0x7fd437672490>
+#<unknown-object 0x0x7fd4376724c0>
 </value-stack>
 </worker>
 

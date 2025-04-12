@@ -38,13 +38,7 @@ x_wire_print_net(worker_t *worker) {
         if (opposite) node = opposite->node;
     }
 
-    if (!node) {
-        printf("[x_wire_print_net] expect top wire to be connected to node\n");
-        printf("  wire: ");
-        wire_print(wire, stdout);
-        printf("\n");
-        return;
-    }
+    assert(node);
 
     hash_t *node_adjacency_hash = build_node_adjacency_hash(worker->node_allocator);
     node_print_connected(node, node_adjacency_hash, stdout);

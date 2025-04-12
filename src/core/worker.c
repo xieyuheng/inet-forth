@@ -53,7 +53,9 @@ worker_print(const worker_t *self, file_t *file) {
     fprintf(file, "<task-queue length=\"%lu\">\n", task_queue_length);
     for (size_t i = 0; i < task_queue_length; i++) {
         task_t *task = queue_get(self->task_queue, i);
-        wire_print(task->wire, file);
+        (void) task;
+        // TODO 
+        // task_print(task, file);
         fprintf(file, "\n");
     }
     fprintf(file, "</task-queue>\n");

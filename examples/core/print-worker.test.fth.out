@@ -31,7 +31,7 @@ CALL print-worker
 </frame>
 </return-stack>
 <value-stack length="1">
--<>-!value-(sole₁)
+#<unknown-object 0x0x7fc28023d670>
 </value-stack>
 </worker>
 
@@ -41,8 +41,8 @@ CALL print-worker
 <return-stack length="0">
 </return-stack>
 <value-stack length="2">
--<>-!value-(sole₁)
--<>-!value-(sole₂)
+#<unknown-object 0x0x7fc28023d670>
+#<unknown-object 0x0x7fc28023d6d0>
 </value-stack>
 </worker>
 

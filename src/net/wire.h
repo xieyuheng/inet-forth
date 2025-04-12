@@ -19,5 +19,3 @@ wire_t *wire_opposite(const wire_t *self);
 void wire_set_opposite(wire_t *self, wire_t *opposite);
 
 bool wire_is_principal(const wire_t *self);
-
-void wire_print(const wire_t *self, file_t *file);
