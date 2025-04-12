@@ -101,6 +101,25 @@ node_print(const node_t *self, file_t *file) {
 }
 
 void
+node_print_adjacent(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
+    node_t *node = self;
+    (void) node_adjacency_hash;
+
+    for (size_t i = 0; i < node->ctor->arity; i++) {
+        value_t value = node_get_value(node, i);
+        if (value) {
+            if (is_wire(value)) {
+                wire_print(as_wire(value), file);
+            } else {
+                value_print(value, file);
+            }
+        }
+
+        fprintf(file, "\n");
+    }
+}
+
+void
 node_print_connected_net(node_t *self, hash_t *node_adjacency_hash, file_t *file) {
     assert(self);
     fprintf(file, "<net>\n");
@@ -109,23 +128,7 @@ node_print_connected_net(node_t *self, hash_t *node_adjacency_hash, file_t *file
     node_t *node = connected_node_iter_first(node_iter);
     while (node) {
         assert(node->ctor);
-        node_adjacency_t *node_adjacency = hash_get(node_adjacency_hash, node);
-        assert(node_adjacency);
-
-        for (size_t i = 0; i < node->ctor->arity; i++) {
-            value_t value = node_get_value(node, i);
-            if (value) {
-                if (is_wire(value)) {
-                    wire_print(as_wire(value), file);
-                } else {
-                    value_print(value, file);
-                }
-            }
-
-            if (i < node->ctor->arity - 1)
-                fprintf(file, "\n");
-        }
-        fprintf(file, "\n");
+        node_print_adjacent(node, node_adjacency_hash, file);
 
         node = connected_node_iter_next(node_iter);
     }

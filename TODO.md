@@ -1,5 +1,5 @@
-[net] `node_adjacency_print` -- setup
-[net] `node_adjacency_print` -- should not call `wire_print`
+ambr node_print_connected_net node_print_connected
+[net] `node_print_adjacent` -- should not call `wire_print`
 
 [net] `node_adjacency_new` -- compute indexes
 
