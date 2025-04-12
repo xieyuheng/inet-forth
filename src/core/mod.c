@@ -35,7 +35,7 @@ rule_match(const rule_t *self, const node_t *first_node, const node_t *second_no
 }
 
 const rule_t *
-mod_find_rule(const mod_t *self, const principal_port_t *left, const principal_port_t *right) {
+mod_find_rule(const mod_t *self, const principal_wire_t *left, const principal_wire_t *right) {
     (void) self;
 
     for (size_t i = 0; i < left->node->ctor->arity; i++) {

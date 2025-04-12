@@ -33,9 +33,9 @@ value_print_connected(worker_t *worker) {
         node = worker_lookup_node_by_wire(worker, wire);
     }
 
-    if (is_principal_port(value)) {
-        principal_port_t *principal_port = as_principal_port(value);
-        node = principal_port->node;
+    if (is_principal_wire(value)) {
+        principal_wire_t *principal_wire = as_principal_wire(value);
+        node = principal_wire->node;
     }
 
     assert(node);

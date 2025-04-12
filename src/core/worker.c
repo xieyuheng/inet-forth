@@ -93,8 +93,8 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
 
 void
 worker_connect(worker_t *self, value_t left, value_t right) {
-    if (is_principal_port(left) && is_principal_port(right)) {
-        worker_connect_active_pair(self, as_principal_port(left), as_principal_port(right));
+    if (is_principal_wire(left) && is_principal_wire(right)) {
+        worker_connect_active_pair(self, as_principal_wire(left), as_principal_wire(right));
     } else if (is_wire(left)) {
         if (as_wire(left)->fuzed_value) {
             worker_connect(self, as_wire(left)->fuzed_value, right);
@@ -121,7 +121,7 @@ worker_connect_top_value_pair(worker_t *self) {
 }
 
 void
-worker_connect_active_pair(worker_t *self, principal_port_t *left, principal_port_t *right) {
+worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wire_t *right) {
     const rule_t *rule = mod_find_rule(self->mod, left, right);
     if (!rule) {
         // TODO should not lost the connection

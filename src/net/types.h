@@ -8,4 +8,4 @@ typedef struct node_t node_t;
 typedef struct wire_t wire_t;
 typedef struct node_ctor_t node_ctor_t;
 typedef struct port_info_t port_info_t;
-typedef struct principal_port_t principal_port_t;
+typedef struct principal_wire_t principal_wire_t;

@@ -1,4 +1,3 @@
-ambr principal_port principal_wire
 [net] `principal_wire_t` has `oppsite`
 [net] `build_node_adjacency_hash` -- handle principal connection
 
