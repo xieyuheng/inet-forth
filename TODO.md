@@ -1,3 +1,5 @@
+[net] `wire_t` -- has `atomic_fuzed_value`
+
 # thread
 
 [thread] wrap `pthread_cond_t` -- maybe `condvar_t`
