@@ -18,7 +18,10 @@ scheduler_start(scheduler_t *scheduler, queue_t *init_task_queue) {
 
 static void
 scheduler_wait(scheduler_t *scheduler) {
-    (void) scheduler;
+    for (size_t i = 0; i < array_length(scheduler->worker_tid_array); i++) {
+        tid_t tid = array_get(scheduler->worker_tid_array, i);
+        thread_wait(tid);
+    }
 }
 
 void

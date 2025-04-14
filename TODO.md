@@ -1,4 +1,3 @@
-[lang] `scheduler_wait` -- wait worker threads
 [lang] `worker_thread_fn`
 
 # thread
