@@ -3,8 +3,14 @@
 static void *
 worker_thread_fn(void *arg) {
     worker_t *worker = arg;
-    (void) worker;
-    return NULL;
+
+    while (true) {
+        mutex_lock(worker->task_queue_front_mutex);
+        task_t *task = queue_front_pop(worker->task_queue);
+        mutex_unlock(worker->task_queue_front_mutex);
+        if (!task) return NULL;
+        step_task(worker, task);
+    }
 }
 
 static void
