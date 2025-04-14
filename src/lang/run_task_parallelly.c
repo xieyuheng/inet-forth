@@ -54,9 +54,6 @@ scheduler_prepare(scheduler_t *scheduler, queue_t *init_task_queue) {
         assert(ok);
         cursor++;
     }
-
-        printf("[scheduler_prepare] task_count: %lu\n",
-               atomic_load(&scheduler->atomic_task_count));
 }
 
 static void
