@@ -28,12 +28,23 @@ node_new_per_thread(node_allocator_t *node_allocator, stack_t *free_node_stack, 
 void
 node_recycle_per_thread(node_allocator_t *node_allocator, stack_t *free_node_stack, node_t **self_pointer) {
     assert(self_pointer);
+    node_t *self = *self_pointer;
+    self->ctor = NULL;
     node_allocator_recycle(node_allocator, free_node_stack, self_pointer);
 }
 
 void
 node_set_value(node_t *self, size_t index, value_t value) {
-    assert(index < self->ctor->arity);
+    assert(self);
+    if (!self->ctor) {
+        printf("expect node to have ctor\n");
+        printf("index: %ld\n", index);
+        printf("node: "); node_print(self, stdout); printf("\n");
+        printf("value: "); value_print(value, stdout); printf("\n");
+        printf("\n");
+        assert(self->ctor);
+    }
+
     array_set(self->value_array, index, value);
 }
 

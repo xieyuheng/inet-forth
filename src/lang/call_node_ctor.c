@@ -47,6 +47,4 @@ call_node_ctor(worker_t *worker, const node_ctor_t *ctor) {
         value_t value  = node_return_output(worker, node, index);
         stack_push(worker->value_stack, value);
     }
-
-    return;
 }
