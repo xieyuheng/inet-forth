@@ -1,4 +1,10 @@
-[lang] `run_task_sequentially`
+[lang] `scheduler_t` -- has `worker_thread_id_array`
+[lang] `scheduler_start` -- create worker threads
+
+- `worker_thread_fn` -- setup
+
+[lang] `scheduler_wait` -- wait worker threads
+[lang] `worker_thread_fn`
 
 # thread
 
