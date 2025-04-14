@@ -1,4 +1,4 @@
-[lang] extract `run_task_parallelly` and `run_task_sequentially` from `run_task`
+[lang] `run_task_sequentially`
 
 # thread
 

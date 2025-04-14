@@ -64,7 +64,7 @@ collect_free_wires_from_node(worker_t *worker, node_t *node) {
     for (size_t i = 0; i < node->ctor->arity; i++) {
         port_info_t *port_info = node_get_port_info(node, i);
         if (port_info->is_principal) continue;
-        
+
         value_t value = node_get_value(node, i);
         stack_push(worker->value_stack, value);
     }
@@ -76,7 +76,7 @@ void
 step_task(worker_t *worker) {
     task_t *task = queue_front_pop(worker->task_queue);
     if (!task) return;
-    
+
     node_t *left_node = task->left->node;
     node_t *right_node = task->right->node;
 
@@ -100,8 +100,17 @@ step_task(worker_t *worker) {
 }
 
 void
-run_task(worker_t *worker) {
+run_task_sequentially(worker_t *worker) {
     while (!queue_is_empty(worker->task_queue)) {
         step_task(worker);
+    }
+}
+
+void
+run_task(worker_t *worker) {
+    if (worker->scheduler) {
+        run_task_sequentially(worker);
+    } else {
+        run_task_parallelly(worker);
     }
 }
