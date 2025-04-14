@@ -135,12 +135,15 @@ worker_connect(worker_t *self, value_t left, value_t right) {
 
 node_t *
 worker_add_node(worker_t* self, const node_ctor_t *ctor) {
-    return node_new_per_thread(self->node_allocator, self->free_node_stack, ctor);
+    node_t *node = node_allocator_allocate(self->node_allocator, self->free_node_stack);
+    node->ctor = ctor;
+    return node;
 }
 
 void
 worker_delete_node(worker_t* self, node_t *node) {
-    node_recycle_per_thread(self->node_allocator, self->free_node_stack, &node);
+    node->ctor = NULL;
+    node_allocator_recycle(self->node_allocator, self->free_node_stack, &node);
 }
 
 node_t *

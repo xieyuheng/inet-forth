@@ -5,7 +5,7 @@ prepare_one_batch_of_nodes(node_allocator_t *self) {
     mutex_lock(self->allocator->mutex);
 
     for (size_t i = 0; i < self->batch_size; i++) {
-        node_t *node = node_new(NULL);
+        node_t *node = node_new();
         node->id = ++self->node_count;
         stack_push(self->allocator->stack, node);
         array_push(self->node_array, node);
