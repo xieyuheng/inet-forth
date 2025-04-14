@@ -8,10 +8,8 @@ struct worker_t {
     queue_t *task_queue;
     stack_t *value_stack;
     stack_t *return_stack;
-    // about node
     node_allocator_t *node_allocator;
     stack_t *free_node_stack;
-    // for worker in pool
     scheduler_t *scheduler;
     size_t index;
 };
