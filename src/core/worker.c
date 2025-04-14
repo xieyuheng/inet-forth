@@ -107,6 +107,17 @@ worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wir
     worker_return_task(self, task_new(left, right, rule));
 }
 
+static void
+worker_fuze(worker_t *self, wire_t *wire, value_t value) {
+    value_t fuzed_value = atomic_load(&wire->atomic_fuzed_value);
+    if (fuzed_value) {
+        wire_destroy(&wire);
+        worker_connect(self, fuzed_value, value);
+    } else {
+        atomic_store(&wire->atomic_fuzed_value, value);
+    }
+}
+
 void
 worker_connect(worker_t *self, value_t left, value_t right) {
     if (is_principal_wire(left) && is_principal_wire(right)) {
@@ -114,23 +125,9 @@ worker_connect(worker_t *self, value_t left, value_t right) {
         as_principal_wire(right)->oppsite = as_principal_wire(left);
         worker_connect_active_pair(self, as_principal_wire(left), as_principal_wire(right));
     } else if (is_wire(left)) {
-        wire_t *wire = as_wire(left);
-        value_t fuzed_value = atomic_load(&wire->atomic_fuzed_value);
-        if (fuzed_value) {
-            wire_destroy(&wire);
-            worker_connect(self, fuzed_value, right);
-        } else {
-            atomic_store(&wire->atomic_fuzed_value, right);
-        }
+        worker_fuze(self, as_wire(left), right);
     } else if (is_wire(right)) {
-        wire_t *wire = as_wire(right);
-        value_t fuzed_value = atomic_load(&wire->atomic_fuzed_value);
-        if (fuzed_value) {
-            wire_destroy(&wire);
-            worker_connect(self, fuzed_value, left);
-        } else {
-            atomic_store(&wire->atomic_fuzed_value, left);
-        }
+        worker_fuze(self, as_wire(right), left);
     } else {
         assert(false);
     }
