@@ -1,5 +1,3 @@
-[net] `wire_t` -- has `atomic_fuzed_value`
-
 [core] `worker_connect` -- use cas to handle `atomic_fuzed_value`
 
 [core] `scheduler_t` setup -- again

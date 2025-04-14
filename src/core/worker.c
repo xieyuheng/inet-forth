@@ -115,21 +115,21 @@ worker_connect(worker_t *self, value_t left, value_t right) {
         worker_connect_active_pair(self, as_principal_wire(left), as_principal_wire(right));
     } else if (is_wire(left)) {
         wire_t *wire = as_wire(left);
-        if (wire->fuzed_value) {
-            value_t fuzed_value = wire->fuzed_value;
+        value_t fuzed_value = atomic_load(&wire->atomic_fuzed_value);
+        if (fuzed_value) {
             wire_destroy(&wire);
             worker_connect(self, fuzed_value, right);
         } else {
-            wire->fuzed_value = right;
+            atomic_store(&wire->atomic_fuzed_value, right);
         }
     } else if (is_wire(right)) {
         wire_t *wire = as_wire(right);
-        if (wire->fuzed_value) {
-            value_t fuzed_value = wire->fuzed_value;
+        value_t fuzed_value = atomic_load(&wire->atomic_fuzed_value);
+        if (fuzed_value) {
             wire_destroy(&wire);
             worker_connect(self, fuzed_value, left);
         } else {
-            wire->fuzed_value = left;
+            atomic_store(&wire->atomic_fuzed_value, left);
         }
     } else {
         assert(false);

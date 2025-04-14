@@ -5,7 +5,7 @@ extern object_spec_t wire_object_spec;
 struct wire_t {
     object_spec_t *spec;
     // might be `wire_t` or `principal_wire_t`
-    value_t fuzed_value;
+    atomic_value_t atomic_fuzed_value;
 };
 
 wire_t *wire_new(void);

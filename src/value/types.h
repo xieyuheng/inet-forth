@@ -1,6 +1,7 @@
 #pragma once
 
 typedef void *value_t;
+typedef _Atomic value_t atomic_value_t;
 
 // value = higher 61 bits data + lower 3 bits tag.
 // thus we have 8 tags.
