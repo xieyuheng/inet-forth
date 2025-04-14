@@ -10,7 +10,7 @@ worker_thread_fn(void *arg) {
         task_t *task = queue_front_pop(worker->task_queue);
         mutex_unlock(worker->task_queue_front_mutex);
         // TODO work stealing
-        assert(task);
+        if (!task) return NULL;;
         step_task(worker, task);
     }
 
@@ -26,6 +26,7 @@ scheduler_prepare(scheduler_t *scheduler, queue_t *init_task_queue) {
         worker_t *worker = array_get(scheduler->worker_array, index);
         bool ok = queue_back_push(worker->task_queue, task);
         assert(ok);
+        atomic_fetch_add(&scheduler->atomic_task_count, 1);
         cursor++;
     }
 }
@@ -52,7 +53,6 @@ run_task_parallelly(worker_t *worker) {
     size_t processor_count = sysconf(_SC_NPROCESSORS_ONLN);
     size_t worker_count = processor_count - 1;
     scheduler_t *scheduler = scheduler_new(worker->mod, worker->node_allocator, worker_count);
-    run_task_sequentially(worker);
     scheduler_prepare(scheduler, worker->task_queue);
     scheduler_start(scheduler);
     scheduler_wait(scheduler);
