@@ -1,4 +1,3 @@
-[lang] `scheduler_t` -- has `worker_thread_id_array`
 [lang] `scheduler_start` -- create worker threads
 
 - `worker_thread_fn` -- setup

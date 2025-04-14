@@ -12,6 +12,7 @@ scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count)
         array_push(self->worker_array, worker);
     }
 
+    self->worker_thread_id_array = array_new_auto();
     return self;
 }
 
@@ -22,6 +23,7 @@ scheduler_destroy(scheduler_t **self_pointer) {
 
     scheduler_t *self = *self_pointer;
     array_destroy(&self->worker_array);
+    array_destroy(&self->worker_thread_id_array);
     free(self);
     *self_pointer = NULL;
 }
