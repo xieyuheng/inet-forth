@@ -21,13 +21,13 @@ worker_new(mod_t *mod, node_allocator_t *node_allocator) {
     self->mod = mod;
     self->token_list = lex_code(mod->code);
     self->task_queue = queue_new_with(WORKER_TASK_QUEUE_SIZE, (destroy_fn_t *) task_destroy);
+    self->task_queue_front_mutex = mutex_new();
     // TODO We should use value_destroy to create value_stack.
     self->value_stack = stack_new();
     self->return_stack = stack_new_with((destroy_fn_t *) frame_destroy);
 
     self->node_allocator = node_allocator;
     self->free_node_stack = stack_new();
-
     return self;
 }
 
