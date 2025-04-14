@@ -1,5 +1,3 @@
-[core] static `worker_connect_active_pair`
-
 [net] `wire_t` -- has `atomic_fuzed_value`
 
 [core] `worker_connect` -- use cas to handle `atomic_fuzed_value`

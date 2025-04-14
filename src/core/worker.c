@@ -96,7 +96,7 @@ worker_return_task(worker_t* self, task_t *task) {
     queue_back_push(self->task_queue, task);
 }
 
-void
+static void
 worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wire_t *right) {
     const rule_t *rule = mod_find_rule(self->mod, left, right);
     if (!rule) {
