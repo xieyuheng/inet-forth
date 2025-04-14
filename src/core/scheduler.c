@@ -28,3 +28,8 @@ scheduler_destroy(scheduler_t **self_pointer) {
     free(self);
     *self_pointer = NULL;
 }
+
+size_t
+scheduler_worker_count(scheduler_t *self) {
+    return array_length(self->worker_array);
+}
