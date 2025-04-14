@@ -1,5 +1,3 @@
-[lang] `worker_thread_fn` -- work stealing
-
 # thread
 
 [thread] wrap `pthread_cond_t` -- maybe `condvar_t`
