@@ -151,7 +151,7 @@ worker_delete_node(worker_t* self, node_t *node) {
 
 void
 worker_return_task(worker_t* self, task_t *task) {
-    queue_enqueue(self->task_queue, task);
+    queue_back_push(self->task_queue, task);
 }
 
 node_t *

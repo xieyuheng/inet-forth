@@ -61,7 +61,7 @@ void
 queue_purge(queue_t *self) {
     assert(self);
     while(!queue_is_empty(self)) {
-        void *value = queue_dequeue(self);
+        void *value = queue_front_pop(self);
         if (self->destroy_fn)
             self->destroy_fn(&value);
     }
@@ -143,7 +143,7 @@ queue_is_empty(const queue_t *self) {
 }
 
 bool
-queue_enqueue(queue_t *self, void *value) {
+queue_back_push(queue_t *self, void *value) {
     cursor_t back_cursor = relaxed_load(self->back_cursor);
     if (is_full(self, *self->cached_front_cursor, back_cursor)) {
         *self->cached_front_cursor = acquire_load(self->front_cursor);
@@ -158,7 +158,7 @@ queue_enqueue(queue_t *self, void *value) {
 }
 
 void *
-queue_dequeue(queue_t *self) {
+queue_front_pop(queue_t *self) {
     cursor_t front_cursor = relaxed_load(self->front_cursor);
     if (is_empty(self, front_cursor, *self->cached_back_cursor)) {
         *self->cached_back_cursor = acquire_load(self->back_cursor);

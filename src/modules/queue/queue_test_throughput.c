@@ -11,7 +11,7 @@ uint_producer(queue_t *queue) {
 
         while (queue_is_full(queue)) {}
 
-        assert(queue_enqueue(queue, (void *) count));
+        assert(queue_back_push(queue, (void *) count));
         count++;
     }
 }
@@ -24,7 +24,7 @@ uint_consumer(queue_t *queue) {
 
         while (queue_is_empty(queue)) {}
 
-        assert(((size_t) queue_dequeue(queue)) == count);
+        assert(((size_t) queue_front_pop(queue)) == count);
         count++;
     }
 }

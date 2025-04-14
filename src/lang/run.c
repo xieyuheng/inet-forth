@@ -74,7 +74,7 @@ collect_free_wires_from_node(worker_t *worker, node_t *node) {
 
 void
 step_task(worker_t *worker) {
-    task_t *task = queue_dequeue(worker->task_queue);
+    task_t *task = queue_front_pop(worker->task_queue);
     if (!task) return;
     
     node_t *left_node = task->left->node;
