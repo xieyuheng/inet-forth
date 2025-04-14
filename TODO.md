@@ -1,7 +1,3 @@
-[lang] `scheduler_start` -- create worker threads
-
-- `worker_thread_fn` -- setup
-
 [lang] `scheduler_wait` -- wait worker threads
 [lang] `worker_thread_fn`
 

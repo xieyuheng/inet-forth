@@ -1,9 +1,19 @@
 #include "index.h"
 
+static void *
+worker_thread_fn(void *arg) {
+    (void) arg;
+    return NULL;
+}
+
 static void
 scheduler_start(scheduler_t *scheduler, queue_t *init_task_queue) {
-    (void) scheduler;
     (void) init_task_queue;
+    for (size_t i = 0; i < array_length(scheduler->worker_array); i++) {
+        worker_t *worker = array_get(scheduler->worker_array, i);
+        tid_t tid = thread_start(worker_thread_fn, worker);
+        array_set(scheduler->worker_tid_array, i, (void *) (uint64_t) tid);
+    }
 }
 
 static void
