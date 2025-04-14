@@ -13,6 +13,7 @@ node_destroy(node_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     node_t *self = *self_pointer;
+    array_destroy(&self->value_array);
     free(self);
     *self_pointer = NULL;
 }
