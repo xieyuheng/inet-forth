@@ -25,7 +25,6 @@ void worker_print(const worker_t *self, file_t *file);
 
 void worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wire_t *right);
 void worker_connect(worker_t *self, value_t left, value_t right);
-void worker_connect_top_value_pair(worker_t *self);
 
 node_t *worker_add_node(worker_t* self, const node_ctor_t *ctor);
 void worker_delete_node(worker_t* self, node_t *node);

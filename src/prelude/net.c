@@ -2,7 +2,13 @@
 
 void
 x_connect(worker_t *worker) {
-    worker_connect_top_value_pair(worker);
+    value_t second = stack_pop(worker->value_stack);
+    value_t first = stack_pop(worker->value_stack);
+    
+    assert(second);
+    assert(first);
+
+    worker_connect(worker, first, second);
 }
 
 void
