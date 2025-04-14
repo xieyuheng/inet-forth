@@ -91,6 +91,22 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
     fprintf(file, "</value-stack>\n");
 }
 
+static void
+worker_return_task(worker_t* self, task_t *task) {
+    queue_back_push(self->task_queue, task);
+}
+
+void
+worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wire_t *right) {
+    const rule_t *rule = mod_find_rule(self->mod, left, right);
+    if (!rule) {
+        // TODO should not lost the connection
+        return;
+    }
+
+    worker_return_task(self, task_new(left, right, rule));
+}
+
 void
 worker_connect(worker_t *self, value_t left, value_t right) {
     if (is_principal_wire(left) && is_principal_wire(right)) {
@@ -128,17 +144,6 @@ worker_connect_top_value_pair(worker_t *self) {
     worker_connect(self, first, second);
 }
 
-void
-worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wire_t *right) {
-    const rule_t *rule = mod_find_rule(self->mod, left, right);
-    if (!rule) {
-        // TODO should not lost the connection
-        return;
-    }
-
-    worker_return_task(self, task_new(left, right, rule));
-}
-
 node_t *
 worker_add_node(worker_t* self, const node_ctor_t *ctor) {
     return node_new_per_thread(self->node_allocator, self->free_node_stack, ctor);
@@ -147,11 +152,6 @@ worker_add_node(worker_t* self, const node_ctor_t *ctor) {
 void
 worker_delete_node(worker_t* self, node_t *node) {
     node_recycle_per_thread(self->node_allocator, self->free_node_stack, &node);
-}
-
-void
-worker_return_task(worker_t* self, task_t *task) {
-    queue_back_push(self->task_queue, task);
 }
 
 node_t *
