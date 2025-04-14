@@ -3,14 +3,18 @@
 static void *
 worker_thread_fn(void *arg) {
     worker_t *worker = arg;
+    scheduler_t *scheduler = worker->scheduler;
 
-    while (true) {
+    while (atomic_load(&scheduler->atomic_task_count) > 0) {
         mutex_lock(worker->task_queue_front_mutex);
         task_t *task = queue_front_pop(worker->task_queue);
         mutex_unlock(worker->task_queue_front_mutex);
-        if (!task) return NULL;
+        // TODO work stealing
+        assert(task);
         step_task(worker, task);
     }
+
+    return NULL;
 }
 
 static void

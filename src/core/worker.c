@@ -25,7 +25,6 @@ worker_new(mod_t *mod, node_allocator_t *node_allocator) {
     // TODO We should use value_destroy to create value_stack.
     self->value_stack = stack_new();
     self->return_stack = stack_new_with((destroy_fn_t *) frame_destroy);
-
     self->node_allocator = node_allocator;
     self->free_node_stack = stack_new();
     return self;
@@ -38,7 +37,12 @@ worker_destroy(worker_t **self_pointer) {
 
     worker_t *self = *self_pointer;
     list_destroy(&self->token_list);
+    size_t task_count = queue_length(self->task_queue);
     queue_destroy(&self->task_queue);
+    if (self->scheduler) {
+        atomic_fetch_sub(&self->scheduler->atomic_task_count, task_count);
+    }
+
     stack_destroy(&self->value_stack);
     stack_destroy(&self->return_stack);
     free(self);
@@ -92,19 +96,22 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
 }
 
 static void
-worker_return_task(worker_t* self, task_t *task) {
-    queue_back_push(self->task_queue, task);
-}
-
-static void
 worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wire_t *right) {
+    as_principal_wire(left)->oppsite = as_principal_wire(right);
+    as_principal_wire(right)->oppsite = as_principal_wire(left);
+
     const rule_t *rule = mod_find_rule(self->mod, left, right);
     if (!rule) {
         // TODO should not lost the connection
         return;
     }
 
-    worker_return_task(self, task_new(left, right, rule));
+    if (self->scheduler) {
+        atomic_fetch_add(&self->scheduler->atomic_task_count, 1);
+    }
+
+    task_t *task = task_new(left, right, rule);
+    queue_back_push(self->task_queue, task);
 }
 
 static void
@@ -121,8 +128,6 @@ worker_fuze(worker_t *self, wire_t *wire, value_t value) {
 void
 worker_connect(worker_t *self, value_t left, value_t right) {
     if (is_principal_wire(left) && is_principal_wire(right)) {
-        as_principal_wire(left)->oppsite = as_principal_wire(right);
-        as_principal_wire(right)->oppsite = as_principal_wire(left);
         worker_connect_active_pair(self, as_principal_wire(left), as_principal_wire(right));
     } else if (is_wire(left)) {
         worker_fuze(self, as_wire(left), right);

@@ -1,4 +1,3 @@
-[lang] `worker_thread_fn` -- exit by `task_count`
 [lang] `worker_thread_fn` -- work stealing
 
 # thread

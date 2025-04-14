@@ -8,6 +8,7 @@ scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count)
     self->worker_array = array_new_auto_with((destroy_fn_t *) worker_destroy);
     for (size_t i = 0; i < worker_count; i++) {
         worker_t *worker = worker_new(mod, node_allocator);
+        worker->scheduler = self;
         worker->index = i;
         array_push(self->worker_array, worker);
     }
