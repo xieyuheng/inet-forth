@@ -13,6 +13,7 @@ struct worker_t {
     stack_t *free_node_stack;
     scheduler_t *scheduler;
     size_t index;
+    size_t victim_cursor;
 };
 
 worker_t *worker_new(mod_t *mod, node_allocator_t *node_allocator);

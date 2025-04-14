@@ -37,12 +37,7 @@ worker_destroy(worker_t **self_pointer) {
 
     worker_t *self = *self_pointer;
     list_destroy(&self->token_list);
-    size_t task_count = queue_length(self->task_queue);
     queue_destroy(&self->task_queue);
-    if (self->scheduler) {
-        atomic_fetch_sub(&self->scheduler->atomic_task_count, task_count);
-    }
-
     stack_destroy(&self->value_stack);
     stack_destroy(&self->return_stack);
     free(self);

@@ -91,9 +91,6 @@ step_task(worker_t *worker, task_t *task) {
     frame_t *frame = frame_new(task->rule->function);
 
     task_destroy(&task);
-    if (worker->scheduler) {
-        atomic_fetch_sub(&worker->scheduler->atomic_task_count, 1);
-    }
 
     stack_push(worker->return_stack, frame);
     run_until(worker, base_length);

@@ -1,5 +1,27 @@
 #include "index.h"
 
+static task_t *
+worker_steal_task(worker_t *worker) {
+    scheduler_t *scheduler = worker->scheduler;
+    size_t worker_count = scheduler_worker_count(scheduler);
+
+    while (atomic_load(&scheduler->atomic_task_count) > 0) {
+        size_t victim_index = ++worker->victim_cursor % worker_count;
+        if (victim_index == worker->index)
+            victim_index = ++worker->victim_cursor % worker_count;
+
+        worker_t *victim = array_get(scheduler->worker_array, victim_index);
+        mutex_lock(victim->task_queue_front_mutex);
+        task_t *task = queue_front_pop(victim->task_queue);
+        mutex_unlock(victim->task_queue_front_mutex);
+
+        if (task) return task;
+    }
+
+    return NULL;
+}
+
+
 static void *
 worker_thread_fn(void *arg) {
     worker_t *worker = arg;
@@ -9,9 +31,12 @@ worker_thread_fn(void *arg) {
         mutex_lock(worker->task_queue_front_mutex);
         task_t *task = queue_front_pop(worker->task_queue);
         mutex_unlock(worker->task_queue_front_mutex);
-        // TODO work stealing
+
+        if (!task) task = worker_steal_task(worker);
         if (!task) return NULL;;
+
         step_task(worker, task);
+        atomic_fetch_sub(&scheduler->atomic_task_count, 1);
     }
 
     return NULL;
@@ -21,14 +46,17 @@ static void
 scheduler_prepare(scheduler_t *scheduler, queue_t *init_task_queue) {
     size_t cursor = 0;
     while (!queue_is_empty(init_task_queue)) {
+        atomic_fetch_add(&scheduler->atomic_task_count, 1);
         task_t *task = queue_front_pop(init_task_queue);
         size_t index = cursor % scheduler_worker_count(scheduler);
         worker_t *worker = array_get(scheduler->worker_array, index);
         bool ok = queue_back_push(worker->task_queue, task);
         assert(ok);
-        atomic_fetch_add(&scheduler->atomic_task_count, 1);
         cursor++;
     }
+
+        printf("[scheduler_prepare] task_count: %lu\n",
+               atomic_load(&scheduler->atomic_task_count));
 }
 
 static void
