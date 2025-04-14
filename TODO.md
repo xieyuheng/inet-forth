@@ -1,7 +1,8 @@
-[core] `scheduler_t` setup -- again
 [core] `scheduler_t`
 [core] `scheduler_new`
 [core] `scheduler_destroy`
+
+[lang] extract `run_task_parallelly` and `run_task_sequentially` from `run_task`
 
 # thread
 
