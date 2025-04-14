@@ -109,12 +109,12 @@ worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wir
 
 static void
 worker_fuze(worker_t *self, wire_t *wire, value_t value) {
-    value_t fuzed_value = atomic_load(&wire->atomic_fuzed_value);
-    if (fuzed_value) {
+    value_t fuzed_value = NULL;
+    if (!atomic_compare_exchange_strong(
+            &wire->atomic_fuzed_value, &fuzed_value, value))
+    {
         wire_destroy(&wire);
         worker_connect(self, fuzed_value, value);
-    } else {
-        atomic_store(&wire->atomic_fuzed_value, value);
     }
 }
 
