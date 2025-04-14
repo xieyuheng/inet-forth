@@ -1,5 +1,3 @@
-[core] `scheduler_destroy`
-
 [lang] extract `run_task_parallelly` and `run_task_sequentially` from `run_task`
 
 # thread

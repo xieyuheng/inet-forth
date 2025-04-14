@@ -7,3 +7,4 @@ struct scheduler_t {
 };
 
 scheduler_t *scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count);
+void scheduler_destroy(scheduler_t **self_pointer);
