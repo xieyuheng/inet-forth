@@ -43,7 +43,7 @@ build_node_adjacency_hash(node_allocator_t *node_allocator) {
     for (size_t i = 0; i < length; i++) {
         node_t *x = array_get(node_array, i);
         array_t *node_adjacency_array =
-            array_auto_with((destroy_fn_t *) node_adjacency_destroy);
+            array_new_auto_with((destroy_fn_t *) node_adjacency_destroy);
         hash_set(node_adjacency_hash, x, node_adjacency_array);
 
         for (size_t j = 0; j < length; j++) {

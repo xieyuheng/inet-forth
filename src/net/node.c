@@ -4,7 +4,7 @@ node_t *
 node_new(const node_ctor_t *ctor) {
     node_t *self = new(node_t);
     self->ctor = ctor;
-    self->value_array = array_auto();
+    self->value_array = array_new_auto();
     return self;
 }
 

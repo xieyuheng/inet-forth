@@ -53,12 +53,12 @@ array_new_with(size_t size, destroy_fn_t *destroy_fn) {
 }
 
 array_t *
-array_auto(void) {
+array_new_auto(void) {
     return array_new(ARRAY_AUTO_SIZE);
 }
 
 array_t *
-array_auto_with(destroy_fn_t *destroy_fn) {
+array_new_auto_with(destroy_fn_t *destroy_fn) {
     return array_new_with(ARRAY_AUTO_SIZE, destroy_fn);
 }
 

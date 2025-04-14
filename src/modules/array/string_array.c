@@ -1,8 +1,8 @@
 #include "index.h"
 
 array_t *
-string_array_auto(void) {
-    return array_auto_with((destroy_fn_t *) string_destroy);
+string_array_new_auto(void) {
+    return array_new_auto_with((destroy_fn_t *) string_destroy);
 }
 
 void

@@ -53,7 +53,7 @@ connected_node_iter_next(connected_node_iter_t *self) {
 
 array_t *
 connected_node_array(node_t *root, hash_t *node_adjacency_hash) {
-    array_t *node_array = array_auto();
+    array_t *node_array = array_new_auto();
     connected_node_iter_t *connected_node_iter =
         connected_node_iter_new(root, node_adjacency_hash);
     node_t *node = connected_node_iter_first(connected_node_iter);

@@ -22,7 +22,7 @@ node_allocator_new(void) {
     node_allocator_t *self = new(node_allocator_t);
     self->allocator = allocator_new(cache_size);
     self->batch_size = batch_size;
-    self->node_array = array_auto_with((destroy_fn_t *) node_destroy);
+    self->node_array = array_new_auto_with((destroy_fn_t *) node_destroy);
     prepare_one_batch_of_nodes(self);
     return self;
 }

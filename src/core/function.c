@@ -4,7 +4,7 @@ function_t *
 function_new(void) {
     function_t *self = new(function_t);
     self->local_index_hash = hash_of_string_key();
-    self->op_array = array_auto_with((destroy_fn_t *) op_destroy);
+    self->op_array = array_new_auto_with((destroy_fn_t *) op_destroy);
     return self;
 }
 

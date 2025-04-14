@@ -1,4 +1,12 @@
+ambr queue_enqueue queue_back_push
+ambr queue_dequeue queue_front_pop
+
 [net] `wire_t` -- has `atomic_fuzed_value`
+
+[core] `scheduler_t` setup -- again
+[core] `scheduler_t`
+[core] `scheduler_new`
+[core] `scheduler_destroy`
 
 # thread
 

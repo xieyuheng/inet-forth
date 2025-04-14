@@ -173,7 +173,7 @@ array_test(void) {
     {
         // array_set + auto grow -- again
 
-        array_t *array = array_auto();
+        array_t *array = array_new_auto();
 
         array_set(array, 0, (void *) 1);
         assert(array_length(array) == 1);

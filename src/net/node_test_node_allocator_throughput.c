@@ -33,7 +33,7 @@ node_test_node_allocator_throughput(void) {
     double start_second = time_second();
 
     size_t thread_count = 3;
-    array_t *thread_array = array_auto();
+    array_t *thread_array = array_new_auto();
     for (size_t i = 0; i < thread_count; i++) {
         tid_t tid = thread_start(thread_fn, node_allocator);
         array_push(thread_array, (void *) tid);

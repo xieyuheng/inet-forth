@@ -9,7 +9,7 @@ struct stack_t {
 stack_t *
 stack_new(void) {
     stack_t *self = new(stack_t);
-    self->array = array_auto();
+    self->array = array_new_auto();
     return self;
 }
 

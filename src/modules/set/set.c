@@ -104,7 +104,7 @@ set_to_list(set_t *self) {
 
 array_t *
 set_to_array(set_t *self) {
-    array_t *array = array_auto();
+    array_t *array = array_new_auto();
     void *value = set_first(self);
     while (value) {
         array_push(array, value);

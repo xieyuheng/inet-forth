@@ -11,8 +11,8 @@ array_t *array_new_with(size_t size, destroy_fn_t *destroy_fn);
 
 #define ARRAY_AUTO_SIZE 64
 
-array_t *array_auto(void);
-array_t *array_auto_with(destroy_fn_t *destroy_fn);
+array_t *array_new_auto(void);
+array_t *array_new_auto_with(destroy_fn_t *destroy_fn);
 
 size_t array_size(const array_t *self);
 size_t array_grow_step(const array_t *self);
