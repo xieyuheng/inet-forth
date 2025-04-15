@@ -223,19 +223,19 @@ For examples:
 ## Development
 
 ```shell
-gmake -j       # compile src/ files to lib/ and bin/
-gmake run      # compile and run the command-line program
-gmake test     # compile and run test
-gmake clean    # clean up compiled files
+make -j       # compile src/ files to lib/ and bin/
+make run      # compile and run the command-line program
+make test     # compile and run test
+make clean    # clean up compiled files
 ```
 
 Using [tsan (ThreadSanitizer)](https://github.com/google/sanitizers/wiki/threadsanitizercppmanual)
 to test data race in parallel program:
 
 ```shell
-gmake clean
-LDFLAGS=-fsanitize=thread CFLAGS=-fsanitize=thread gmake -j
-gmake self-test
+make clean
+LDFLAGS=-fsanitize=thread CFLAGS=-fsanitize=thread make -j
+make self-test
 ```
 
 ## Implementations

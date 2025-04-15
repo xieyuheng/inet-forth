@@ -1,4 +1,4 @@
-cc = cc
+cc = clang
 ifeq ($(STATIC), true)
 static_ldflags = \
 	-static \
