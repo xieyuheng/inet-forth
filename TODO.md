@@ -1,5 +1,5 @@
 [core] `task_print`
-[core] `task_t` -- track scheduling history during `DEBUG`
+[core] `task_t` -- track scheduling history on `DEBUG_TASK_MUTEX`
 [core] `task_print` -- print history
 
 # thread

@@ -6,7 +6,7 @@ task_new(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
     self->left = left;
     self->right = right;
     self->rule = rule;
-#if DEBUG
+#if DEBUG_TASK_MUTEX
     self->mutex = mutex_new();
 #endif
     return self;

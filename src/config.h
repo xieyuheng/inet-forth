@@ -6,7 +6,7 @@
 #define NODE_ALLOCATOR_CACHE_SIZE (64 * 1024)
 #define WORKER_TASK_QUEUE_SIZE (1024 * 1024)
 
-#define DEBUG 0
+#define DEBUG_TASK_MUTEX 0
 #define DEBUG_STEP_LOG 0
 
 extern bool single_threaded_flag;
