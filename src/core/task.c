@@ -27,6 +27,5 @@ task_destroy(task_t **self_pointer) {
 void
 task_print(const task_t *self, file_t *file) {
     principal_wire_print_left(self->left, file);
-    fprintf(file, " ");
     principal_wire_print_right(self->right, file);
 }

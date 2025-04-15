@@ -1,4 +1,6 @@
-[core] `step_task` -- using `file_lock` when handling `DEBUG_TASK_LOG`
+[core] `worker_t` -- has `log` file
+
+[core] `step_task` -- should not lock `stdout` when handling `DEBUG_TASK_LOG`
 
 [core] `task_history_t` -- setup
 [core] `task_history_t` -- has `event_message_array`

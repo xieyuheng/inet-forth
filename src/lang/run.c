@@ -83,11 +83,12 @@ step_task(worker_t *worker, task_t *task) {
 #endif
 
 #if DEBUG_TASK_LOG
+    file_lock(stdout);
     test_printf("worker #%ld, ", worker->index);
-    printf(" ");
     printf("task: ");
     task_print(task, stdout);
     printf("\n");
+    file_unlock(stdout);
 #endif
 
     node_t *left_node = task->left->node;
