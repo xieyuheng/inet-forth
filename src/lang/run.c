@@ -82,6 +82,14 @@ step_task(worker_t *worker, task_t *task) {
     mutex_lock(mutex);
 #endif
 
+#if DEBUG_TASK_LOG
+    test_printf("worker #%ld, ", worker->index);
+    printf(" ");
+    printf("task: ");
+    task_print(task, stdout);
+    printf("\n");
+#endif
+
     node_t *left_node = task->left->node;
     node_t *right_node = task->right->node;
 
