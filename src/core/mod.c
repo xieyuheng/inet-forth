@@ -28,10 +28,10 @@ mod_find(const mod_t *self, const char *name) {
 
 static bool
 rule_match(const rule_t *self, const node_t *first_node, const node_t *second_node) {
-    return (((self->first_node_ctor == first_node->ctor) &&
-             (self->second_node_ctor == second_node->ctor)) ||
-            ((self->first_node_ctor == second_node->ctor) &&
-             (self->second_node_ctor == first_node->ctor)));
+    return (((self->left_node_ctor == first_node->ctor) &&
+             (self->right_node_ctor == second_node->ctor)) ||
+            ((self->left_node_ctor == second_node->ctor) &&
+             (self->right_node_ctor == first_node->ctor)));
 }
 
 const rule_t *
@@ -71,16 +71,16 @@ mod_define_rule(
     assert(first_def->kind == DEF_NODE_CTOR);
     assert(second_def->kind == DEF_NODE_CTOR);
 
-    const node_ctor_t *first_node_ctor = first_def->node_ctor;
-    const node_ctor_t *second_node_ctor = second_def->node_ctor;
+    const node_ctor_t *left_node_ctor = first_def->node_ctor;
+    const node_ctor_t *right_node_ctor = second_def->node_ctor;
 
-    rule_t *rule = rule_new(first_node_ctor, second_node_ctor, function);
+    rule_t *rule = rule_new(left_node_ctor, right_node_ctor, function);
 
-    if (first_node_ctor == second_node_ctor) {
-        array_push(first_node_ctor->rule_array, rule);
+    if (left_node_ctor == right_node_ctor) {
+        array_push(left_node_ctor->rule_array, rule);
     } else {
-        array_push(first_node_ctor->rule_array, rule);
-        array_push(second_node_ctor->rule_array, rule);
+        array_push(left_node_ctor->rule_array, rule);
+        array_push(right_node_ctor->rule_array, rule);
     }
 }
 

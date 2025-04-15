@@ -1,3 +1,4 @@
+[core] `mod_find_rule` fix task node order
 [core] `worker_t` -- has `log` file
 
 [core] `step_task` -- should not lock `stdout` when handling `DEBUG_TASK_LOG`

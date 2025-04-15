@@ -94,8 +94,8 @@ step_task(worker_t *worker, task_t *task) {
     node_t *left_node = task->left->node;
     node_t *right_node = task->right->node;
 
-    if (left_node->ctor == task->rule->second_node_ctor &&
-        right_node->ctor == task->rule->first_node_ctor)
+    if (left_node->ctor == task->rule->right_node_ctor &&
+        right_node->ctor == task->rule->left_node_ctor)
     {
         left_node = task->right->node;
         right_node = task->left->node;
