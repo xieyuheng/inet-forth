@@ -77,6 +77,11 @@ collect_free_wires_from_node(worker_t *worker, node_t *node) {
 
 void
 step_task(worker_t *worker, task_t *task) {
+#if DEBUG
+    mutex_t *mutex = mutex;
+    mutex_lock(mutex);
+#endif
+
     node_t *left_node = task->left->node;
     node_t *right_node = task->right->node;
 
@@ -100,6 +105,11 @@ step_task(worker_t *worker, task_t *task) {
 
     stack_push(worker->return_stack, frame);
     run_until(worker, base_length);
+
+#if DEBUG
+    mutex_unlock(mutex);
+    mutex_destroy(&mutex);
+#endif
 }
 
 void

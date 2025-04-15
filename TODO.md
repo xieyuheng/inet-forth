@@ -1,6 +1,6 @@
-[core] `task_t` -- has `mutex` during `DEBUG` -- used by `step_task`
 [core] `task_print`
 [core] `task_t` -- track scheduling history during `DEBUG`
+[core] `task_print` -- print history
 
 # thread
 
