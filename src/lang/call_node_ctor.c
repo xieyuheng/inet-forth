@@ -36,6 +36,15 @@ void
 call_node_ctor(worker_t *worker, const node_ctor_t *ctor) {
     node_t *node = worker_add_node(worker, ctor);
 
+    mutex_lock(node->mutex);
+
+    // while (!mutex_try_lock(node->mutex)) {
+    //     printf("[call_node_ctor] data race\n");
+    //     printf("[call_node_ctor] node: ");
+    //     node_print(node, stdout);
+    //     printf("\n");
+    // }
+
     for (size_t count = 0; count < node->ctor->input_arity; count++) {
         size_t index = node->ctor->input_arity - 1 - count;
         value_t value = stack_pop(worker->value_stack);
@@ -47,4 +56,7 @@ call_node_ctor(worker_t *worker, const node_ctor_t *ctor) {
         value_t value  = node_return_output(worker, node, index);
         stack_push(worker->value_stack, value);
     }
+
+    mutex_unlock(node->mutex);
+
 }

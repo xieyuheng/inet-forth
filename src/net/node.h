@@ -2,6 +2,7 @@
 
 struct node_t {
     const node_ctor_t *ctor;
+    mutex_t *mutex;
     size_t id;
     bool is_allocated;
     array_t *value_array;

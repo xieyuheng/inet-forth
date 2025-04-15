@@ -3,6 +3,7 @@
 node_t *
 node_new(void) {
     node_t *self = new(node_t);
+    self->mutex = mutex_new();
     self->value_array = array_new_auto();
     return self;
 }

@@ -1,3 +1,5 @@
+[net] use `node->mutex` to debug data race
+
 [core] `worker_t` -- has `log` file
 
 [core] `step_task` -- should not lock `stdout` when handling `DEBUG_TASK_LOG`

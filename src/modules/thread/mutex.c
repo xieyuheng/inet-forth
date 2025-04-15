@@ -30,6 +30,12 @@ mutex_lock(mutex_t *self) {
     assert(errno == 0);
 }
 
+bool
+mutex_try_lock(mutex_t *self) {
+    int errno = pthread_mutex_trylock(self);
+    return errno == 0;
+}
+
 void mutex_unlock(mutex_t *self) {
     int errno = pthread_mutex_unlock(self);
     assert(errno == 0);
