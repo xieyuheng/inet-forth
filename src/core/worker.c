@@ -96,10 +96,7 @@ worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wir
     as_principal_wire(right)->oppsite = as_principal_wire(left);
 
     const rule_t *rule = mod_find_rule(self->mod, left, right);
-    if (!rule) {
-        // TODO should not lost the connection
-        return;
-    }
+    if (!rule) return;
 
     if (self->scheduler) {
         atomic_fetch_add(&self->scheduler->atomic_task_count, 1);

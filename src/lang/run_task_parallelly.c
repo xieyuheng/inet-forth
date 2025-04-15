@@ -33,7 +33,7 @@ worker_thread_fn(void *arg) {
         mutex_unlock(worker->task_queue_front_mutex);
 
         if (!task) task = worker_steal_task(worker);
-        if (!task) return NULL;;
+        if (!task) return NULL;
 
         step_task(worker, task);
         atomic_fetch_sub(&scheduler->atomic_task_count, 1);
