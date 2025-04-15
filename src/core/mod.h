@@ -13,7 +13,6 @@ mod_t *mod_new(const char *src, const char *code);
 void mod_destroy(mod_t **self_pointer);
 
 const def_t *mod_find(const mod_t *self, const char *name);
-const rule_t *mod_find_rule(const mod_t *self, const principal_wire_t *left, const principal_wire_t *right);
 void mod_define(mod_t *self, def_t *def);
 void mod_define_rule(mod_t *self, const char *first_name, const char *second_name, function_t *function);
 

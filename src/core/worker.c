@@ -52,16 +52,42 @@ worker_return_task(worker_t *self, task_t *task) {
     }
 }
 
+
+inline static task_t *
+rule_match(const rule_t *rule, principal_wire_t *left, principal_wire_t *right) {
+    if ((rule->left_node_ctor == left->node->ctor) &&
+        (rule->right_node_ctor == right->node->ctor)) {
+        return task_new(left, right, rule);
+    } else if ((rule->left_node_ctor == right->node->ctor) &&
+               (rule->right_node_ctor == left->node->ctor)) {
+        return task_new(right, left, rule);
+    } else {
+        return NULL;
+    }
+}
+
 static void
 worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wire_t *right) {
     as_principal_wire(left)->oppsite = as_principal_wire(right);
     as_principal_wire(right)->oppsite = as_principal_wire(left);
 
-    const rule_t *rule = mod_find_rule(self->mod, left, right);
-    if (!rule) return;
+    for (size_t i = 0; i < left->node->ctor->arity; i++) {
+        rule_t *rule = array_get(left->node->ctor->rule_array, i);
+        task_t* task = rule_match(rule, left, right);
+        if (task) {
+            worker_return_task(self, task);
+            return;
+        }
+    }
 
-    task_t *task = task_new(left, right, rule);
-    worker_return_task(self, task);
+    for (size_t i = 0; i < right->node->ctor->arity; i++) {
+        rule_t *rule = array_get(right->node->ctor->rule_array, i);
+        task_t* task = rule_match(rule, left, right);
+        if (task) {
+            worker_return_task(self, task);
+            return;
+        }
+    }
 }
 
 static void

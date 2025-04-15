@@ -94,13 +94,6 @@ step_task(worker_t *worker, task_t *task) {
     node_t *left_node = task->left->node;
     node_t *right_node = task->right->node;
 
-    if (left_node->ctor == task->rule->right_node_ctor &&
-        right_node->ctor == task->rule->left_node_ctor)
-    {
-        left_node = task->right->node;
-        right_node = task->left->node;
-    }
-
     collect_free_wires_from_node(worker, left_node);
     collect_free_wires_from_node(worker, right_node);
 

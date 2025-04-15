@@ -26,33 +26,6 @@ mod_find(const mod_t *self, const char *name) {
     return hash_get(self->def_hash, name);
 }
 
-static bool
-rule_match(const rule_t *self, const node_t *first_node, const node_t *second_node) {
-    return (((self->left_node_ctor == first_node->ctor) &&
-             (self->right_node_ctor == second_node->ctor)) ||
-            ((self->left_node_ctor == second_node->ctor) &&
-             (self->right_node_ctor == first_node->ctor)));
-}
-
-const rule_t *
-mod_find_rule(const mod_t *self, const principal_wire_t *left, const principal_wire_t *right) {
-    (void) self;
-
-    for (size_t i = 0; i < left->node->ctor->arity; i++) {
-        rule_t *rule = array_get(left->node->ctor->rule_array, i);
-        if (rule_match(rule, left->node, right->node))
-            return rule;
-    }
-
-    for (size_t i = 0; i < right->node->ctor->arity; i++) {
-        rule_t *rule = array_get(right->node->ctor->rule_array, i);
-        if (rule_match(rule, left->node, right->node))
-            return rule;
-    }
-
-    return NULL;
-}
-
 void
 mod_define(mod_t *self, def_t *def) {
     assert(hash_set(self->def_hash, string_copy(def_name(def)), def));
