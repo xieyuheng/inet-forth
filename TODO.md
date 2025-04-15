@@ -1,6 +1,15 @@
 [core] `task_print`
-[core] `task_t` -- track scheduling history on `DEBUG_TASK_MUTEX`
-[core] `task_print` -- print history
+
+[core] `task_history_t` -- setup
+[core] `task_history_t` -- has `event_message_array`
+[core] `task_history_new`
+[core] `task_history_destroy`
+[core] `task_history_record`
+[core] `task_history_print`
+
+[core] `task_t` -- track scheduling history on `DEBUG_TASK_HISTORY`
+
+[core] `task_print` -- call `task_history_print`
 
 # thread
 
