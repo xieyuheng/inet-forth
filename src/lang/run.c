@@ -111,11 +111,9 @@ run_task_sequentially(worker_t *worker) {
     }
 }
 
-bool use_single_threaded_flag = false;
-
 void
 run_task(worker_t *worker) {
-    if (use_single_threaded_flag) {
+    if (single_threaded_flag) {
         run_task_sequentially(worker);
     } else {
         run_task_parallelly(worker);

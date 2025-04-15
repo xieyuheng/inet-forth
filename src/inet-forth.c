@@ -3,6 +3,8 @@
 
 static void setup_io(void);
 
+bool single_threaded_flag = false;
+
 int
 main(int argc, char *argv[]) {
     setup_io();

@@ -12,14 +12,17 @@ run_command(commander_t *runner) {
 
 int
 run(commander_t *commander) {
-    char **paths = commander_rest_argv(commander);
-    while (*paths) {
-        char *src = *paths++;
-        if (string_ends_with(src, ".fth")) {
-            file_t *file = file_open_or_fail(src, "r");
+    char **args = commander_rest_argv(commander);
+    while (*args) {
+        char *arg = *args++;
+
+        if (string_equal(arg, "--single-threaded")) {
+            single_threaded_flag = true;
+        } else {
+            file_t *file = file_open_or_fail(arg, "r");
             const char *code = file_read_string(file);
             fclose(file);
-            mod_t *mod = mod_new(src, code);
+            mod_t *mod = mod_new(arg, code);
             import_prelude(mod);
             node_allocator_t *node_allocator = node_allocator_new();
             worker_t *worker = worker_new(mod, node_allocator);
@@ -27,9 +30,6 @@ run(commander_t *commander) {
             mod_destroy(&mod);
             worker_destroy(&worker);
             node_allocator_destroy(&node_allocator);
-        } else  {
-            fprintf(stderr, "[run] file name must ends with .fth, given file name: %s\n", src);
-            exit(1);
         }
     }
 
