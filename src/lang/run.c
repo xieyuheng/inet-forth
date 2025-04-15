@@ -51,7 +51,7 @@ step(worker_t *worker) {
         frame_destroy(&frame);
     }
 
-#if STEP_LOG
+#if DEBUG_STEP_LOG
     worker_print(worker, stdout);
     fprintf(stdout, "\n");
 #endif
