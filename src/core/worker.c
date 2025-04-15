@@ -91,6 +91,14 @@ worker_print_value_stack(const worker_t *self, file_t *file) {
 }
 
 static void
+worker_return_task(worker_t *self, task_t *task) {
+    queue_back_push(self->task_queue, task);
+    if (self->scheduler) {
+        atomic_add1(&self->scheduler->atomic_task_count);
+    }
+}
+
+static void
 worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wire_t *right) {
     as_principal_wire(left)->oppsite = as_principal_wire(right);
     as_principal_wire(right)->oppsite = as_principal_wire(left);
@@ -98,12 +106,8 @@ worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wir
     const rule_t *rule = mod_find_rule(self->mod, left, right);
     if (!rule) return;
 
-    if (self->scheduler) {
-        atomic_add1(&self->scheduler->atomic_task_count);
-    }
-
     task_t *task = task_new(left, right, rule);
-    queue_back_push(self->task_queue, task);
+    worker_return_task(self, task);
 }
 
 static void
