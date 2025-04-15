@@ -36,7 +36,7 @@ worker_thread_fn(void *arg) {
         if (!task) return NULL;
 
         step_task(worker, task);
-        atomic_fetch_sub(&scheduler->atomic_task_count, 1);
+        atomic_sub1(&scheduler->atomic_task_count);
     }
 
     return NULL;
@@ -46,7 +46,7 @@ static void
 scheduler_prepare(scheduler_t *scheduler, queue_t *init_task_queue) {
     size_t cursor = 0;
     while (!queue_is_empty(init_task_queue)) {
-        atomic_fetch_add(&scheduler->atomic_task_count, 1);
+        atomic_add1(&scheduler->atomic_task_count);
         task_t *task = queue_front_pop(init_task_queue);
         size_t index = cursor % scheduler_worker_count(scheduler);
         worker_t *worker = array_get(scheduler->worker_array, index);

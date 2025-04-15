@@ -99,7 +99,7 @@ worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wir
     if (!rule) return;
 
     if (self->scheduler) {
-        atomic_fetch_add(&self->scheduler->atomic_task_count, 1);
+        atomic_add1(&self->scheduler->atomic_task_count);
     }
 
     task_t *task = task_new(left, right, rule);
@@ -110,7 +110,9 @@ static void
 worker_fuze(worker_t *self, wire_t *wire, value_t value) {
     value_t fuzed_value = NULL;
     if (!atomic_compare_exchange_strong(
-            &wire->atomic_fuzed_value, &fuzed_value, value))
+            &wire->atomic_fuzed_value,
+            &fuzed_value,
+            value))
     {
         wire_destroy(&wire);
         worker_connect(self, fuzed_value, value);
