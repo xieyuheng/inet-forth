@@ -78,7 +78,7 @@ collect_free_wires_from_node(worker_t *worker, node_t *node) {
 void
 step_task(worker_t *worker, task_t *task) {
 #if DEBUG_TASK_MUTEX
-    mutex_t *mutex = mutex;
+    mutex_t *mutex = task->mutex;
     mutex_lock(mutex);
 #endif
 
