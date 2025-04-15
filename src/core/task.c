@@ -23,3 +23,11 @@ task_destroy(task_t **self_pointer) {
     free(self);
     *self_pointer = NULL;
 }
+
+void
+task_print(const task_t *self, file_t *file) {
+    principal_wire_print_left(self->left, file);
+    fprintf(file, " ");
+    principal_wire_print_right(self->right, file);
+    fprintf(file, "\n");
+}

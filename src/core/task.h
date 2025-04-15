@@ -12,4 +12,4 @@ struct task_t {
 task_t *task_new(principal_wire_t *left, principal_wire_t *right, const rule_t *rule);
 void task_destroy(task_t **self_pointer);
 
-void task_print(const task_t *task, file_t *file);
+void task_print(const task_t *self, file_t *file);

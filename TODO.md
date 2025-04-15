@@ -1,5 +1,3 @@
-[core] `task_print`
-
 [core] `task_history_t` -- setup
 [core] `task_history_t` -- has `event_message_array`
 [core] `task_history_new`
