@@ -42,9 +42,9 @@ principal_wire_print(const principal_wire_t *self, file_t *file) {
     assert(self->node);
     node_print(self->node, file);
     if (self->node->ctor) {
-        fprintf(file, "-[%lu]!-<", self->index);
-    } else {
         port_info_t *port_info = self->node->ctor->port_infos[self->index];
-        fprintf(file, "-[%s]!-<", port_info->name);
+        fprintf(file, "-%s!-<", port_info->name);
+    } else {
+        fprintf(file, "-#%lu!-<", self->index);
     }
 }
