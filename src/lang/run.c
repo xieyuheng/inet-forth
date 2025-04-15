@@ -66,14 +66,16 @@ run_until(worker_t *worker, size_t base_length) {
 
 static void
 collect_free_wires_from_node(worker_t *worker, node_t *node) {
-    mutex_lock(node->mutex);
+    // mutex_lock(node->mutex);
 
-    // while (!mutex_try_lock(node->mutex)) {
-    //     printf("[collect_free_wires_from_node] data race\n");
-    //     printf("[collect_free_wires_from_node] node: ");
-    //     node_print(node, stdout);
-    //     printf("\n");
-    // }
+    while (!mutex_try_lock(node->mutex)) {
+        file_lock(stdout);
+        printf("[collect_free_wires_from_node] data race\n");
+        printf("[collect_free_wires_from_node] node: ");
+        node_print(node, stdout);
+        printf("\n");
+        file_unlock(stdout);
+    }
 
     for (size_t i = 0; i < node->ctor->arity; i++) {
         value_t value = node_get_value(node, i);

@@ -36,14 +36,16 @@ void
 call_node_ctor(worker_t *worker, const node_ctor_t *ctor) {
     node_t *node = worker_add_node(worker, ctor);
 
-    mutex_lock(node->mutex);
+    // mutex_lock(node->mutex);
 
-    // while (!mutex_try_lock(node->mutex)) {
-    //     printf("[call_node_ctor] data race\n");
-    //     printf("[call_node_ctor] node: ");
-    //     node_print(node, stdout);
-    //     printf("\n");
-    // }
+    while (!mutex_try_lock(node->mutex)) {
+        file_lock(stdout);
+        printf("[call_node_ctor] data race\n");
+        printf("[call_node_ctor] node: ");
+        node_print(node, stdout);
+        printf("\n");
+        file_unlock(stdout);
+    }
 
     for (size_t count = 0; count < node->ctor->input_arity; count++) {
         size_t index = node->ctor->input_arity - 1 - count;
