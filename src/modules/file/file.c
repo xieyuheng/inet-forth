@@ -65,3 +65,13 @@ void
 file_write_blob(file_t *file, blob_t *blob) {
     fwrite(blob_bytes(blob), 1, blob_size(blob), file);
 }
+
+void
+file_lock(file_t *file) {
+    flockfile(file);
+}
+
+void
+file_unlock(file_t *file) {
+    funlockfile(file);
+}

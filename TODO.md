@@ -1,5 +1,3 @@
-[file] `file_lock` & `file_unlock`
-
 [core] `step_task` -- using `file_lock` when handling `DEBUG_TASK_LOG`
 
 [core] `task_history_t` -- setup
