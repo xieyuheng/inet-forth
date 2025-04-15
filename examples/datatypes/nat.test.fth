@@ -67,9 +67,10 @@ define-rule add1 mul
   mulend-first add result connect
 end
 
-two two mul
+two two mul inspect-run
 
-inspect-run
+define sixteen four four mul end
+sixteen sixteen mul inspect-run
 
 // to define `nat-max`, we need `nat-max-add1`
 
