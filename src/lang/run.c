@@ -107,6 +107,9 @@ step_task(worker_t *worker, task_t *task) {
     worker_delete_node(worker, left_node);
     worker_delete_node(worker, right_node);
 
+    principal_wire_destroy(&task->left);
+    principal_wire_destroy(&task->right);
+
     size_t base_length = stack_length(worker->return_stack);
     frame_t *frame = frame_new(task->rule->function);
 
