@@ -44,12 +44,14 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     }
 #endif
 
+    task_t *found_task = NULL;
     for (size_t count = 0; count < node->ctor->input_arity; count++) {
         size_t index = node->ctor->input_arity - 1 - count;
         value_t value = stack_pop(worker->value_stack);
         task_t *task = reconnect_input(node, index, value);
         if (task) {
-            worker_add_task(worker, task);
+            assert(!found_task);
+            found_task = task;
         }
     }
 
@@ -57,6 +59,12 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
         size_t index = node->ctor->input_arity + count;
         value_t value  = reconnect_output(node, index);
         stack_push(worker->value_stack, value);
+    }
+
+    // NOTE We must add task at the END
+    // to avoid data race during work stealing.
+    if (found_task) {
+        worker_add_task(worker, found_task);
     }
 
 #if DEBUG_NODE_MUTEX

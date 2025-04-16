@@ -1,5 +1,3 @@
-[core] `worker_reconnect_node` -- fix data race!
-
 # thread
 
 [thread] wrap `pthread_cond_t` -- maybe `condvar_t`
