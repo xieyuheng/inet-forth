@@ -19,11 +19,10 @@ struct worker_t {
 worker_t *worker_new(mod_t *mod, node_allocator_t *node_allocator);
 void worker_destroy(worker_t **self_pointer);
 
-void worker_connect(worker_t *self, value_t left, value_t right);
-
 node_t *worker_new_node(worker_t* self, const node_ctor_t *ctor);
 void worker_recycle_node(worker_t* self, node_t *node);
 
+void worker_connect(worker_t *self, value_t left, value_t right);
 void worker_apply_node(worker_t *worker, node_t *node);
 void worker_disconnect_node(worker_t *worker, node_t *node);
 
