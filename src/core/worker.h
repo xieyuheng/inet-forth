@@ -24,6 +24,8 @@ void worker_connect(worker_t *self, value_t left, value_t right);
 node_t *worker_add_node(worker_t* self, const node_ctor_t *ctor);
 void worker_delete_node(worker_t* self, node_t *node);
 
+void worker_apply_node(worker_t *worker, node_t *node);
+
 node_t *worker_lookup_node_by_wire(worker_t* self, wire_t *wire);
 
 void worker_print_return_stack(const worker_t *self, file_t *file);
