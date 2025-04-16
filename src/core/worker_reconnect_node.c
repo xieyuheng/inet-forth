@@ -1,16 +1,16 @@
 #include "index.h"
 
 inline static task_t *
-reconnect_input(worker_t *worker, node_t *node, size_t index, value_t value) {
+reconnect_input(node_t *node, size_t index, value_t value) {
     port_info_t *port_info = node_get_port_info(node, index);
     if (port_info->is_principal) {
         principal_wire_t *principal_wire = principal_wire_new(node, index);
         node_set_value(node, index, principal_wire);
-        return worker_connect(worker, principal_wire, value);
+        return worker_connect(principal_wire, value);
     } else if (is_principal_wire(value)) {
         wire_t *wire = wire_new();
         node_set_value(node, index, wire);
-        return worker_connect(worker, wire, value);
+        return worker_connect(wire, value);
     } else {
         node_set_value(node, index, value);
         return NULL;
@@ -18,9 +18,7 @@ reconnect_input(worker_t *worker, node_t *node, size_t index, value_t value) {
 }
 
 inline static value_t
-reconnect_output(worker_t *worker, node_t *node, size_t index) {
-    (void) worker;
-
+reconnect_output(node_t *node, size_t index) {
     port_info_t *port_info = node_get_port_info(node, index);
     if (port_info->is_principal) {
         principal_wire_t *principal_wire = principal_wire_new(node, index);
@@ -49,7 +47,7 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     for (size_t count = 0; count < node->ctor->input_arity; count++) {
         size_t index = node->ctor->input_arity - 1 - count;
         value_t value = stack_pop(worker->value_stack);
-        task_t *task = reconnect_input(worker, node, index, value);
+        task_t *task = reconnect_input(node, index, value);
         if (task) {
             worker_add_task(worker, task);
         }
@@ -57,7 +55,7 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
 
     for (size_t count = 0; count < node->ctor->output_arity; count++) {
         size_t index = node->ctor->input_arity + count;
-        value_t value  = reconnect_output(worker, node, index);
+        value_t value  = reconnect_output(node, index);
         stack_push(worker->value_stack, value);
     }
 

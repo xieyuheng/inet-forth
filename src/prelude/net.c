@@ -8,7 +8,7 @@ x_connect(worker_t *worker) {
     assert(second);
     assert(first);
 
-    task_t *task = worker_connect(worker, first, second);
+    task_t *task = worker_connect(first, second);
     if (task) {
         worker_add_task(worker, task);
     }
