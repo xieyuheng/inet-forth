@@ -68,14 +68,20 @@ void
 step_task(worker_t *worker, task_t *task) {
 #if DEBUG_TASK_MUTEX
     mutex_t *mutex = task->mutex;
-    mutex_lock(mutex);
+    while (!mutex_try_lock(mutex)) {
+        file_lock(stdout);
+        test_printf("data race! ");
+        printf("worker #%ld, ", worker->index);
+        printf("task: "); task_print(task, stdout);
+        printf("\n");
+        file_unlock(stdout);
+    }
 #endif
 
 #if DEBUG_TASK_LOG
     file_lock(stdout);
     test_printf("worker #%ld, ", worker->index);
-    printf("task: ");
-    task_print(task, stdout);
+    printf("task: "); task_print(task, stdout);
     printf("\n");
     file_unlock(stdout);
 #endif

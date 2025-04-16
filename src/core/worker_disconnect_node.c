@@ -5,9 +5,9 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
 #if DEBUG_NODE_MUTEX
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
-        test_printf("data race!");
-        printf(" worker #%lu", worker->index);
-        printf(", node: "); node_print(node, stdout);
+        test_printf("data race! ");
+        printf("worker #%lu, ", worker->index);
+        printf("node: "); node_print(node, stdout);
         printf("\n");
         file_unlock(stdout);
     }
