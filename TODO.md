@@ -1,6 +1,5 @@
-[core] extract `worker_add_task`
-[core] `worker_reconnect_node` -- fix data race!
 [core] `worker_connect` should return `task`
+[core] `worker_reconnect_node` -- fix data race!
 
 # thread
 

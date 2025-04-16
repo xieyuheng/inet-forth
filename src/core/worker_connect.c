@@ -1,14 +1,5 @@
 #include "index.h"
 
-static void
-worker_add_task(worker_t *self, task_t *task) {
-    queue_back_push(self->task_queue, task);
-    if (self->scheduler) {
-        atomic_add1(&self->scheduler->atomic_task_count);
-    }
-}
-
-
 inline static task_t *
 rule_match(const rule_t *rule, principal_wire_t *left, principal_wire_t *right) {
     if ((rule->left_node_ctor == left->node->ctor) &&
