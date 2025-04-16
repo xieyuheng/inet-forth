@@ -46,14 +46,14 @@ fuze(wire_t *wire, value_t value) {
             value))
     {
         wire_destroy(&wire);
-        return worker_connect(fuzed_value, value);
+        return connect(fuzed_value, value);
     }
 
     return NULL;
 }
 
 task_t *
-worker_connect(value_t left, value_t right) {
+connect(value_t left, value_t right) {
     if (is_principal_wire(left) && is_principal_wire(right)) {
         return connect_active_pair(as_principal_wire(left), as_principal_wire(right));
     } else if (is_wire(left)) {

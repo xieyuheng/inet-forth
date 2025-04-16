@@ -1,5 +1,3 @@
-ambr worker_connect connect
-
 [core] `worker_reconnect_node` -- fix data race!
 
 # thread

@@ -6,11 +6,11 @@ reconnect_input(node_t *node, size_t index, value_t value) {
     if (port_info->is_principal) {
         principal_wire_t *principal_wire = principal_wire_new(node, index);
         node_set_value(node, index, principal_wire);
-        return worker_connect(principal_wire, value);
+        return connect(principal_wire, value);
     } else if (is_principal_wire(value)) {
         wire_t *wire = wire_new();
         node_set_value(node, index, wire);
-        return worker_connect(wire, value);
+        return connect(wire, value);
     } else {
         node_set_value(node, index, value);
         return NULL;
