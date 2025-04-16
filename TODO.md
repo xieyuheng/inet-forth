@@ -1,5 +1,5 @@
 ambr worker_connect connect
-ambr worker_fuze fuze
+
 [core] `worker_reconnect_node` -- fix data race!
 
 # thread
