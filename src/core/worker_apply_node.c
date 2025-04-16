@@ -34,8 +34,7 @@ node_return_output(worker_t *worker, node_t *node, size_t index) {
 
 void
 worker_apply_node(worker_t *worker, node_t *node) {
-    // mutex_lock(node->mutex);
-
+#if DEBUG_NODE_MUTEX
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
         test_printf("data race\n");
@@ -44,6 +43,7 @@ worker_apply_node(worker_t *worker, node_t *node) {
         printf("\n");
         file_unlock(stdout);
     }
+#endif
 
     for (size_t count = 0; count < node->ctor->input_arity; count++) {
         size_t index = node->ctor->input_arity - 1 - count;
@@ -57,5 +57,7 @@ worker_apply_node(worker_t *worker, node_t *node) {
         stack_push(worker->value_stack, value);
     }
 
+#if DEBUG_NODE_MUTEX
     mutex_unlock(node->mutex);
+#endif
 }

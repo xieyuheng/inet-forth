@@ -2,8 +2,7 @@
 
 void
 worker_disconnect_node(worker_t *worker, node_t *node) {
-    // mutex_lock(node->mutex);
-
+#if DEBUG_NODE_MUTEX
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
         test_printf("data race\n");
@@ -12,6 +11,7 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         printf("\n");
         file_unlock(stdout);
     }
+#endif
 
     for (size_t i = 0; i < node->ctor->arity; i++) {
         value_t value = node_get_value(node, i);
@@ -25,5 +25,7 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
 
     worker_delete_node(worker, node);
 
+#if DEBUG_NODE_MUTEX
     mutex_unlock(node->mutex);
+#endif
 }
