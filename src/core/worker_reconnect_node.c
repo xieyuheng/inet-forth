@@ -1,7 +1,7 @@
 #include "index.h"
 
 inline static void
-node_take_input(worker_t *worker, node_t *node, size_t index, value_t value) {
+reconnect_input(worker_t *worker, node_t *node, size_t index, value_t value) {
     port_info_t *port_info = node_get_port_info(node, index);
     if (port_info->is_principal) {
         principal_wire_t *principal_wire = principal_wire_new(node, index);
@@ -16,14 +16,14 @@ node_take_input(worker_t *worker, node_t *node, size_t index, value_t value) {
         task_t *task = worker_connect(worker, wire, value);
         if (task) {
             worker_add_task(worker, task);
-        }        
+        }
     } else {
         node_set_value(node, index, value);
     }
 }
 
 inline static value_t
-node_return_output(worker_t *worker, node_t *node, size_t index) {
+reconnect_output(worker_t *worker, node_t *node, size_t index) {
     (void) worker;
 
     port_info_t *port_info = node_get_port_info(node, index);
@@ -54,12 +54,12 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     for (size_t count = 0; count < node->ctor->input_arity; count++) {
         size_t index = node->ctor->input_arity - 1 - count;
         value_t value = stack_pop(worker->value_stack);
-        node_take_input(worker, node, index, value);
+        reconnect_input(worker, node, index, value);
     }
 
     for (size_t count = 0; count < node->ctor->output_arity; count++) {
         size_t index = node->ctor->input_arity + count;
-        value_t value  = node_return_output(worker, node, index);
+        value_t value  = reconnect_output(worker, node, index);
         stack_push(worker->value_stack, value);
     }
 
