@@ -1,5 +1,4 @@
 [core] `worker_connect` should not take `worker`
-[core] `reconnect_input` should return `task`
 [core] `worker_reconnect_node` -- fix data race!
 
 # thread
