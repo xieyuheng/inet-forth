@@ -2,10 +2,9 @@
 
 void
 worker_disconnect_node(worker_t *worker, node_t *node) {
-    atomic_thread_fence(memory_order_acquire);
-
 #if DEBUG_NODE_MUTEX
-    while (!mutex_try_lock(node->mutex)) {
+    mutex_t *mutex = node->mutex;
+    while (!mutex_try_lock(mutex)) {
         file_lock(stdout);
         test_printf("data race! ");
         printf("worker #%lu, ", worker->index);
@@ -14,6 +13,8 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         file_unlock(stdout);
     }
 #endif
+
+    atomic_thread_fence(memory_order_acquire);
 
     for (size_t i = 0; i < node->ctor->arity; i++) {
         value_t value = node_get_value(node, i);
@@ -27,7 +28,10 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
 
     worker_recycle_node(worker, node);
 
-#if DEBUG_NODE_MUTEX
-    mutex_unlock(node->mutex);
+#if DEBUG_NODE_MUTEX && DEBUG_NODE_ALLOCATOR_DISABLED
+    mutex_unlock(mutex);
+    mutex_destroy(&mutex);
+#elif DEBUG_NODE_MUTEX
+    mutex_unlock(mutex);
 #endif
 }

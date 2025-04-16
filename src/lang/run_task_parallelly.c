@@ -32,7 +32,11 @@ worker_thread_fn(void *arg) {
         task_t *task = queue_front_pop(worker->task_queue);
         mutex_unlock(worker->task_queue_front_mutex);
 
+#if DEBUG_WORK_STEALING_DISABLED
+        (void) worker_steal_task;
+#else
         if (!task) task = worker_steal_task(worker);
+#endif
         if (!task) return NULL;
 
         step_task(worker, task);
