@@ -1,4 +1,4 @@
-[core] `worker_apply_node` -- fix data race!
+[core] `worker_reconnect_node` -- fix data race!
 
 [core] `worker_t` -- has `log` file
 

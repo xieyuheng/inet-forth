@@ -23,7 +23,7 @@ node_t *worker_new_node(worker_t* self, const node_ctor_t *ctor);
 void worker_recycle_node(worker_t* self, node_t *node);
 
 void worker_connect(worker_t *self, value_t left, value_t right);
-void worker_apply_node(worker_t *worker, node_t *node);
+void worker_reconnect_node(worker_t *worker, node_t *node);
 void worker_disconnect_node(worker_t *worker, node_t *node);
 
 node_t *worker_lookup_node_by_wire(worker_t* self, wire_t *wire);

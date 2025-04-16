@@ -33,7 +33,7 @@ node_return_output(worker_t *worker, node_t *node, size_t index) {
 }
 
 void
-worker_apply_node(worker_t *worker, node_t *node) {
+worker_reconnect_node(worker_t *worker, node_t *node) {
 #if DEBUG_NODE_MUTEX
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
