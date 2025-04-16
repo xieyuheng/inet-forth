@@ -13,8 +13,8 @@ rule_match(const rule_t *rule, principal_wire_t *left, principal_wire_t *right) 
     }
 }
 
-static void
-worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wire_t *right) {
+static task_t *
+connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
     as_principal_wire(left)->oppsite = as_principal_wire(right);
     as_principal_wire(right)->oppsite = as_principal_wire(left);
 
@@ -22,8 +22,7 @@ worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wir
         rule_t *rule = array_get(left->node->ctor->rule_array, i);
         task_t* task = rule_match(rule, left, right);
         if (task) {
-            worker_add_task(self, task);
-            return;
+            return task;
         }
     }
 
@@ -31,10 +30,11 @@ worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wir
         rule_t *rule = array_get(right->node->ctor->rule_array, i);
         task_t* task = rule_match(rule, left, right);
         if (task) {
-            worker_add_task(self, task);
-            return;
+            return task;
         }
     }
+
+    return NULL;
 }
 
 static void
@@ -53,7 +53,10 @@ worker_fuze(worker_t *self, wire_t *wire, value_t value) {
 void
 worker_connect(worker_t *self, value_t left, value_t right) {
     if (is_principal_wire(left) && is_principal_wire(right)) {
-        worker_connect_active_pair(self, as_principal_wire(left), as_principal_wire(right));
+        task_t *task = connect_active_pair(as_principal_wire(left), as_principal_wire(right));
+        if (task) {
+            worker_add_task(self, task);
+        }
     } else if (is_wire(left)) {
         worker_fuze(self, as_wire(left), right);
     } else if (is_wire(right)) {
