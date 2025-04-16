@@ -1,7 +1,7 @@
 #include "index.h"
 
 static void
-worker_return_task(worker_t *self, task_t *task) {
+worker_add_task(worker_t *self, task_t *task) {
     queue_back_push(self->task_queue, task);
     if (self->scheduler) {
         atomic_add1(&self->scheduler->atomic_task_count);
@@ -31,7 +31,7 @@ worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wir
         rule_t *rule = array_get(left->node->ctor->rule_array, i);
         task_t* task = rule_match(rule, left, right);
         if (task) {
-            worker_return_task(self, task);
+            worker_add_task(self, task);
             return;
         }
     }
@@ -40,7 +40,7 @@ worker_connect_active_pair(worker_t *self, principal_wire_t *left, principal_wir
         rule_t *rule = array_get(right->node->ctor->rule_array, i);
         task_t* task = rule_match(rule, left, right);
         if (task) {
-            worker_return_task(self, task);
+            worker_add_task(self, task);
             return;
         }
     }

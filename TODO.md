@@ -1,19 +1,6 @@
+[core] extract `worker_add_task`
 [core] `worker_reconnect_node` -- fix data race!
-
-[core] `worker_t` -- has `log` file
-
-[core] `step_task` -- should not lock `stdout` when handling `DEBUG_TASK_LOG`
-
-[core] `task_history_t` -- setup
-[core] `task_history_t` -- has `event_message_array`
-[core] `task_history_new`
-[core] `task_history_destroy`
-[core] `task_history_record`
-[core] `task_history_print`
-
-[core] `task_t` -- track scheduling history on `DEBUG_TASK_LOG`
-
-[core] `task_print` -- call `task_history_print`
+[core] `worker_connect` should return `task`
 
 # thread
 
