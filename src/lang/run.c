@@ -64,34 +64,6 @@ run_until(worker_t *worker, size_t base_length) {
     }
 }
 
-static void
-collect_free_wires_from_node(worker_t *worker, node_t *node) {
-    // mutex_lock(node->mutex);
-
-    while (!mutex_try_lock(node->mutex)) {
-        file_lock(stdout);
-        printf("[collect_free_wires_from_node] data race\n");
-        printf("[collect_free_wires_from_node] node: ");
-        node_print(node, stdout);
-        printf("\n");
-        file_unlock(stdout);
-    }
-
-    for (size_t i = 0; i < node->ctor->arity; i++) {
-        value_t value = node_get_value(node, i);
-        if (is_principal_wire(value)) {
-            principal_wire_t *principal_wire = as_principal_wire(value);
-            principal_wire_destroy(&principal_wire);
-        } else {
-            stack_push(worker->value_stack, value);
-        }
-    }
-
-    worker_delete_node(worker, node);
-
-    mutex_unlock(node->mutex);
-}
-
 void
 step_task(worker_t *worker, task_t *task) {
 #if DEBUG_TASK_MUTEX
@@ -108,17 +80,12 @@ step_task(worker_t *worker, task_t *task) {
     file_unlock(stdout);
 #endif
 
-    node_t *left_node = task->left->node;
-    node_t *right_node = task->right->node;
-
-    collect_free_wires_from_node(worker, left_node);
-    collect_free_wires_from_node(worker, right_node);
+    worker_disconnect_node(worker, task->left->node);
+    worker_disconnect_node(worker, task->right->node);
 
     size_t base_length = stack_length(worker->return_stack);
     frame_t *frame = frame_new(task->rule->function);
-
     task_destroy(&task);
-
     stack_push(worker->return_stack, frame);
     run_until(worker, base_length);
 

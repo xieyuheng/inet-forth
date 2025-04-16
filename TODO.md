@@ -1,4 +1,3 @@
-[core] extract `worker_disconnect` and `worker_disconnect_one_node`
 [core] use `DEBUG_NODE_MUTEX`
 [net] fix data race
 
