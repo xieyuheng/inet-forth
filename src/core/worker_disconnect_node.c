@@ -2,6 +2,8 @@
 
 void
 worker_disconnect_node(worker_t *worker, node_t *node) {
+    atomic_thread_fence(memory_order_acquire);
+
 #if DEBUG_NODE_MUTEX
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
@@ -12,8 +14,6 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         file_unlock(stdout);
     }
 #endif
-
-    atomic_thread_fence(memory_order_seq_cst);
 
     for (size_t i = 0; i < node->ctor->arity; i++) {
         value_t value = node_get_value(node, i);
