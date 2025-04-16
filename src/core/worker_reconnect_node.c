@@ -37,9 +37,7 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
         test_printf("data race\n");
-        test_printf("node: ");
-        node_print(node, stdout);
-        printf("\n");
+        test_printf("node: "); node_print(node, stdout); printf("\n");
         file_unlock(stdout);
     }
 #endif
@@ -65,7 +63,13 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     // to avoid data race during work stealing.
     // TODO still have data race :(
     if (found_task) {
+        file_lock(stdout);
+        test_printf("add task to worker #%lu start\n", worker->index);
+        test_printf("node: "); node_print(node, stdout); printf("\n");
+        test_printf("task: "); task_print(found_task, stdout); printf("\n");
         worker_add_task(worker, found_task);
+        test_printf("add task to worker #%lu finished\n", worker->index);
+        file_unlock(stdout);
     }
 
 #if DEBUG_NODE_MUTEX
