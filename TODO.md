@@ -1,3 +1,5 @@
+[bug] fix data race in `worker_disconnect_node`
+
 # thread
 
 [thread] wrap `pthread_cond_t` -- maybe `condvar_t`
