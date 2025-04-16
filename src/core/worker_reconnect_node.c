@@ -63,6 +63,7 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
 
     // NOTE We must add task at the END
     // to avoid data race during work stealing.
+    // TODO still have data race :(
     if (found_task) {
         worker_add_task(worker, found_task);
     }
