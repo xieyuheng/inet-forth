@@ -23,11 +23,13 @@ void
 node_set_value(node_t *self, size_t index, value_t value) {
     assert(self);
     if (!self->ctor) {
-        printf("expect node to have ctor\n");
-        printf("index: %ld\n", index);
-        printf("node: "); node_print(self, stdout); printf("\n");
-        printf("value: "); value_print(value, stdout); printf("\n");
-        printf("\n");
+        file_lock(stdout);
+        test_printf("expect node to have ctor\n");
+        test_printf("index: %ld\n", index);
+        test_printf("node: "); node_print(self, stdout); printf("\n");
+        test_printf("value: "); value_print(value, stdout); printf("\n");
+        test_printf("\n");
+        file_unlock(stdout);
         assert(self->ctor);
     }
 
