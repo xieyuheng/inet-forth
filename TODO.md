@@ -1,5 +1,7 @@
-[core] use `DEBUG_NODE_MUTEX`
-[net] fix data race
+ambr worker_delete_node worker_recycle_node
+
+[core] worker_connect.c
+[core] `worker_apply_node` -- fix data race!
 
 [core] `worker_t` -- has `log` file
 

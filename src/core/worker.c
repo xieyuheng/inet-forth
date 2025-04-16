@@ -117,7 +117,7 @@ worker_connect(worker_t *self, value_t left, value_t right) {
 }
 
 node_t *
-worker_add_node(worker_t* self, const node_ctor_t *ctor) {
+worker_new_node(worker_t* self, const node_ctor_t *ctor) {
     node_t *node = node_allocator_allocate(self->node_allocator, self->free_node_stack);
     node->ctor = ctor;
     return node;
