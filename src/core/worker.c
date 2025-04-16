@@ -124,7 +124,7 @@ worker_new_node(worker_t* self, const node_ctor_t *ctor) {
 }
 
 void
-worker_delete_node(worker_t* self, node_t *node) {
+worker_recycle_node(worker_t* self, node_t *node) {
     node->ctor = NULL;
     node_allocator_recycle(self->node_allocator, self->free_node_stack, &node);
 }

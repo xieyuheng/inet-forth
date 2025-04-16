@@ -23,7 +23,7 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         }
     }
 
-    worker_delete_node(worker, node);
+    worker_recycle_node(worker, node);
 
 #if DEBUG_NODE_MUTEX
     mutex_unlock(node->mutex);

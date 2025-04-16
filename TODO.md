@@ -1,5 +1,3 @@
-ambr worker_delete_node worker_recycle_node
-
 [core] worker_connect.c
 [core] `worker_apply_node` -- fix data race!
 
