@@ -57,9 +57,14 @@ value_print_connected(worker_t *worker) {
 
 void
 x_inspect_run(worker_t *worker) {
+#if DEBUG_NODE_ALLOCATOR_DISABLED
+    (void) value_print_connected;
+    run_task(worker);
+#else
     value_print_connected(worker);
     run_task(worker);
     value_print_connected(worker);
+#endif
 }
 
 static void

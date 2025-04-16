@@ -3,7 +3,9 @@
 node_t *
 node_new(void) {
     node_t *self = new(node_t);
+#if DEBUG_NODE_MUTEX
     self->mutex = mutex_new();
+#endif
     self->value_array = array_new_auto();
     return self;
 }
@@ -15,6 +17,9 @@ node_destroy(node_t **self_pointer) {
 
     node_t *self = *self_pointer;
     array_destroy(&self->value_array);
+#if DEBUG_NODE_MUTEX
+    // mutex_destroy(&self->mutex);
+#endif
     free(self);
     *self_pointer = NULL;
 }

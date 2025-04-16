@@ -44,17 +44,32 @@ worker_destroy(worker_t **self_pointer) {
     *self_pointer = NULL;
 }
 
+atomic_size_t atomic_node_count = 0;
+
 node_t *
 worker_new_node(worker_t* self, const node_ctor_t *ctor) {
+#if DEBUG_NODE_ALLOCATOR_DISABLED
+    (void) self;
+    node_t *node = node_new();
+    node->ctor = ctor;
+    node->id = atomic_add1(&atomic_node_count);
+    return node;
+#else
     node_t *node = node_allocator_allocate(self->node_allocator, self->free_node_stack);
     node->ctor = ctor;
     return node;
+#endif
 }
 
 void
 worker_recycle_node(worker_t* self, node_t *node) {
+#if DEBUG_NODE_ALLOCATOR_DISABLED
+    (void) self;
+    node_destroy(&node);
+#else
     node->ctor = NULL;
     node_allocator_recycle(self->node_allocator, self->free_node_stack, &node);
+#endif
 }
 
 node_t *
