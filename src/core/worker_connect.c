@@ -37,7 +37,7 @@ connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
     return NULL;
 }
 
-inline static void
+inline static task_t *
 worker_fuze(worker_t *self, wire_t *wire, value_t value) {
     value_t fuzed_value = NULL;
     if (!atomic_compare_exchange_strong(
@@ -46,21 +46,20 @@ worker_fuze(worker_t *self, wire_t *wire, value_t value) {
             value))
     {
         wire_destroy(&wire);
-        worker_connect(self, fuzed_value, value);
+        return worker_connect(self, fuzed_value, value);
     }
+
+    return NULL;
 }
 
-void
+task_t *
 worker_connect(worker_t *self, value_t left, value_t right) {
     if (is_principal_wire(left) && is_principal_wire(right)) {
-        task_t *task = connect_active_pair(as_principal_wire(left), as_principal_wire(right));
-        if (task) {
-            worker_add_task(self, task);
-        }
+        return connect_active_pair(as_principal_wire(left), as_principal_wire(right));
     } else if (is_wire(left)) {
-        worker_fuze(self, as_wire(left), right);
+        return worker_fuze(self, as_wire(left), right);
     } else if (is_wire(right)) {
-        worker_fuze(self, as_wire(right), left);
+        return worker_fuze(self, as_wire(right), left);
     } else {
         assert(false);
     }

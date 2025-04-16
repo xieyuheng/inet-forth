@@ -4,11 +4,14 @@ void
 x_connect(worker_t *worker) {
     value_t second = stack_pop(worker->value_stack);
     value_t first = stack_pop(worker->value_stack);
-    
+
     assert(second);
     assert(first);
 
-    worker_connect(worker, first, second);
+    task_t *task = worker_connect(worker, first, second);
+    if (task) {
+        worker_add_task(worker, task);
+    }
 }
 
 void

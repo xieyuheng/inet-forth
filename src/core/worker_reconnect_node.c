@@ -6,11 +6,17 @@ node_take_input(worker_t *worker, node_t *node, size_t index, value_t value) {
     if (port_info->is_principal) {
         principal_wire_t *principal_wire = principal_wire_new(node, index);
         node_set_value(node, index, principal_wire);
-        worker_connect(worker, principal_wire, value);
+        task_t *task = worker_connect(worker, principal_wire, value);
+        if (task) {
+            worker_add_task(worker, task);
+        }
     } else if (is_principal_wire(value)) {
         wire_t *wire = wire_new();
         node_set_value(node, index, wire);
-        worker_connect(worker, wire, value);
+        task_t *task = worker_connect(worker, wire, value);
+        if (task) {
+            worker_add_task(worker, task);
+        }        
     } else {
         node_set_value(node, index, value);
     }
