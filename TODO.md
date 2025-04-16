@@ -1,5 +1,6 @@
 [core] `worker_connect` should return `task`
 [core] `worker_reconnect_node` -- fix data race!
+[core] rename functions about reconnecting
 
 # thread
 

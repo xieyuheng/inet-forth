@@ -13,7 +13,7 @@ rule_match(const rule_t *rule, principal_wire_t *left, principal_wire_t *right) 
     }
 }
 
-static task_t *
+inline static task_t *
 connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
     as_principal_wire(left)->oppsite = as_principal_wire(right);
     as_principal_wire(right)->oppsite = as_principal_wire(left);
@@ -37,7 +37,7 @@ connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
     return NULL;
 }
 
-static void
+inline static void
 worker_fuze(worker_t *self, wire_t *wire, value_t value) {
     value_t fuzed_value = NULL;
     if (!atomic_compare_exchange_strong(

@@ -1,6 +1,6 @@
 #include "index.h"
 
-static void
+inline static void
 node_take_input(worker_t *worker, node_t *node, size_t index, value_t value) {
     port_info_t *port_info = node_get_port_info(node, index);
     if (port_info->is_principal) {
@@ -16,7 +16,7 @@ node_take_input(worker_t *worker, node_t *node, size_t index, value_t value) {
     }
 }
 
-static value_t
+inline static value_t
 node_return_output(worker_t *worker, node_t *node, size_t index) {
     (void) worker;
 
