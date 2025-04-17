@@ -40,6 +40,8 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
         test_printf("node: "); node_print(node, stdout); printf("\n");
         file_unlock(stdout);
     }
+
+    node->locked_by_worker = worker;
 #endif
 
     task_t *found_task = NULL;

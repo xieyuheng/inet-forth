@@ -28,6 +28,7 @@ node_destroy(node_t **self_pointer) {
 void
 node_clear(node_t *self) {
     self->ctor = NULL;
+    self->locked_by_worker = NULL;
     self->is_allocated = false;
     atomic_store(&self->atomic_is_ready, false);
     memset(self->values, 0, NODE_MAX_ARITY * sizeof(void *));

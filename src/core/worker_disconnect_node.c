@@ -8,6 +8,7 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         file_lock(stdout);
         test_printf("data race! ");
         printf("worker #%lu, ", worker->index);
+        printf("locked by #%lu, ", ((worker_t *) node->locked_by_worker)->index);
         printf("node: "); node_print(node, stdout);
         printf("\n");
         file_unlock(stdout);

@@ -1,4 +1,3 @@
-[net] `node_t` -- has `locked_by`
 [bug] fix data race in `worker_disconnect_node`
 
 # thread
