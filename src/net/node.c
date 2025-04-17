@@ -6,7 +6,7 @@ node_new(void) {
 #if DEBUG_NODE_MUTEX
     self->mutex = mutex_new();
 #endif
-    self->value_array = array_new_auto();
+    self->values = allocate_pointers(NODE_MAX_ARITY);
     return self;
 }
 
@@ -16,7 +16,7 @@ node_destroy(node_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     node_t *self = *self_pointer;
-    array_destroy(&self->value_array);
+    free(self->values);
 #if DEBUG_NODE_MUTEX
     // mutex_destroy(&self->mutex);
 #endif
@@ -25,27 +25,25 @@ node_destroy(node_t **self_pointer) {
 }
 
 void
+node_clear(node_t *self) {
+    self->ctor = NULL;
+    self->is_allocated = false;
+    memset(self->values, 0, NODE_MAX_ARITY * sizeof(void *));
+}
+
+void
 node_set_value(node_t *self, size_t index, value_t value) {
     assert(self);
-    if (!self->ctor) {
-        file_lock(stdout);
-        test_printf("expect node to have ctor\n");
-        test_printf("index: %ld\n", index);
-        test_printf("node: "); node_print(self, stdout); printf("\n");
-        test_printf("value: "); value_print(value, stdout); printf("\n");
-        test_printf("\n");
-        file_unlock(stdout);
-        assert(self->ctor);
-    }
-
-    array_set(self->value_array, index, value);
+    assert(index < NODE_MAX_ARITY);
+    self->values[index] = value;
 }
 
 value_t
 node_get_value(const node_t *self, size_t index) {
+    assert(self);
     assert(self->ctor);
-    assert(index < self->ctor->arity);
-    return array_get(self->value_array, index);
+    assert(index < NODE_MAX_ARITY);
+    return self->values[index];
 }
 
 port_info_t *

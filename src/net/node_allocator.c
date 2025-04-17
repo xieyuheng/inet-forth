@@ -52,9 +52,7 @@ node_allocator_allocate(node_allocator_t *self, stack_t *stack) {
 }
 
 void
-node_allocator_recycle(node_allocator_t *self, stack_t *stack, node_t **node_pointer) {
-    node_t *node = *node_pointer;
-    node->is_allocated = false;
-    array_purge(node->value_array);
+node_allocator_recycle(node_allocator_t *self, stack_t *stack, node_t **node_pointer) {    
+    node_clear(*node_pointer);
     allocator_recycle(self->allocator, stack, (void **) node_pointer);
 }

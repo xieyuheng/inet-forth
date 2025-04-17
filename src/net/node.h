@@ -5,11 +5,12 @@ struct node_t {
     mutex_t *mutex;
     size_t id;
     bool is_allocated;
-    array_t *value_array;
+    value_t *values;
 };
 
 node_t *node_new(void);
 void node_destroy(node_t **self_pointer);
+void node_clear(node_t *self);
 
 void node_set_value(node_t *self, size_t index, value_t value);
 value_t node_get_value(const node_t *self, size_t index);

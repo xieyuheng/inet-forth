@@ -1,8 +1,7 @@
-[net] `node_t` avoid using `array_t` -- use `NODE_MAX_ARITY`
+[net] `node_t` has `atomic_is_ready` -- for the `queue_t`
+[core] `task_t` has `atomic_is_ready` -- for the `queue_t`
 
 [bug] fix data race in `worker_disconnect_node`
-
-- [net] `node_t` has `atomic_is_ready` -- for the `queue_t`
 
 # thread
 
