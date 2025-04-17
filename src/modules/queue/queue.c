@@ -168,7 +168,7 @@ queue_front_pop(queue_t *self) {
     }
 
     void *value = get_value(self, front_cursor);
-    release_store(self->front_cursor, (front_cursor + 1));
+    release_store(self->front_cursor, front_cursor + 1);
     return value;
 }
 
