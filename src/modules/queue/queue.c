@@ -1,6 +1,7 @@
 #include "index.h"
 
-// a single producer single consumer thread safe circular queue:
+// a single producer single consumer
+// thread safe circular queue
 //
 //     +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 //     |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |

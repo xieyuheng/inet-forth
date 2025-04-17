@@ -1,10 +1,11 @@
-[deque] `deque_front_push`
-[deque] `deque_front_pop`
-[deque] `deque_back_push`
-[deque] `deque_back_pop`
-[deque] `deque_length`
-[deque] `deque_is_empty`
-[deque] `deque_resize` -- auto resize when full
+ambr modules_test test_modules
+ambr self_test test_self
+
+two commends `test-modules` & `test-self` instead of one `test-self`
+
+[deque] `deque_length` & `deque_is_empty`
+[deque] `deque_front_push` & `deque_front_pop`
+[deque] `deque_back_push` & `deque_back_pop`
 
 [bug] fix data race in `worker_disconnect_node`
 
