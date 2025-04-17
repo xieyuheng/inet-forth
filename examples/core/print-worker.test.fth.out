@@ -27,7 +27,7 @@ CALL print-worker
 </frame>
 </return-stack>
 <value-stack length="1">
-(sole₁)-value!-<
+(sole₀)-value!-<
 </value-stack>
 </worker>
 
@@ -35,8 +35,8 @@ CALL print-worker
 <return-stack length="0">
 </return-stack>
 <value-stack length="2">
+(sole₀)-value!-<
 (sole₁)-value!-<
-(sole₂)-value!-<
 </value-stack>
 </worker>
 
