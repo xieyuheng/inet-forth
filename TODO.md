@@ -1,5 +1,5 @@
 ambr modules_test test_modules
-ambr self_test test_self
+ambr test_self test_self
 
 two commends `test-modules` & `test-self` instead of one `test-self`
 

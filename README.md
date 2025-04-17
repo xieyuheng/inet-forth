@@ -209,7 +209,7 @@ inet-forth 0.1.0
 
 commands:
   run -- run files
-  self-test -- run self test
+  test-self -- run self test
   version -- print version
   help -- print help message
 ```
@@ -235,7 +235,7 @@ to test data race in parallel program:
 ```shell
 make clean
 LDFLAGS=-fsanitize=thread CFLAGS=-fsanitize=thread make -j
-make self-test
+make test-self
 ```
 
 ## Implementations

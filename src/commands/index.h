@@ -2,6 +2,6 @@
 
 #include "deps.h"
 
-commander_plugin_fn_t self_test_command;
+commander_plugin_fn_t test_self_command;
 commander_plugin_fn_t info_command;
 commander_plugin_fn_t run_command;

@@ -3,8 +3,8 @@
 static int run(commander_t *commander);
 
 void
-self_test_command(commander_t *commander) {
-    command_t *command = command_new("self-test");
+test_self_command(commander_t *commander) {
+    command_t *command = command_new("test-self");
     command->description = "run self test";
     command->run = run;
     commander_add(commander, command);
