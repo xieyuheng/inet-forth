@@ -40,16 +40,15 @@ connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
 inline static task_t *
 fuze(wire_t *wire, value_t value) {
     value_t fuzed_value = NULL;
-    if (!atomic_compare_exchange_strong(
+    if (atomic_compare_exchange_strong(
             &wire->atomic_fuzed_value,
             &fuzed_value,
-            value))
-    {
+            value)) {
+        return NULL;
+    } {
         wire_destroy(&wire);
         return connect(fuzed_value, value);
     }
-
-    return NULL;
 }
 
 task_t *
