@@ -1,6 +1,3 @@
-[deque] `deque_front_push` & `deque_front_pop`
-[deque] `deque_back_push` & `deque_back_pop`
-
 [bug] fix data race in `worker_disconnect_node`
 
 # thread
