@@ -48,7 +48,7 @@ thread_test_weak_memory_dekker(void) {
         count++;
     } while (a != 0 || b != 0);
 
-    printf("count: %lu\n", count);
+    test_printf("count: %lu\n", count);
 
     test_end();
 }

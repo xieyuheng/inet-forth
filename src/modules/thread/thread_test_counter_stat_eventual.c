@@ -57,7 +57,7 @@ thread_test_counter_stat_eventual(void) {
         list_push(list, (void *) tid);
     }
 
-    printf("final count: %lu\n", counter_read());
+    test_printf("final count: %lu\n", counter_read());
     relaxed_store(&eventual_run_p, false);
 
     while (!list_is_empty(list)) {
@@ -67,7 +67,7 @@ thread_test_counter_stat_eventual(void) {
 
     relaxed_store(&eventual_run_p, true);
     sleep(0);
-    printf("final count: %lu\n", counter_read());
+    test_printf("final count: %lu\n", counter_read());
     relaxed_store(&eventual_run_p, false);
 
     relaxed_store(&eventual_stop_p, true);
@@ -75,6 +75,6 @@ thread_test_counter_stat_eventual(void) {
 
     list_destroy(&list);
 
-    printf("elapsed seconds: %fs\n", time_passed_second(start_second));
+    test_printf("elapsed seconds: %fs\n", time_passed_second(start_second));
     test_end();
 }

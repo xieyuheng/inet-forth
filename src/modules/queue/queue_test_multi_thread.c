@@ -66,7 +66,7 @@ queue_test_multi_thread(void) {
     queue_t *queue = queue_new(QUEUE_SIZE);
 
     {
-        printf("uint_producer v.s. uint_consumer\n");
+        test_printf("uint_producer v.s. uint_consumer\n");
 
         tid_t producer_id =
             thread_start((thread_fn_t *) uint_producer, queue);
@@ -78,7 +78,7 @@ queue_test_multi_thread(void) {
     }
 
     {
-        printf("string_producer v.s. string_consumer\n");
+        test_printf("string_producer v.s. string_consumer\n");
 
         tid_t producer_id =
             thread_start((thread_fn_t *) string_producer, queue);

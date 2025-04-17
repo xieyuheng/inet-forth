@@ -26,7 +26,7 @@ thread_test_count_to_big(void) {
     thread_wait(T1);
     thread_wait(T2);
 
-    printf("count: %lu\n", count);
+    test_printf("count: %lu\n", count);
 
     test_end();
 }

@@ -36,7 +36,7 @@ thread_test_counter_non_atomic(void) {
 
     list_destroy(&list);
 
-    printf("final count: %lu\n", counter_read());
-    printf("elapsed seconds: %fs\n", time_passed_second(start_second));
+    test_printf("final count: %lu\n", counter_read());
+    test_printf("elapsed seconds: %fs\n", time_passed_second(start_second));
     test_end();
 }

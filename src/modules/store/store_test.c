@@ -7,7 +7,7 @@ store_test(void) {
     char *base = dirname(string_copy(__FILE__));
     store_t *store = store_new(base);
 
-    printf("store base: %s\n", store_base(store));
+    test_printf("store base: %s\n", store_base(store));
 
     assert(store_cache_length(store) == 0);
 

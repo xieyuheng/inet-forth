@@ -47,7 +47,7 @@ thread_test_weak_memory_dekker_atomic(void) {
         count++;
     } while (atomic_load(&a) != 0 || atomic_load(&b) != 0);
 
-    printf("count: %lu\n", count);
+    test_printf("count: %lu\n", count);
 
     test_end();
 }

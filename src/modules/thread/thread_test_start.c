@@ -14,9 +14,9 @@ thread_test_start(void) {
     char *message = string_copy("hello thread");
     tid_t tid = thread_start(thread_fn, message);
 
-    printf("thread created: %lu\n", (uint64_t) tid);
+    test_printf("thread created: %lu\n", (uint64_t) tid);
     size_t length = (size_t) thread_wait(tid);
-    printf("thread returned: %lu\n", length);
+    test_printf("thread returned: %lu\n", length);
 
     test_end();
 }

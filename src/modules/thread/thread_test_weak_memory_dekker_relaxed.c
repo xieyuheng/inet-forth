@@ -48,7 +48,7 @@ thread_test_weak_memory_dekker_relaxed(void) {
         count++;
     } while (relaxed_load(&a) != 0 || relaxed_load(&b) != 0);
 
-    printf("count: %lu\n", count);
+    test_printf("count: %lu\n", count);
 
     test_end();
 }

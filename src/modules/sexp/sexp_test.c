@@ -4,12 +4,19 @@ void
 sexp_test(void) {
     test_start();
 
+    {
+        const char *code = "(a b c)";
+        test_printf("code: %s\n", code);
+        test_printf("echo: ");
+        sexp_print(sexp_parse(code), stdout); printf("\n");
+    }
 
-    sexp_print(sexp_parse("(a b c)"), stdout);
-    printf("\n");
-
-    sexp_print(sexp_parse("((a \"b\" c) (a . c) (1 1.2))"), stdout);
-    printf("\n");
+    {
+        const char *code = "((a \"b\" c) (a . c) (1 1.2))";
+        test_printf("code: %s\n", code);
+        test_printf("echo: ");
+        sexp_print(sexp_parse(code), stdout); printf("\n");
+    }
 
     test_end();
 }

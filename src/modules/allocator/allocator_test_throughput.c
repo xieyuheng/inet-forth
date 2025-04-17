@@ -49,7 +49,7 @@ allocator_test_throughput(void) {
         thread_wait(tid);
     }
 
-    printf("thread_count: %lu\n", thread_count);
+    test_printf("thread_count: %lu\n", thread_count);
     double throughput = REPEATION_COUNT * BATCH_SIZE / 1000 / time_passed_second(start_second);
     test_printf("throughput: %.f k/s\n", throughput);
 
