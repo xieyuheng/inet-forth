@@ -72,9 +72,25 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     atomic_store(&node->atomic_is_ready, true);
 
     // TODO still have data race :(
+
     if (found_task) {
+#if DEBUG_TASK_MUTEX
+        while (!mutex_try_lock(found_task->mutex)) {
+            file_lock(stdout);
+            test_printf("data race! ");
+            printf("worker #%ld, ", worker->index);
+            printf("task: "); task_print(found_task, stdout);
+            printf("\n");
+            file_unlock(stdout);
+        }
+#endif
+
         atomic_thread_fence(memory_order_release);
         atomic_store(&found_task->atomic_is_ready, true);
         worker_add_task(worker, found_task);
+
+#if DEBUG_TASK_MUTEX
+        mutex_unlock(found_task->mutex);
+#endif
     }
 }
