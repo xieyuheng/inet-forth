@@ -28,5 +28,6 @@ modules_test(void) {
     time_test();
     thread_test();
     queue_test();
+    deque_test();
     allocator_test();
 }

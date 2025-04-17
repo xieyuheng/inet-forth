@@ -1,4 +1,3 @@
-[deque] `deque_test` -- setup
 [deque] `deque_t` -- thread safe under a lock -- just use list for now
 [deque] `deque_new`
 [deque] `deque_destroy`
