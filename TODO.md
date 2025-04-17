@@ -1,4 +1,3 @@
-[deque] `deque_length` & `deque_is_empty`
 [deque] `deque_front_push` & `deque_front_pop`
 [deque] `deque_back_push` & `deque_back_pop`
 

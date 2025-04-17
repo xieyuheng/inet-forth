@@ -26,3 +26,19 @@ deque_destroy(deque_t **self_pointer) {
     free(self);
     *self_pointer = NULL;
 }
+
+size_t
+deque_length(deque_t *self) {
+    mutex_lock(self->mutex);
+    size_t length = list_length(self->list);
+    mutex_unlock(self->mutex);
+    return length;
+}
+
+bool
+deque_is_empty(deque_t *self) {
+    mutex_lock(self->mutex);
+    bool is_empty = list_is_empty(self->list);
+    mutex_unlock(self->mutex);
+    return is_empty;
+}
