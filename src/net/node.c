@@ -7,6 +7,7 @@ node_new(void) {
     self->mutex = mutex_new();
 #endif
     self->values = allocate_pointers(NODE_MAX_ARITY);
+    atomic_store(&self->atomic_is_ready, false);
     return self;
 }
 
@@ -28,6 +29,7 @@ void
 node_clear(node_t *self) {
     self->ctor = NULL;
     self->is_allocated = false;
+    atomic_store(&self->atomic_is_ready, false);
     memset(self->values, 0, NODE_MAX_ARITY * sizeof(void *));
 }
 

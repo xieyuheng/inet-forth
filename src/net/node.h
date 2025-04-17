@@ -6,6 +6,7 @@ struct node_t {
     size_t id;
     bool is_allocated;
     value_t *values;
+    atomic_bool atomic_is_ready;
 };
 
 node_t *node_new(void);
