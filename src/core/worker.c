@@ -64,7 +64,11 @@ void
 worker_recycle_node(worker_t* self, node_t *node) {
 #if DEBUG_NODE_ALLOCATOR_DISABLED
     (void) self;
-    node_destroy(&node);
+    node_clean(node);
+
+    // NOTE To exclude ABA problem
+    // we do not even free the memory of node.
+    // node_destroy(&node);
 #else
     node_clean(node);
     node_allocator_recycle(self->node_allocator, self->free_node_stack, &node);
