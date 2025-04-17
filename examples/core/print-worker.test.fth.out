@@ -1,6 +1,4 @@
 <worker>
-<task-queue length="0">
-</task-queue>
 <return-stack length="1">
 <frame>
 <function>
@@ -17,8 +15,6 @@ CALL print-worker
 </worker>
 
 <worker>
-<task-queue length="0">
-</task-queue>
 <return-stack length="1">
 <frame>
 <function>
@@ -36,8 +32,6 @@ CALL print-worker
 </worker>
 
 <worker>
-<task-queue length="0">
-</task-queue>
 <return-stack length="0">
 </return-stack>
 <value-stack length="2">
