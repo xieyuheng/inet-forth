@@ -66,7 +66,7 @@ worker_recycle_node(worker_t* self, node_t *node) {
     (void) self;
     node_destroy(&node);
 #else
-    node->ctor = NULL;
+    node_clean(node);
     node_allocator_recycle(self->node_allocator, self->free_node_stack, &node);
 #endif
 }

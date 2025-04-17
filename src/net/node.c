@@ -26,7 +26,7 @@ node_destroy(node_t **self_pointer) {
 }
 
 void
-node_clear(node_t *self) {
+node_clean(node_t *self) {
     self->ctor = NULL;
     self->locked_by_worker = NULL;
     self->is_allocated = false;
