@@ -33,7 +33,7 @@ lib = $(patsubst src/%, lib/%, $(patsubst %.c, %.o, $(src)))
 app = inet-forth
 bin = bin/$(app)
 
-.PHONY: all run test-self run-examples test clean
+.PHONY: all run test-modules test-self run-examples test clean
 
 all: bin/$(app)
 
