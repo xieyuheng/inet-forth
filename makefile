@@ -40,13 +40,16 @@ all: bin/$(app)
 run: bin/$(app)
 	./bin/$(app)
 
+test-modules: bin/$(app)
+	./bin/$(app) test-modules
+
 test-self: bin/$(app)
 	./bin/$(app) test-self
 
 run-examples: bin/$(app)
 	bash run-examples.sh
 
-test: test-self run-examples
+test: test-modules test-self run-examples
 
 bin/$(app): $(lib) lib/$(app).o
 	mkdir -p $(dir $@) && $(cc) $^ $(ldflags) -o $@

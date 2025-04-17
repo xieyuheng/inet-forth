@@ -1,6 +1,3 @@
-ambr test_modules test_modules
-ambr test_self test_self
-
 two commends `test-modules` & `test-self` instead of one `test-self`
 
 [deque] `deque_length` & `deque_is_empty`

@@ -3,9 +3,9 @@
 static int run(commander_t *commander);
 
 void
-test_self_command(commander_t *commander) {
-    command_t *command = command_new("test-self");
-    command->description = "run self test";
+test_modules_command(commander_t *commander) {
+    command_t *command = command_new("test-modules");
+    command->description = "run test for modules";
     command->run = run;
     commander_add(commander, command);
 }
@@ -14,7 +14,7 @@ int
 run(commander_t *commander) {
     (void) commander;
 
-    node_test();
+    test_modules();
 
     return 0;
 }
