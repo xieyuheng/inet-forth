@@ -111,40 +111,42 @@ hash_test(void) {
     }
 
     {
-        hash_t *hash = hash_new();
-        hash_set_hash_fn(hash, (hash_fn_t *) string_bernstein_hash);
-        hash_set_destroy_fn(hash, (destroy_fn_t *) string_destroy);
-        hash_set_key_destroy_fn(hash, (destroy_fn_t *) string_destroy);
-        hash_set_key_equal_fn(hash, (equal_fn_t *) string_equal);
-
+        hash_t *hash = hash_of_string_key();
         assert(!hash_first(hash));
 
         //  Insert some entries
-        assert(hash_set(hash, string_copy("DEADBEEF"), string_copy("dead beef")));
-        assert(hash_set(hash, string_copy("ABADCAFE"), string_copy("a bad cafe")));
-        assert(hash_set(hash, string_copy("C0DEDBAD"), string_copy("coded bad")));
-        assert(hash_set(hash, string_copy("DEADF00D"), string_copy("dead food")));
+
+        list_t *string_list = string_list_new();
+        list_push(string_list, string_copy("dead beef"));
+        list_push(string_list, string_copy("a bad cafe"));
+        list_push(string_list, string_copy("coded bad"));
+        list_push(string_list, string_copy("dead food"));
+
+        assert(hash_set(hash, string_copy("DEADBEEF"), list_get(string_list, 0)));
+        assert(hash_set(hash, string_copy("ABADCAFE"), list_get(string_list, 1)));
+        assert(hash_set(hash, string_copy("C0DEDBAD"), list_get(string_list, 2)));
+        assert(hash_set(hash, string_copy("DEADF00D"), list_get(string_list, 3)));
         assert(hash_length(hash) == 4);
 
         {
             list_t *list = hash_value_list(hash);
             char *value = list_first(list);
             while (value) {
-                printf("value: %s\n", value);
+                assert(list_has(string_list, value));
                 value = list_next(list);
             }
-            printf("\n");
             list_destroy(&list);
         }
 
         {
             char *value = hash_first(hash);
             while (value) {
-                printf("value: %s\n", value);
+                assert(list_has(string_list, value));
                 value = hash_next(hash);
             }
-            printf("\n");
         }
+
+        list_destroy(&string_list);
 
         hash_purge(hash);
         assert(hash_length(hash) == 0);
