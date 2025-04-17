@@ -360,6 +360,7 @@ hash_report(const hash_t *self) {
     size_t length_percentage = self->length * 100 / limit;
     size_t index_percentage = self->used_indexes_size * 100 / limit;
 
+    printf("[hash_report] start: %p\n", (void *) self);
     printf("[hash_report] length percentage : %lu\n", length_percentage);
     printf("[hash_report] index  percentage : %lu\n", index_percentage);
     printf("[hash_report] prime index : %lu\n", self->prime_index);
@@ -380,6 +381,5 @@ hash_report(const hash_t *self) {
     }
 
     printf("[hash_report] max_chain  : %lu\n", max_chain);
-
-    printf("\n");
+    printf("[hash_report] end\n");
 }
