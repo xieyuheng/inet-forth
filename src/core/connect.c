@@ -39,15 +39,18 @@ connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
 
 inline static task_t *
 fuze(wire_t *wire, value_t value) {
-    value_t fuzed_value = NULL;
+    // expected `wire->atomic_fuzed_value` to be NULL
+    value_t expected_fuzed_value = NULL;
     if (atomic_compare_exchange_strong(
             &wire->atomic_fuzed_value,
-            &fuzed_value,
+            &expected_fuzed_value,
             value)) {
         return NULL;
     } {
+        // `expected_fuzed_value` now stores
+        // the unexpected value in `wire->atomic_fuzed_value`
         wire_destroy(&wire);
-        return connect(fuzed_value, value);
+        return connect(expected_fuzed_value, value);
     }
 }
 
