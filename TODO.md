@@ -1,5 +1,4 @@
-[core] `task_t` -- `locked_by_worker` should be a `worker_t` instead of just index
-
+[net] `node_t` -- has `locked_by`
 [bug] fix data race in `worker_disconnect_node`
 
 # thread

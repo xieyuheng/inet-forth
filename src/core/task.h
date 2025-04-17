@@ -7,7 +7,6 @@ struct task_t {
     const rule_t *rule;
 #if DEBUG_TASK_MUTEX
     mutex_t *mutex;
-    size_t locked_by;
 #endif
 };
 
