@@ -61,18 +61,32 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
         stack_push(worker->value_stack, value);
     }
 
-    atomic_thread_fence(memory_order_release);
     release_store(&node->atomic_is_ready, true);
 
 #if DEBUG_NODE_MUTEX
     mutex_unlock(node->mutex);
 #endif
 
-    // TODO Have data race here!!!
+    // TODO Have data race here!
 
-    // It seems we fail to enforce the code above
-    // to run before the follow code
-    // which add the task to the worker's queue.
+    // `worker_disconnect_node` reports data race
+    // with the lock above.
+
+    // Building of this node can be synchronized
+    // with the worker thread that get the task.
+
+    // - By `release_store(&task->atomic_is_ready, true)` in `worker_add_task`,
+    //   or just by the queue itself.
+
+    // But building of the oppsite node of this node
+    // can NOT be synchronized by this `release_store`!
+
+    // We can verify this by
+    //     assert(acquire_load(&task->left->node->atomic_is_ready));
+    //     assert(acquire_load(&task->right->node->atomic_is_ready));
+    // in `step_task`.
+
+    // Due to this reason a lock in node is actually required!
 
     if (found_task) {
         worker_add_task(worker, found_task);

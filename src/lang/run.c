@@ -86,8 +86,10 @@ step_task(worker_t *worker, task_t *task) {
     file_unlock(stdout);
 #endif
 
-    atomic_thread_fence(memory_order_acquire);
     assert(acquire_load(&task->atomic_is_ready));
+
+    assert(acquire_load(&task->left->node->atomic_is_ready));
+    assert(acquire_load(&task->right->node->atomic_is_ready));
 
     worker_disconnect_node(worker, task->left->node);
     worker_disconnect_node(worker, task->right->node);

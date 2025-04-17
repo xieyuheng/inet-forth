@@ -15,7 +15,6 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
     }
 #endif
 
-    atomic_thread_fence(memory_order_acquire);
     assert(acquire_load(&node->atomic_is_ready));
 
     for (size_t i = 0; i < node->ctor->arity; i++) {
