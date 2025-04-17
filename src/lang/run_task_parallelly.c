@@ -11,10 +11,7 @@ worker_steal_task(worker_t *worker) {
             victim_index = ++worker->victim_cursor % worker_count;
 
         worker_t *victim = array_get(scheduler->worker_array, victim_index);
-        mutex_lock(victim->task_queue_front_mutex);
-        task_t *task = queue_front_pop(victim->task_queue);
-        mutex_unlock(victim->task_queue_front_mutex);
-
+        task_t *task = deque_front_pop(victim->task_deque);
         if (task) return task;
     }
 
@@ -28,9 +25,7 @@ worker_thread_fn(void *arg) {
     scheduler_t *scheduler = worker->scheduler;
 
     while (atomic_load(&scheduler->atomic_task_count) > 0) {
-        mutex_lock(worker->task_queue_front_mutex);
-        task_t *task = queue_front_pop(worker->task_queue);
-        mutex_unlock(worker->task_queue_front_mutex);
+        task_t *task = deque_front_pop(worker->task_deque);
 
 #if DEBUG_WORK_STEALING_DISABLED
         (void) worker_steal_task;
@@ -47,15 +42,14 @@ worker_thread_fn(void *arg) {
 }
 
 static void
-scheduler_prepare(scheduler_t *scheduler, queue_t *init_task_queue) {
+scheduler_prepare(scheduler_t *scheduler, deque_t *init_task_deque) {
     size_t cursor = 0;
-    while (!queue_is_empty(init_task_queue)) {
+    while (!deque_is_empty(init_task_deque)) {
         atomic_add1(&scheduler->atomic_task_count);
-        task_t *task = queue_front_pop(init_task_queue);
+        task_t *task = deque_front_pop(init_task_deque);
         size_t index = cursor % scheduler_worker_count(scheduler);
         worker_t *worker = array_get(scheduler->worker_array, index);
-        bool ok = queue_back_push(worker->task_queue, task);
-        assert(ok);
+        deque_back_push(worker->task_deque, task);
         cursor++;
     }
 }
@@ -82,7 +76,7 @@ run_task_parallelly(worker_t *worker) {
     size_t processor_count = sysconf(_SC_NPROCESSORS_ONLN);
     size_t worker_count = processor_count - 1;
     scheduler_t *scheduler = scheduler_new(worker->mod, worker->node_allocator, worker_count);
-    scheduler_prepare(scheduler, worker->task_queue);
+    scheduler_prepare(scheduler, worker->task_deque);
     scheduler_start(scheduler);
     scheduler_wait(scheduler);
     scheduler_destroy(&scheduler);

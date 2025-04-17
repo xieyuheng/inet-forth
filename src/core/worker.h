@@ -5,8 +5,7 @@
 struct worker_t {
     mod_t *mod;
     list_t *token_list;
-    queue_t *task_queue;
-    mutex_t *task_queue_front_mutex;
+    deque_t *task_deque;
     stack_t *value_stack;
     stack_t *return_stack;
     node_allocator_t *node_allocator;
