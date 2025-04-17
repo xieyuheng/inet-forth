@@ -1,4 +1,3 @@
-[deque] `deque_destroy`
 [deque] `deque_front_push`
 [deque] `deque_front_pop`
 [deque] `deque_back_push`
