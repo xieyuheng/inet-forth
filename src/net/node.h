@@ -1,12 +1,12 @@
 #pragma once
 
 struct node_t {
+    atomic_bool atomic_is_ready;
     const node_ctor_t *ctor;
     mutex_t *mutex;
     size_t id;
     bool is_allocated;
     value_t *values;
-    atomic_bool atomic_is_ready;
 };
 
 node_t *node_new(void);

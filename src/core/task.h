@@ -1,6 +1,7 @@
 #pragma once
 
 struct task_t {
+    atomic_bool atomic_is_ready;
     principal_wire_t *left;
     principal_wire_t *right;
     const rule_t *rule;

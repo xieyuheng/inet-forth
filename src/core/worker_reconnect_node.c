@@ -69,12 +69,12 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     mutex_unlock(node->mutex);
 #endif
 
-    atomic_store(&node->atomic_is_ready, false);
     atomic_store(&node->atomic_is_ready, true);
 
     // TODO still have data race :(
     if (found_task) {
         atomic_thread_fence(memory_order_release);
+        atomic_store(&found_task->atomic_is_ready, true);
         worker_add_task(worker, found_task);
     }
 }
