@@ -61,17 +61,18 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
         stack_push(worker->value_stack, value);
     }
 
+#if DEBUG_NODE_MUTEX
+    mutex_unlock(node->mutex);
+#endif
+
     // NOTE To avoid data race during work stealing,
     // we must add task at the END,
     // and ensure the node building code above
     // is executed before adding task to a worker's queue
     // (which might be stealled by other workers).
 
-#if DEBUG_NODE_MUTEX
-    mutex_unlock(node->mutex);
-#endif
-
     // TODO still have data race :(
+
     atomic_store(&node->atomic_is_ready, true);
     if (found_task) {
         atomic_thread_fence(memory_order_release);
