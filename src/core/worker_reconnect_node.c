@@ -83,6 +83,8 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
             printf("\n");
             file_unlock(stdout);
         }
+
+        found_task->locked_by = worker->index;
 #endif
 
         atomic_thread_fence(memory_order_release);

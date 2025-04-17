@@ -72,6 +72,7 @@ step_task(worker_t *worker, task_t *task) {
         file_lock(stdout);
         test_printf("data race! ");
         printf("worker #%ld, ", worker->index);
+        printf("locked by #%ld, ", task->locked_by);
         printf("task: "); task_print(task, stdout);
         printf("\n");
         file_unlock(stdout);

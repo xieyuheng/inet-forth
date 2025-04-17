@@ -1,5 +1,3 @@
-[core] `task_print` -- print locked by who
-
 [bug] fix data race in `worker_disconnect_node`
 
 # thread
