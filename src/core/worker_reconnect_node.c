@@ -61,12 +61,12 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
         stack_push(worker->value_stack, value);
     }
 
+    atomic_thread_fence(memory_order_release);
+    release_store(&node->atomic_is_ready, true);
+
 #if DEBUG_NODE_MUTEX
     mutex_unlock(node->mutex);
 #endif
-
-    atomic_thread_fence(memory_order_release);
-    release_store(&node->atomic_is_ready, true);
 
     // TODO Have data race here!!!
 
