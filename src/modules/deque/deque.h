@@ -7,3 +7,5 @@
 struct deque_t {
     list_t *list;
 };
+
+deque_t *deque_new(void);
