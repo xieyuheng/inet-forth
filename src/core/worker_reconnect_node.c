@@ -71,12 +71,12 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     // is executed before adding task to a worker's queue
     // (which might be stealled by other workers).
 
-    // TODO still have data race :(
+    // TODO still have data race here!!!
 
-    atomic_store(&node->atomic_is_ready, true);
+    atomic_thread_fence(memory_order_release);
+    release_store(&node->atomic_is_ready, true);
+
     if (found_task) {
-        atomic_thread_fence(memory_order_release);
-        atomic_store(&found_task->atomic_is_ready, true);
         worker_add_task(worker, found_task);
     }
 }
