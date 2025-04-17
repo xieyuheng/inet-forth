@@ -30,4 +30,4 @@
 #include "deque/index.h"
 #include "allocator/index.h"
 
-#include "modules_test.h"
+#include "test_modules.h"
