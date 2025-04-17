@@ -82,6 +82,8 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     // can NOT be synchronized by this `release_store`!
 
     // We can verify this by
+    //     #define DEBUG_NODE_MUTEX 0
+    // and
     //     assert(acquire_load(&task->left->node->atomic_is_ready));
     //     assert(acquire_load(&task->right->node->atomic_is_ready));
     // in `step_task`.
