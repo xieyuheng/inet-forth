@@ -6,7 +6,7 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
     mutex_t *mutex = node->mutex;
     while (!mutex_try_lock(mutex)) {
         file_lock(stdout);
-        test_printf("data race! ");
+        test_printf("lock contention! ");
         printf("worker #%lu, ", worker->index);
         printf("locked by #%lu, ", ((worker_t *) node->locked_by_worker)->index);
         printf("node: "); node_print(node, stdout);

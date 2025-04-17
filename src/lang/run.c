@@ -70,7 +70,7 @@ step_task(worker_t *worker, task_t *task) {
     mutex_t *mutex = task->mutex;
     while (!mutex_try_lock(mutex)) {
         file_lock(stdout);
-        test_printf("data race! ");
+        test_printf("lock contention! ");
         printf("worker #%ld, ", worker->index);
         printf("task: "); task_print(task, stdout);
         printf("\n");

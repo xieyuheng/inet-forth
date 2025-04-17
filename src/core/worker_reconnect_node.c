@@ -36,7 +36,7 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
 #if DEBUG_NODE_MUTEX
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
-        test_printf("data race\n");
+        test_printf("lock contention! ");
         test_printf("node: "); node_print(node, stdout); printf("\n");
         file_unlock(stdout);
     }
@@ -69,8 +69,8 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
 
     // TODO Have data race here!
 
-    // `worker_disconnect_node` reports data race
-    // with the lock above.
+    // `worker_disconnect_node` reports
+    // lock contention with the lock above.
 
     // Building of this node can be synchronized
     // with the worker thread that get the task.
@@ -78,8 +78,9 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     // - By `release_store(&task->atomic_is_ready, true)` in `worker_add_task`,
     //   or just by the queue itself.
 
-    // But building of the oppsite node of this node
-    // can NOT be synchronized by this `release_store`!
+    // But building of the oppsite node of this node,
+    // which might happen in another worker thread at "the same" time,
+    // can NOT be synchronized by this `release_store`.
 
     // We can verify this by
     //     #define DEBUG_NODE_MUTEX 0
@@ -88,7 +89,9 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     //     assert(acquire_load(&task->right->node->atomic_is_ready));
     // in `step_task`.
 
-    // Due to this reason a lock in node is actually required!
+    // Due to this reason a lock in node is actually required,
+    // the lock contention reported by `worker_disconnect_node`
+    /// is not a bug.
 
     if (found_task) {
         worker_add_task(worker, found_task);
