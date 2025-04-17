@@ -1,3 +1,16 @@
+[deque] `deque_test` -- setup
+[deque] `deque_t` -- thread safe under a lock -- just use list for now
+[deque] `deque_new`
+[deque] `deque_destroy`
+[deque] `deque_front_push`
+[deque] `deque_front_pop`
+[deque] `deque_back_push`
+[deque] `deque_back_pop`
+[deque] `deque_length`
+[deque] `deque_is_empty`
+[deque] `deque_resize` -- auto resize when full
+
+
 [bug] fix data race in `worker_disconnect_node`
 
 # thread
