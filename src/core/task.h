@@ -5,7 +5,7 @@ struct task_t {
     principal_wire_t *left;
     principal_wire_t *right;
     const rule_t *rule;
-#if DEBUG_TASK_MUTEX
+#if DEBUG_TASK_LOCK
     mutex_t *mutex;
 #endif
 };

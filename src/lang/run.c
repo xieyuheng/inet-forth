@@ -66,7 +66,7 @@ run_until(worker_t *worker, size_t base_length) {
 
 void
 step_task(worker_t *worker, task_t *task) {
-#if DEBUG_TASK_MUTEX
+#if DEBUG_TASK_LOCK
     mutex_t *mutex = task->mutex;
     while (!mutex_try_lock(mutex)) {
         file_lock(stdout);
@@ -100,7 +100,7 @@ step_task(worker_t *worker, task_t *task) {
     stack_push(worker->return_stack, frame);
     run_until(worker, base_length);
 
-#if DEBUG_TASK_MUTEX
+#if DEBUG_TASK_LOCK
     mutex_unlock(mutex);
     mutex_destroy(&mutex);
 #endif
