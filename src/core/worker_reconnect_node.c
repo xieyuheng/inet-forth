@@ -67,7 +67,7 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     mutex_unlock(node->mutex);
 #endif
 
-    // TODO Have data race here!
+    // NOTE We might have data race here!
 
     // `worker_disconnect_node` reports
     // lock contention with the lock above.

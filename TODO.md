@@ -1,4 +1,7 @@
-[bug] fix data race in `worker_disconnect_node`
+ambr DEBUG_TASK_MUTEX DEBUG_TASK_LOCK
+ambr DEBUG_NODE_MUTEX DEBUG_NODE_LOCK
+[core] use normal lock when `DEBUG_NODE_MUTEX` is off
+[deque] `deque_t` -- for real -- not just list + lock
 
 # thread
 

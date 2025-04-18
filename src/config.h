@@ -9,7 +9,7 @@
 
 // To detect `step_task` in two threads
 // accessing the same task.
-#define DEBUG_TASK_MUTEX 1
+#define DEBUG_TASK_MUTEX 0
 
 // To detect `worker_reconnect_node`
 // and `worker_disconnect_node` in two threads
