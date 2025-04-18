@@ -6,12 +6,17 @@ static_ldflags = \
 	-lXau \
 	-lXdmcp
 endif
+ifeq ($(TSAN), true)
+tsan_ldflags = -fsanitize=thread
+tsan_cflags= -fsanitize=thread
+endif
 ldflags = \
 	-L/usr/local/lib \
 	-lm \
 	-lX11 \
 	-pthread \
 	$(static_ldflags) \
+	$(tsan_ldflags) \
 	$(LDFLAGS)
 cflags = \
 	-g \
@@ -26,6 +31,7 @@ cflags = \
 	-D_POSIX_C_SOURCE=200809L \
 	-D_TIME_BITS=64 \
 	-D_FILE_OFFSET_BITS=64 \
+	$(tsan_cflags) \
 	 $(CFLAGS)
 src = $(shell find src -name '*.c')
 headers = $(shell find src -name '*.h')

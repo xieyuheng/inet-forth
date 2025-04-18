@@ -233,9 +233,7 @@ Using [tsan (ThreadSanitizer)](https://github.com/google/sanitizers/wiki/threads
 to test data race in parallel program:
 
 ```shell
-make clean
-LDFLAGS=-fsanitize=thread CFLAGS=-fsanitize=thread make -j
-make test-self
+make clean && TSAN=true make -j
 ```
 
 ## Implementations
