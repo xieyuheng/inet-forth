@@ -19,6 +19,8 @@ uint_consumer(deque_t *deque) {
     while (true) {
         if (count == LENGTH) return NULL;
 
+        while (deque_is_empty(deque)) {}
+
         assert(((size_t) deque_front_pop(deque)) == count);
         count++;
     }

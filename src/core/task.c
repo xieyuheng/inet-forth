@@ -3,7 +3,6 @@
 task_t *
 task_new(principal_wire_t *left, principal_wire_t *right, const rule_t *rule) {
     task_t *self = new(task_t);
-    atomic_store(&self->atomic_is_ready, false);
     self->left = left;
     self->right = right;
     self->rule = rule;
