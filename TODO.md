@@ -1,17 +1,11 @@
-[core] use normal lock when `DEBUG_NODE_LOCK` is off
-[deque] `deque_t` -- for real -- not just list + lock
-
 # thread
 
-[thread] wrap `pthread_cond_t` -- maybe `condvar_t`
+[thread] `spinlock_t`
 
-# core
+# deque
 
-[queue] `queue_t` should auto resize -- requires locks which is not acceptable
-
-- maybe rename `queue_t` to `fixed_queue_t`
-
-[core] `worker_t` -- safe use of `task_queue` -- which might be full
+[deque] `deque_test_throughput`
+[deque] `deque_t` -- use mod queue for real -- not just list + lock
 
 # module system
 
@@ -31,3 +25,7 @@ import zero add1 add "nat.fth"
 [debug] use real physics force
 [debug] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
 [debug] remove `node_physics_fake_simulate`
+
+# thread
+
+[thread] wrap `pthread_cond_t` -- maybe `condvar_t`

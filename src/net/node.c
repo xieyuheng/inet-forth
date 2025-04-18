@@ -4,9 +4,7 @@ node_t *
 node_new(void) {
     node_t *self = new(node_t);
     atomic_store(&self->atomic_is_ready, false);
-#if DEBUG_NODE_LOCK
     self->mutex = mutex_new();
-#endif
     self->values = allocate_pointers(NODE_MAX_ARITY);
     return self;
 }
@@ -17,10 +15,8 @@ node_destroy(node_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     node_t *self = *self_pointer;
+    mutex_destroy(&self->mutex);
     free(self->values);
-#if DEBUG_NODE_LOCK
-    // mutex_destroy(&self->mutex);
-#endif
     free(self);
     *self_pointer = NULL;
 }

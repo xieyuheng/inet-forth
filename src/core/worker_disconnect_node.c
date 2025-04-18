@@ -3,8 +3,7 @@
 void
 worker_disconnect_node(worker_t *worker, node_t *node) {
 #if DEBUG_NODE_LOCK
-    mutex_t *mutex = node->mutex;
-    while (!mutex_try_lock(mutex)) {
+    while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
         test_printf("lock contention! ");
         printf("worker #%lu, ", worker->index);
@@ -13,6 +12,8 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         printf("\n");
         file_unlock(stdout);
     }
+#else
+    mutex_lock(node->mutex);
 #endif
 
     assert(acquire_load(&node->atomic_is_ready));
@@ -27,12 +28,11 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
         }
     }
 
-    worker_recycle_node(worker, node);
-
-#if DEBUG_NODE_LOCK && DEBUG_NODE_ALLOCATOR_DISABLED
-    mutex_unlock(mutex);
-    mutex_destroy(&mutex);
-#elif DEBUG_NODE_LOCK
-    mutex_unlock(mutex);
+#if DEBUG_NODE_LOCK
+    mutex_unlock(node->mutex);
+#else
+    mutex_unlock(node->mutex);
 #endif
+
+    worker_recycle_node(worker, node);
 }

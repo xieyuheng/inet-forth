@@ -42,6 +42,8 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     }
 
     node->locked_by_worker = worker;
+#else
+    mutex_lock(node->mutex);
 #endif
 
     task_t *found_task = NULL;
@@ -64,6 +66,8 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     release_store(&node->atomic_is_ready, true);
 
 #if DEBUG_NODE_LOCK
+    mutex_unlock(node->mutex);
+#else
     mutex_unlock(node->mutex);
 #endif
 
