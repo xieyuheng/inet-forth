@@ -13,6 +13,10 @@
 import zero add1 add "nat.fth"
 ```
 
+# example
+
+[example] more exampels from the paper
+
 # primitive value
 
 [design] write `list-map` as example -- use explicit `dup` -- keep linear variable simple
