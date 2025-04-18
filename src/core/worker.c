@@ -43,7 +43,9 @@ worker_destroy(worker_t **self_pointer) {
     *self_pointer = NULL;
 }
 
+#if DEBUG_NODE_ALLOCATOR_DISABLED
 atomic_size_t atomic_node_count = 0;
+#endif
 
 node_t *
 worker_new_node(worker_t* self, const node_ctor_t *ctor) {
@@ -51,7 +53,7 @@ worker_new_node(worker_t* self, const node_ctor_t *ctor) {
     (void) self;
     node_t *node = node_new();
     node->ctor = ctor;
-    node->id = atomic_add1(&atomic_node_count);
+    node->id = atomic_fetch_add(&atomic_node_count, 1);
     return node;
 #else
     node_t *node = node_allocator_allocate(self->node_allocator, self->free_node_stack);
