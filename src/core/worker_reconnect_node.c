@@ -77,10 +77,8 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     // lock contention with the lock above.
 
     // Building of this node can be synchronized
-    // with the worker thread that get the task.
-
-    // - By `release_store(&task->atomic_is_ready, true)` in `worker_add_task`,
-    //   or just by the queue itself.
+    // with the worker thread that get the task
+    // (via the queue).
 
     // But building of the oppsite node of this node,
     // which might happen in another worker thread at "the same" time,

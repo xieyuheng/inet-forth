@@ -4,6 +4,7 @@
 
 # deque
 
+[deque] `deque_t` -- try `spinlock_t`
 [deque] `deque_t` -- use mod queue for real -- not just list + lock
 
 # module system

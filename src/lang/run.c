@@ -88,8 +88,14 @@ step_task(worker_t *worker, task_t *task) {
 
     assert(acquire_load(&task->atomic_is_ready));
 
-    assert(acquire_load(&task->left->node->atomic_is_ready));
-    assert(acquire_load(&task->right->node->atomic_is_ready));
+    // NOTE The follow assertions can be used to verify that
+    // the oppsite node in a task can not be synchronized by the task queue.
+    // Thus lock on node (in `worker_disconnect_node`) is required.
+
+    // {
+    //     assert(acquire_load(&task->left->node->atomic_is_ready));
+    //     assert(acquire_load(&task->right->node->atomic_is_ready));
+    // }
 
     worker_disconnect_node(worker, task->left->node);
     worker_disconnect_node(worker, task->right->node);
