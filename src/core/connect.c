@@ -44,19 +44,19 @@ fuze(wire_t *wire, value_t value) {
     value_t expected_fuzed_value = NULL;
 
 #if FUZE_BY_WEAK_CAS
-    if (atomic_compare_exchange_weak_explicit(
+    if (atomic_compare_exchange_weak(
             &wire->atomic_fuzed_value,
             &expected_fuzed_value,
             value,
-            memory_order_relaxed,
-            memory_order_release))
+            memory_order_release,
+            memory_order_acquire))
 #else
     if (atomic_compare_exchange_strong_explicit(
             &wire->atomic_fuzed_value,
             &expected_fuzed_value,
             value,
-            memory_order_relaxed,
-            memory_order_release))
+            memory_order_release,
+            memory_order_acquire))
 #endif
     {
         return NULL;
