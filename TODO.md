@@ -4,7 +4,6 @@
 
 # deque
 
-[deque] `deque_test_throughput`
 [deque] `deque_t` -- use mod queue for real -- not just list + lock
 
 # module system
