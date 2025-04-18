@@ -33,7 +33,7 @@ reconnect_output(node_t *node, size_t index) {
 
 void
 worker_reconnect_node(worker_t *worker, node_t *node) {
-#if DEBUG_NODE_MUTEX
+#if DEBUG_NODE_LOCK
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
         test_printf("lock contention! ");
@@ -63,7 +63,7 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
 
     release_store(&node->atomic_is_ready, true);
 
-#if DEBUG_NODE_MUTEX
+#if DEBUG_NODE_LOCK
     mutex_unlock(node->mutex);
 #endif
 
@@ -83,7 +83,7 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     // can NOT be synchronized by this `release_store`.
 
     // We can verify this by
-    //     #define DEBUG_NODE_MUTEX 0
+    //     #define DEBUG_NODE_LOCK 0
     // and
     //     assert(acquire_load(&task->left->node->atomic_is_ready));
     //     assert(acquire_load(&task->right->node->atomic_is_ready));

@@ -2,7 +2,7 @@
 
 void
 worker_disconnect_node(worker_t *worker, node_t *node) {
-#if DEBUG_NODE_MUTEX
+#if DEBUG_NODE_LOCK
     mutex_t *mutex = node->mutex;
     while (!mutex_try_lock(mutex)) {
         file_lock(stdout);
@@ -29,10 +29,10 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
 
     worker_recycle_node(worker, node);
 
-#if DEBUG_NODE_MUTEX && DEBUG_NODE_ALLOCATOR_DISABLED
+#if DEBUG_NODE_LOCK && DEBUG_NODE_ALLOCATOR_DISABLED
     mutex_unlock(mutex);
     mutex_destroy(&mutex);
-#elif DEBUG_NODE_MUTEX
+#elif DEBUG_NODE_LOCK
     mutex_unlock(mutex);
 #endif
 }

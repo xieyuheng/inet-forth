@@ -1,5 +1,4 @@
-ambr DEBUG_NODE_MUTEX DEBUG_NODE_LOCK
-[core] use normal lock when `DEBUG_NODE_MUTEX` is off
+[core] use normal lock when `DEBUG_NODE_LOCK` is off
 [deque] `deque_t` -- for real -- not just list + lock
 
 # thread

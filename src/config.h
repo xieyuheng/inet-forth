@@ -14,7 +14,7 @@
 // To detect `worker_reconnect_node`
 // and `worker_disconnect_node` in two threads
 // accessing the same node.
-#define DEBUG_NODE_MUTEX 0
+#define DEBUG_NODE_LOCK 0
 
 // To exclude problem with `node_allocator_t`.
 // - To exclude ABA problem
