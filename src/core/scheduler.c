@@ -34,3 +34,20 @@ size_t
 scheduler_worker_count(scheduler_t *self) {
     return array_length(self->worker_array);
 }
+
+void
+scheduler_start(scheduler_t *scheduler, thread_fn_t *worker_thread_fn) {
+    for (size_t i = 0; i < array_length(scheduler->worker_array); i++) {
+        worker_t *worker = array_get(scheduler->worker_array, i);
+        tid_t tid = thread_start(worker_thread_fn, worker);
+        array_set(scheduler->worker_tid_array, i, (void *) (uint64_t) tid);
+    }
+}
+
+void
+scheduler_wait(scheduler_t *scheduler) {
+    for (size_t i = 0; i < array_length(scheduler->worker_tid_array); i++) {
+        tid_t tid = (tid_t) array_get(scheduler->worker_tid_array, i);
+        thread_wait(tid);
+    }
+}
