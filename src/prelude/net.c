@@ -24,7 +24,7 @@ x_link(worker_t *worker) {
 
 void
 x_run(worker_t *worker) {
-    run_task(worker);
+    worker_process_all_tasks(worker);
 }
 
 static void
@@ -59,10 +59,10 @@ void
 x_inspect_run(worker_t *worker) {
 #if DEBUG_NODE_ALLOCATOR_DISABLED
     (void) value_print_connected;
-    run_task(worker);
+    worker_process_all_tasks(worker);
 #else
     value_print_connected(worker);
-    run_task(worker);
+    worker_process_all_tasks(worker);
     value_print_connected(worker);
 #endif
 }

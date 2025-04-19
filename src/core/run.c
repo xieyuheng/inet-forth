@@ -65,7 +65,7 @@ run_until(worker_t *worker, size_t base_length) {
 }
 
 void
-run_task_sequentially(worker_t *worker) {
+worker_process_all_tasks_sequentially(worker_t *worker) {
     while (true) {
         task_t *task = deque_pop_front(worker->task_deque);
         if (!task) return;
@@ -74,10 +74,10 @@ run_task_sequentially(worker_t *worker) {
 }
 
 void
-run_task(worker_t *worker) {
+worker_process_all_tasks(worker_t *worker) {
     if (single_threaded_flag) {
-        run_task_sequentially(worker);
+        worker_process_all_tasks_sequentially(worker);
     } else {
-        run_task_parallelly(worker);
+        worker_process_all_tasks_parallelly(worker);
     }
 }
