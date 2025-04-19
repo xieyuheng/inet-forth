@@ -35,8 +35,6 @@ queue_test_throughput(void) {
 
     queue_t *queue = queue_new(QUEUE_SIZE);
 
-    test_printf("uint_producer v.s. uint_consumer\n");
-
     double start_second = time_second();
 
     tid_t producer_id =
