@@ -23,7 +23,10 @@ mini_spinlock_destroy(mini_spinlock_t **self_pointer) {
 
 void
 mini_spinlock_lock(mini_spinlock_t *self) {
-    while (atomic_exchange_explicit(
+    while (atomic_load_explicit(
+               &self->atomic_is_locked,
+               memory_order_relaxed) ||
+           atomic_exchange_explicit(
                &self->atomic_is_locked,
                true,
                memory_order_acquire))

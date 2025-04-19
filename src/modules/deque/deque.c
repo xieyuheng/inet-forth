@@ -3,14 +3,14 @@
 // TODO just use list + lock for now
 
 struct deque_t {
-    spinlock_t *spinlock;
+    mini_spinlock_t *mini_spinlock;
     list_t *list;
 };
 
 deque_t *
 deque_new(void) {
     deque_t *self = new(deque_t);
-    self->spinlock = spinlock_new();
+    self->mini_spinlock = mini_spinlock_new();
     self->list = list_new();
     return self;
 }
@@ -21,7 +21,7 @@ deque_destroy(deque_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     deque_t *self = *self_pointer;
-    spinlock_destroy(&self->spinlock);
+    mini_spinlock_destroy(&self->mini_spinlock);
     list_destroy(&self->list);
     free(self);
     *self_pointer = NULL;
@@ -29,45 +29,45 @@ deque_destroy(deque_t **self_pointer) {
 
 size_t
 deque_length(deque_t *self) {
-    spinlock_lock(self->spinlock);
+    mini_spinlock_lock(self->mini_spinlock);
     size_t length = list_length(self->list);
-    spinlock_unlock(self->spinlock);
+    mini_spinlock_unlock(self->mini_spinlock);
     return length;
 }
 
 bool
 deque_is_empty(deque_t *self) {
-    spinlock_lock(self->spinlock);
+    mini_spinlock_lock(self->mini_spinlock);
     bool is_empty = list_is_empty(self->list);
-    spinlock_unlock(self->spinlock);
+    mini_spinlock_unlock(self->mini_spinlock);
     return is_empty;
 }
 
 void
 deque_push_front(deque_t *self, void *value) {
-    spinlock_lock(self->spinlock);
+    mini_spinlock_lock(self->mini_spinlock);
     list_unshift(self->list, value);
-    spinlock_unlock(self->spinlock);
+    mini_spinlock_unlock(self->mini_spinlock);
 }
 
 void *
 deque_pop_front(deque_t *self) {
-    spinlock_lock(self->spinlock);
+    mini_spinlock_lock(self->mini_spinlock);
     void *value = list_shift(self->list);
-    spinlock_unlock(self->spinlock);
+    mini_spinlock_unlock(self->mini_spinlock);
     return value;
 }
 
 void
 deque_push_back(deque_t *self, void *value) {
-    spinlock_lock(self->spinlock);
+    mini_spinlock_lock(self->mini_spinlock);
     list_push(self->list, value);
-    spinlock_unlock(self->spinlock);
+    mini_spinlock_unlock(self->mini_spinlock);
 }
 
 void *deque_pop_back(deque_t *self) {
-    spinlock_lock(self->spinlock);
+    mini_spinlock_lock(self->mini_spinlock);
     void *value = list_pop(self->list);
-    spinlock_unlock(self->spinlock);
+    mini_spinlock_unlock(self->mini_spinlock);
     return value;
 }

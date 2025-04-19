@@ -13,3 +13,13 @@ time_passed_second(double start_second) {
     double end_second = time_second();
     return end_second - start_second;
 }
+
+bool
+time_sleep_nanosecond(long nanosecond) {
+    struct timespec ts = {
+        .tv_sec = 0,
+        .tv_nsec = nanosecond,
+    };
+    int ok = nanosleep(&ts, NULL);
+    return ok == 0;
+}
