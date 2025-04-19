@@ -1,7 +1,7 @@
 #include "index.h"
 
 inline static void
-step_op(worker_t *worker, frame_t *frame, op_t *op) {
+worker_execute_opcode(worker_t *worker, frame_t *frame, op_t *op) {
     switch (op->kind) {
     case OP_CALL: {
         call(worker, op->call.def);
@@ -27,8 +27,8 @@ step_op(worker_t *worker, frame_t *frame, op_t *op) {
     }
 }
 
-static void
-step(worker_t *worker) {
+inline static void
+worker_run_one_step(worker_t *worker) {
     if (stack_is_empty(worker->return_stack)) return;
 
     frame_t *frame = stack_pop(worker->return_stack);
@@ -45,7 +45,7 @@ step(worker_t *worker) {
         stack_push(worker->return_stack, frame);
     }
 
-    step_op(worker, frame, op);
+    worker_execute_opcode(worker, frame, op);
 
     if (finished) {
         frame_destroy(&frame);
@@ -58,8 +58,8 @@ step(worker_t *worker) {
 }
 
 void
-run_until(worker_t *worker, size_t base_length) {
+worker_run_until(worker_t *worker, size_t base_length) {
     while (stack_length(worker->return_stack) > base_length) {
-        step(worker);
+        worker_run_one_step(worker);
     }
 }

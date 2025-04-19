@@ -37,7 +37,7 @@ execute_generic(worker_t *worker) {
     size_t base_length = stack_length(worker->return_stack);
     frame_t *frame = frame_new(function);
     stack_push(worker->return_stack, frame);
-    run_until(worker, base_length);
+    worker_run_until(worker, base_length);
 
     function_destroy(&function);
     return true;

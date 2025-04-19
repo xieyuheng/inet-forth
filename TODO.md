@@ -1,5 +1,3 @@
-[core] extract `worker_work`
-
 # module system
 
 ```

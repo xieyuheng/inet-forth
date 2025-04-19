@@ -37,7 +37,7 @@ worker_process_task(worker_t *worker, task_t *task) {
     frame_t *frame = frame_new(task->rule->function);
     task_destroy(&task);
     stack_push(worker->return_stack, frame);
-    run_until(worker, base_length);
+    worker_run_until(worker, base_length);
 
 #if DEBUG_TASK_LOCK
     mutex_unlock(mutex);
