@@ -15,5 +15,6 @@
 #include "define_primitive.h"
 #include "define_constant.h"
 #include "define_function.h"
+#include "connect.h"
 #include "call.h"
 #include "run.h"

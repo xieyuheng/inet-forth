@@ -21,7 +21,6 @@ void worker_destroy(worker_t **self_pointer);
 node_t *worker_new_node(worker_t* self, const node_ctor_t *ctor);
 void worker_recycle_node(worker_t* self, node_t *node);
 
-task_t *connect(value_t left, value_t right);
 void worker_add_task(worker_t *worker, task_t *task);
 void worker_reconnect_node(worker_t *worker, node_t *node);
 void worker_disconnect_node(worker_t *worker, node_t *node);

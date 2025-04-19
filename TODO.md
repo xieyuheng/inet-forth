@@ -1,5 +1,3 @@
-[core] add connect.h
-
 # module system
 
 ```
