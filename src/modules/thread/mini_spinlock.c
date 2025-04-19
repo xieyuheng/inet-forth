@@ -11,7 +11,12 @@ mini_spinlock_new(void) {
     return self;
 }
 
-// void
-// mini_spinlock_destroy(mini_spinlock_t **self_pointer) {
+void
+mini_spinlock_destroy(mini_spinlock_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer == NULL) return;
 
-// }
+    mini_spinlock_t *self = *self_pointer;
+    free(self);
+    *self_pointer = NULL;
+}
