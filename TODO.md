@@ -1,10 +1,8 @@
-# thread
-
-[thread] `mini_spinlock_lock`
+[deque] `deque_t` -- try `mini_spinlock_t`
+[thread] `mini_spinlock_lock` -- optimize
 
 # deque
 
-[deque] `deque_t` -- try `mini_spinlock_t`
 [deque] `deque_t` -- use mod queue for real -- not just list + lock
 
 # core
