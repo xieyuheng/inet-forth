@@ -14,7 +14,7 @@ scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count)
     }
 
     self->worker_tid_array = array_new_auto();
-    atomic_store(&self->atomic_task_count, 0);
+    atomic_init(&self->atomic_task_count, 0);
     return self;
 }
 

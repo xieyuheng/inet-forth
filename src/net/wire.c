@@ -8,7 +8,7 @@ wire_t *
 wire_new(void) {
     wire_t *self = new(wire_t);
     self->spec = &wire_object_spec;
-    atomic_store(&self->atomic_fuzed_value, NULL);
+    atomic_init(&self->atomic_fuzed_value, NULL);
     return self;
 }
 
@@ -40,7 +40,7 @@ walk(value_t value) {
         wire_t *wire = as_wire(value);
         value_t fuzed_value = atomic_load(&wire->atomic_fuzed_value);
         if (!fuzed_value) break;
-        
+
         value = fuzed_value;
     }
 

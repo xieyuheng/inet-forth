@@ -3,7 +3,7 @@
 node_t *
 node_new(void) {
     node_t *self = new(node_t);
-    atomic_store(&self->atomic_is_ready, false);
+    atomic_init(&self->atomic_is_ready, false);
     self->mutex = mutex_new();
     self->values = allocate_pointers(NODE_MAX_ARITY);
     return self;
