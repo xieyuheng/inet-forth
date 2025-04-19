@@ -1,6 +1,5 @@
 # thread
 
-[thread] `mini_spinlock_t` -- setup
 [thread] `mini_spinlock_new`
 [thread] `mini_spinlock_destroy`
 [thread] `mini_spinlock_lock`
