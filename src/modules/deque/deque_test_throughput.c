@@ -8,7 +8,7 @@ uint_producer(deque_t *deque) {
     while (true) {
         if (count == LENGTH) return NULL;
 
-        deque_back_push(deque, (void *) count);
+        deque_push_back(deque, (void *) count);
         count++;
     }
 }
@@ -21,7 +21,7 @@ uint_consumer(deque_t *deque) {
 
         while (deque_is_empty(deque)) {}
 
-        assert(((size_t) deque_front_pop(deque)) == count);
+        assert(((size_t) deque_pop_front(deque)) == count);
         count++;
     }
 }

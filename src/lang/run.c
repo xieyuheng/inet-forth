@@ -112,7 +112,7 @@ step_task(worker_t *worker, task_t *task) {
 void
 run_task_sequentially(worker_t *worker) {
     while (true) {
-        task_t *task = deque_front_pop(worker->task_deque);
+        task_t *task = deque_pop_front(worker->task_deque);
         if (!task) return;
         step_task(worker, task);
     }

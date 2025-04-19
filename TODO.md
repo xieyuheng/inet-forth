@@ -1,10 +1,3 @@
-[queue] & [deque] change function naming
-
-ambr back_push push_back
-ambr back_pop pop_back
-ambr front_pop pop_front
-ambr front_push push_front
-
 # thread
 
 [thread] `mini_spinlock_t` -- setup

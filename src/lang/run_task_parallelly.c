@@ -14,7 +14,7 @@ worker_steal_task(worker_t *worker) {
             victim_index = ++worker->victim_cursor % worker_count;
 
         worker_t *victim = array_get(scheduler->worker_array, victim_index);
-        task_t *task = deque_front_pop(victim->task_deque);
+        task_t *task = deque_pop_front(victim->task_deque);
         if (task) return task;
     }
 
@@ -31,7 +31,7 @@ worker_thread_fn(void *arg) {
                &scheduler->atomic_task_count,
                memory_order_acquire) > 0)
     {
-        task_t *task = deque_front_pop(worker->task_deque);
+        task_t *task = deque_pop_front(worker->task_deque);
 
 #if DEBUG_WORK_STEALING_DISABLED
         (void) worker_steal_task;
@@ -54,10 +54,10 @@ static void
 scheduler_prepare(scheduler_t *scheduler, deque_t *init_task_deque) {
     size_t cursor = 0;
     while (!deque_is_empty(init_task_deque)) {
-        task_t *task = deque_front_pop(init_task_deque);
+        task_t *task = deque_pop_front(init_task_deque);
         size_t index = cursor % scheduler_worker_count(scheduler);
         worker_t *worker = array_get(scheduler->worker_array, index);
-        deque_back_push(worker->task_deque, task);
+        deque_push_back(worker->task_deque, task);
         atomic_fetch_add_explicit(
             &scheduler->atomic_task_count,
             1,
