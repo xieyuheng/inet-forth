@@ -9,7 +9,7 @@
 
 // In a normal build, all debug flag should be off.
 
-// To detect `step_task` in two threads
+// To detect `worker_run_task` in two threads
 // accessing the same task.
 #define DEBUG_TASK_LOCK 0
 
