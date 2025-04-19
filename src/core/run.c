@@ -1,6 +1,6 @@
 #include "index.h"
 
-static void
+inline static void
 step_op(worker_t *worker, frame_t *frame, op_t *op) {
     switch (op->kind) {
     case OP_CALL: {
@@ -61,23 +61,5 @@ void
 run_until(worker_t *worker, size_t base_length) {
     while (stack_length(worker->return_stack) > base_length) {
         step(worker);
-    }
-}
-
-void
-worker_process_all_tasks_sequentially(worker_t *worker) {
-    while (true) {
-        task_t *task = deque_pop_front(worker->task_deque);
-        if (!task) return;
-        worker_process_task(worker, task);
-    }
-}
-
-void
-worker_process_all_tasks(worker_t *worker) {
-    if (single_threaded_flag) {
-        worker_process_all_tasks_sequentially(worker);
-    } else {
-        worker_process_all_tasks_parallelly(worker);
     }
 }

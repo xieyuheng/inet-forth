@@ -1,4 +1,4 @@
-[core] extract `worker_process_all_tasks`
+[core] extract `worker_work`
 
 # module system
 

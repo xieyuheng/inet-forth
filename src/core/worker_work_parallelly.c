@@ -84,7 +84,7 @@ scheduler_wait(scheduler_t *scheduler) {
 }
 
 void
-worker_process_all_tasks_parallelly(worker_t *worker) {
+worker_work_parallelly(worker_t *worker) {
     size_t processor_count = sysconf(_SC_NPROCESSORS_ONLN);
     size_t worker_count = processor_count - 1;
     scheduler_t *scheduler = scheduler_new(worker->mod, worker->node_allocator, worker_count);

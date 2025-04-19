@@ -25,6 +25,9 @@ void worker_add_task(worker_t *worker, task_t *task);
 void worker_process_task(worker_t *worker, task_t *task);
 void worker_reconnect_node(worker_t *worker, node_t *node);
 void worker_disconnect_node(worker_t *worker, node_t *node);
+void worker_work_sequentially(worker_t *worker);
+void worker_work_parallelly(worker_t *worker);
+void worker_work(worker_t *worker);
 
 node_t *worker_lookup_node_by_wire(worker_t* self, wire_t *wire);
 
