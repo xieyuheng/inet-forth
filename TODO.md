@@ -1,11 +1,3 @@
-# deque
-
-[deque] `deque_t` -- use mod queue for real -- not just list + lock
-
-# core
-
-[core] `node_t` -- use `spinlock_t`
-
 # module system
 
 ```
@@ -16,6 +8,14 @@ import zero add1 add "nat.fth"
 
 [example] more exampels from the paper
 
+# deque
+
+[deque] `deque_t` -- use mod queue for real -- not just list + lock
+
+# core
+
+[core] `node_t` -- use `spinlock_t`
+
 # primitive value
 
 [design] write `list-map` as example -- use explicit `dup` -- keep linear variable simple
@@ -23,11 +23,12 @@ import zero add1 add "nat.fth"
 - use `{ ... }` for un-named program -- just program, no closure over linear variables
 - another solution is to use quoted symbol to reference defined program
 
-# debug
+# viewer
 
-[debug] use real physics force
-[debug] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
-[debug] remove `node_physics_fake_simulate`
+[viewer] bring back `viewer_t`
+[viewer] use real physics force
+[viewer] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
+[viewer] remove `node_physics_fake_simulate`
 
 # thread
 
