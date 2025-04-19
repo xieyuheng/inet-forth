@@ -1,10 +1,19 @@
 # thread
 
-[thread] `spinlock_t`
+[thread] `spinlock_destroy`
+[thread] `spinlock_lock`
+[thread] `spinlock_unlock`
+
+[thread] `mini_spinlock_t` -- setup
+[thread] `mini_spinlock_new`
+[thread] `mini_spinlock_destroy`
+[thread] `mini_spinlock_lock`
+[thread] `mini_spinlock_unlock`
 
 # deque
 
 [deque] `deque_t` -- try `spinlock_t`
+[deque] `deque_t` -- try `mini_spinlock_t`
 [deque] `deque_t` -- use mod queue for real -- not just list + lock
 
 # core
