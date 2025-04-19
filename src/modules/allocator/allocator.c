@@ -46,7 +46,7 @@ allocator_allocate(allocator_t *self, stack_t *stack) {
     void *value = allocator_maybe_allocate(self, stack);
 
     if (!value) {
-        test_printf("not enough value\n");
+        who_printf("not enough value\n");
         exit(1);
     }
 

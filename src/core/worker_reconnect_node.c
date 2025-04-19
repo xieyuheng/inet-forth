@@ -36,8 +36,8 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
 #if DEBUG_NODE_LOCK
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
-        test_printf("lock contention! ");
-        test_printf("node: "); node_print(node, stdout); printf("\n");
+        who_printf("lock contention! ");
+        who_printf("node: "); node_print(node, stdout); printf("\n");
         file_unlock(stdout);
     }
 

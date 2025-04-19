@@ -46,9 +46,9 @@ node_test_node_allocator_throughput(void) {
 
     node_allocator_destroy(&node_allocator);
 
-    test_printf("thread_count: %lu\n", thread_count);
+    who_printf("thread_count: %lu\n", thread_count);
     double throughput = REPEATION_COUNT * BATCH_SIZE / 1000 / time_passed_second(start_second);
-    test_printf("throughput: %.f k/s\n", throughput);
+    who_printf("throughput: %.f k/s\n", throughput);
 
     test_end();
 }

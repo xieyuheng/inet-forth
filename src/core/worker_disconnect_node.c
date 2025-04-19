@@ -5,7 +5,7 @@ worker_disconnect_node(worker_t *worker, node_t *node) {
 #if DEBUG_NODE_LOCK
     while (!mutex_try_lock(node->mutex)) {
         file_lock(stdout);
-        test_printf("lock contention! ");
+        who_printf("lock contention! ");
         printf("worker #%lu, ", worker->index);
         printf("locked by #%lu, ", ((worker_t *) node->locked_by_worker)->index);
         printf("node: "); node_print(node, stdout);

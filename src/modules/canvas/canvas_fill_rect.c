@@ -56,7 +56,7 @@ void canvas_fiil_rect_round(canvas_t *self, size_t x, size_t y, size_t width, si
             }
         }
     } else {
-        test_printf("unknown roundness: %u\n", roundness);
+        who_printf("unknown roundness: %u\n", roundness);
         exit(1);
     }
 }

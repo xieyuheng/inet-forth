@@ -15,7 +15,7 @@ utf8_char_length(char c) {
     if (byte >> 4 == pattern_3) return 3;
     if (byte >> 3 == pattern_4) return 4;
 
-    test_printf("invalid utf8: 0x%x\n", byte);
+    who_printf("invalid utf8: 0x%x\n", byte);
     exit(1);
 }
 
@@ -63,7 +63,7 @@ utf8_decode(const char *string) {
     }
     }
 
-    test_printf("invalid byte length: %u\n", byte_length);
+    who_printf("invalid byte length: %u\n", byte_length);
     exit(1);
 }
 
@@ -124,7 +124,7 @@ utf8_encode_into(code_point_t code_point, char *dest) {
         return;
     }
 
-    test_printf("code point too large: 0x%x\n", code_point);
+    who_printf("code point too large: 0x%x\n", code_point);
     exit(1);
 }
 

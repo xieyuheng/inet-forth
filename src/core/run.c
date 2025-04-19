@@ -70,7 +70,7 @@ step_task(worker_t *worker, task_t *task) {
     mutex_t *mutex = task->mutex;
     while (!mutex_try_lock(mutex)) {
         file_lock(stdout);
-        test_printf("lock contention! ");
+        who_printf("lock contention! ");
         printf("worker #%ld, ", worker->index);
         printf("task: "); task_print(task, stdout);
         printf("\n");
@@ -80,7 +80,7 @@ step_task(worker_t *worker, task_t *task) {
 
 #if DEBUG_TASK_LOG
     file_lock(stdout);
-    test_printf("worker #%ld, ", worker->index);
+    who_printf("worker #%ld, ", worker->index);
     printf("task: "); task_print(task, stdout);
     printf("\n");
     file_unlock(stdout);

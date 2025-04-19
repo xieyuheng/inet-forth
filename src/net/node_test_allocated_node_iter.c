@@ -30,7 +30,7 @@ node_test_allocated_node_iter(void) {
     node_t *node = allocated_node_iter_first(allocated_node_iter);
     size_t node_count = 0;
     while (node) {
-        test_printf("#%lu node: ", node_count++);
+        who_printf("#%lu node: ", node_count++);
         node_print(node, stdout); printf("\n");
         assert(list_find(node_list, node));
         node = allocated_node_iter_next(allocated_node_iter);

@@ -66,9 +66,9 @@ allocator_test_thread_safe(void) {
     }
 
 
-    test_printf("thread_count: %lu\n", thread_count);
+    who_printf("thread_count: %lu\n", thread_count);
     double throughput = value_count / 1000 / time_passed_second(start_second);
-    test_printf("throughput: %.f k/s\n", throughput);
+    who_printf("throughput: %.f k/s\n", throughput);
 
     allocator_destroy(&allocator);
 

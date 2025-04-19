@@ -70,9 +70,9 @@ connect(value_t left, value_t right) {
         return fuze(as_wire(right), left);
     } else {
         file_lock(stdout);
-        test_printf("impossible case!\n");
-        test_printf("left: "); value_print(left, stdout); printf("\n");
-        test_printf("right: "); value_print(right, stdout); printf("\n");
+        who_printf("impossible case!\n");
+        who_printf("left: "); value_print(left, stdout); printf("\n");
+        who_printf("right: "); value_print(right, stdout); printf("\n");
         file_unlock(stdout);
         assert(false);
     }

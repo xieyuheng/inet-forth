@@ -46,7 +46,7 @@ queue_test_throughput(void) {
     thread_wait(consumer_id);
 
     double throughput = LENGTH / 1000 / time_passed_second(start_second);
-    test_printf("throughput: %.f k/s\n", throughput);
+    who_printf("throughput: %.f k/s\n", throughput);
 
     queue_destroy(&queue);
 
