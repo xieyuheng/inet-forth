@@ -7,6 +7,10 @@
 [deque] `deque_t` -- try `spinlock_t`
 [deque] `deque_t` -- use mod queue for real -- not just list + lock
 
+# core
+
+[core] `node_t` -- use `spinlock_t`
+
 # module system
 
 ```
