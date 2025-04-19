@@ -1,4 +1,5 @@
-ambr run_task worker_run_all_tasks
+ambr run_task worker_process_all_tasks
+[core] extract `worker_process_all_tasks`
 
 # module system
 

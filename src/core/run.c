@@ -69,7 +69,7 @@ run_task_sequentially(worker_t *worker) {
     while (true) {
         task_t *task = deque_pop_front(worker->task_deque);
         if (!task) return;
-        worker_run_task(worker, task);
+        worker_process_task(worker, task);
     }
 }
 

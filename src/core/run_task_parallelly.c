@@ -40,7 +40,7 @@ worker_thread_fn(void *arg) {
 #endif
         if (!task) return NULL;
 
-        worker_run_task(worker, task);
+        worker_process_task(worker, task);
         atomic_fetch_sub_explicit(
             &scheduler->atomic_task_count,
             1,
