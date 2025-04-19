@@ -23,12 +23,12 @@ import zero add1 add "nat.fth"
 - use `{ ... }` for un-named program -- just program, no closure over linear variables
 - another solution is to use quoted symbol to reference defined program
 
-# viewer
+# player
 
-[viewer] bring back `viewer_t`
-[viewer] use real physics force
-[viewer] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
-[viewer] remove `node_physics_fake_simulate`
+[player] bring back `player_t`
+[player] use real physics force
+[player] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
+[player] remove `node_physics_fake_simulate`
 
 # thread
 
