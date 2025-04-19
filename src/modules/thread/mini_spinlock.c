@@ -20,3 +20,16 @@ mini_spinlock_destroy(mini_spinlock_t **self_pointer) {
     free(self);
     *self_pointer = NULL;
 }
+
+// void
+// mini_spinlock_lock(mini_spinlock_t *self) {
+
+// }
+
+void
+mini_spinlock_unlock(mini_spinlock_t *self) {
+    atomic_store_explicit(
+        &self->atomic_is_locked,
+        false,
+        memory_order_release);
+}

@@ -1,7 +1,6 @@
 # thread
 
 [thread] `mini_spinlock_lock`
-[thread] `mini_spinlock_unlock`
 
 # deque
 
