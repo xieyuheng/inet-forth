@@ -61,8 +61,7 @@ canvas_draw_rect_round(
             }
         }
     } else {
-        fprintf(stderr, "[canvas_draw_rect_round] unknown roundness: %u\n",
-                roundness);
+        test_printf("unknown roundness: %u\n", roundness);
         exit(1);
     }
 }

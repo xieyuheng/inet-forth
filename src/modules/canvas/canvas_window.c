@@ -85,13 +85,13 @@ canvas_window_init_display(canvas_window_t *self) {
 
     int width = XDisplayWidth(self->display, screen);
     int height = XDisplayHeight(self->display, screen);
-    printf("[canvas_window_init_display] width:  %upx\n", width);
-    printf("[canvas_window_init_display] height: %upx\n", height);
+    test_printf("width:  %upx\n", width);
+    test_printf("height: %upx\n", height);
 
     uint32_t black_pixel = XBlackPixel(self->display, screen);
     uint32_t white_pixel = XWhitePixel(self->display, screen);
-    printf("[canvas_window_init_display] black pixel: 0x%x\n", black_pixel);
-    printf("[canvas_window_init_display] white pixel: 0x%x\n", white_pixel);
+    test_printf("black pixel: 0x%x\n", black_pixel);
+    test_printf("white pixel: 0x%x\n", white_pixel);
 }
 
 void
@@ -234,8 +234,8 @@ canvas_window_resize(canvas_window_t *self, size_t width, size_t height) {
         return;
     }
 
-    printf("[canvas_window_resize] width:  %lupx\n", width);
-    printf("[canvas_window_resize] height: %lupx\n", height);
+    test_printf("width:  %lupx\n", width);
+    test_printf("height: %lupx\n", height);
 
     self->width = width;
     self->height = height;

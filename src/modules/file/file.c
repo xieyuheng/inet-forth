@@ -12,8 +12,8 @@ file_open_or_fail(
 ) {
     file_t *file = fopen(file_name, mode);
     if (!file) {
-        fprintf(stderr, "[file_open_or_fail] file name: %s\n", file_name);
-        fprintf(stderr, "[file_open_or_fail] mode: %s\n", mode);
+        test_printf("file name: %s\n", file_name);
+        test_printf("mode: %s\n", mode);
         exit(1);
     }
 

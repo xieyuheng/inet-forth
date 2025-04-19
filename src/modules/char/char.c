@@ -8,7 +8,7 @@ char_to_hex(char c) {
     if ('a' <= c && c <= 'f') return c - 'a' + 10;
     if ('A' <= c && c <= 'F') return c - 'A' + 10;
 
-    fprintf(stderr, "[char_to_hex] unknown char: %c\n", c);
+    test_printf("unknown char: %c\n", c);
     exit(1);
 }
 

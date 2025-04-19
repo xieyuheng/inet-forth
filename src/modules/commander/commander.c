@@ -108,6 +108,6 @@ commander_run(commander_t *self) {
         command = list_next(self->command_list);
     }
 
-    printf("[commander_run] undefined command: %s\n", command_name);
+    test_printf("undefined command: %s\n", command_name);
     return 1;
 }
