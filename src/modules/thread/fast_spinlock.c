@@ -31,7 +31,7 @@ fast_spinlock_lock(fast_spinlock_t *self) {
                true,
                memory_order_acquire))
     {
-        time_sleep_nanosecond(2);
+        time_sleep_nanosecond(1);
     }
 }
 
