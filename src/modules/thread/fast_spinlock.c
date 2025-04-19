@@ -2,12 +2,14 @@
 
 struct fast_spinlock_t {
     atomic_bool atomic_is_locked;
+    size_t loop_per_sleep;
 };
 
 fast_spinlock_t *
 fast_spinlock_new(void) {
     fast_spinlock_t *self = new(fast_spinlock_t);
     atomic_init(&self->atomic_is_locked, false);
+    self->loop_per_sleep = 8;
     return self;
 }
 
@@ -23,6 +25,7 @@ fast_spinlock_destroy(fast_spinlock_t **self_pointer) {
 
 void
 fast_spinlock_lock(fast_spinlock_t *self) {
+    size_t count = 0;
     while (atomic_load_explicit(
                &self->atomic_is_locked,
                memory_order_relaxed) ||
@@ -31,7 +34,12 @@ fast_spinlock_lock(fast_spinlock_t *self) {
                true,
                memory_order_acquire))
     {
-        time_sleep_nanosecond(1);
+        if (count >= self->loop_per_sleep) {
+            count = 0;
+            time_sleep_nanosecond(1);
+        } else {
+            count++;
+        }
     }
 }
 
