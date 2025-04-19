@@ -8,7 +8,18 @@ spinlock_new(void) {
     return self;
 }
 
-// void spinlock_destroy(spinlock_t **self_pointer);
+void
+spinlock_destroy(spinlock_t **self_pointer) {
+    assert(self_pointer);
+    if (*self_pointer == NULL) return;
+
+    spinlock_t *self = *self_pointer;
+    int errno = pthread_spin_destroy(self);
+    assert(errno == 0);
+    // We need to cast pointer to volatile data to normal pointer.
+    free((void *) self);
+    *self_pointer = NULL;
+}
 
 // void spinlock_lock(spinlock_t *self);
 // bool spinlock_try_lock(spinlock_t *self);
