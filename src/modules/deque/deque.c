@@ -3,14 +3,14 @@
 // TODO just use list + lock for now
 
 struct deque_t {
-    mutex_t *mutex;
+    spinlock_t *spinlock;
     list_t *list;
 };
 
 deque_t *
 deque_new(void) {
     deque_t *self = new(deque_t);
-    self->mutex = mutex_new();
+    self->spinlock = spinlock_new();
     self->list = list_new();
     return self;
 }
@@ -21,7 +21,7 @@ deque_destroy(deque_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     deque_t *self = *self_pointer;
-    mutex_destroy(&self->mutex);
+    spinlock_destroy(&self->spinlock);
     list_destroy(&self->list);
     free(self);
     *self_pointer = NULL;
@@ -29,45 +29,45 @@ deque_destroy(deque_t **self_pointer) {
 
 size_t
 deque_length(deque_t *self) {
-    mutex_lock(self->mutex);
+    spinlock_lock(self->spinlock);
     size_t length = list_length(self->list);
-    mutex_unlock(self->mutex);
+    spinlock_unlock(self->spinlock);
     return length;
 }
 
 bool
 deque_is_empty(deque_t *self) {
-    mutex_lock(self->mutex);
+    spinlock_lock(self->spinlock);
     bool is_empty = list_is_empty(self->list);
-    mutex_unlock(self->mutex);
+    spinlock_unlock(self->spinlock);
     return is_empty;
 }
 
 void
 deque_push_front(deque_t *self, void *value) {
-    mutex_lock(self->mutex);
+    spinlock_lock(self->spinlock);
     list_unshift(self->list, value);
-    mutex_unlock(self->mutex);
+    spinlock_unlock(self->spinlock);
 }
 
 void *
 deque_pop_front(deque_t *self) {
-    mutex_lock(self->mutex);
+    spinlock_lock(self->spinlock);
     void *value = list_shift(self->list);
-    mutex_unlock(self->mutex);
+    spinlock_unlock(self->spinlock);
     return value;
 }
 
 void
 deque_push_back(deque_t *self, void *value) {
-    mutex_lock(self->mutex);
+    spinlock_lock(self->spinlock);
     list_push(self->list, value);
-    mutex_unlock(self->mutex);
+    spinlock_unlock(self->spinlock);
 }
 
 void *deque_pop_back(deque_t *self) {
-    mutex_lock(self->mutex);
+    spinlock_lock(self->spinlock);
     void *value = list_pop(self->list);
-    mutex_unlock(self->mutex);
+    spinlock_unlock(self->spinlock);
     return value;
 }

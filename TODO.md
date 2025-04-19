@@ -8,7 +8,6 @@
 
 # deque
 
-[deque] `deque_t` -- try `spinlock_t`
 [deque] `deque_t` -- try `mini_spinlock_t`
 [deque] `deque_t` -- use mod queue for real -- not just list + lock
 
