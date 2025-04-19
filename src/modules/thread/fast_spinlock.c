@@ -1,28 +1,28 @@
 #include "index.h"
 
-struct mini_spinlock_t {
+struct fast_spinlock_t {
     atomic_bool atomic_is_locked;
 };
 
-mini_spinlock_t *
-mini_spinlock_new(void) {
-    mini_spinlock_t *self = new(mini_spinlock_t);
+fast_spinlock_t *
+fast_spinlock_new(void) {
+    fast_spinlock_t *self = new(fast_spinlock_t);
     atomic_init(&self->atomic_is_locked, false);
     return self;
 }
 
 void
-mini_spinlock_destroy(mini_spinlock_t **self_pointer) {
+fast_spinlock_destroy(fast_spinlock_t **self_pointer) {
     assert(self_pointer);
     if (*self_pointer == NULL) return;
 
-    mini_spinlock_t *self = *self_pointer;
+    fast_spinlock_t *self = *self_pointer;
     free(self);
     *self_pointer = NULL;
 }
 
 void
-mini_spinlock_lock(mini_spinlock_t *self) {
+fast_spinlock_lock(fast_spinlock_t *self) {
     while (atomic_load_explicit(
                &self->atomic_is_locked,
                memory_order_relaxed) ||
@@ -31,12 +31,12 @@ mini_spinlock_lock(mini_spinlock_t *self) {
                true,
                memory_order_acquire))
     {
-        // spin
+        time_sleep_nanosecond(1);
     }
 }
 
 void
-mini_spinlock_unlock(mini_spinlock_t *self) {
+fast_spinlock_unlock(fast_spinlock_t *self) {
     atomic_store_explicit(
         &self->atomic_is_locked,
         false,
