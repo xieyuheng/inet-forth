@@ -20,7 +20,8 @@ call(worker_t *worker, const def_t *def) {
     }
 
     case DEF_NODE_CTOR: {
-        call_node_ctor(worker, def->node_ctor);
+        node_t *node = worker_new_node(worker, def->node_ctor);
+        worker_reconnect_node(worker, node);
         return;
     }
     }
