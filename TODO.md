@@ -1,3 +1,4 @@
+[core] merge `define_*` into `define.c`
 [core] can we implement call by apply?
 
 # module system

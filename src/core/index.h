@@ -12,7 +12,5 @@
 #include "rule.h"
 #include "primitive.h"
 #include "def.h"
-#include "define_primitive.h"
-#include "define_constant.h"
-#include "define_function.h"
+#include "define.h"
 #include "connect.h"
