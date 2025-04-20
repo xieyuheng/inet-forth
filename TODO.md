@@ -1,5 +1,4 @@
-[core] merge `define_*` into `define.c`
-[core] can we implement call by apply?
+[core] can we implement call by apply? -- so that we can merge core with inet-lisp in the future
 
 # module system
 
