@@ -4,7 +4,7 @@ inline static void
 worker_execute_opcode(worker_t *worker, frame_t *frame, opcode_t *op) {
     switch (op->kind) {
     case OP_CALL: {
-        call(worker, op->call.def);
+        worker_call(worker, op->call.def);
         return;
     }
 

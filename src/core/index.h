@@ -16,4 +16,3 @@
 #include "define_constant.h"
 #include "define_function.h"
 #include "connect.h"
-#include "call.h"

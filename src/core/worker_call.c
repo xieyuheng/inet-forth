@@ -1,7 +1,7 @@
 #include "index.h"
 
 void
-call(worker_t *worker, const def_t *def) {
+worker_call(worker_t *worker, const def_t *def) {
     switch (def->kind) {
     case DEF_PRIMITIVE: {
         const primitive_t *primitive = def->primitive;
