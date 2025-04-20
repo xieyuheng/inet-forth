@@ -1,4 +1,3 @@
-[core] inline `call_primitive`
 [core] rename call to `worker_call`
 [core] can we implement call by apply?
 
