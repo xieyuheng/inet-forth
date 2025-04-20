@@ -7,7 +7,7 @@
 #include "task.h"
 #include "worker.h"
 #include "scheduler.h"
-#include "op.h"
+#include "opcode.h"
 #include "function.h"
 #include "rule.h"
 #include "primitive.h"

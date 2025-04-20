@@ -1,7 +1,7 @@
 [core] inline `call_node_ctor`
 [core] inline `call_primitive`
 [core] rename call to `worker_call`
-[core] rename `op_t` to `opcode_t`
+[core] can we implement call by apply?
 
 # module system
 

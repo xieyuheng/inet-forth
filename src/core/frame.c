@@ -34,9 +34,9 @@ frame_is_finished(const frame_t *self) {
     return self->cursor == function_length(self->function);
 }
 
-op_t *
+opcode_t *
 frame_fetch_op(frame_t *self) {
-    op_t *op = function_get_op(self->function, self->cursor);
+    opcode_t *op = function_get_op(self->function, self->cursor);
     self->cursor++;
     return op;
 }

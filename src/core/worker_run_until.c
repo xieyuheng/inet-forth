@@ -1,7 +1,7 @@
 #include "index.h"
 
 inline static void
-worker_execute_opcode(worker_t *worker, frame_t *frame, op_t *op) {
+worker_execute_opcode(worker_t *worker, frame_t *frame, opcode_t *op) {
     switch (op->kind) {
     case OP_CALL: {
         call(worker, op->call.def);
@@ -37,7 +37,7 @@ worker_run_one_step(worker_t *worker) {
         return;
     }
 
-    op_t *op = frame_fetch_op(frame);
+    opcode_t *op = frame_fetch_op(frame);
 
     // proper tail-call = do not push finished frame.
     bool finished = frame_is_finished(frame);
