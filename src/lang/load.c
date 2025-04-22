@@ -20,7 +20,17 @@ load_mod(path_t *path) {
     char *code = file_read_string(file);
     fclose(file);
 
-    (void) code;
+    mod_t *mod = mod_new(path, code);
+    import_prelude(mod);
 
-    return NULL;
+    node_allocator_t *node_allocator = node_allocator_new();
+    worker_t *loader_worker = worker_new(mod, node_allocator);
+    mod->loader_worker = loader_worker;
+
+    execute_all(loader_worker);
+
+    char *key = string_copy(path_string(path));
+    assert(hash_set(global_mod_hash, key, mod));
+
+    return mod;
 }

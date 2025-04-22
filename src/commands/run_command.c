@@ -12,29 +12,13 @@ run_command(commander_t *runner) {
 
 int
 run(commander_t *commander) {
-    char **args = commander_rest_argv(commander);
-    while (*args) {
-        char *arg = *args++;
-
-        if (string_equal(arg, "--single-threaded")) {
-            single_threaded_flag = true;
-        } else {
-            file_t *file = file_open_or_fail(arg, "r");
-            char *code = file_read_string(file);
-            fclose(file);
-
-            char *cwd = getcwd(NULL, 0);
-            path_t *path = path_new(cwd);
-            path_join(path, arg);
-            mod_t *mod = mod_new(path, code);
-            import_prelude(mod);
-            node_allocator_t *node_allocator = node_allocator_new();
-            worker_t *worker = worker_new(mod, node_allocator);
-            execute_all(worker);
-            mod_destroy(&mod);
-            worker_destroy(&worker);
-            node_allocator_destroy(&node_allocator);
-        }
+    char **argv = commander_rest_argv(commander);
+    while (*argv) {
+        char *src = *argv++;
+        char *cwd = getcwd(NULL, 0);
+        path_t *path = path_new(cwd);
+        path_join(path, src);
+        load_mod(path);
     }
 
     return 0;
