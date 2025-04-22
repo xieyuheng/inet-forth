@@ -14,9 +14,11 @@ primitive_new(const char *name) {
 }
 
 primitive_t *
-primitive_from_fn(const char *name, primitive_fn_t *primitive_fn) {
+primitive_from_fn(const char *name, size_t input_arity, size_t output_arity, primitive_fn_t *primitive_fn) {
     primitive_t *self = primitive_new(name);
     self->fn_kind = PRIMITIVE_FN;
+    self->input_arity = input_arity;
+    self->output_arity = output_arity;
     self->primitive_fn = primitive_fn;
     return self;
 }
@@ -25,6 +27,8 @@ primitive_t *
 primitive_from_fn_0(const char *name, primitive_fn_0_t *primitive_fn_0) {
     primitive_t *self = primitive_new(name);
     self->fn_kind = PRIMITIVE_FN_0;
+    self->input_arity = 0;
+    self->output_arity = 1;
     self->primitive_fn_0 = primitive_fn_0;
     return self;
 }
@@ -33,6 +37,8 @@ primitive_t *
 primitive_from_fn_1(const char *name, primitive_fn_1_t *primitive_fn_1) {
     primitive_t *self = primitive_new(name);
     self->fn_kind = PRIMITIVE_FN_1;
+    self->input_arity = 1;
+    self->output_arity = 1;
     self->primitive_fn_1 = primitive_fn_1;
     return self;
 }
@@ -41,6 +47,8 @@ primitive_t *
 primitive_from_fn_2(const char *name, primitive_fn_2_t *primitive_fn_2) {
     primitive_t *self = primitive_new(name);
     self->fn_kind = PRIMITIVE_FN_2;
+    self->input_arity = 2;
+    self->output_arity = 1;
     self->primitive_fn_2 = primitive_fn_2;
     return self;
 }
@@ -49,6 +57,8 @@ primitive_t *
 primitive_from_fn_3(const char *name, primitive_fn_3_t *primitive_fn_3) {
     primitive_t *self = primitive_new(name);
     self->fn_kind = PRIMITIVE_FN_3;
+    self->input_arity = 3;
+    self->output_arity = 1;
     self->primitive_fn_3 = primitive_fn_3;
     return self;
 }
@@ -57,6 +67,8 @@ primitive_t *
 primitive_from_fn_4(const char *name, primitive_fn_4_t *primitive_fn_4) {
     primitive_t *self = primitive_new(name);
     self->fn_kind = PRIMITIVE_FN_4;
+    self->input_arity = 4;
+    self->output_arity = 1;
     self->primitive_fn_4 = primitive_fn_4;
     return self;
 }
@@ -67,6 +79,7 @@ primitive_destroy(primitive_t **self_pointer) {
     if (*self_pointer == NULL) return;
 
     primitive_t *self = *self_pointer;
+    node_ctor_destroy(&self->node_ctor);
     string_destroy(&self->name);
     free(self);
     *self_pointer = NULL;

@@ -13,16 +13,16 @@ import_prelude(mod_t *mod) {
     // value
 
     define_primitive_fn_2(mod, "eq", x_eq);
-    define_primitive_fn(mod, "dup", x_dup);
-    define_primitive_fn(mod, "swap", x_swap);
-    define_primitive_fn(mod, "drop", x_drop);
-    define_primitive_fn(mod, "rot", x_rot);
-    define_primitive_fn(mod, "over", x_over);
-    define_primitive_fn(mod, "tuck", x_tuck);
+    define_primitive_fn(mod, "dup", 1, 2, x_dup);
+    define_primitive_fn(mod, "swap", 2, 2, x_swap);
+    define_primitive_fn(mod, "drop", 1, 0, x_drop);
+    define_primitive_fn(mod, "rot", 3, 3, x_rot);
+    define_primitive_fn(mod, "over", 3, 3, x_over);
+    define_primitive_fn(mod, "tuck", 3, 3, x_tuck);
 
     // testing
 
-    define_primitive_fn(mod, "ok", x_ok);
+    define_primitive_fn(mod, "ok", 1, 0, x_ok);
 
     // int
 
@@ -44,22 +44,22 @@ import_prelude(mod_t *mod) {
 
     // net
 
-    define_primitive_fn(mod, "connect", x_connect);
-    define_primitive_fn(mod, "link", x_link);
-    define_primitive_fn(mod, "run", x_run);
-    define_primitive_fn(mod, "inspect-run", x_inspect_run);
-    define_primitive_fn(mod, "define-node", x_define_node);
-    define_primitive_fn(mod, "define-rule", x_define_rule);
+    define_primitive_fn(mod, "connect", 2, 0, x_connect);
+    define_primitive_fn(mod, "link", 0, 2, x_link);
+    define_primitive_fn(mod, "run", 0, 0, x_run);
+    define_primitive_fn(mod, "inspect-run", 0, 0, x_inspect_run);
+    define_primitive_fn(mod, "define-node", 0, 0, x_define_node);
+    define_primitive_fn(mod, "define-rule", 0, 0, x_define_rule);
 
     // console
 
     define_primitive_fn_1(mod, "print", x_print);
     define_primitive_fn_0(mod, "newline", x_newline);
-    define_primitive_fn(mod, "print-worker", x_print_worker);
-    define_primitive_fn(mod, "print-value-stack", x_print_value_stack);
-    define_primitive_fn(mod, "print-return-stack", x_print_return_stack);
+    define_primitive_fn(mod, "print-worker", 0, 0, x_print_worker);
+    define_primitive_fn(mod, "print-value-stack", 0, 0, x_print_value_stack);
+    define_primitive_fn(mod, "print-return-stack", 0, 0, x_print_return_stack);
 
     // function
 
-    define_primitive_fn(mod, "define", x_define_function);
+    define_primitive_fn(mod, "define", 0, 0, x_define_function);
 }

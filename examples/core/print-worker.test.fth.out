@@ -2,11 +2,16 @@
 <return-stack length="1">
 <frame>
 <function>
-CALL print-worker
-CALL sole <<<
-CALL print-worker
-CALL sole
-CALL print-worker
+(literal print-worker)
+(apply 0)
+(literal (sole)) <<<
+(apply 0)
+(literal print-worker)
+(apply 0)
+(literal (sole))
+(apply 0)
+(literal print-worker)
+(apply 0)
 </function>
 </frame>
 </return-stack>
@@ -18,11 +23,16 @@ CALL print-worker
 <return-stack length="1">
 <frame>
 <function>
-CALL print-worker
-CALL sole
-CALL print-worker
-CALL sole <<<
-CALL print-worker
+(literal print-worker)
+(apply 0)
+(literal (sole))
+(apply 0)
+(literal print-worker)
+(apply 0)
+(literal (sole)) <<<
+(apply 0)
+(literal print-worker)
+(apply 0)
 </function>
 </frame>
 </return-stack>

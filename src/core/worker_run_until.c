@@ -3,8 +3,9 @@
 inline static void
 worker_execute_opcode(worker_t *worker, frame_t *frame, opcode_t *opcode) {
     switch (opcode->kind) {
-    case OPCODE_CALL: {
-        worker_call(worker, opcode->call.def);
+    case OPCODE_APPLY: {
+        value_t target = stack_pop(worker->value_stack);
+        worker_apply(worker, target, opcode->apply.arity);
         return;
     }
 

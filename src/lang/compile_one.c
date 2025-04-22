@@ -74,15 +74,31 @@ compile_generic(worker_t *worker, function_t *function) {
         return true;
     }
 
-    const def_t *def = mod_find(worker->mod, token->string);
-    if (def == NULL) {
+    value_t value = mod_find(worker->mod, token->string);
+    if (!value) {
         fprintf(stderr, "[compile_generic] undefined name: %s\n", token->string);
         exit(1);
     }
 
     (void) list_shift(worker->token_list);
-    function_add_opcode(function, opcode_call(def));
     token_destroy(&token);
+
+    if (is_node_ctor(value)) {
+        size_t arity = as_node_ctor(value)->input_arity;
+        function_add_opcode(function, opcode_literal(value));
+        function_add_opcode(function, opcode_apply(arity));
+    } else if (is_function(value)) {
+        size_t arity = 0;
+        function_add_opcode(function, opcode_literal(value));
+        function_add_opcode(function, opcode_apply(arity));
+    } else if (is_primitive(value)) {
+        size_t arity = as_primitive(value)->input_arity;
+        function_add_opcode(function, opcode_literal(value));
+        function_add_opcode(function, opcode_apply(arity));
+    } else {
+        function_add_opcode(function, opcode_literal(value));
+    }
+
     return true;
 }
 

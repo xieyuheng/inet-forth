@@ -21,6 +21,11 @@ extern object_spec_t primitive_object_spec;
 struct primitive_t {
     object_spec_t *spec;
     char *name;
+    // has an optional `node_ctor` means
+    // this primitive is generic on wires.
+    node_ctor_t *node_ctor;
+    size_t input_arity;
+    size_t output_arity;
     primitive_fn_kind_t fn_kind;
     union {
         primitive_fn_t *primitive_fn;
@@ -32,7 +37,7 @@ struct primitive_t {
     };
 };
 
-primitive_t *primitive_from_fn(const char *name, primitive_fn_t *primitive_fn);
+primitive_t *primitive_from_fn(const char *name, size_t input_arity, size_t output_arity, primitive_fn_t *primitive_fn);
 primitive_t *primitive_from_fn_0(const char *name, primitive_fn_0_t *primitive_fn_0);
 primitive_t *primitive_from_fn_1(const char *name, primitive_fn_1_t *primitive_fn_1);
 primitive_t *primitive_from_fn_2(const char *name, primitive_fn_2_t *primitive_fn_2);

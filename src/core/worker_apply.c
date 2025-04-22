@@ -1,7 +1,7 @@
 #include "index.h"
 
 static void
-worker_call_primitive(worker_t *worker, const primitive_t *primitive) {
+worker_apply_primitive(worker_t *worker, const primitive_t *primitive) {
     switch (primitive->fn_kind) {
     case PRIMITIVE_FN: {
         primitive->primitive_fn(worker);
@@ -56,23 +56,21 @@ worker_call_primitive(worker_t *worker, const primitive_t *primitive) {
 }
 
 void
-worker_call(worker_t *worker, const def_t *def) {
-    switch (def->kind) {
-    case DEF_PRIMITIVE: {
-        worker_call_primitive(worker, def->primitive);
-        return;
-    }
-
-    case DEF_FUNCTION: {
-        frame_t *frame = frame_new(def->function);
-        stack_push(worker->return_stack, frame);
-        return;
-    }
-
-    case DEF_NODE_CTOR: {
-        node_t *node = worker_new_node(worker, def->node_ctor);
+worker_apply(worker_t *worker, value_t target, size_t arity) {
+    (void) arity;
+    if (is_node_ctor(target)) {
+        node_t *node = worker_new_node(worker, as_node_ctor(target));
         worker_reconnect_node(worker, node);
-        return;
-    }
+    } else if (is_function(target)) {
+        assert(as_function(target)->arity == 0);
+        frame_t *frame = frame_new(as_function(target));
+        stack_push(worker->return_stack, frame);
+    } else if (is_primitive(target)) {
+        worker_apply_primitive(worker, as_primitive(target));
+    } else {
+        who_printf("unknown target: ");
+        value_print(target, stdout);
+        printf("\n");
+        exit(1);
     }
 }

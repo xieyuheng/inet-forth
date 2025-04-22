@@ -11,5 +11,4 @@
 #include "function.h"
 #include "rule.h"
 #include "primitive.h"
-#include "def.h"
 #include "connect.h"

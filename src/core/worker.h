@@ -18,7 +18,7 @@ struct worker_t {
 worker_t *worker_new(mod_t *mod, node_allocator_t *node_allocator);
 void worker_destroy(worker_t **self_pointer);
 
-void worker_call(worker_t *worker, const def_t *unknown_def);
+void worker_apply(worker_t *worker, value_t target, size_t arity);
 void worker_run_until(worker_t *worker, size_t base_length);
 
 node_t *worker_new_node(worker_t* self, const node_ctor_t *ctor);

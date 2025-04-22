@@ -6,14 +6,13 @@
 struct mod_t {
     const char *src;
     const char *code;
-    hash_t *def_hash;
+    hash_t *value_hash;
 };
 
 mod_t *mod_new(const char *src, const char *code);
 void mod_destroy(mod_t **self_pointer);
 
-const def_t *mod_find(const mod_t *self, const char *name);
-void mod_define(mod_t *self, def_t *def);
+value_t mod_find(const mod_t *self, const char *name);
 void mod_define_rule(mod_t *self, const char *first_name, const char *second_name, function_t *function);
 
 void mod_print(const mod_t *self, file_t *file);

@@ -1,18 +1,24 @@
 <return-stack length="1">
 <frame>
 <function>
-CALL print-return-stack
-CALL print-return-stack <<<
-CALL print-return-stack
+(literal print-return-stack)
+(apply 0)
+(literal print-return-stack) <<<
+(apply 0)
+(literal print-return-stack)
+(apply 0)
 </function>
 </frame>
 </return-stack>
 <return-stack length="1">
 <frame>
 <function>
-CALL print-return-stack
-CALL print-return-stack
-CALL print-return-stack <<<
+(literal print-return-stack)
+(apply 0)
+(literal print-return-stack)
+(apply 0)
+(literal print-return-stack) <<<
+(apply 0)
 </function>
 </frame>
 </return-stack>
