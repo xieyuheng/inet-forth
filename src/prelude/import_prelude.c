@@ -62,4 +62,5 @@ import_prelude(mod_t *mod) {
     // function
 
     define_primitive_fn(mod, "define", 0, 0, x_define_function);
+    define_primitive_fn(mod, "import", 0, 0, x_import);
 }

@@ -1,8 +1,4 @@
-# module system
-
-```
-import zero add1 add "nat.fth"
-```
+use import in examples
 
 # example
 
