@@ -1,8 +1,14 @@
 #include "index.h"
 
+object_spec_t primitive_object_spec = {
+    .name = "primitive",
+    .print_fn = (print_fn_t *) primitive_print,
+};
+
 static primitive_t *
 primitive_new(const char *name) {
     primitive_t *self = new(primitive_t);
+    self->spec = &primitive_object_spec;
     self->name = string_copy(name);
     return self;
 }
@@ -64,4 +70,21 @@ primitive_destroy(primitive_t **self_pointer) {
     string_destroy(&self->name);
     free(self);
     *self_pointer = NULL;
+}
+
+bool
+is_primitive(value_t value) {
+    if (!is_xobject(value)) return false;
+    return as_object(value)->spec == &primitive_object_spec;
+}
+
+primitive_t *
+as_primitive(value_t value) {
+    assert(is_primitive(value));
+    return (primitive_t *) value;
+}
+
+void
+primitive_print(primitive_t *self, file_t *file) {
+    fprintf(file, "%s", self->name);
 }

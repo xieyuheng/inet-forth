@@ -16,7 +16,10 @@ typedef enum {
     PRIMITIVE_FN_4,
 } primitive_fn_kind_t;
 
+extern object_spec_t primitive_object_spec;
+
 struct primitive_t {
+    object_spec_t *spec;
     char *name;
     primitive_fn_kind_t fn_kind;
     union {
@@ -37,3 +40,8 @@ primitive_t *primitive_from_fn_3(const char *name, primitive_fn_3_t *primitive_f
 primitive_t *primitive_from_fn_4(const char *name, primitive_fn_4_t *primitive_fn_4);
 
 void primitive_destroy(primitive_t **self_pointer);
+
+bool is_primitive(value_t value);
+primitive_t *as_primitive(value_t value);
+
+void primitive_print(primitive_t *self, file_t *file);
