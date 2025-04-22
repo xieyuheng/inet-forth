@@ -1,4 +1,3 @@
-[lang] `load_mod`
 [lang] checks -- report relative path
 
 # module system

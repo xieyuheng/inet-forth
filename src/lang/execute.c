@@ -33,7 +33,7 @@ execute_generic(worker_t *worker) {
 
     function_t *function = function_new();
     compile_one(worker, function);
-    
+
     size_t base_length = stack_length(worker->return_stack);
     frame_t *frame = frame_new(function);
     stack_push(worker->return_stack, frame);
@@ -51,4 +51,11 @@ execute_one(worker_t *worker) {
 
     token_t *token = list_first(worker->token_list);
     fprintf(stderr, "[execute_one] unknown token: %s\n", token->string);
+}
+
+void
+execute_all(worker_t *worker) {
+    while (!list_is_empty(worker->token_list)) {
+        execute_one(worker);
+    }
 }
