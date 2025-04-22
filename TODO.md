@@ -1,5 +1,3 @@
-use import in examples
-
 # example
 
 [example] more exampels from the paper
