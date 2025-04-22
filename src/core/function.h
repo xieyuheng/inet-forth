@@ -17,8 +17,8 @@ function_t *as_function(value_t value);
 
 size_t function_length(const function_t *self);
 
-void function_add_op(function_t *self, opcode_t *op);
-opcode_t *function_get_op(const function_t *self, size_t index);
+void function_add_opcode(function_t *self, opcode_t *opcode);
+opcode_t *function_get_opcode(const function_t *self, size_t index);
 
 void function_print_name(const function_t *self, file_t *file);
 void function_print(const function_t *self, file_t *file);

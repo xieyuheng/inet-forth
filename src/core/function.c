@@ -45,12 +45,12 @@ function_length(const function_t *self) {
 }
 
 void
-function_add_op(function_t *self, opcode_t *op) {
-    array_push(self->opcode_array, op);
+function_add_opcode(function_t *self, opcode_t *opcode) {
+    array_push(self->opcode_array, opcode);
 }
 
 opcode_t *
-function_get_op(const function_t *self, size_t index) {
+function_get_opcode(const function_t *self, size_t index) {
     return array_get(self->opcode_array, index);
 }
 
@@ -62,7 +62,7 @@ function_print_name(const function_t *self, file_t *file) {
 void
 function_print(const function_t *self, file_t *file) {
     for (size_t i = 0; i < function_length(self); i++) {
-        opcode_print(function_get_op(self, i), file);
+        opcode_print(function_get_opcode(self, i), file);
         fprintf(file, "\n");
     }
 }
@@ -71,11 +71,11 @@ void
 function_print_with_cursor(const function_t *self, file_t *file, size_t cursor) {
     for (size_t i = 0; i < function_length(self); i++) {
         if (i == cursor) {
-            opcode_print(function_get_op(self, i), file);
+            opcode_print(function_get_opcode(self, i), file);
             fprintf(file, " <<<");
             fprintf(file, "\n");
         } else {
-            opcode_print(function_get_op(self, i), file);
+            opcode_print(function_get_opcode(self, i), file);
             fprintf(file, "\n");
         }
     }

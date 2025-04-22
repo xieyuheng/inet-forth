@@ -36,7 +36,7 @@ frame_is_finished(const frame_t *self) {
 
 opcode_t *
 frame_fetch_opcode(frame_t *self) {
-    opcode_t *opcode = function_get_op(self->function, self->cursor);
+    opcode_t *opcode = function_get_opcode(self->function, self->cursor);
     self->cursor++;
     return opcode;
 }
