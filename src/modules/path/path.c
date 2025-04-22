@@ -212,3 +212,10 @@ path_relative_print(path_t *from, path_t *to, file_t *file) {
     fprintf(file, path_string(relative_path));
     path_destroy(&relative_path);
 }
+
+void
+path_relative_cwd_print(path_t *to, file_t *file) {
+    path_t *cwd_path = path_new_cwd();
+    path_relative_print(cwd_path, to, file);
+    path_destroy(&cwd_path);
+}

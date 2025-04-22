@@ -10,10 +10,8 @@ check_name_not_defined(
     value_t found = mod_find(mod, name);
     if (found) {
         who_printf("can not re-define name: %s\n", name);
-        who_printf("path: %s\n", path_string(mod->path));
-        who_printf("already defined to: ");
-        value_print(found, stdout);
-        printf("\n");
+        who_printf("path: "); path_relative_cwd_print(mod->path, stdout); printf("\n");
+        who_printf("already defined to: "); value_print(found, stdout); printf("\n");
         code_print_context(stdout, mod->code, token->start, token->end);
         exit(1);
     }
@@ -29,7 +27,7 @@ check_name_defined(
     const def_t *found = mod_find(mod, name);
     if (!found) {
         who_printf("[compiler-error] undefined name: %s\n", name);
-        who_printf("path: %s\n", path_string(mod->path));
+        who_printf("path: "); path_relative_cwd_print(mod->path, stdout); printf("\n");
         code_print_context(stdout, mod->code, token->start, token->end);
         exit(1);
     }
@@ -45,14 +43,14 @@ check_node_name_defined(
     value_t found = mod_find(mod, name);
     if (!found) {
         who_printf("undefined node name: %s\n", name);
-        who_printf("path: %s\n", path_string(mod->path));
+        who_printf("path: "); path_relative_cwd_print(mod->path, stdout); printf("\n");
         code_print_context(stdout, mod->code, token->start, token->end);
         exit(1);
     }
 
     if (!is_node_ctor(found)) {
         who_printf("expect name defined as node ctor\n");
-        who_printf("path: %s\n", path_string(mod->path));
+        who_printf("path: "); path_relative_cwd_print(mod->path, stdout); printf("\n");
         who_printf("value: "); value_print(found, stdout); printf("\n");
         code_print_context(stdout, mod->code, token->start, token->end);
         exit(1);
@@ -77,7 +75,7 @@ check_port_name_defined(
 
     who_printf("undefined port name: %s\n", port_name);
     who_printf("for node name: %s\n", node_name);
-    who_printf("path: %s\n", path_string(mod->path));
+    who_printf("path: "); path_relative_cwd_print(mod->path, stdout); printf("\n");
     code_print_context(stdout, mod->code, token->start, token->end);
     exit(1);
 }
