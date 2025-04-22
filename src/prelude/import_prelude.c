@@ -3,9 +3,9 @@
 void
 import_prelude(mod_t *mod) {
     // bool
-
-    define_constant(mod, "false", xfalse);
-    define_constant(mod, "true", xtrue);
+    
+    define_primitive_fn_0(mod, "false", xbool_false);
+    define_primitive_fn_0(mod, "true", xbool_true);
     define_primitive_fn_1(mod, "not", xbool_not);
     define_primitive_fn_2(mod, "and", xbool_and);
     define_primitive_fn_2(mod, "or", xbool_or);

@@ -16,6 +16,15 @@ to_bool(value_t value) {
     return value == xtrue;
 }
 
+value_t
+xbool_true(void) {
+    return xtrue;
+}
+
+value_t
+xbool_false(void) {
+    return xfalse;
+}
 
 value_t
 xbool_and(value_t x, value_t y) {

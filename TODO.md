@@ -1,4 +1,7 @@
-[core] can we implement call by apply? -- so that we can merge core with inet-lisp in the future
+[core] remove `DEF_CONSTANT`
+[net] `node_t` as `value_t`
+[core] `mod_t` has `value_hash` instead of `def_hash`
+[core] use `opcode_apply` instead of `opcode_call`
 
 # module system
 
