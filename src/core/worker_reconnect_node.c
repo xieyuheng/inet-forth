@@ -89,7 +89,7 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
     // and
     //     assert(acquire_load(&task->left->node->atomic_is_ready));
     //     assert(acquire_load(&task->right->node->atomic_is_ready));
-    // in `worker_process_task`, and seeing
+    // in `worker_handle_task`, and seeing
     // only the second `assert` will fail.
 
     // Due to this reason a lock in node is actually required,

@@ -1,7 +1,7 @@
 #include "index.h"
 
 void
-worker_process_task(worker_t *worker, task_t *task) {
+worker_handle_task(worker_t *worker, task_t *task) {
 #if DEBUG_TASK_LOCK
     mutex_t *mutex = task->mutex;
     while (!mutex_try_lock(mutex)) {
