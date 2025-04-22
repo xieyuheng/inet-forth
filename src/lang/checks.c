@@ -9,12 +9,12 @@ check_name_not_defined(
     mod_t *mod = worker->mod;
     value_t found = mod_find(mod, name);
     if (found) {
-        fprintf(stderr, "[compiler-error] can not re-define name: %s\n", name);
-        fprintf(stderr, "[compiler-error] already defined to: ");
-        value_print(found, stderr);
-        fprintf(stderr, "\n");
-        fprintf(stderr, "[src] %s\n", mod->src);
-        code_print_context(stderr, mod->code, token->start, token->end);
+        who_printf("can not re-define name: %s\n", name);
+        who_printf("path: %s\n", path_string(mod->path));
+        who_printf("already defined to: ");
+        value_print(found, stdout);
+        printf("\n");
+        code_print_context(stdout, mod->code, token->start, token->end);
         exit(1);
     }
 }
@@ -28,9 +28,9 @@ check_name_defined(
     mod_t *mod = worker->mod;
     const def_t *found = mod_find(mod, name);
     if (!found) {
-        fprintf(stderr, "[compiler-error] undefined name: %s\n", name);
-        fprintf(stderr, "[src] %s\n", mod->src);
-        code_print_context(stderr, mod->code, token->start, token->end);
+        who_printf("[compiler-error] undefined name: %s\n", name);
+        who_printf("path: %s\n", path_string(mod->path));
+        code_print_context(stdout, mod->code, token->start, token->end);
         exit(1);
     }
 }
@@ -44,17 +44,17 @@ check_node_name_defined(
     mod_t *mod = worker->mod;
     value_t found = mod_find(mod, name);
     if (!found) {
-        fprintf(stderr, "[compiler-error] undefined node name: %s\n", name);
-        fprintf(stderr, "[src] %s\n", mod->src);
-        code_print_context(stderr, mod->code, token->start, token->end);
+        who_printf("undefined node name: %s\n", name);
+        who_printf("path: %s\n", path_string(mod->path));
+        code_print_context(stdout, mod->code, token->start, token->end);
         exit(1);
     }
 
     if (!is_node_ctor(found)) {
-        fprintf(stderr, "[compiler-error] expect name defined as node ctor\n");
-        fprintf(stderr, "[src] %s\n", mod->src);
-        fprintf(stderr, "value: "); value_print(found, stderr); fprintf(stderr, "\n");
-        code_print_context(stderr, mod->code, token->start, token->end);
+        who_printf("expect name defined as node ctor\n");
+        who_printf("path: %s\n", path_string(mod->path));
+        who_printf("value: "); value_print(found, stdout); printf("\n");
+        code_print_context(stdout, mod->code, token->start, token->end);
         exit(1);
     }
 }
@@ -75,9 +75,9 @@ check_port_name_defined(
         if (string_equal(port_info->name, port_name)) return;
     }
 
-    fprintf(stderr, "[compiler-error] undefined port name: %s\n", port_name);
-    fprintf(stderr, "[compiler-error] for node name: %s\n", node_name);
-    fprintf(stderr, "[src] %s\n", mod->src);
-    code_print_context(stderr, mod->code, token->start, token->end);
+    who_printf("undefined port name: %s\n", port_name);
+    who_printf("for node name: %s\n", node_name);
+    who_printf("path: %s\n", path_string(mod->path));
+    code_print_context(stdout, mod->code, token->start, token->end);
     exit(1);
 }

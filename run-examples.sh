@@ -15,5 +15,5 @@ done
 
 for example in $(find examples -name "*.error.${ext}"); do
     echo "[error] $example"
-    ${bin} run $example 2> $example.err || true
+    ${bin} run $example > $example.err || true
 done

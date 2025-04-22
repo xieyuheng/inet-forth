@@ -1,3 +1,6 @@
+[lang] `load_mod`
+[lang] checks -- report relative path
+
 # module system
 
 ```
@@ -29,7 +32,3 @@ import zero add1 add "nat.fth"
 [player] use real physics force
 [player] `node_physics_simulate` -- move by `velocity` and clear `force` for every `node_model`
 [player] remove `node_physics_fake_simulate`
-
-# thread
-
-[thread] wrap `pthread_cond_t` -- maybe `condvar_t`

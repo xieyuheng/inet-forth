@@ -6,3 +6,4 @@
 #include "checks.h"
 #include "define.h"
 #include "compile.h"
+#include "load.h"

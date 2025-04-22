@@ -20,9 +20,13 @@ run(commander_t *commander) {
             single_threaded_flag = true;
         } else {
             file_t *file = file_open_or_fail(arg, "r");
-            const char *code = file_read_string(file);
+            char *code = file_read_string(file);
             fclose(file);
-            mod_t *mod = mod_new(arg, code);
+
+            char *cwd = getcwd(NULL, 0);
+            path_t *path = path_new(cwd);
+            path_join(path, arg);
+            mod_t *mod = mod_new(path, code);
             import_prelude(mod);
             node_allocator_t *node_allocator = node_allocator_new();
             worker_t *worker = worker_new(mod, node_allocator);
