@@ -12,5 +12,4 @@
 #include "rule.h"
 #include "primitive.h"
 #include "def.h"
-#include "define.h"
 #include "connect.h"
