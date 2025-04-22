@@ -71,8 +71,6 @@ worker_reconnect_node(worker_t *worker, node_t *node) {
         stack_push(worker->value_stack, value);
     }
 
-    release_store(&node->atomic_is_ready, true);
-
 #if DEBUG_NODE_LOCK
     mutex_unlock(node->mutex);
 #else

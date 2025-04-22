@@ -1,7 +1,6 @@
 #pragma once
 
 struct node_t {
-    atomic_bool atomic_is_ready;
     const node_ctor_t *ctor;
     mutex_t *mutex;
     void *locked_by_worker;

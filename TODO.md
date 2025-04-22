@@ -1,4 +1,3 @@
-[core] `node_t` -- remove `atomic_is_ready`
 [core] can we implement call by apply? -- so that we can merge core with inet-lisp in the future
 
 # module system
