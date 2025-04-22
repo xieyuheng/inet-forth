@@ -1,10 +1,10 @@
 #pragma once
 
 typedef enum {
-    OP_CALL,
-    OP_LITERAL,
-    OP_GET_VARIABLE,
-    OP_SET_VARIABLE,
+    OPCODE_CALL,
+    OPCODE_LITERAL,
+    OPCODE_GET_VARIABLE,
+    OPCODE_SET_VARIABLE,
 } opcode_kind_t;
 
 struct opcode_t {
@@ -17,10 +17,10 @@ struct opcode_t {
     };
 };
 
-opcode_t *op_call(const def_t *def);
-opcode_t *op_literal(value_t value);
-opcode_t *op_get_variable(size_t index);
-opcode_t *op_set_variable(size_t index);
+opcode_t *opcode_call(const def_t *def);
+opcode_t *opcode_literal(value_t value);
+opcode_t *opcode_get_variable(size_t index);
+opcode_t *opcode_set_variable(size_t index);
 
 void opcode_destroy(opcode_t **self_pointer);
 

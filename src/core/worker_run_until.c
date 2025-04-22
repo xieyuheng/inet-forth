@@ -1,27 +1,27 @@
 #include "index.h"
 
 inline static void
-worker_execute_opcode(worker_t *worker, frame_t *frame, opcode_t *op) {
-    switch (op->kind) {
-    case OP_CALL: {
-        worker_call(worker, op->call.def);
+worker_execute_opcode(worker_t *worker, frame_t *frame, opcode_t *opcode) {
+    switch (opcode->kind) {
+    case OPCODE_CALL: {
+        worker_call(worker, opcode->call.def);
         return;
     }
 
-    case OP_LITERAL: {
-        stack_push(worker->value_stack, op->literal.value);
+    case OPCODE_LITERAL: {
+        stack_push(worker->value_stack, opcode->literal.value);
         return;
     }
 
-    case OP_GET_VARIABLE: {
-        value_t value = frame_get_variable(frame, op->get_variable.index);
+    case OPCODE_GET_VARIABLE: {
+        value_t value = frame_get_variable(frame, opcode->get_variable.index);
         stack_push(worker->value_stack, value);
         return;
     }
 
-    case OP_SET_VARIABLE: {
+    case OPCODE_SET_VARIABLE: {
         value_t value = stack_pop(worker->value_stack);
-        frame_set_variable(frame, op->set_variable.index, value);
+        frame_set_variable(frame, opcode->set_variable.index, value);
         return;
     }
     }
@@ -37,7 +37,7 @@ worker_run_one_step(worker_t *worker) {
         return;
     }
 
-    opcode_t *op = frame_fetch_op(frame);
+    opcode_t *op = frame_fetch_opcode(frame);
 
     // proper tail-call = do not push finished frame.
     bool finished = frame_is_finished(frame);

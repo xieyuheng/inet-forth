@@ -35,10 +35,10 @@ frame_is_finished(const frame_t *self) {
 }
 
 opcode_t *
-frame_fetch_op(frame_t *self) {
-    opcode_t *op = function_get_op(self->function, self->cursor);
+frame_fetch_opcode(frame_t *self) {
+    opcode_t *opcode = function_get_op(self->function, self->cursor);
     self->cursor++;
-    return op;
+    return opcode;
 }
 
 void
