@@ -1,7 +1,5 @@
+[core] remove `def_t` -- `mod_t` has `value_hash` instead of `def_hash`
 [core] use `opcode_apply` instead of `opcode_call`
-
-- [core] remove `def_t`
-- [core] `mod_t` has `value_hash` instead of `def_hash`
 
 # module system
 

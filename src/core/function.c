@@ -9,6 +9,9 @@ function_t *
 function_new(void) {
     function_t *self = new(function_t);
     self->spec = &function_object_spec;
+    // function always has arity zero
+    // to use apply instead of call.
+    self->arity = 0;
     self->local_index_hash = hash_of_string_key();
     self->opcode_array = array_new_auto_with((destroy_fn_t *) opcode_destroy);
     return self;

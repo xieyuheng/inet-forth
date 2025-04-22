@@ -5,6 +5,7 @@ extern object_spec_t function_object_spec;
 struct function_t {
     object_spec_t *spec;
     char *name;
+    size_t arity;
     hash_t *local_index_hash;
     array_t *opcode_array;
 };
