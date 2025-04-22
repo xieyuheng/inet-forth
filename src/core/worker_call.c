@@ -69,11 +69,6 @@ worker_call(worker_t *worker, const def_t *def) {
         return;
     }
 
-    case DEF_CONSTANT: {
-        stack_push(worker->value_stack, def->constant.value);
-        return;
-    }
-
     case DEF_NODE_CTOR: {
         node_t *node = worker_new_node(worker, def->node_ctor);
         worker_reconnect_node(worker, node);

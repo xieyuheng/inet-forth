@@ -3,7 +3,7 @@
 void
 import_prelude(mod_t *mod) {
     // bool
-    
+
     define_primitive_fn_0(mod, "false", xbool_false);
     define_primitive_fn_0(mod, "true", xbool_true);
     define_primitive_fn_1(mod, "not", xbool_not);
@@ -58,10 +58,6 @@ import_prelude(mod_t *mod) {
     define_primitive_fn(mod, "print-worker", x_print_worker);
     define_primitive_fn(mod, "print-value-stack", x_print_value_stack);
     define_primitive_fn(mod, "print-return-stack", x_print_return_stack);
-
-    // constant
-
-    define_primitive_fn(mod, "define-constant", x_define_constant);
 
     // function
 

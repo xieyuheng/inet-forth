@@ -7,6 +7,5 @@
 #include "net.h"
 #include "worker.h"
 #include "console.h"
-#include "constant.h"
 #include "function.h"
 #include "import_prelude.h"
