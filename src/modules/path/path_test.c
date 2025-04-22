@@ -107,5 +107,41 @@ path_test(void) {
         path_destroy(&y);
     }
 
+    {
+        path_t *x = path_new("/a/b/c");
+        path_t *y = path_new("/a/b/d");
+        path_t *z = path_relative(x, y);
+        path_t *w = path_new("../d");
+        assert(path_equal(z, w));
+        path_destroy(&x);
+        path_destroy(&y);
+        path_destroy(&z);
+        path_destroy(&w);
+    }
+
+    {
+        path_t *x = path_new("/a/b/c");
+        path_t *y = path_new("/a/b");
+        path_t *z = path_relative(x, y);
+        path_t *w = path_new("..");
+        assert(path_equal(z, w));
+        path_destroy(&x);
+        path_destroy(&y);
+        path_destroy(&z);
+        path_destroy(&w);
+    }
+
+    {
+        path_t *x = path_new("/a/b");
+        path_t *y = path_new("/a/b/c");
+        path_t *z = path_relative(x, y);
+        path_t *w = path_new("c");
+        assert(path_equal(z, w));
+        path_destroy(&x);
+        path_destroy(&y);
+        path_destroy(&z);
+        path_destroy(&w);
+    }
+
     test_end();
 }

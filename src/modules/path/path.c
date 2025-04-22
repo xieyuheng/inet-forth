@@ -153,3 +153,47 @@ path_string(path_t *self) {
     path_update_string(self);
     return self->string;
 }
+
+static size_t
+find_relative_index(path_t *from, path_t *to) {
+    for (size_t i = 0; i < stack_length(from->segment_stack); i++) {
+        if (i >= stack_length(to->segment_stack)) {
+            return i;
+        }
+
+        char *from_segment = stack_get(from->segment_stack, i);
+        char *to_segment = stack_get(to->segment_stack, i);
+
+        if (!string_equal(from_segment, to_segment)) {
+            return i;
+        }
+    }
+
+    return stack_length(from->segment_stack);
+}
+
+path_t *
+path_relative(path_t *from, path_t *to) {
+    assert((path_is_relative(from) && path_is_relative(to)) ||
+           (path_is_absolute(from) && path_is_absolute(to)));
+
+    size_t relative_index = find_relative_index(from, to);
+    size_t from_length = stack_length(from->segment_stack);
+    size_t to_length = stack_length(to->segment_stack);
+
+    path_t *relative_path = path_new("");
+
+    for (size_t i = 0; i < from_length - relative_index; i++) {
+        stack_push(relative_path->segment_stack, string_copy(".."));
+    }
+
+    for (size_t i = 0; i < to_length - relative_index; i++) {
+        size_t segment_index = relative_index + i;
+        char *to_segment = stack_get(to->segment_stack, segment_index);
+        stack_push(relative_path->segment_stack, string_copy(to_segment));
+    }
+
+    path_update_string(relative_path);
+
+    return relative_path;
+}
