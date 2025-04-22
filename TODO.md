@@ -1,5 +1,10 @@
+[core] `primitive_t` as `value_t`
+[core] `function_t` as `value_t`
+
 [core] use `opcode_apply` instead of `opcode_call`
-[core] `mod_t` has `value_hash` instead of `def_hash`
+
+- [core] remove `def_t`
+- [core] `mod_t` has `value_hash` instead of `def_hash`
 
 # module system
 
