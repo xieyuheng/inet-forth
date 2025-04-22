@@ -28,6 +28,14 @@ path_destroy(path_t **self_pointer) {
     *self_pointer = NULL;
 }
 
+path_t *
+path_new_cwd(void) {
+    char *cwd = getcwd(NULL, 0);
+    path_t *cwd_path = path_new(cwd);
+    string_destroy(&cwd);
+    return cwd_path;
+}
+
 bool
 path_is_relative(const path_t *self) {
     return !self->is_absolute;

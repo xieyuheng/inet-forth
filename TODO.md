@@ -1,3 +1,4 @@
+[path] `path_relative_cwd_print`
 [lang] checks -- report relative path
 
 # module system
