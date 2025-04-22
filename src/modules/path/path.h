@@ -13,3 +13,4 @@ void path_join(path_t *self, const char *string);
 const char *path_string(path_t *self);
 
 path_t *path_relative(path_t *from, path_t *to);
+void path_relative_print(path_t *from, path_t *to, file_t *file);
