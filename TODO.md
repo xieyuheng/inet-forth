@@ -1,5 +1,3 @@
-[core] `function_t` as `value_t`
-
 [core] use `opcode_apply` instead of `opcode_call`
 
 - [core] remove `def_t`
