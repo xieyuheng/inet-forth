@@ -209,7 +209,7 @@ path_relative(path_t *from, path_t *to) {
 void
 path_relative_print(path_t *from, path_t *to, file_t *file) {
     path_t *relative_path = path_relative(from, to);
-    fprintf(file, path_string(relative_path));
+    fprintf(file, "%s", path_string(relative_path));
     path_destroy(&relative_path);
 }
 
