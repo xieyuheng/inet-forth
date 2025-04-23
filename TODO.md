@@ -1,6 +1,6 @@
 # example
 
-[example] more exampels from the paper
+[example] more examples from the paper
 
 # deque
 
