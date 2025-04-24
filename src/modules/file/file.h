@@ -14,3 +14,5 @@ void file_write_blob(file_t *file, blob_t *blob);
 
 void file_lock(file_t *file);
 void file_unlock(file_t *file);
+
+void file_disable_buffer(file_t *file);
