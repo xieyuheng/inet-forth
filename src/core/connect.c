@@ -15,8 +15,8 @@ rule_match(const rule_t *rule, principal_wire_t *left, principal_wire_t *right) 
 
 inline static task_t *
 connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
-    as_principal_wire(left)->oppsite = as_principal_wire(right);
-    as_principal_wire(right)->oppsite = as_principal_wire(left);
+    left->oppsite = right;
+    right->oppsite = left;
 
     for (size_t i = 0; i < left->node->ctor->arity; i++) {
         rule_t *rule = array_get(left->node->ctor->rule_array, i);
