@@ -243,6 +243,7 @@ make clean && TSAN=true make -j
 - [inet-cute](https://github.com/cicada-lang/inet-cute)
 - [inet-js](https://github.com/cicada-lang/inet-js)
 - [inet-forth](https://github.com/cicada-lang/inet-forth)
+- [inet-lisp-st](https://github.com/cicada-lang/inet-lisp-st)
 - [inet-lisp](https://github.com/cicada-lang/inet-lisp)
 
 ## References
