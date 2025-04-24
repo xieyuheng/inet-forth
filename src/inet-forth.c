@@ -1,11 +1,10 @@
 #include "deps.h"
 #include "commands/index.h"
 
-static void setup_io(void);
-
 int
 main(int argc, char *argv[]) {
-    setup_io();
+    file_disable_buffer(stdout);
+    file_disable_buffer(stderr);
 
     commander_t *commander = commander_new("inet-forth", INET_FORTH_VERSION, argc, argv);
 
@@ -17,10 +16,4 @@ main(int argc, char *argv[]) {
     commander_use(commander, default_help_command);
 
     return commander_run(commander);
-}
-
-void
-setup_io(void) {
-    setbuf(stdout, NULL);
-    setbuf(stderr, NULL);
 }
