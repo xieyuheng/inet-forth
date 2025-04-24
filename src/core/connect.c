@@ -18,7 +18,7 @@ connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
     left->oppsite = right;
     right->oppsite = left;
 
-    for (size_t i = 0; i < left->node->ctor->arity; i++) {
+    for (size_t i = 0; i < array_length(left->node->ctor->rule_array); i++) {
         rule_t *rule = array_get(left->node->ctor->rule_array, i);
         task_t* task = rule_match(rule, left, right);
         if (task) {
@@ -26,7 +26,7 @@ connect_active_pair(principal_wire_t *left, principal_wire_t *right) {
         }
     }
 
-    for (size_t i = 0; i < right->node->ctor->arity; i++) {
+    for (size_t i = 0; i < array_length(right->node->ctor->rule_array); i++) {
         rule_t *rule = array_get(right->node->ctor->rule_array, i);
         task_t* task = rule_match(rule, left, right);
         if (task) {
