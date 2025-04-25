@@ -16,7 +16,7 @@ run(commander_t *commander) {
     while (*argv) {
         char *src = *argv++;
         path_t *path = path_new_cwd();
-        path_join(path, src);
+        path_resolve(path, src);
         load_mod(path);
     }
 

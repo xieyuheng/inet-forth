@@ -153,6 +153,16 @@ path_join(path_t *self, const char *string) {
     path_update_string(self);
 }
 
+void
+path_resolve(path_t *self, const char *string) {
+    if (string_starts_with(string, "/")) {
+        self->is_absolute = true;
+        stack_purge(self->segment_stack);
+    }
+
+    path_join(self, string);
+}
+
 const char *
 path_string(path_t *self) {
     if (self->string)
