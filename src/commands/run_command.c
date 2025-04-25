@@ -14,9 +14,9 @@ int
 run(commander_t *commander) {
     char **argv = commander_rest_argv(commander);
     while (*argv) {
-        char *src = *argv++;
+        char *arg = *argv++;
         path_t *path = path_new_cwd();
-        path_resolve(path, src);
+        path_resolve(path, arg);
         load_mod(path);
     }
 
