@@ -3,4 +3,4 @@
 #include "deps.h"
 #include "types.h"
 #include "deque.h"
-#include "deque_test.h"
+#include "test_deque.h"

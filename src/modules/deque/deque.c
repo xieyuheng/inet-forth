@@ -71,3 +71,11 @@ void *deque_pop_back(deque_t *self) {
     fast_spinlock_unlock(self->fast_spinlock);
     return value;
 }
+
+void *
+deque_get(const deque_t *self, size_t index) {
+    fast_spinlock_lock(self->fast_spinlock);
+    void *value = list_get(self->list, index);
+    fast_spinlock_unlock(self->fast_spinlock);
+    return value;
+}

@@ -13,4 +13,4 @@
 #include "clickable_area.h"
 #include "cursor.h"
 #include "canvas_window.h"
-#include "canvas_test.h"
+#include "test_canvas.h"

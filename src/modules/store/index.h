@@ -3,4 +3,4 @@
 #include "deps.h"
 #include "types.h"
 #include "store.h"
-#include "store_test.h"
+#include "test_store.h"

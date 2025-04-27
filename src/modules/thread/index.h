@@ -7,4 +7,4 @@
 #include "spinlock.h"
 #include "fast_spinlock.h"
 #include "atomics.h"
-#include "thread_test.h"
+#include "test_thread.h"

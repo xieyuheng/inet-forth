@@ -4,5 +4,5 @@
 #include "types.h"
 #include "allocate.h"
 #include "destroy.h"
-#include "memory_test.h"
+#include "test_memory.h"
 #include "new.h"

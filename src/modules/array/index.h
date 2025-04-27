@@ -4,4 +4,4 @@
 #include "types.h"
 #include "array.h"
 #include "string_array.h"
-#include "array_test.h"
+#include "test_array.h"

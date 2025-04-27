@@ -3,4 +3,4 @@
 #include "deps.h"
 #include "types.h"
 #include "path.h"
-#include "path_test.h"
+#include "test_path.h"

@@ -14,3 +14,6 @@ void *deque_pop_front(deque_t *self);
 
 void deque_push_back(deque_t *self, void *value);
 void *deque_pop_back(deque_t *self);
+
+// NOT thread safe
+void *deque_get(const deque_t *self, size_t index);
