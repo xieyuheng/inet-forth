@@ -25,7 +25,7 @@ thread_fn(void *arg) {
 }
 
 void
-node_test_node_allocator_throughput(void) {
+test_node_allocator_throughput(void) {
     test_start();
 
     node_allocator_t *node_allocator = node_allocator_new();

@@ -1,7 +1,7 @@
 #include "index.h"
 
 void
-node_test_allocated_node_iter(void) {
+test_node_allocated_node_iter(void) {
     test_start();
 
     node_allocator_t *node_allocator = node_allocator_new();

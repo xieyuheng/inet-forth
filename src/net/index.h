@@ -11,4 +11,4 @@
 #include "port_info.h"
 #include "principal_wire.h"
 #include "node_ctor.h"
-#include "node_test.h"
+#include "test_node.h"

@@ -1,7 +1,7 @@
 #include "index.h"
 
 void
-node_test_node_allocator_overhead(void) {
+test_node_allocator_overhead(void) {
     test_start();
 
     double start_second = time_second();

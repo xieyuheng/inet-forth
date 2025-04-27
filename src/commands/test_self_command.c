@@ -14,7 +14,7 @@ int
 run(commander_t *commander) {
     (void) commander;
 
-    node_test();
+    test_node();
 
     return 0;
 }
