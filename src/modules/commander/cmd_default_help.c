@@ -3,7 +3,7 @@
 static int run(commander_t *commander);
 
 void
-default_help_command(commander_t *commander) {
+cmd_default_help(commander_t *commander) {
     command_t *command = command_new("help");
     command->description = "print help message";
     command->run = run;

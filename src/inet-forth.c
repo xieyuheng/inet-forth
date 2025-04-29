@@ -8,12 +8,12 @@ main(int argc, char *argv[]) {
 
     commander_t *commander = commander_new("inet-forth", INET_FORTH_VERSION, argc, argv);
 
-    commander_use(commander, run_command);
-    commander_use(commander, info_command);
-    commander_use(commander, test_self_command);
-    commander_use(commander, test_modules_command);
-    commander_use(commander, default_version_command);
-    commander_use(commander, default_help_command);
+    commander_use(commander, cmd_run);
+    commander_use(commander, cmd_info);
+    commander_use(commander, cmd_test_self);
+    commander_use(commander, cmd_test_modules);
+    commander_use(commander, cmd_default_version);
+    commander_use(commander, cmd_default_help);
 
     return commander_run(commander);
 }

@@ -76,3 +76,23 @@ void *
 stack_pick(const stack_t *self, size_t index) {
     return array_pick(self->array, index);
 }
+
+void
+stack_tuck_n(stack_t *self, void *target, size_t n) {
+    list_t *value_list = list_new();
+    for (size_t i = 0; i < n; i++) {
+        void * value = stack_pop(self);
+        assert(value);
+        list_unshift(value_list, value);
+    }
+
+    stack_push(self, target);
+
+    void *value = list_first(value_list);
+    while (value) {
+        stack_push(self, value);
+        value = list_next(value_list);
+    }
+
+    list_destroy(&value_list);
+}

@@ -3,7 +3,7 @@
 static int run(commander_t *commander);
 
 void
-info_command(commander_t *commander) {
+cmd_info(commander_t *commander) {
     command_t *command = command_new("info");
     command->description = "print system info";
     command->run = run;

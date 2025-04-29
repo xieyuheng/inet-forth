@@ -21,11 +21,20 @@ array_new(size_t size) {
 void
 array_purge(array_t *self) {
     assert(self);
-    while(!array_is_empty(self)) {
-        void *value = array_pop(self);
-        if (self->destroy_fn)
-            self->destroy_fn(&value);
+
+    if (self->destroy_fn) {
+        for (size_t i = 0; i < self->size; i++) {
+            void *value = array_get(self, i);
+            if (value) {
+                self->destroy_fn(&value);
+                array_set(self, i, NULL);
+            }
+        }
+    } else {
+        memory_clear(self->values, self->size * sizeof(void *));
     }
+
+    self->cursor = 0;
 }
 
 void
@@ -113,6 +122,7 @@ array_pop(array_t *self) {
     assert(self->cursor > 0);
     self->cursor--;
     void *value = self->values[self->cursor];
+    self->values[self->cursor] = NULL;
     return value;
 }
 

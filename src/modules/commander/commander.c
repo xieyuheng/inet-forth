@@ -79,7 +79,7 @@ commander_help(const commander_t *self) {
 }
 
 static int
-commander_run_command(commander_t *self, const command_t *command) {
+commander_cmd_run(commander_t *self, const command_t *command) {
     assert(command);
     assert(command->run);
     return (*command->run)(self);
@@ -92,7 +92,7 @@ commander_run(commander_t *self) {
     if (!command_name) {
         const command_t *default_command = commander_default_command(self);
         if (default_command) {
-            return commander_run_command(self, default_command);
+            return commander_cmd_run(self, default_command);
         } else {
             commander_help(self);
             return 0;
@@ -102,7 +102,7 @@ commander_run(commander_t *self) {
     command_t *command = list_first(self->command_list);
     while (command) {
         if (string_equal(command->name, command_name)) {
-            return commander_run_command(self, command);
+            return commander_cmd_run(self, command);
         }
 
         command = list_next(self->command_list);

@@ -3,7 +3,7 @@
 static int run(commander_t *commander);
 
 void
-run_command(commander_t *runner) {
+cmd_run(commander_t *runner) {
     command_t *command = command_new("run");
     command->description = "run files";
     command->run = run;

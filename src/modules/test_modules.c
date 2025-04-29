@@ -12,9 +12,9 @@ test_modules(void) {
     test_vec();
     test_blob();
     test_file();
-    test_path();
     test_array();
     test_stack();
+    test_path();
     test_int();
     test_code();
     test_utf8();

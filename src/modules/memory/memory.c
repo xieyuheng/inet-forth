@@ -27,7 +27,7 @@ reallocate(void *pointer, size_t old_size, size_t new_size) {
     void *new_pointer = realloc(pointer, new_size);
     assert(new_pointer);
     assert(pointer_is_8_bytes_aligned(new_pointer));
-    memset((((char *) new_pointer) + old_size), 0, new_size - old_size);
+    memory_clear((((char *) new_pointer) + old_size), new_size - old_size);
     return new_pointer;
 }
 
@@ -37,9 +37,8 @@ reallocate_pointers(void *pointer, size_t old_size, size_t new_size) {
     void *new_pointer = realloc(pointer, new_size * unit_size);
     assert(new_pointer);
     assert(pointer_is_8_bytes_aligned(new_pointer));
-    memset((((char *) new_pointer) + old_size * unit_size),
-           0,
-           (new_size - old_size) * unit_size);
+    memory_clear((((char *) new_pointer) + old_size * unit_size),
+                 (new_size - old_size) * unit_size);
     return new_pointer;
 }
 
@@ -55,9 +54,14 @@ allocate_page_aligned(size_t size) {
     assert(page_size > 0);
     size_t real_size = ((size / page_size) + 1) * page_size;
     void *pointer = aligned_alloc(page_size, real_size);
-    memset(pointer, 0, real_size);
+    memory_clear(pointer, real_size);
     assert(pointer);
     assert(pointer_is_8_bytes_aligned(pointer));
     assert(pointer_is_page_aligned(pointer));
     return pointer;
+}
+
+void
+memory_clear(void *pointer, size_t size) {
+    memset(pointer, 0, size);
 }

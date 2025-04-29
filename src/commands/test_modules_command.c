@@ -3,7 +3,7 @@
 static int run(commander_t *commander);
 
 void
-test_modules_command(commander_t *commander) {
+cmd_test_modules(commander_t *commander) {
     command_t *command = command_new("test-modules");
     command->description = "run test for modules";
     command->run = run;
