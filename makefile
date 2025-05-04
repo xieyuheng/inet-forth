@@ -1,10 +1,7 @@
 cc = cc
 ifeq ($(STATIC), true)
 static_ldflags = \
-	-static \
-	-lxcb \
-	-lXau \
-	-lXdmcp
+	-static
 endif
 ifeq ($(TSAN), true)
 tsan_ldflags = -fsanitize=thread
@@ -13,7 +10,6 @@ endif
 ldflags = \
 	-L/usr/local/lib \
 	-lm \
-	-lX11 \
 	-pthread \
 	$(static_ldflags) \
 	$(tsan_ldflags) \
@@ -21,7 +17,7 @@ ldflags = \
 cflags = \
 	-g \
 	-O3 \
-	-std=c11 \
+	-std=c2x \
 	-I/usr/local/include \
 	-Wall \
 	-Wwrite-strings \
@@ -32,7 +28,7 @@ cflags = \
 	-D_TIME_BITS=64 \
 	-D_FILE_OFFSET_BITS=64 \
 	$(tsan_cflags) \
-	 $(CFLAGS)
+	$(CFLAGS)
 src = $(shell find src -name '*.c')
 headers = $(shell find src -name '*.h')
 lib = $(patsubst src/%, lib/%, $(patsubst %.c, %.o, $(src)))
