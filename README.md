@@ -16,7 +16,7 @@ One possible solution is the graph-based computation model
 where a program in this computation model can automatically
 make use of any number cores in the machine.
 
-The project -- **inet-forth** -- is an implementation of interaction nets
+This project is an implementation of interaction nets
 as a [forth-like language](https://en.wikipedia.org/wiki/forth_(programming_language)).
 
 ## Syntax
