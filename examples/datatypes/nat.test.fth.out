@@ -138,16 +138,16 @@
 
 (add1₃₀₇₃)-prev-<>-!value-(add1₄₀₉₇)
 
-(add1₄₀₉₇)-prev-<>-!value-(add1₃₃)
+(add1₄₀₉₇)-prev-<>-!value-(add1₂₄)
 (add1₄₀₉₇)-value!-<>-prev-(add1₃₀₇₃)
 
-(add1₃₃)-prev-<>-!value-(add1₂₉)
-(add1₃₃)-value!-<>-prev-(add1₄₀₉₇)
+(add1₂₄)-prev-<>-!value-(add1₃₃)
+(add1₂₄)-value!-<>-prev-(add1₄₀₉₇)
 
-(add1₂₉)-value!-<>-prev-(add1₃₃)
-(add1₂₉)-prev-<>-!value-(zero₃₄)
+(add1₃₃)-value!-<>-prev-(add1₂₄)
+(add1₃₃)-prev-<>-!value-(zero₃₄)
 
-(zero₃₄)-value!-<>-prev-(add1₂₉)
+(zero₃₄)-value!-<>-prev-(add1₃₃)
 </net>
 
 <net>

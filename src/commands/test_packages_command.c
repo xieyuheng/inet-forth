@@ -14,7 +14,7 @@ int
 run(commander_t *commander) {
     (void) commander;
 
-    test_std();
+    test_helpers();
 
     return 0;
 }

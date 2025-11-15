@@ -1,7 +1,7 @@
 #include "index.h"
 
 void
-test_std(void) {
+test_helpers(void) {
     test_test();
     test_memory();
     test_char();
