@@ -136,18 +136,18 @@
 <net>
 :root (add1₃₀₇₃)
 
-(add1₃₀₇₃)-prev-<>-!value-(add1₆₁₄₅)
+(add1₃₀₇₃)-prev-<>-!value-(add1₄₀₉₇)
 
-(add1₆₁₄₅)-prev-<>-!value-(add1₁₀₂₅)
-(add1₆₁₄₅)-value!-<>-prev-(add1₃₀₇₃)
+(add1₄₀₉₇)-prev-<>-!value-(add1₃₃)
+(add1₄₀₉₇)-value!-<>-prev-(add1₃₀₇₃)
 
-(add1₁₀₂₅)-prev-<>-!value-(add1₅₁₂₁)
-(add1₁₀₂₅)-value!-<>-prev-(add1₆₁₄₅)
+(add1₃₃)-prev-<>-!value-(add1₂₉)
+(add1₃₃)-value!-<>-prev-(add1₄₀₉₇)
 
-(add1₅₁₂₁)-prev-<>-!value-(zero₃₄)
-(add1₅₁₂₁)-value!-<>-prev-(add1₁₀₂₅)
+(add1₂₉)-value!-<>-prev-(add1₃₃)
+(add1₂₉)-prev-<>-!value-(zero₃₄)
 
-(zero₃₄)-value!-<>-prev-(add1₅₁₂₁)
+(zero₃₄)-value!-<>-prev-(add1₂₉)
 </net>
 
 <net>
