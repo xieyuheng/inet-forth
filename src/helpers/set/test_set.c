@@ -5,7 +5,7 @@ test_set(void) {
     test_start();
 
     {
-        set_t *set = set_new();
+        set_t *set = make_set();
         assert(set_length(set) == 0);
 
         assert(set_add(set, (void *) 1));

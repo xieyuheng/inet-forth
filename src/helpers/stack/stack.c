@@ -7,9 +7,9 @@ struct stack_t {
 };
 
 stack_t *
-stack_new(void) {
+make_stack(void) {
     stack_t *self = new(stack_t);
-    self->array = array_new_auto();
+    self->array = make_array_auto();
     return self;
 }
 
@@ -36,8 +36,8 @@ stack_set_destroy_fn(stack_t *self, destroy_fn_t *destroy_fn) {
 }
 
 stack_t *
-stack_new_with(destroy_fn_t *destroy_fn) {
-    stack_t *self = stack_new();
+make_stack_with(destroy_fn_t *destroy_fn) {
+    stack_t *self = make_stack();
     stack_set_destroy_fn(self, destroy_fn);
     return self;
 }
@@ -79,7 +79,7 @@ stack_pick(const stack_t *self, size_t index) {
 
 void
 stack_tuck_n(stack_t *self, void *target, size_t n) {
-    list_t *value_list = list_new();
+    list_t *value_list = make_list();
     for (size_t i = 0; i < n; i++) {
         void * value = stack_pop(self);
         assert(value);

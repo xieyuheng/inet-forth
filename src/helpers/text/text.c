@@ -6,7 +6,7 @@ struct text_t {
 };
 
 text_t *
-text_new(size_t length) {
+make_text(size_t length) {
     text_t *self = new(text_t);
     self->length = length;
     self->code_points = allocate(length * sizeof(text_t));
@@ -27,9 +27,9 @@ text_destroy(text_t **self_pointer) {
 text_t *
 text_from_string(const char *string) {
     size_t length = utf8_string_length(string);
-    text_t *text = text_new(length);
+    text_t *text = make_text(length);
 
-    utf8_iter_t *iter = utf8_iter_new(string);
+    utf8_iter_t *iter = make_utf8_iter(string);
     code_point_t code_point = utf8_iter_first(iter);
     size_t index = 0;
     while (code_point) {
@@ -67,7 +67,7 @@ text_equal(const text_t *left, const text_t *right) {
 
 text_t *
 text_copy(const text_t *self) {
-    text_t *text = text_new(self->length);
+    text_t *text = make_text(self->length);
 
     memcpy(
         text->code_points,
@@ -79,7 +79,7 @@ text_copy(const text_t *self) {
 
 text_t *
 text_append(text_t *left, text_t *right) {
-    text_t *text = text_new(left->length + right->length);
+    text_t *text = make_text(left->length + right->length);
 
     memcpy(
         text->code_points,
@@ -99,7 +99,7 @@ text_slice(text_t *self, size_t start, size_t end) {
     assert(end >= start);
     assert(end <= text_length(self));
     size_t length = end - start;
-    text_t *text = text_new(length);
+    text_t *text = make_text(length);
 
     memcpy(
         text->code_points,

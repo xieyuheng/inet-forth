@@ -20,7 +20,7 @@ node_ctor_new(
     self->port_infos = allocate_pointers(self->arity);
     // does not own the rules in the array,
     // because a rule might be shared by many (two) node ctors.
-    self->rule_array = array_new_auto();
+    self->rule_array = make_array_auto();
     return self;
 }
 

@@ -9,10 +9,10 @@ lexer_init(lexer_t *self) {
 }
 
 lexer_t *
-lexer_new(void) {
+make_lexer(void) {
     lexer_t *self = new(lexer_t);
     self->buffer = allocate(MAX_TOKEN_LENGTH + 1);
-    self->delimiter_list = list_new();
+    self->delimiter_list = make_list();
     self->enable_int = false;
     self->enable_float = false;
     self->enable_string = false;
@@ -142,7 +142,7 @@ collect_delimiter(lexer_t *self) {
     forward(self, string_length(delimiter));
 
     char *string = string_copy(delimiter);
-    token_t *token = token_new(
+    token_t *token = make_token(
         string,
         DELIMITER_TOKEN,
         start, end,
@@ -202,7 +202,7 @@ collect_string(lexer_t *self) {
             size_t end = self->cursor;
             size_t start = end - string_length(self->buffer);
             char *string = string_copy(self->buffer);
-            token_t *token = token_new(
+            token_t *token = make_token(
                 string,
                 STRING_TOKEN,
                 start, end,
@@ -234,7 +234,7 @@ collect_generic(lexer_t *self) {
             size_t end = self->cursor;
             size_t start = end - string_length(self->buffer);
             char *string = string_copy(self->buffer);
-            token_t *token = token_new(
+            token_t *token = make_token(
                 string,
                 GENERIC_TOKEN,
                 start, end,
@@ -296,7 +296,7 @@ lexer_run(lexer_t *self) {
     lexer_init(self);
 
     self->length = string_length(self->string);
-    self->token_list = list_new_with((destroy_fn_t *) token_destroy);
+    self->token_list = make_list_with((destroy_fn_t *) token_destroy);
 
     while (!is_finished(self)) {
         lexer_step(self);

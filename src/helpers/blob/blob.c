@@ -8,7 +8,7 @@ struct blob_t {
 };
 
 blob_t *
-blob_new(size_t size) {
+make_blob(size_t size) {
     blob_t *self = new(blob_t);
     self->size = size;
     self->bytes = allocate(size + 1);
@@ -67,7 +67,7 @@ blob_equal(blob_t *left, blob_t *right) {
 
 blob_t *
 blob_copy(blob_t *self) {
-    blob_t *blob = blob_new(self->size);
+    blob_t *blob = make_blob(self->size);
     memcpy(blob->bytes, self->bytes, self->size);
     return blob;
 }

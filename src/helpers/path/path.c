@@ -7,9 +7,9 @@ struct path_t {
 };
 
 path_t *
-path_new(const char *string) {
+make_path(const char *string) {
     path_t *self = new(path_t);
-    self->segment_stack = string_stack_new();
+    self->segment_stack = string_make_stack();
     if (string_starts_with(string, "/"))
         self->is_absolute = true;
     path_join(self, string);
@@ -29,9 +29,9 @@ path_destroy(path_t **self_pointer) {
 }
 
 path_t *
-path_new_cwd(void) {
+make_path_cwd(void) {
     char *cwd = getcwd(NULL, 0);
-    path_t *cwd_path = path_new(cwd);
+    path_t *cwd_path = make_path(cwd);
     string_destroy(&cwd);
     return cwd_path;
 }
@@ -48,7 +48,7 @@ path_is_absolute(const path_t *self) {
 
 path_t *
 path_copy(path_t *self) {
-    return path_new(path_string(self));
+    return make_path(path_string(self));
 }
 
 bool
@@ -199,7 +199,7 @@ path_relative(path_t *from, path_t *to) {
     size_t from_length = stack_length(from->segment_stack);
     size_t to_length = stack_length(to->segment_stack);
 
-    path_t *relative_path = path_new("");
+    path_t *relative_path = make_path("");
 
     for (size_t i = 0; i < from_length - relative_index; i++) {
         stack_push(relative_path->segment_stack, string_copy(".."));
@@ -225,7 +225,7 @@ path_relative_print(path_t *from, path_t *to, file_t *file) {
 
 void
 path_relative_cwd_print(path_t *to, file_t *file) {
-    path_t *cwd_path = path_new_cwd();
+    path_t *cwd_path = make_path_cwd();
     path_relative_print(cwd_path, to, file);
     path_destroy(&cwd_path);
 }

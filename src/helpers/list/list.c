@@ -19,7 +19,7 @@ struct list_t {
 };
 
 list_t *
-list_new(void) {
+make_list(void) {
     list_t *self = new(list_t);
     return self;
 }
@@ -70,8 +70,8 @@ list_set_copy_fn(list_t *self, copy_fn_t *copy_fn) {
 }
 
 list_t *
-list_new_with(destroy_fn_t *destroy_fn) {
-    list_t *self = list_new();
+make_list_with(destroy_fn_t *destroy_fn) {
+    list_t *self = make_list();
     self->destroy_fn = destroy_fn;
     return self;
 }
@@ -80,7 +80,7 @@ list_t *
 list_copy(list_t *self) {
     if (!self) return NULL;
 
-    list_t *list = list_new();
+    list_t *list = make_list();
     void *value = list_first(self);
     while (value) {
         if (self->copy_fn) {
@@ -99,7 +99,7 @@ list_t *
 list_copy_reversed(list_t *self) {
     if (!self) return NULL;
 
-    list_t *list = list_new();
+    list_t *list = make_list();
     void *value = list_first(self);
     while (value) {
         if (self->copy_fn) {
@@ -345,7 +345,7 @@ list_get(const list_t *self, size_t index) {
 
 list_t *
 list_from_array(const array_t *array) {
-    list_t *list = list_new();
+    list_t *list = make_list();
     for (size_t i = 0; i < array_length(array); i++) {
         list_push(list, array_get(array, i));
     }

@@ -8,10 +8,10 @@ struct deque_t {
 };
 
 deque_t *
-deque_new(void) {
+make_deque(void) {
     deque_t *self = new(deque_t);
-    self->fast_spinlock = fast_spinlock_new();
-    self->list = list_new();
+    self->fast_spinlock = make_fast_spinlock();
+    self->list = make_list();
     return self;
 }
 

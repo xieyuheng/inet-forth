@@ -7,7 +7,7 @@ struct node_allocator_t {
     array_t *node_array;
 };
 
-node_allocator_t *node_allocator_new(void);
+node_allocator_t *node_make_allocator(void);
 void node_allocator_destroy(node_allocator_t **self_pointer);
 
 node_t *node_allocator_allocate(node_allocator_t *self, stack_t *stack);

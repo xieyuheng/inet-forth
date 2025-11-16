@@ -4,7 +4,7 @@ void
 test_array(void) {
     test_start();
 
-    array_t *array = array_new_with(
+    array_t *array = make_array_with(
         100, (destroy_fn_t *) string_destroy);
 
     assert(array);
@@ -60,7 +60,7 @@ test_array(void) {
         char *bread = string_copy("baguette");
         char *wine = string_copy("bordeaux");
 
-        array_t *array = array_new_with(
+        array_t *array = make_array_with(
             3, (destroy_fn_t *) string_destroy);
 
         assert(!array_is_full(array));
@@ -76,7 +76,7 @@ test_array(void) {
     {
         // cast atom value to void *.
 
-        array_t *array = array_new(3);
+        array_t *array = make_array(3);
 
         array_push(array, (void *) 1);
         array_push(array, (void *) 0);
@@ -93,7 +93,7 @@ test_array(void) {
     {
         // array_resize
 
-        array_t *array = array_new(3);
+        array_t *array = make_array(3);
 
         array_push(array, (void *) 1);
         array_push(array, (void *) 2);
@@ -130,7 +130,7 @@ test_array(void) {
     {
         // array_push + auto grow
 
-        array_t *array = array_new(3);
+        array_t *array = make_array(3);
 
         array_push(array, (void *) 1);
         array_push(array, (void *) 2);
@@ -154,7 +154,7 @@ test_array(void) {
     {
         // array_set + auto grow
 
-        array_t *array = array_new(3);
+        array_t *array = make_array(3);
 
         array_set(array, 4, (void *) 1);
         assert(array_length(array) == 5);
@@ -173,7 +173,7 @@ test_array(void) {
     {
         // array_set + auto grow -- again
 
-        array_t *array = array_new_auto();
+        array_t *array = make_array_auto();
 
         array_set(array, 0, (void *) 1);
         assert(array_length(array) == 1);

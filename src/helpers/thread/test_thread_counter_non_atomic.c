@@ -21,7 +21,7 @@ test_thread_counter_non_atomic(void) {
     test_start();
     double start_second = time_second();
 
-    list_t *list = list_new();
+    list_t *list = make_list();
 
     thread_fn_t *thread_fn = (thread_fn_t *) counter_add1;
     for (size_t i = 0; i < 1000; i++) {

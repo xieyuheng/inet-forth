@@ -9,7 +9,7 @@ struct array_t {
 };
 
 array_t *
-array_new(size_t size) {
+make_array(size_t size) {
     array_t *self = new(array_t);
     self->size = size;
     self->grow_step = size;
@@ -55,20 +55,20 @@ array_set_destroy_fn(array_t *self, destroy_fn_t *destroy_fn) {
 }
 
 array_t *
-array_new_with(size_t size, destroy_fn_t *destroy_fn) {
-    array_t *self = array_new(size);
+make_array_with(size_t size, destroy_fn_t *destroy_fn) {
+    array_t *self = make_array(size);
     self->destroy_fn = destroy_fn;
     return self;
 }
 
 array_t *
-array_new_auto(void) {
-    return array_new(ARRAY_AUTO_SIZE);
+make_array_auto(void) {
+    return make_array(ARRAY_AUTO_SIZE);
 }
 
 array_t *
-array_new_auto_with(destroy_fn_t *destroy_fn) {
-    return array_new_with(ARRAY_AUTO_SIZE, destroy_fn);
+make_array_auto_with(destroy_fn_t *destroy_fn) {
+    return make_array_with(ARRAY_AUTO_SIZE, destroy_fn);
 }
 
 size_t

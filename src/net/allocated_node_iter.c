@@ -50,7 +50,7 @@ array_t *
 allocated_node_array(node_allocator_t *node_allocator) {
     mutex_lock(node_allocator->allocator->mutex);
 
-    array_t *node_array = array_new_auto();
+    array_t *node_array = make_array_auto();
     allocated_node_iter_t *allocated_node_iter = allocated_node_iter_new(node_allocator);
     node_t *node = allocated_node_iter_first(allocated_node_iter);
     while (node) {

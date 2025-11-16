@@ -6,7 +6,7 @@ main(int argc, char *argv[]) {
     file_disable_buffer(stdout);
     file_disable_buffer(stderr);
 
-    commander_t *commander = commander_new("inet-forth", INET_FORTH_VERSION, argc, argv);
+    commander_t *commander = make_commander("inet-forth", INET_FORTH_VERSION, argc, argv);
 
     commander_use(commander, cmd_run);
     commander_use(commander, cmd_info);

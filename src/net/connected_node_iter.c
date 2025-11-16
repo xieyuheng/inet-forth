@@ -6,8 +6,8 @@ connected_node_iter_new(node_t *root, hash_t *node_adjacency_hash) {
     connected_node_iter_t *self = new(connected_node_iter_t);
     self->root = root;
     self->node_adjacency_hash = node_adjacency_hash;
-    self->occurred_node_set = set_new();
-    self->remaining_node_list = list_new();
+    self->occurred_node_set = make_set();
+    self->remaining_node_list = make_list();
     return self;
 }
 
@@ -53,7 +53,7 @@ connected_node_iter_next(connected_node_iter_t *self) {
 
 array_t *
 connected_node_array(node_t *root, hash_t *node_adjacency_hash) {
-    array_t *node_array = array_new_auto();
+    array_t *node_array = make_array_auto();
     connected_node_iter_t *connected_node_iter =
         connected_node_iter_new(root, node_adjacency_hash);
     node_t *node = connected_node_iter_first(connected_node_iter);

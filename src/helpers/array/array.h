@@ -2,17 +2,17 @@
 
 // growable array
 
-array_t *array_new(size_t size);
+array_t *make_array(size_t size);
 void array_purge(array_t *self);
 void array_destroy(array_t **self_pointer);
 
 void array_set_destroy_fn(array_t *self, destroy_fn_t *destroy_fn);
-array_t *array_new_with(size_t size, destroy_fn_t *destroy_fn);
+array_t *make_array_with(size_t size, destroy_fn_t *destroy_fn);
 
 #define ARRAY_AUTO_SIZE 64
 
-array_t *array_new_auto(void);
-array_t *array_new_auto_with(destroy_fn_t *destroy_fn);
+array_t *make_array_auto(void);
+array_t *make_array_auto_with(destroy_fn_t *destroy_fn);
 
 size_t array_size(const array_t *self);
 size_t array_grow_step(const array_t *self);

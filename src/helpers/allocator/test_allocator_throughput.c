@@ -7,9 +7,9 @@
 static void *
 thread_fn(void *arg) {
     allocator_t *allocator = arg;
-    stack_t *stack = stack_new();
+    stack_t *stack = make_stack();
 
-    stack_t *allocated_stack = stack_new();
+    stack_t *allocated_stack = make_stack();
     for (size_t r = 0; r < REPEATION_COUNT; r++) {
         for (size_t i = 0; i < BATCH_SIZE; i++) {
             void *value = allocator_allocate(allocator, stack);
@@ -29,7 +29,7 @@ void
 test_allocator_throughput(void) {
     test_start();
 
-    allocator_t *allocator = allocator_new(CACHE_SIZE);
+    allocator_t *allocator = make_allocator(CACHE_SIZE);
     size_t ENOUGH_ALLOCATION_COUNT = CACHE_SIZE * 100;
     for (size_t i = 0; i < ENOUGH_ALLOCATION_COUNT; i++) {
         stack_push(allocator->stack, string_copy("abc"));
@@ -38,7 +38,7 @@ test_allocator_throughput(void) {
     double start_second = time_second();
 
     size_t thread_count = 10;
-    array_t *thread_array = array_new_auto();
+    array_t *thread_array = make_array_auto();
     for (size_t i = 0; i < thread_count; i++) {
         tid_t tid = thread_start(thread_fn, allocator);
         array_push(thread_array, (void *) tid);

@@ -5,9 +5,9 @@ struct set_t {
 };
 
 set_t *
-set_new(void) {
+make_set(void) {
     set_t *self = new(set_t);
-    self->value_hash = hash_new();
+    self->value_hash = make_hash();
     return self;
 }
 
@@ -39,15 +39,15 @@ set_set_equal_fn(set_t *self, equal_fn_t *equal_fn) {
 }
 
 set_t *
-set_new_with(destroy_fn_t *destroy_fn) {
-    set_t *self = set_new();
+make_set_with(destroy_fn_t *destroy_fn) {
+    set_t *self = make_set();
     set_set_destroy_fn(self, destroy_fn);
     return self;
 }
 
 set_t *
-string_set_new(void) {
-    set_t *self = set_new();
+string_make_set(void) {
+    set_t *self = make_set();
     set_set_hash_fn(self, (hash_fn_t *) string_bernstein_hash);
     set_set_destroy_fn(self, (destroy_fn_t *) string_destroy);
     set_set_equal_fn(self, (equal_fn_t *) string_equal);
@@ -92,7 +92,7 @@ set_next(set_t *self) {
 
 list_t *
 set_to_list(set_t *self) {
-    list_t *list = list_new();
+    list_t *list = make_list();
     void *value = set_first(self);
     while (value) {
         list_push(list, value);
@@ -104,7 +104,7 @@ set_to_list(set_t *self) {
 
 array_t *
 set_to_array(set_t *self) {
-    array_t *array = array_new_auto();
+    array_t *array = make_array_auto();
     void *value = set_first(self);
     while (value) {
         array_push(array, value);

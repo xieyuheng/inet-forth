@@ -4,7 +4,7 @@ static int run(commander_t *commander);
 
 void
 cmd_default_version(commander_t *commander) {
-    command_t *command = command_new("version");
+    command_t *command = make_command("version");
     command->description = "print version";
     command->run = run;
     commander_add(commander, command);

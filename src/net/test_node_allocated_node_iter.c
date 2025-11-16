@@ -4,14 +4,14 @@ void
 test_node_allocated_node_iter(void) {
     test_start();
 
-    node_allocator_t *node_allocator = node_allocator_new();
+    node_allocator_t *node_allocator = node_make_allocator();
 
     size_t per_thread_node_count = 10;
-    list_t *node_list = list_new();
+    list_t *node_list = make_list();
 
 
     {
-        stack_t *stack = stack_new();
+        stack_t *stack = make_stack();
         for (size_t i = 0; i < per_thread_node_count; i++) {
             node_t *node = node_allocator_allocate(node_allocator, stack);
             list_push(node_list, node);
@@ -19,7 +19,7 @@ test_node_allocated_node_iter(void) {
     }
 
     {
-        stack_t *stack = stack_new();
+        stack_t *stack = make_stack();
         for (size_t i = 0; i < per_thread_node_count; i++) {
             node_t *node = node_allocator_allocate(node_allocator, stack);
             list_push(node_list, node);

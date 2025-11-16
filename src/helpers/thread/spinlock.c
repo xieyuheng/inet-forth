@@ -1,7 +1,7 @@
 #include "index.h"
 
 spinlock_t *
-spinlock_new(void) {
+make_spinlock(void) {
     spinlock_t *self = new(spinlock_t);
     int errno = pthread_spin_init(self, PTHREAD_PROCESS_PRIVATE);
     assert(errno == 0);

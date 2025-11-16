@@ -42,7 +42,7 @@ is_power_of_two(size_t n) {
 }
 
 queue_t *
-queue_new(size_t size) {
+make_queue(size_t size) {
     assert(size > 1);
     assert(is_power_of_two(size));
     queue_t *self = new_page_aligned(queue_t);
@@ -90,8 +90,8 @@ queue_set_destroy_fn(queue_t *self, destroy_fn_t *destroy_fn) {
 }
 
 queue_t *
-queue_new_with(size_t size, destroy_fn_t *destroy_fn) {
-    queue_t *self = queue_new(size);
+make_queue_with(size_t size, destroy_fn_t *destroy_fn) {
+    queue_t *self = make_queue(size);
     self->destroy_fn = destroy_fn;
     return self;
 }

@@ -1,7 +1,7 @@
 #include "index.h"
 
 mutex_t *
-mutex_new(void) {
+make_mutex(void) {
     mutex_t *self = new(mutex_t);
     pthread_mutexattr_t mutex_attr;
     pthread_mutexattr_init(&mutex_attr);

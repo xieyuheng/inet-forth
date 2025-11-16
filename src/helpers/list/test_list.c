@@ -4,7 +4,7 @@ void
 test_list(void) {
     test_start();
 
-    list_t *list = list_new();
+    list_t *list = make_list();
     assert(list);
     assert(list_length(list) == 0);
 
@@ -161,7 +161,7 @@ test_list(void) {
         char *b = string_copy("b");
         char *c = string_copy("c");
 
-        list_t *list = list_new_with((destroy_fn_t *) string_destroy);
+        list_t *list = make_list_with((destroy_fn_t *) string_destroy);
 
         list_push(list, a);
         list_push(list, b);
@@ -224,7 +224,7 @@ test_list(void) {
         char *b = string_copy("b");
         char *c = string_copy("c");
 
-        list_t *list = list_new_with((destroy_fn_t *) string_destroy);
+        list_t *list = make_list_with((destroy_fn_t *) string_destroy);
         list_set_equal_fn(list, (equal_fn_t *) string_equal_mod_case);
         list_set_copy_fn(list, (copy_fn_t *) string_copy);
 
@@ -257,7 +257,7 @@ test_list(void) {
         char *b = string_copy("b");
         char *c = string_copy("c");
 
-        list_t *list = list_new();
+        list_t *list = make_list();
         list_set_destroy_fn(list, (destroy_fn_t *) string_destroy);
         list_set_equal_fn(list, (equal_fn_t *) string_equal_mod_case);
 

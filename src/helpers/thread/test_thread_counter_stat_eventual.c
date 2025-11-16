@@ -46,7 +46,7 @@ test_thread_counter_stat_eventual(void) {
     test_start();
     double start_second = time_second();
 
-    list_t *list = list_new();
+    list_t *list = make_list();
 
     tid_t eventual_tid = thread_start(eventual, NULL);
     relaxed_store(&eventual_run_p, true);

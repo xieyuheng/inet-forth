@@ -70,7 +70,7 @@ utf8_decode(const char *string) {
 size_t
 utf8_string_length(const char *string) {
     size_t length = 0;
-    utf8_iter_t *iter = utf8_iter_new(string);
+    utf8_iter_t *iter = make_utf8_iter(string);
     code_point_t code_point = utf8_iter_first(iter);
     while (code_point) {
         length++;

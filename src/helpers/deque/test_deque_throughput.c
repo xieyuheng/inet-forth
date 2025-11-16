@@ -30,7 +30,7 @@ void
 test_deque_throughput(void) {
     test_start();
 
-    deque_t *deque = deque_new();
+    deque_t *deque = make_deque();
 
     double start_second = time_second();
 

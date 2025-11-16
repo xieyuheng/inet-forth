@@ -5,7 +5,7 @@ test_blob(void) {
     test_start();
 
     {
-        blob_t *blob = blob_new(3);
+        blob_t *blob = make_blob(3);
         blob_bytes(blob)[0] = 'a';
         blob_bytes(blob)[1] = 'b';
         blob_bytes(blob)[2] = 'c';
@@ -17,12 +17,12 @@ test_blob(void) {
     }
 
     {
-        blob_t *blob_1 = blob_new(3);
+        blob_t *blob_1 = make_blob(3);
         blob_bytes(blob_1)[0] = 'a';
         blob_bytes(blob_1)[1] = 'b';
         blob_bytes(blob_1)[2] = 'c';
 
-        blob_t *blob_2 = blob_new(3);
+        blob_t *blob_2 = make_blob(3);
         blob_bytes(blob_2)[0] = 'a';
         blob_bytes(blob_2)[1] = 'b';
         blob_bytes(blob_2)[2] = 'c';
@@ -39,7 +39,7 @@ test_blob(void) {
     }
 
     {
-        blob_t *blob_1 = blob_new(3);
+        blob_t *blob_1 = make_blob(3);
         blob_bytes(blob_1)[0] = 'a';
         blob_bytes(blob_1)[1] = 'b';
         blob_bytes(blob_1)[2] = 'c';

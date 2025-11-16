@@ -1,6 +1,6 @@
 #pragma once
 
-hash_t *hash_new(void);
+hash_t *make_hash(void);
 void hash_purge(hash_t *self);
 void hash_destroy(hash_t **self_pointer);
 

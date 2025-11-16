@@ -33,7 +33,7 @@ compile_bind(worker_t *worker, function_t *function) {
     (void) list_shift(worker->token_list);
     token_destroy(&token);
 
-    list_t *local_token_list = list_new();
+    list_t *local_token_list = make_list();
     while (true) {
         token_t *token = list_first(worker->token_list);
         if (string_equal(token->string, ")")) {

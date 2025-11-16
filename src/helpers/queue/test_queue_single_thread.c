@@ -4,7 +4,7 @@ void
 test_queue_single_thread(void) {
     test_start();
 
-    queue_t *queue = queue_new(4);
+    queue_t *queue = make_queue(4);
     assert(queue_size(queue) == 4);
     assert(queue_length(queue) == 0);
 

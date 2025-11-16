@@ -1,9 +1,9 @@
 #pragma once
 
-path_t *path_new(const char *string);
+path_t *make_path(const char *string);
 void path_destroy(path_t **self_pointer);
 
-path_t *path_new_cwd(void);
+path_t *make_path_cwd(void);
 
 bool path_is_relative(const path_t *self);
 bool path_is_absolute(const path_t *self);

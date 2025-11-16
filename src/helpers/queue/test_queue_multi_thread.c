@@ -63,7 +63,7 @@ void
 test_queue_multi_thread(void) {
     test_start();
 
-    queue_t *queue = queue_new(QUEUE_SIZE);
+    queue_t *queue = make_queue(QUEUE_SIZE);
 
     {
         who_printf("uint_producer vs. uint_consumer\n");

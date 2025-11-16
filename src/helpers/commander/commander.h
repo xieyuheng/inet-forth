@@ -11,7 +11,7 @@ struct commander_t {
     list_t *command_list;
 };
 
-commander_t *commander_new(
+commander_t *make_commander(
     const char *name,
     const char *version,
     int argc,

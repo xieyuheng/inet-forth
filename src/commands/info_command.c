@@ -4,7 +4,7 @@ static int run(commander_t *commander);
 
 void
 cmd_info(commander_t *commander) {
-    command_t *command = command_new("info");
+    command_t *command = make_command("info");
     command->description = "print system info";
     command->run = run;
     commander_add(commander, command);

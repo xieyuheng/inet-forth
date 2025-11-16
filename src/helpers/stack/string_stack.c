@@ -1,7 +1,7 @@
 #include "index.h"
 
 stack_t *
-string_stack_new(void) {
-    stack_t *self = stack_new_with((destroy_fn_t *) string_destroy);
+string_make_stack(void) {
+    stack_t *self = make_stack_with((destroy_fn_t *) string_destroy);
     return self;
 }

@@ -5,7 +5,7 @@ struct fast_spinlock_t {
 };
 
 fast_spinlock_t *
-fast_spinlock_new(void) {
+make_fast_spinlock(void) {
     fast_spinlock_t *self = new(fast_spinlock_t);
     atomic_init(&self->atomic_is_locked, false);
     return self;

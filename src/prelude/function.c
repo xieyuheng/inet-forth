@@ -30,7 +30,7 @@ import(worker_t *worker, list_t *name_list, path_t *target_path) {
 
 void x_import(worker_t *worker) {
     token_t *token = list_shift(worker->token_list);
-    list_t *name_list = string_list_new();
+    list_t *name_list = string_make_list();
     while (true) {
         if (!token) {
             who_printf("expect a path to be the end of import\n");
@@ -39,7 +39,7 @@ void x_import(worker_t *worker) {
             list_push(name_list, string_copy(token->string));
             token_destroy(&token);
         } else if (token->kind == STRING_TOKEN) {
-            path_t *path = path_new(token->string);
+            path_t *path = make_path(token->string);
             token_destroy(&token);
             import(worker, name_list, path);
             list_destroy(&name_list);

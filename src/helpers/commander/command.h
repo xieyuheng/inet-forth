@@ -9,5 +9,5 @@ struct command_t {
     command_run_t *run;
 };
 
-command_t *command_new(const char *name);
+command_t *make_command(const char *name);
 void command_destroy(command_t **self_pointer);

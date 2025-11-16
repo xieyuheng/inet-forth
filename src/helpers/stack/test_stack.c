@@ -4,7 +4,7 @@ void
 test_stack(void) {
     test_start();
 
-    stack_t *stack = stack_new_with((destroy_fn_t *) string_destroy);
+    stack_t *stack = make_stack_with((destroy_fn_t *) string_destroy);
 
     assert(stack);
 

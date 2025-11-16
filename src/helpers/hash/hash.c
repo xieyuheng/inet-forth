@@ -38,7 +38,7 @@ hash_key_index(hash_t *self, const void *key) {
 }
 
 static entry_t *
-hash_new_entry(hash_t *self, void *key, void *value) {
+make_hash_entry(hash_t *self, void *key, void *value) {
     entry_t *entry = new(entry_t);
     entry->index = hash_key_index(self, key);
     entry->key = key;
@@ -59,7 +59,7 @@ hash_init(hash_t *self) {
 }
 
 hash_t *
-hash_new(void) {
+make_hash(void) {
     hash_t *self = new(hash_t);
     hash_init(self);
     return self;
@@ -87,7 +87,7 @@ hash_set_key_equal_fn(hash_t *self, equal_fn_t *key_equal_fn) {
 
 hash_t *
 hash_of_string_key(void) {
-    hash_t* self = hash_new();
+    hash_t* self = make_hash();
     hash_set_key_destroy_fn(self, (destroy_fn_t *) string_destroy);
     hash_set_key_equal_fn(self, (equal_fn_t *) string_equal);
     hash_set_hash_fn(self, (hash_fn_t *) string_bernstein_hash);
@@ -219,7 +219,7 @@ hash_set_entry_if_not_exists(hash_t *self, void *key, void *value) {
     size_t index = hash_key_index(self, key);
     entry_t *entry = self->entries[index];
     if (!entry) {
-        entry_t *new_entry = hash_new_entry(self, key, value);
+        entry_t *new_entry = make_hash_entry(self, key, value);
         self->entries[index] = new_entry;
         self->used_indexes_size++;
         self->length++;
@@ -233,7 +233,7 @@ hash_set_entry_if_not_exists(hash_t *self, void *key, void *value) {
         entry = entry->next;
     }
 
-    entry_t *new_entry = hash_new_entry(self, key, value);
+    entry_t *new_entry = make_hash_entry(self, key, value);
     entry_t *top_entry = self->entries[index];
     self->entries[index] = new_entry;
     new_entry->next = top_entry;
@@ -344,7 +344,7 @@ hash_next(hash_t *self) {
 
 list_t *
 hash_value_list(hash_t *self) {
-    list_t *list = list_new();
+    list_t *list = make_list();
     void *value = hash_first(self);
     while (value) {
         list_push(list, value);

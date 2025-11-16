@@ -5,7 +5,7 @@ test_hash(void) {
     test_start();
 
     {
-        hash_t *hash = hash_new();
+        hash_t *hash = make_hash();
         assert(hash_length(hash) == 0);
 
         void *k1 = (void *) 1;
@@ -37,7 +37,7 @@ test_hash(void) {
     }
 
     {
-        hash_t *hash = hash_new();
+        hash_t *hash = make_hash();
 
         size_t length = 1000 * 1000;
         for (size_t i = 0; i < length; i++)
@@ -54,7 +54,7 @@ test_hash(void) {
     }
 
     {
-        hash_t *hash = hash_new();
+        hash_t *hash = make_hash();
 
         size_t length = 1000 * 1000;
         for (size_t i = 0; i < length; i++)
@@ -68,7 +68,7 @@ test_hash(void) {
     }
 
     {
-        hash_t *hash = hash_new();
+        hash_t *hash = make_hash();
         hash_set_hash_fn(hash, (hash_fn_t *) string_bernstein_hash);
         hash_set_destroy_fn(hash, (destroy_fn_t *) string_destroy);
         hash_set_key_destroy_fn(hash, (destroy_fn_t *) string_destroy);
@@ -116,7 +116,7 @@ test_hash(void) {
 
         //  Insert some entries
 
-        list_t *string_list = string_list_new();
+        list_t *string_list = string_make_list();
         list_push(string_list, string_copy("dead beef"));
         list_push(string_list, string_copy("a bad cafe"));
         list_push(string_list, string_copy("coded bad"));

@@ -33,7 +33,7 @@ void
 test_queue_throughput(void) {
     test_start();
 
-    queue_t *queue = queue_new(QUEUE_SIZE);
+    queue_t *queue = make_queue(QUEUE_SIZE);
 
     double start_second = time_second();
 

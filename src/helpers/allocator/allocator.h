@@ -13,7 +13,7 @@ struct allocator_t {
     size_t cache_size;
 };
 
-allocator_t *allocator_new(size_t cache_size);
+allocator_t *make_allocator(size_t cache_size);
 void allocator_destroy(allocator_t **self_pointer);
 
 void *allocator_maybe_allocate(allocator_t *self, stack_t *stack);

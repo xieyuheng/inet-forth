@@ -23,7 +23,7 @@ load_mod(path_t *path) {
     mod_t *mod = mod_new(path, code);
     import_prelude(mod);
 
-    node_allocator_t *node_allocator = node_allocator_new();
+    node_allocator_t *node_allocator = node_make_allocator();
     worker_t *loader_worker = worker_new(mod, node_allocator);
     mod->loader_worker = loader_worker;
 

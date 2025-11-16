@@ -102,8 +102,8 @@ x_define_node(worker_t *worker) {
 
     check_name_not_defined(worker, name, head_token);
 
-    list_t *input_token_list = list_new_with((destroy_fn_t *) token_destroy);
-    list_t *output_token_list = list_new_with((destroy_fn_t *) token_destroy);
+    list_t *input_token_list = make_list_with((destroy_fn_t *) token_destroy);
+    list_t *output_token_list = make_list_with((destroy_fn_t *) token_destroy);
 
     bool output_flag = false;
     while (true) {

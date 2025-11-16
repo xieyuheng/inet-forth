@@ -2,7 +2,7 @@
 
 // double linked list, with a private cursor.
 
-list_t *list_new(void);
+list_t *make_list(void);
 void list_destroy(list_t **self_pointer);
 void list_purge(list_t *self);
 
@@ -10,7 +10,7 @@ void list_set_destroy_fn(list_t *self, destroy_fn_t *destroy_fn);
 void list_set_equal_fn(list_t *self, equal_fn_t *equal_fn);
 void list_set_copy_fn(list_t *self, copy_fn_t *copy_fn);
 
-list_t *list_new_with(destroy_fn_t *destroy_fn);
+list_t *make_list_with(destroy_fn_t *destroy_fn);
 
 // Make a copy of the list; values are copyed if you set a copy_fn for
 // the list, otherwise not. Copying a null reference returns a null

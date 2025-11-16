@@ -15,14 +15,14 @@ prepare_one_batch_of_nodes(node_allocator_t *self) {
 }
 
 node_allocator_t *
-node_allocator_new(void) {
+node_make_allocator(void) {
     size_t cache_size = NODE_ALLOCATOR_CACHE_SIZE;
     size_t batch_size = NODE_ALLOCATOR_BATCH_SIZE;
 
     node_allocator_t *self = new(node_allocator_t);
-    self->allocator = allocator_new(cache_size);
+    self->allocator = make_allocator(cache_size);
     self->batch_size = batch_size;
-    self->node_array = array_new_auto_with((destroy_fn_t *) node_destroy);
+    self->node_array = make_array_auto_with((destroy_fn_t *) node_destroy);
     prepare_one_batch_of_nodes(self);
     return self;
 }

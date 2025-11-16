@@ -35,7 +35,7 @@ node_adjacency_destroy(node_adjacency_t **self_pointer) {
 
 hash_t *
 build_node_adjacency_hash(node_allocator_t *node_allocator) {
-    hash_t *node_adjacency_hash = hash_new();
+    hash_t *node_adjacency_hash = make_hash();
     hash_set_destroy_fn(node_adjacency_hash, (destroy_fn_t *) array_destroy);
 
     array_t *node_array = allocated_node_array(node_allocator);
@@ -43,7 +43,7 @@ build_node_adjacency_hash(node_allocator_t *node_allocator) {
     for (size_t i = 0; i < length; i++) {
         node_t *x = array_get(node_array, i);
         array_t *node_adjacency_array =
-            array_new_auto_with((destroy_fn_t *) node_adjacency_destroy);
+            make_array_auto_with((destroy_fn_t *) node_adjacency_destroy);
         hash_set(node_adjacency_hash, x, node_adjacency_array);
 
         for (size_t j = 0; j < length; j++) {

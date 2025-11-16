@@ -4,7 +4,7 @@ void
 test_lexer(void) {
     test_start();
 
-    lexer_t *lexer = lexer_new();
+    lexer_t *lexer = make_lexer();
 
     {
         lexer->string = "";

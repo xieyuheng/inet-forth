@@ -1,6 +1,6 @@
 #pragma once
 
-fast_spinlock_t *fast_spinlock_new(void);
+fast_spinlock_t *make_fast_spinlock(void);
 void fast_spinlock_destroy(fast_spinlock_t **self_pointer);
 
 void fast_spinlock_lock(fast_spinlock_t *self);

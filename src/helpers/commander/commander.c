@@ -1,13 +1,13 @@
 #include "index.h"
 
 commander_t *
-commander_new(const char *name, const char *version, int argc, char **argv) {
+make_commander(const char *name, const char *version, int argc, char **argv) {
     commander_t *self = new(commander_t);
     self->name = name;
     self->version = version;
     self->argc = argc;
     self->argv = argv;
-    self->command_list = list_new_with((destroy_fn_t *) command_destroy);
+    self->command_list = make_list_with((destroy_fn_t *) command_destroy);
     return self;
 }
 

@@ -1,10 +1,10 @@
 #include "index.h"
 
 allocator_t *
-allocator_new(size_t cache_size) {
+make_allocator(size_t cache_size) {
     allocator_t *self = new_page_aligned(allocator_t);
-    self->mutex = mutex_new();
-    self->stack = stack_new();
+    self->mutex = make_mutex();
+    self->stack = make_stack();
     self->cache_size = cache_size;
     return self;
 }

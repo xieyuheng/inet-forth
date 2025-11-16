@@ -4,7 +4,7 @@ static int run(commander_t *commander);
 
 void
 cmd_test_self(commander_t *commander) {
-    command_t *command = command_new("test-self");
+    command_t *command = make_command("test-self");
     command->description = "run self test";
     command->run = run;
     commander_add(commander, command);

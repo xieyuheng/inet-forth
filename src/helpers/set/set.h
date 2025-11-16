@@ -1,14 +1,14 @@
 #pragma once
 
-set_t *set_new(void);
+set_t *make_set(void);
 void set_destroy(set_t **self_pointer);
 
 void set_set_hash_fn(set_t *self, hash_fn_t *hash_fn);
 void set_set_destroy_fn(set_t *self, destroy_fn_t *destroy_fn);
 void set_set_equal_fn(set_t *self, equal_fn_t *equal_fn);
 
-set_t *set_new_with(destroy_fn_t *destroy_fn);
-set_t *string_set_new(void);
+set_t *make_set_with(destroy_fn_t *destroy_fn);
+set_t *string_make_set(void);
 
 size_t set_length(const set_t *self);
 

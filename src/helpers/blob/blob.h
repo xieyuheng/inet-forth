@@ -1,6 +1,6 @@
 #pragma once
 
-blob_t *blob_new(size_t size);
+blob_t *make_blob(size_t size);
 void blob_destroy(blob_t **self_pointer);
 
 size_t blob_size(const blob_t *self);

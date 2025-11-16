@@ -3,7 +3,7 @@
 node_t *
 node_new(void) {
     node_t *self = new(node_t);
-    self->mutex = mutex_new();
+    self->mutex = make_mutex();
     self->values = allocate_pointers(NODE_MAX_ARITY);
     return self;
 }

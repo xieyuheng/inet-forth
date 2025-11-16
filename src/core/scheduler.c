@@ -5,7 +5,7 @@ scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count)
     scheduler_t *self = new(scheduler_t);
     self->mod = mod;
     self->node_allocator = node_allocator;
-    self->worker_array = array_new_auto_with((destroy_fn_t *) worker_destroy);
+    self->worker_array = make_array_auto_with((destroy_fn_t *) worker_destroy);
     for (size_t i = 0; i < worker_count; i++) {
         worker_t *worker = worker_new(mod, node_allocator);
         worker->scheduler = self;
@@ -13,7 +13,7 @@ scheduler_new(mod_t *mod, node_allocator_t *node_allocator, size_t worker_count)
         array_push(self->worker_array, worker);
     }
 
-    self->worker_tid_array = array_new_auto();
+    self->worker_tid_array = make_array_auto();
     atomic_init(&self->atomic_task_count, 0);
     return self;
 }

@@ -21,7 +21,7 @@ struct lexer_t {
     bool enable_string;
 };
 
-lexer_t *lexer_new(void);
+lexer_t *make_lexer(void);
 void lexer_destroy(lexer_t **self_pointer);
 
 void lexer_add_delimiter(lexer_t *self, const char *delimiter);

@@ -1,7 +1,7 @@
 #include "index.h"
 
 atom_sexp_t *
-atom_sexp_new(const token_t *token) {
+make_atom_sexp(const token_t *token) {
     atom_sexp_t *self = new(atom_sexp_t);
     self->kind = ATOM_SEXP;
     self->token = token;
@@ -19,7 +19,7 @@ atom_sexp_destroy(atom_sexp_t **self_pointer) {
 }
 
 list_sexp_t *
-list_sexp_new(const token_t *start_token, const token_t *end_token, list_t *sexp_list) {
+make_list_sexp(const token_t *start_token, const token_t *end_token, list_t *sexp_list) {
     list_sexp_t *self = new(list_sexp_t);
     self->kind = LIST_SEXP;
     self->start_token = start_token;
@@ -66,15 +66,15 @@ parse_sexp(list_t *token_list) {
     if (string_equal(token->string, "(")) {
         list_t *sexp_list = parse_list(token_list);
         token_t *end_token = list_shift(token_list);
-        return (sexp_t *) list_sexp_new(token, end_token, sexp_list);
+        return (sexp_t *) make_list_sexp(token, end_token, sexp_list);
     } else {
-        return (sexp_t *) atom_sexp_new(token);
+        return (sexp_t *) make_atom_sexp(token);
     }
 }
 
 static list_t *
 parse_list(list_t *token_list) {
-    list_t *sexp_list = list_new_with((destroy_fn_t *) sexp_destroy);
+    list_t *sexp_list = make_list_with((destroy_fn_t *) sexp_destroy);
     while (!list_is_empty(token_list)) {
         token_t *token = list_first(token_list);
         if (string_equal(token->string, ")"))
@@ -88,7 +88,7 @@ parse_list(list_t *token_list) {
 
 list_t *
 sexp_parse_list(const char *string) {
-    lexer_t *lexer = lexer_new();
+    lexer_t *lexer = make_lexer();
     lexer->line_comment = ";";
     lexer->enable_int = true;
     lexer->enable_float = true;
