@@ -147,7 +147,7 @@ test_list(void) {
         list_push(list, bread);
         list_push(list, wine);
 
-        list_set_destroy_fn(list, (destroy_fn_t *) string_destroy);
+        list_put_destroy_fn(list, (destroy_fn_t *) string_destroy);
 
         list_purge(list);
         assert(list_length(list) == 0);
@@ -179,7 +179,7 @@ test_list(void) {
         assert(!list_has(list, "B"));
         assert(!list_has(list, "C"));
 
-        list_set_equal_fn(list, (equal_fn_t *) string_equal);
+        list_put_equal_fn(list, (equal_fn_t *) string_equal);
 
         assert(list_has(list, "a"));
         assert(list_has(list, "b"));
@@ -193,7 +193,7 @@ test_list(void) {
         assert(!list_find(list, "B"));
         assert(!list_find(list, "C"));
 
-        list_set_equal_fn(list, (equal_fn_t *) string_equal_mod_case);
+        list_put_equal_fn(list, (equal_fn_t *) string_equal_mod_case);
 
         assert(list_has(list, "a"));
         assert(list_has(list, "b"));
@@ -225,16 +225,16 @@ test_list(void) {
         char *c = string_copy("c");
 
         list_t *list = make_list_with((destroy_fn_t *) string_destroy);
-        list_set_equal_fn(list, (equal_fn_t *) string_equal_mod_case);
-        list_set_copy_fn(list, (copy_fn_t *) string_copy);
+        list_put_equal_fn(list, (equal_fn_t *) string_equal_mod_case);
+        list_put_copy_fn(list, (copy_fn_t *) string_copy);
 
         list_push(list, a);
         list_push(list, b);
         list_push(list, c);
 
         list_t *copy = list_copy(list);
-        list_set_destroy_fn(copy, (destroy_fn_t *) string_destroy);
-        list_set_equal_fn(copy, (equal_fn_t *) string_equal_mod_case);
+        list_put_destroy_fn(copy, (destroy_fn_t *) string_destroy);
+        list_put_equal_fn(copy, (equal_fn_t *) string_equal_mod_case);
 
         list_destroy(&list);
 
@@ -258,8 +258,8 @@ test_list(void) {
         char *c = string_copy("c");
 
         list_t *list = make_list();
-        list_set_destroy_fn(list, (destroy_fn_t *) string_destroy);
-        list_set_equal_fn(list, (equal_fn_t *) string_equal_mod_case);
+        list_put_destroy_fn(list, (destroy_fn_t *) string_destroy);
+        list_put_equal_fn(list, (equal_fn_t *) string_equal_mod_case);
 
         list_push(list, a);
         list_push(list, b);

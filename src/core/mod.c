@@ -7,7 +7,7 @@ mod_new(path_t *path, char *code) {
     self->code = code;
     self->value_hash = hash_of_string_key();
     // TODO we do not have `value_destroy` for now
-    // hash_set_destroy_fn(self->value_hash, (destroy_fn_t *) value_destroy);
+    // hash_put_destroy_fn(self->value_hash, (destroy_fn_t *) value_destroy);
     return self;
 }
 

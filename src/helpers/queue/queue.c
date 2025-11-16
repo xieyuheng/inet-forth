@@ -85,7 +85,7 @@ queue_destroy(queue_t **self_pointer) {
 }
 
 void
-queue_set_destroy_fn(queue_t *self, destroy_fn_t *destroy_fn) {
+queue_put_destroy_fn(queue_t *self, destroy_fn_t *destroy_fn) {
     self->destroy_fn = destroy_fn;
 }
 

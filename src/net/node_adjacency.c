@@ -36,7 +36,7 @@ node_adjacency_destroy(node_adjacency_t **self_pointer) {
 hash_t *
 build_node_adjacency_hash(node_allocator_t *node_allocator) {
     hash_t *node_adjacency_hash = make_hash();
-    hash_set_destroy_fn(node_adjacency_hash, (destroy_fn_t *) array_destroy);
+    hash_put_destroy_fn(node_adjacency_hash, (destroy_fn_t *) array_destroy);
 
     array_t *node_array = allocated_node_array(node_allocator);
     size_t length = array_length(node_array);

@@ -13,7 +13,7 @@ node_t *node_new(void);
 void node_destroy(node_t **self_pointer);
 void node_clean(node_t *self);
 
-void node_set_value(node_t *self, size_t index, value_t value);
+void node_put_value(node_t *self, size_t index, value_t value);
 value_t node_get_value(const node_t *self, size_t index);
 port_info_t *node_get_port_info(const node_t *self, size_t index);
 

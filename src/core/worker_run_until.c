@@ -22,7 +22,7 @@ worker_execute_opcode(worker_t *worker, frame_t *frame, opcode_t *opcode) {
 
     case OPCODE_SET_VARIABLE: {
         value_t value = stack_pop(worker->value_stack);
-        frame_set_variable(frame, opcode->set_variable.index, value);
+        frame_put_variable(frame, opcode->set_variable.index, value);
         return;
     }
     }

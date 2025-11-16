@@ -69,10 +69,10 @@ test_hash(void) {
 
     {
         hash_t *hash = make_hash();
-        hash_set_hash_fn(hash, (hash_fn_t *) string_bernstein_hash);
-        hash_set_destroy_fn(hash, (destroy_fn_t *) string_destroy);
-        hash_set_key_destroy_fn(hash, (destroy_fn_t *) string_destroy);
-        hash_set_key_equal_fn(hash, (equal_fn_t *) string_equal);
+        hash_put_hash_fn(hash, (hash_fn_t *) string_bernstein_hash);
+        hash_put_destroy_fn(hash, (destroy_fn_t *) string_destroy);
+        hash_put_key_destroy_fn(hash, (destroy_fn_t *) string_destroy);
+        hash_put_key_equal_fn(hash, (equal_fn_t *) string_equal);
 
         //  Insert some entries
         assert(hash_set(hash, string_copy("DEADBEEF"), string_copy("dead beef")));

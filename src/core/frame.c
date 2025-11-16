@@ -58,6 +58,6 @@ frame_get_variable(const frame_t *self, size_t index) {
 }
 
 void
-frame_set_variable(frame_t *self, size_t index, value_t value) {
+frame_put_variable(frame_t *self, size_t index, value_t value) {
     array_set(self->variable_array, index, value);
 }

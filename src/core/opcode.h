@@ -20,7 +20,7 @@ struct opcode_t {
 opcode_t *opcode_apply(size_t arity);
 opcode_t *opcode_literal(value_t value);
 opcode_t *opcode_get_variable(size_t index);
-opcode_t *opcode_set_variable(size_t index);
+opcode_t *opcode_put_variable(size_t index);
 
 void opcode_destroy(opcode_t **self_pointer);
 

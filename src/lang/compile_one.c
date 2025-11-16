@@ -51,10 +51,10 @@ compile_bind(worker_t *worker, function_t *function) {
         token_t *token = list_pop(local_token_list);
         if (hash_has(function->local_index_hash, token->string)) {
             size_t old_index = (size_t) hash_get(function->local_index_hash, token->string);
-            function_add_opcode(function, opcode_set_variable(old_index));
+            function_add_opcode(function, opcode_put_variable(old_index));
         } else {
             hash_set(function->local_index_hash, token->string, (void *) index);
-            function_add_opcode(function, opcode_set_variable(index));
+            function_add_opcode(function, opcode_put_variable(index));
             index++;
         }
     }

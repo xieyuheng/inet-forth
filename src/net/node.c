@@ -29,7 +29,7 @@ node_clean(node_t *self) {
 }
 
 void
-node_set_value(node_t *self, size_t index, value_t value) {
+node_put_value(node_t *self, size_t index, value_t value) {
     assert(self);
     assert(index < NODE_MAX_ARITY);
     self->values[index] = value;

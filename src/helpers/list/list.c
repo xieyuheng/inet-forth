@@ -55,17 +55,17 @@ list_purge(list_t *self) {
 }
 
 void
-list_set_destroy_fn(list_t *self, destroy_fn_t *destroy_fn) {
+list_put_destroy_fn(list_t *self, destroy_fn_t *destroy_fn) {
     self->destroy_fn = destroy_fn;
 }
 
 void
-list_set_equal_fn(list_t *self, equal_fn_t *equal_fn) {
+list_put_equal_fn(list_t *self, equal_fn_t *equal_fn) {
     self->equal_fn = equal_fn;
 }
 
 void
-list_set_copy_fn(list_t *self, copy_fn_t *copy_fn) {
+list_put_copy_fn(list_t *self, copy_fn_t *copy_fn) {
     self->copy_fn = copy_fn;
 }
 

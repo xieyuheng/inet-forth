@@ -26,7 +26,7 @@ opcode_get_variable(size_t index) {
 }
 
 opcode_t *
-opcode_set_variable(size_t index) {
+opcode_put_variable(size_t index) {
     opcode_t *self = new(opcode_t);
     self->kind = OPCODE_SET_VARIABLE;
     self->set_variable.index = index;

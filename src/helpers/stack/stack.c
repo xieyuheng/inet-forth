@@ -31,14 +31,14 @@ stack_destroy(stack_t **self_pointer) {
 }
 
 void
-stack_set_destroy_fn(stack_t *self, destroy_fn_t *destroy_fn) {
-    array_set_destroy_fn(self->array, destroy_fn);
+stack_put_destroy_fn(stack_t *self, destroy_fn_t *destroy_fn) {
+    array_put_destroy_fn(self->array, destroy_fn);
 }
 
 stack_t *
 make_stack_with(destroy_fn_t *destroy_fn) {
     stack_t *self = make_stack();
-    stack_set_destroy_fn(self, destroy_fn);
+    stack_put_destroy_fn(self, destroy_fn);
     return self;
 }
 

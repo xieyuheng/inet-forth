@@ -8,4 +8,4 @@ opcode_t *frame_fetch_opcode(frame_t *self);
 void frame_print(const frame_t *self, file_t *file);
 
 value_t frame_get_variable(const frame_t *self, size_t index);
-void frame_set_variable(frame_t *self, size_t index, value_t value);
+void frame_put_variable(frame_t *self, size_t index, value_t value);

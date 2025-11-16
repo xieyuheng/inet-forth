@@ -5,14 +5,14 @@ reconnect_input(node_t *node, size_t index, value_t value) {
     port_info_t *port_info = node_get_port_info(node, index);
     if (port_info->is_principal) {
         principal_wire_t *principal_wire = principal_wire_new(node, index);
-        node_set_value(node, index, principal_wire);
+        node_put_value(node, index, principal_wire);
         return connect(principal_wire, value);
     } else if (is_principal_wire(value)) {
         wire_t *wire = wire_new();
-        node_set_value(node, index, wire);
+        node_put_value(node, index, wire);
         return connect(wire, value);
     } else {
-        node_set_value(node, index, value);
+        node_put_value(node, index, value);
         return NULL;
     }
 }
@@ -22,11 +22,11 @@ reconnect_output(node_t *node, size_t index) {
     port_info_t *port_info = node_get_port_info(node, index);
     if (port_info->is_principal) {
         principal_wire_t *principal_wire = principal_wire_new(node, index);
-        node_set_value(node, index, principal_wire);
+        node_put_value(node, index, principal_wire);
         return principal_wire;
     } else {
         wire_t *wire = wire_new();
-        node_set_value(node, index, wire);
+        node_put_value(node, index, wire);
         return wire;
     }
 }

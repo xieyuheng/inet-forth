@@ -50,7 +50,7 @@ array_destroy(array_t **self_pointer) {
 }
 
 void
-array_set_destroy_fn(array_t *self, destroy_fn_t *destroy_fn) {
+array_put_destroy_fn(array_t *self, destroy_fn_t *destroy_fn) {
     self->destroy_fn = destroy_fn;
 }
 
@@ -82,7 +82,7 @@ array_grow_step(const array_t *self) {
 }
 
 void
-array_set_grow_step(array_t *self, size_t grow_step) {
+array_put_grow_step(array_t *self, size_t grow_step) {
     self->grow_step = grow_step;
 }
 

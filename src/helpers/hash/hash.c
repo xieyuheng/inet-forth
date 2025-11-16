@@ -66,31 +66,31 @@ make_hash(void) {
 }
 
 void
-hash_set_hash_fn(hash_t *self, hash_fn_t *hash_fn) {
+hash_put_hash_fn(hash_t *self, hash_fn_t *hash_fn) {
     self->hash_fn = hash_fn;
 }
 
 void
-hash_set_destroy_fn(hash_t *self, destroy_fn_t *destroy_fn) {
+hash_put_destroy_fn(hash_t *self, destroy_fn_t *destroy_fn) {
     self->destroy_fn = destroy_fn;
 }
 
 void
-hash_set_key_destroy_fn(hash_t *self, destroy_fn_t *key_destroy_fn) {
+hash_put_key_destroy_fn(hash_t *self, destroy_fn_t *key_destroy_fn) {
     self->key_destroy_fn = key_destroy_fn;
 }
 
 void
-hash_set_key_equal_fn(hash_t *self, equal_fn_t *key_equal_fn) {
+hash_put_key_equal_fn(hash_t *self, equal_fn_t *key_equal_fn) {
     self->key_equal_fn = key_equal_fn;
 }
 
 hash_t *
 hash_of_string_key(void) {
     hash_t* self = make_hash();
-    hash_set_key_destroy_fn(self, (destroy_fn_t *) string_destroy);
-    hash_set_key_equal_fn(self, (equal_fn_t *) string_equal);
-    hash_set_hash_fn(self, (hash_fn_t *) string_bernstein_hash);
+    hash_put_key_destroy_fn(self, (destroy_fn_t *) string_destroy);
+    hash_put_key_equal_fn(self, (equal_fn_t *) string_equal);
+    hash_put_hash_fn(self, (hash_fn_t *) string_bernstein_hash);
     return self;
 }
 
@@ -215,7 +215,7 @@ hash_get(hash_t *self, const void *key) {
 // if not exists return true,
 // if exists return false.
 static bool
-hash_set_entry_if_not_exists(hash_t *self, void *key, void *value) {
+hash_put_entry_if_not_exists(hash_t *self, void *key, void *value) {
     size_t index = hash_key_index(self, key);
     entry_t *entry = self->entries[index];
     if (!entry) {
@@ -287,7 +287,7 @@ hash_set(hash_t *self, void *key, void *value) {
     if (hash_is_overload(self))
         hash_rehash(self, self->prime_index + 1);
 
-    return hash_set_entry_if_not_exists(self, key, value);
+    return hash_put_entry_if_not_exists(self, key, value);
 }
 
 void
