@@ -1,22 +1,7 @@
 # inet-forth
 
-Moore's Law is broken.
-
-![Figure 6.11: MIPS/Clock-Frequency Trend for Intel CPUs](assets/images/mips-clock-frequency-trend-for-intel-cpus.png)
-
-(Figure 6.11: MIPS/Clock-Frequency Trend for Intel CPUs, from ["Is Parallel Programming Hard, And, If So, What Can You Do About It?"](https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html), by Paul E. McKenney)
-
-The exponential increase in single-threaded performance halted in about 2003.
-Therefore, increasing performance will increasingly require parallelism.
-
-How do we program a machine with many cores?
-
-One possible solution is the graph-based computation model
--- [interaction nets](https://en.wikipedia.org/wiki/Interaction_nets) --
-where a program in this computation model can automatically
-make use of any number cores in the machine.
-
-This project is an implementation of interaction nets
+This project is an implementation
+of [interaction nets](https://en.wikipedia.org/wiki/Interaction_nets)
 as a [forth-like language](https://en.wikipedia.org/wiki/forth_(programming_language)).
 
 ## Syntax
